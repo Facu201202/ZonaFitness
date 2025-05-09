@@ -1,4 +1,6 @@
 import PopularCategory from "@/components/PopularCategory";
+import CardCarousel from "@/components/product/CardCarousel";
+import ProductCard from "@/components/product/ProductCard";
 import { ArrowRightIcon } from '@heroicons/react/24/solid'
 import Link from "next/link"
 
@@ -40,7 +42,7 @@ export default function Home() {
           />
         </div>
       </div>
-      <div>
+      <div className="pt-12 pb-7">
         <div className="flex justify-between px-10">
           <h2 className="text-2xl">Productos Destacados</h2>
             <Link
@@ -51,6 +53,9 @@ export default function Home() {
                 className="w-4 h-4"
               />
             </Link>
+        </div>
+        <div className="px-5 py-6">
+          <CardCarousel/>
         </div>
       </div>
     </>
