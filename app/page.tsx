@@ -54,7 +54,7 @@ export default function Home() {
               />
             </Link>
         </div>
-        <div className="px-5 py-6">
+        <div className="px-32 py-6 ">
           <CardCarousel/>
         </div>
       </div>

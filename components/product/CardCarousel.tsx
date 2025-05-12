@@ -20,6 +20,9 @@ export default function CardCarousel() {
       spacing: 16,
     },
     breakpoints: {
+      "(max-width: 1440px)": {
+        slides: { perView: 3, spacing: 14 },
+      },
       "(max-width: 1024px)": {
         slides: { perView: 2, spacing: 12 },
       },
@@ -33,7 +36,7 @@ export default function CardCarousel() {
     <div className="relative">
       <div ref={sliderRef} className="keen-slider">
         {products.map((product, i) => (
-          <div key={i} className="keen-slider__slide min-w-0 shadow-xl hover:border ">
+          <div key={i} className="keen-slider__slide min-w-0 border-1 border-transparent shadow-xl hover:border-black hover:cursor-pointer">
             <ProductCard
               price={product.price}
               name={product.name}
