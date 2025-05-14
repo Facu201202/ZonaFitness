@@ -1,4 +1,5 @@
 import HomePageBanner from "@/components/HomePageBanner";
+import MainCommentCard from "@/components/MainCommentCard";
 import PopularCategory from "@/components/PopularCategory";
 import CardCarousel from "@/components/product/CardCarousel";
 import { ArrowRightIcon } from '@heroicons/react/24/solid'
@@ -23,7 +24,7 @@ export default function Home() {
       </div>
       <div className="text-center px-6 py-10">
         <h2 className="text-2xl mb-10">Categorías Populares</h2>
-        <div className="flex gap-4 justify-between w-7xl mx-auto">
+        <div className="flex 2xl:gap-16 lg:gap-10 justify-between w-fit mx-auto">
           <PopularCategory
             src="/products/t-shirts/under-armour-t-shirt.jpg"
             name="Remeras"
@@ -44,7 +45,7 @@ export default function Home() {
       </div>
       <div className="pt-12 pb-7 my-5">
         <div className="flex justify-between px-10">
-          <h2 className="text-2xl">Productos Destacados</h2>
+          <h2 className="text-2xl font-bold">Productos Destacados</h2>
           <Link
             href={""}
             className="text-[#2D5DA2] flex items-center gap-1"
@@ -66,7 +67,7 @@ export default function Home() {
       />
       <div className="pt-12 pb-7 my-5">
         <div className="flex justify-between px-10">
-          <h2 className="text-2xl">Recién Llegados</h2>
+          <h2 className="text-2xl font-bold">Recién Llegados</h2>
           <Link
             href={""}
             className="text-[#2D5DA2] flex items-center gap-1"
@@ -87,6 +88,14 @@ export default function Home() {
         bgColor={"#303A49"}
         textColor="text-gray-400"
       />
+      <div className="text-center py-10 bg-gray-100">
+        <h2 className="text-2xl font-bold">Lo que dicen nuestros clientes</h2>
+        <div className="p-12 flex gap-6 ">
+          <MainCommentCard />
+          <MainCommentCard />
+          <MainCommentCard />
+        </div>
+      </div>
     </>
   );
 }

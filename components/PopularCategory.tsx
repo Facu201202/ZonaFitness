@@ -7,7 +7,7 @@ type PopularCategoryProps = {
 
 export default function PopularCategory({ src, name }: PopularCategoryProps) {
     return (
-        <div className="relative w-60 h-80 overflow-hidden rounded-lg shadow-lg group">
+        <div className="relative 2xl:w-72 2xl:h-96 lg:w-56 lg:h-72 overflow-hidden rounded-lg shadow-lg group">
             <img
                 src={src}
                 alt={name}
