@@ -1,7 +1,7 @@
 
 export default function MainCommentCard() {
   return (
-    <div className=" p-8 shadow hover:shadow-xl rounded-2xl bg-white">
+    <div className="my-4 p-8 shadow hover:shadow-xl rounded-2xl bg-white">
         <div className="flex gap-3 items-center mb-3">
             <img src="user.png" alt=""  className="h-18 w-18 rounded-full"/>
             <h3 className="font-medium">Carlos Rodríguez</h3>

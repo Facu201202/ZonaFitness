@@ -13,8 +13,8 @@ type HomePageBannerProps = {
 export default function HomePageBanner({title, text, buttonText, bgColor, textColor}: HomePageBannerProps) {
     return (
         <div className={`bg-[${bgColor}] text-white py-8 flex flex-col items-center gap-3`}>
-            <h1 className="text-3xl font-bold">{title}</h1>
-            <p className={`text-xl ${textColor && textColor}`}>{text}</p>
+            <h1 className="text-3xl font-bold text-center">{title}</h1>
+            <p className={`text-xl text-center lg:text-left ${textColor && textColor}`}>{text}</p>
             <div className="py-4">
                 <Link
                     href={""}
