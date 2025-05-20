@@ -6,6 +6,7 @@ import { ArrowRightIcon } from '@heroicons/react/24/solid'
 import Link from "next/link"
 
 export default function Home() {
+  
   return (
     <>
       <div className="bg-[#303A49] text-white px-6 py-15 flex flex-col gap-6 ">

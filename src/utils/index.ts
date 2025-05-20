@@ -1,6 +1,22 @@
-export function formatCurrency ( amount: number) {
-    return new Intl.NumberFormat("en-US", {
+export function formatCurrency(amount: number) {
+    return new Intl.NumberFormat("es-AR", {
         style: "currency",
-        currency: "USD"
+        currency: "ARS"
     }).format(amount)
+}
+
+
+export function formatFeatures(str: string) {
+    const lines = str.trim().split('\n').filter(line => line.trim() !== '');
+
+    const obj: { [key: string]: string } = {};
+
+    lines.forEach(line => {
+        const [key, ...rest] = line.split(':');
+        const value = rest.join(':').trim();
+        obj[key.trim()] = value;
+    });
+
+    return obj
+
 }

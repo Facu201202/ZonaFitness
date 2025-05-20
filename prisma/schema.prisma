@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Categorias {
+  id_categoria Int         @id @default(autoincrement())
+  nombre       String
+  productos    Productos[]
+}
+
+model Productos {
+  id_producto  Int        @id @default(autoincrement())
+  nombre       String
+  precio       Float
+  foto         String
+  color        String
+  genero       String
+  id_categoria Int
+  categoria    Categorias @relation(fields: [id_categoria], references: [id_categoria])
+  stocks       Stock[]
+  publicaciones Publicaciones[]
+}
+
+model Sizes {
+  id_talle        Int     @id @default(autoincrement())
+  talle           String
+  categoria_talle String
+  stocks          Stock[]
+}
+
+model Stock {
+  id_stock    Int       @id @default(autoincrement())
+  cantidad    Int
+  id_producto Int
+  producto    Productos @relation(fields: [id_producto], references: [id_producto])
+  id_talle    Int
+  talle       Sizes     @relation(fields: [id_talle], references: [id_talle])
+}
+
+model Publicaciones {
+  id_publicacion  Int     @id @default(autoincrement())
+  activa          Boolean
+  caracteristicas String
+  descuento       Int
+  precio          Float
+  id_producto     Int
+  producto  Productos @relation(fields: [id_producto], references: [id_producto])
+  fecha DateTime  @default(now())
+}
