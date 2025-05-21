@@ -1,22 +1,15 @@
 'use client'
-import { useQuery } from "@tanstack/react-query"
 import { useKeenSlider } from "keen-slider/react"
 import "keen-slider/keen-slider.min.css"
 import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/24/solid"
 import ProductCard from "./ProductCard"
-import { tShirts } from "@/prisma/data/product"
+import { CarruselProduct } from "@/src/types"
 
-export default function CardCarousel() {
+type CardCarouselProps = {
+    products: CarruselProduct[]
+}
 
-  const fetchProductos = async () => {
-    const res = await fetch('/api')
-    if (!res.ok) throw new Error('Error al traer productos')
-    return res.json()
-  }
-  const { data, isLoading } = useQuery({
-    queryKey: ["productos"],
-    queryFn: fetchProductos
-  })
+export default function CardCarousel({products}: CardCarouselProps) {
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     slides: {
       perView: 4,
@@ -35,17 +28,17 @@ export default function CardCarousel() {
     },
   })
 
-  if (isLoading) return <p>Cargando...</p>
-  if (data) return (
+ 
+ return (
     <div className="relative">
       <div ref={sliderRef} className="keen-slider">
-        {tShirts.map((product, i) => (
-          <div key={i} className="keen-slider__slide min-w-0 border-1 border-transparent shadow-xl hover:border-black hover:cursor-pointer">
+        {products.map((publication) => (
+          <div key={publication.id_publicacion} className="keen-slider__slide min-w-0 border-1 border-transparent shadow-xl hover:border-black hover:cursor-pointer">
             <ProductCard
-              price={product.precio}
-              name={product.nombre}
-              category={"Prueba"}
-              src={"/products/t-shirts/" + product.foto}
+              price={publication.precio}
+              name={publication.producto.nombre}
+              category={publication.producto.categoria.nombre}
+              src={"/products/t-shirts/" + publication.producto.foto}
               opinionsCant={24}
             />
           </div>
