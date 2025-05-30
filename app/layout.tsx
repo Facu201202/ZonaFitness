@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/navbar/Navbar";
-import Footer from "@/components/footer/Footer";
 import { Montserrat } from 'next/font/google'
+import ReactQueryProvider from "./providers/ReactQueryProvider";
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -38,10 +37,11 @@ export default function RootLayout({
       <body
         className={`${montserrat.variable} font-sans antialiased min-h-screen flex flex-col`}
       >
-        <Navbar />
-        <main className="">{children}</main>
-
-        <Footer />
+        <main className="">
+          <ReactQueryProvider>
+            {children}
+          </ReactQueryProvider>
+        </main>
       </body>
     </html>
   );
