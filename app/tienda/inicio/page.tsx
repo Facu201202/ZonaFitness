@@ -3,13 +3,21 @@ import HomePageBanner from "@/components/HomePageBanner";
 import MainCommentCard from "@/components/MainCommentCard";
 import PopularCategory from "@/components/PopularCategory";
 import CardCarousel from "@/components/product/CardCarousel";
+import ProductModal from "@/components/product/ProductModal";
 import { ArrowRightIcon } from '@heroicons/react/24/solid'
 import Link from "next/link"
 import { useQuery } from "@tanstack/react-query"
-import { CarruselProduct } from "@/src/types"
+import { Product } from "@/src/types"
+import { useSearchParams } from "next/navigation";
+
 
 export default function Home() {
-  const fetchProductos = async (): Promise<CarruselProduct[]> => {
+
+  const searchParams = useSearchParams()
+  const productId = +searchParams.get('producto')!
+
+  const fetchProductos = async (): Promise<Product[]> => {
+    
     const res = await fetch('/tienda/inicio/api')
     if (!res.ok) throw new Error('Error al traer productos')
     return res.json()
@@ -18,8 +26,6 @@ export default function Home() {
     queryKey: ["productos"],
     queryFn: fetchProductos
   })
-
-
   return (
     <>
       <div className="bg-[#303A49] text-white px-6 py-15 flex flex-col gap-6 ">
@@ -69,7 +75,8 @@ export default function Home() {
             />
           </Link>
         </div>
-        <div className="px-6 lg:px-32 py-6  ">
+        <div className="px-6 lg:px-32 py-6  " >
+          
           {isLoading && <p className="text-center font-bold py-10">Cargando...</p>}
           {data && <CardCarousel
             products={data}
@@ -96,7 +103,7 @@ export default function Home() {
           </Link>
         </div>
         <div className="px-6  lg:px-32 py-6 ">
-          {isLoading && <p>Cargando...</p>}
+          {isLoading && <p  className="text-center font-bold py-10">Cargando...</p>}
           {data && <CardCarousel
             products={data}
           />}
@@ -118,6 +125,11 @@ export default function Home() {
           <MainCommentCard />
         </div>
       </div>
+      {
+        data && productId && <ProductModal productId={productId}  products={data}/>
+      }
+      
+      
     </>
   )
 }

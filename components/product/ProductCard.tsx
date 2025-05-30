@@ -7,6 +7,7 @@ import { HeartIcon } from "@heroicons/react/24/solid"
 import { HeartIcon as HeartIconOutline } from "@heroicons/react/24/outline"
 
 type ProductCardProps = {
+    id_publication: number,
     price: number,
     name: string,
     category: string,
@@ -14,8 +15,8 @@ type ProductCardProps = {
     opinionsCant: number
 }
 
-export default function ProductCard({ price, name, category, src, opinionsCant }: ProductCardProps) {
-
+export default function ProductCard({ price, name, category, src, opinionsCant, id_publication }: ProductCardProps) {
+    
     const [isClicked, setIsClicked] = useState(false)
 
     const handleClick = () => {
@@ -49,14 +50,15 @@ export default function ProductCard({ price, name, category, src, opinionsCant }
                     <p className="text-sm text-gray-600">{category}</p>
                     <p>{name}</p>
                     <div className="flex gap-2">
-                        <Qualification stars={4} />
+                        <Qualification stars={4} width="w-4" height="h-4"/>
                         <p className="text-sm text-gray-600">({opinionsCant})</p>
                     </div>
                 </div>
                 <div className="flex justify-between">
                     <p className="font-bold">{formatCurrency(price)}</p>
                     <Link
-                        href={""}
+                        href={`?producto=${id_publication}`}
+                        scroll={false}
                         className="rounded-full px-3 py-1 bg-[#2D5DA2] hover:bg-[#275ca2b6] text-white"
                     >Comprar</Link>
                 </div>

@@ -1,3 +1,5 @@
+import { Categoria } from "../types";
+
 export function formatCurrency(amount: number) {
     return new Intl.NumberFormat("es-AR", {
         style: "currency",
@@ -18,5 +20,15 @@ export function formatFeatures(str: string) {
     });
 
     return obj
+}
 
+export const categoriesTranslate = {
+    Remeras: "t-shirts",
+    Pantalones: "pants",
+    Gorras: "caps",
+    Zapatillas: "sneakers"
+}
+
+export function translateCategory(categoria: Categoria) {
+  return categoriesTranslate[categoria]
 }

@@ -1,17 +1,13 @@
 import {prisma} from "@/src/lib/prisma"
-import { Product } from "@/src/types"
-import { NextResponse } from "next/server"
+import { NextResponse, NextRequest } from "next/server"
 
 export const dynamic = "force-dynamic"
 
-export async function GET() {
-    const products: Product[] = await prisma.publicaciones.findMany({
-        take: 10,
+export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+    const id = Number(params.id)
+    const product = await prisma.publicaciones.findUnique({
         where: {
-            activa: true
-        },
-        orderBy: {
-            fecha: "desc"
+            id_publicacion: id,
         },
         select: {
             id_publicacion: true,
@@ -44,5 +40,10 @@ export async function GET() {
             }
         }
     })
-    return NextResponse.json(products)
+
+    if(!product) {
+        return NextResponse.json({error: "Producto no encontrado"}, {status: 404})
+    }
+    return NextResponse.json(product)
 }
+
