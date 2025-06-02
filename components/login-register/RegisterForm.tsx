@@ -1,7 +1,12 @@
 import { UserIcon, LockClosedIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/outline"
 import { useForm } from "react-hook-form"
+import Error from "./Error"
 
 export default function RegisterForm() {
+  const { register, handleSubmit, formState: { errors } } = useForm()
+  const registerUser = () => {
+    console.log("Hola")
+  }
   return (
     <div className='bg-white rounded-lg p-6'>
       <div>
@@ -11,7 +16,7 @@ export default function RegisterForm() {
         </div>
         <p className="text-gray-400 font-medium text-sm">Completa todos los campos para crear tu nueva cuenta</p>
       </div>
-      <form className="mt-5 flex flex-col gap-3">
+      <form className="mt-5 flex flex-col gap-3" onSubmit={handleSubmit(registerUser)}>
         <div className="mb-5">
           <div className="flex gap-2 text-xl mb-5">
             <UserIcon className="h-5 w-5 self-center" />
@@ -19,8 +24,17 @@ export default function RegisterForm() {
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div className="flex flex-col gap-2 font-semibold">
-              <label htmlFor="">Nombre *</label>
-              <input type="text" name="name" id="name" className="border border-gray-300 p-2 rounded-lg" placeholder="Juan" />
+              <label htmlFor="name">Nombre *</label>
+              <input type="text" id="name" className="border border-gray-300 p-2 rounded-lg" placeholder="Juan" {...register("name", {
+                required: "El Nombre es obligatorio", maxLength: {
+                  value: 8,
+                  message: "No mas de 8"
+                }
+              })} />
+              {errors.name && (
+                <Error>{errors.name?.message?.toString()}</Error>
+              )}
+
             </div>
             <div className="flex flex-col gap-2 font-semibold">
               <label htmlFor="">Apellido *</label>
