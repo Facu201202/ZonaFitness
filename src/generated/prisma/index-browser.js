@@ -158,6 +158,25 @@ exports.Prisma.PublicacionesScalarFieldEnum = {
   fecha: 'fecha'
 };
 
+exports.Prisma.UsuariosScalarFieldEnum = {
+  id_usuario: 'id_usuario',
+  usuario: 'usuario',
+  contraseña: 'contraseña',
+  rol: 'rol',
+  id_cliente: 'id_cliente'
+};
+
+exports.Prisma.ClientesScalarFieldEnum = {
+  id_cliente: 'id_cliente',
+  nombre: 'nombre',
+  apellido: 'apellido',
+  correo: 'correo',
+  dni: 'dni',
+  ciudad: 'ciudad',
+  barrio: 'barrio',
+  calle: 'calle'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -174,7 +193,9 @@ exports.Prisma.ModelName = {
   Productos: 'Productos',
   Sizes: 'Sizes',
   Stock: 'Stock',
-  Publicaciones: 'Publicaciones'
+  Publicaciones: 'Publicaciones',
+  Usuarios: 'Usuarios',
+  Clientes: 'Clientes'
 };
 
 /**

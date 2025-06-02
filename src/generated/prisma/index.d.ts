@@ -38,6 +38,16 @@ export type Stock = $Result.DefaultSelection<Prisma.$StockPayload>
  * 
  */
 export type Publicaciones = $Result.DefaultSelection<Prisma.$PublicacionesPayload>
+/**
+ * Model Usuarios
+ * 
+ */
+export type Usuarios = $Result.DefaultSelection<Prisma.$UsuariosPayload>
+/**
+ * Model Clientes
+ * 
+ */
+export type Clientes = $Result.DefaultSelection<Prisma.$ClientesPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -213,6 +223,26 @@ export class PrismaClient<
     * ```
     */
   get publicaciones(): Prisma.PublicacionesDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.usuarios`: Exposes CRUD operations for the **Usuarios** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Usuarios
+    * const usuarios = await prisma.usuarios.findMany()
+    * ```
+    */
+  get usuarios(): Prisma.UsuariosDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.clientes`: Exposes CRUD operations for the **Clientes** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Clientes
+    * const clientes = await prisma.clientes.findMany()
+    * ```
+    */
+  get clientes(): Prisma.ClientesDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -657,7 +687,9 @@ export namespace Prisma {
     Productos: 'Productos',
     Sizes: 'Sizes',
     Stock: 'Stock',
-    Publicaciones: 'Publicaciones'
+    Publicaciones: 'Publicaciones',
+    Usuarios: 'Usuarios',
+    Clientes: 'Clientes'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -676,7 +708,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "categorias" | "productos" | "sizes" | "stock" | "publicaciones"
+      modelProps: "categorias" | "productos" | "sizes" | "stock" | "publicaciones" | "usuarios" | "clientes"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1050,6 +1082,154 @@ export namespace Prisma {
           }
         }
       }
+      Usuarios: {
+        payload: Prisma.$UsuariosPayload<ExtArgs>
+        fields: Prisma.UsuariosFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UsuariosFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsuariosPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UsuariosFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsuariosPayload>
+          }
+          findFirst: {
+            args: Prisma.UsuariosFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsuariosPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UsuariosFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsuariosPayload>
+          }
+          findMany: {
+            args: Prisma.UsuariosFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsuariosPayload>[]
+          }
+          create: {
+            args: Prisma.UsuariosCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsuariosPayload>
+          }
+          createMany: {
+            args: Prisma.UsuariosCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UsuariosCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsuariosPayload>[]
+          }
+          delete: {
+            args: Prisma.UsuariosDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsuariosPayload>
+          }
+          update: {
+            args: Prisma.UsuariosUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsuariosPayload>
+          }
+          deleteMany: {
+            args: Prisma.UsuariosDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UsuariosUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.UsuariosUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsuariosPayload>[]
+          }
+          upsert: {
+            args: Prisma.UsuariosUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsuariosPayload>
+          }
+          aggregate: {
+            args: Prisma.UsuariosAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUsuarios>
+          }
+          groupBy: {
+            args: Prisma.UsuariosGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UsuariosGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UsuariosCountArgs<ExtArgs>
+            result: $Utils.Optional<UsuariosCountAggregateOutputType> | number
+          }
+        }
+      }
+      Clientes: {
+        payload: Prisma.$ClientesPayload<ExtArgs>
+        fields: Prisma.ClientesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ClientesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ClientesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientesPayload>
+          }
+          findFirst: {
+            args: Prisma.ClientesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ClientesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientesPayload>
+          }
+          findMany: {
+            args: Prisma.ClientesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientesPayload>[]
+          }
+          create: {
+            args: Prisma.ClientesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientesPayload>
+          }
+          createMany: {
+            args: Prisma.ClientesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ClientesCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientesPayload>[]
+          }
+          delete: {
+            args: Prisma.ClientesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientesPayload>
+          }
+          update: {
+            args: Prisma.ClientesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientesPayload>
+          }
+          deleteMany: {
+            args: Prisma.ClientesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ClientesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ClientesUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientesPayload>[]
+          }
+          upsert: {
+            args: Prisma.ClientesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ClientesPayload>
+          }
+          aggregate: {
+            args: Prisma.ClientesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateClientes>
+          }
+          groupBy: {
+            args: Prisma.ClientesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ClientesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ClientesCountArgs<ExtArgs>
+            result: $Utils.Optional<ClientesCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1139,6 +1319,8 @@ export namespace Prisma {
     sizes?: SizesOmit
     stock?: StockOmit
     publicaciones?: PublicacionesOmit
+    usuarios?: UsuariosOmit
+    clientes?: ClientesOmit
   }
 
   /* Types for Logging */
@@ -1327,6 +1509,37 @@ export namespace Prisma {
    */
   export type SizesCountOutputTypeCountStocksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: StockWhereInput
+  }
+
+
+  /**
+   * Count Type ClientesCountOutputType
+   */
+
+  export type ClientesCountOutputType = {
+    usuario: number
+  }
+
+  export type ClientesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    usuario?: boolean | ClientesCountOutputTypeCountUsuarioArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ClientesCountOutputType without action
+   */
+  export type ClientesCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClientesCountOutputType
+     */
+    select?: ClientesCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ClientesCountOutputType without action
+   */
+  export type ClientesCountOutputTypeCountUsuarioArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UsuariosWhereInput
   }
 
 
@@ -6891,6 +7104,2249 @@ export namespace Prisma {
 
 
   /**
+   * Model Usuarios
+   */
+
+  export type AggregateUsuarios = {
+    _count: UsuariosCountAggregateOutputType | null
+    _avg: UsuariosAvgAggregateOutputType | null
+    _sum: UsuariosSumAggregateOutputType | null
+    _min: UsuariosMinAggregateOutputType | null
+    _max: UsuariosMaxAggregateOutputType | null
+  }
+
+  export type UsuariosAvgAggregateOutputType = {
+    id_usuario: number | null
+    id_cliente: number | null
+  }
+
+  export type UsuariosSumAggregateOutputType = {
+    id_usuario: number | null
+    id_cliente: number | null
+  }
+
+  export type UsuariosMinAggregateOutputType = {
+    id_usuario: number | null
+    usuario: string | null
+    contraseña: string | null
+    rol: string | null
+    id_cliente: number | null
+  }
+
+  export type UsuariosMaxAggregateOutputType = {
+    id_usuario: number | null
+    usuario: string | null
+    contraseña: string | null
+    rol: string | null
+    id_cliente: number | null
+  }
+
+  export type UsuariosCountAggregateOutputType = {
+    id_usuario: number
+    usuario: number
+    contraseña: number
+    rol: number
+    id_cliente: number
+    _all: number
+  }
+
+
+  export type UsuariosAvgAggregateInputType = {
+    id_usuario?: true
+    id_cliente?: true
+  }
+
+  export type UsuariosSumAggregateInputType = {
+    id_usuario?: true
+    id_cliente?: true
+  }
+
+  export type UsuariosMinAggregateInputType = {
+    id_usuario?: true
+    usuario?: true
+    contraseña?: true
+    rol?: true
+    id_cliente?: true
+  }
+
+  export type UsuariosMaxAggregateInputType = {
+    id_usuario?: true
+    usuario?: true
+    contraseña?: true
+    rol?: true
+    id_cliente?: true
+  }
+
+  export type UsuariosCountAggregateInputType = {
+    id_usuario?: true
+    usuario?: true
+    contraseña?: true
+    rol?: true
+    id_cliente?: true
+    _all?: true
+  }
+
+  export type UsuariosAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Usuarios to aggregate.
+     */
+    where?: UsuariosWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Usuarios to fetch.
+     */
+    orderBy?: UsuariosOrderByWithRelationInput | UsuariosOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UsuariosWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Usuarios from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Usuarios.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Usuarios
+    **/
+    _count?: true | UsuariosCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: UsuariosAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UsuariosSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UsuariosMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UsuariosMaxAggregateInputType
+  }
+
+  export type GetUsuariosAggregateType<T extends UsuariosAggregateArgs> = {
+        [P in keyof T & keyof AggregateUsuarios]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUsuarios[P]>
+      : GetScalarType<T[P], AggregateUsuarios[P]>
+  }
+
+
+
+
+  export type UsuariosGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UsuariosWhereInput
+    orderBy?: UsuariosOrderByWithAggregationInput | UsuariosOrderByWithAggregationInput[]
+    by: UsuariosScalarFieldEnum[] | UsuariosScalarFieldEnum
+    having?: UsuariosScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UsuariosCountAggregateInputType | true
+    _avg?: UsuariosAvgAggregateInputType
+    _sum?: UsuariosSumAggregateInputType
+    _min?: UsuariosMinAggregateInputType
+    _max?: UsuariosMaxAggregateInputType
+  }
+
+  export type UsuariosGroupByOutputType = {
+    id_usuario: number
+    usuario: string
+    contraseña: string
+    rol: string
+    id_cliente: number
+    _count: UsuariosCountAggregateOutputType | null
+    _avg: UsuariosAvgAggregateOutputType | null
+    _sum: UsuariosSumAggregateOutputType | null
+    _min: UsuariosMinAggregateOutputType | null
+    _max: UsuariosMaxAggregateOutputType | null
+  }
+
+  type GetUsuariosGroupByPayload<T extends UsuariosGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UsuariosGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UsuariosGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UsuariosGroupByOutputType[P]>
+            : GetScalarType<T[P], UsuariosGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UsuariosSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id_usuario?: boolean
+    usuario?: boolean
+    contraseña?: boolean
+    rol?: boolean
+    id_cliente?: boolean
+    cliente?: boolean | ClientesDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["usuarios"]>
+
+  export type UsuariosSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id_usuario?: boolean
+    usuario?: boolean
+    contraseña?: boolean
+    rol?: boolean
+    id_cliente?: boolean
+    cliente?: boolean | ClientesDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["usuarios"]>
+
+  export type UsuariosSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id_usuario?: boolean
+    usuario?: boolean
+    contraseña?: boolean
+    rol?: boolean
+    id_cliente?: boolean
+    cliente?: boolean | ClientesDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["usuarios"]>
+
+  export type UsuariosSelectScalar = {
+    id_usuario?: boolean
+    usuario?: boolean
+    contraseña?: boolean
+    rol?: boolean
+    id_cliente?: boolean
+  }
+
+  export type UsuariosOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_usuario" | "usuario" | "contraseña" | "rol" | "id_cliente", ExtArgs["result"]["usuarios"]>
+  export type UsuariosInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    cliente?: boolean | ClientesDefaultArgs<ExtArgs>
+  }
+  export type UsuariosIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    cliente?: boolean | ClientesDefaultArgs<ExtArgs>
+  }
+  export type UsuariosIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    cliente?: boolean | ClientesDefaultArgs<ExtArgs>
+  }
+
+  export type $UsuariosPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Usuarios"
+    objects: {
+      cliente: Prisma.$ClientesPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id_usuario: number
+      usuario: string
+      contraseña: string
+      rol: string
+      id_cliente: number
+    }, ExtArgs["result"]["usuarios"]>
+    composites: {}
+  }
+
+  type UsuariosGetPayload<S extends boolean | null | undefined | UsuariosDefaultArgs> = $Result.GetResult<Prisma.$UsuariosPayload, S>
+
+  type UsuariosCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UsuariosFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UsuariosCountAggregateInputType | true
+    }
+
+  export interface UsuariosDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Usuarios'], meta: { name: 'Usuarios' } }
+    /**
+     * Find zero or one Usuarios that matches the filter.
+     * @param {UsuariosFindUniqueArgs} args - Arguments to find a Usuarios
+     * @example
+     * // Get one Usuarios
+     * const usuarios = await prisma.usuarios.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UsuariosFindUniqueArgs>(args: SelectSubset<T, UsuariosFindUniqueArgs<ExtArgs>>): Prisma__UsuariosClient<$Result.GetResult<Prisma.$UsuariosPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Usuarios that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UsuariosFindUniqueOrThrowArgs} args - Arguments to find a Usuarios
+     * @example
+     * // Get one Usuarios
+     * const usuarios = await prisma.usuarios.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UsuariosFindUniqueOrThrowArgs>(args: SelectSubset<T, UsuariosFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UsuariosClient<$Result.GetResult<Prisma.$UsuariosPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Usuarios that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UsuariosFindFirstArgs} args - Arguments to find a Usuarios
+     * @example
+     * // Get one Usuarios
+     * const usuarios = await prisma.usuarios.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UsuariosFindFirstArgs>(args?: SelectSubset<T, UsuariosFindFirstArgs<ExtArgs>>): Prisma__UsuariosClient<$Result.GetResult<Prisma.$UsuariosPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Usuarios that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UsuariosFindFirstOrThrowArgs} args - Arguments to find a Usuarios
+     * @example
+     * // Get one Usuarios
+     * const usuarios = await prisma.usuarios.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UsuariosFindFirstOrThrowArgs>(args?: SelectSubset<T, UsuariosFindFirstOrThrowArgs<ExtArgs>>): Prisma__UsuariosClient<$Result.GetResult<Prisma.$UsuariosPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Usuarios that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UsuariosFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Usuarios
+     * const usuarios = await prisma.usuarios.findMany()
+     * 
+     * // Get first 10 Usuarios
+     * const usuarios = await prisma.usuarios.findMany({ take: 10 })
+     * 
+     * // Only select the `id_usuario`
+     * const usuariosWithId_usuarioOnly = await prisma.usuarios.findMany({ select: { id_usuario: true } })
+     * 
+     */
+    findMany<T extends UsuariosFindManyArgs>(args?: SelectSubset<T, UsuariosFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UsuariosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Usuarios.
+     * @param {UsuariosCreateArgs} args - Arguments to create a Usuarios.
+     * @example
+     * // Create one Usuarios
+     * const Usuarios = await prisma.usuarios.create({
+     *   data: {
+     *     // ... data to create a Usuarios
+     *   }
+     * })
+     * 
+     */
+    create<T extends UsuariosCreateArgs>(args: SelectSubset<T, UsuariosCreateArgs<ExtArgs>>): Prisma__UsuariosClient<$Result.GetResult<Prisma.$UsuariosPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Usuarios.
+     * @param {UsuariosCreateManyArgs} args - Arguments to create many Usuarios.
+     * @example
+     * // Create many Usuarios
+     * const usuarios = await prisma.usuarios.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UsuariosCreateManyArgs>(args?: SelectSubset<T, UsuariosCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Usuarios and returns the data saved in the database.
+     * @param {UsuariosCreateManyAndReturnArgs} args - Arguments to create many Usuarios.
+     * @example
+     * // Create many Usuarios
+     * const usuarios = await prisma.usuarios.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Usuarios and only return the `id_usuario`
+     * const usuariosWithId_usuarioOnly = await prisma.usuarios.createManyAndReturn({
+     *   select: { id_usuario: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UsuariosCreateManyAndReturnArgs>(args?: SelectSubset<T, UsuariosCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UsuariosPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Usuarios.
+     * @param {UsuariosDeleteArgs} args - Arguments to delete one Usuarios.
+     * @example
+     * // Delete one Usuarios
+     * const Usuarios = await prisma.usuarios.delete({
+     *   where: {
+     *     // ... filter to delete one Usuarios
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UsuariosDeleteArgs>(args: SelectSubset<T, UsuariosDeleteArgs<ExtArgs>>): Prisma__UsuariosClient<$Result.GetResult<Prisma.$UsuariosPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Usuarios.
+     * @param {UsuariosUpdateArgs} args - Arguments to update one Usuarios.
+     * @example
+     * // Update one Usuarios
+     * const usuarios = await prisma.usuarios.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UsuariosUpdateArgs>(args: SelectSubset<T, UsuariosUpdateArgs<ExtArgs>>): Prisma__UsuariosClient<$Result.GetResult<Prisma.$UsuariosPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Usuarios.
+     * @param {UsuariosDeleteManyArgs} args - Arguments to filter Usuarios to delete.
+     * @example
+     * // Delete a few Usuarios
+     * const { count } = await prisma.usuarios.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UsuariosDeleteManyArgs>(args?: SelectSubset<T, UsuariosDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Usuarios.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UsuariosUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Usuarios
+     * const usuarios = await prisma.usuarios.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UsuariosUpdateManyArgs>(args: SelectSubset<T, UsuariosUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Usuarios and returns the data updated in the database.
+     * @param {UsuariosUpdateManyAndReturnArgs} args - Arguments to update many Usuarios.
+     * @example
+     * // Update many Usuarios
+     * const usuarios = await prisma.usuarios.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Usuarios and only return the `id_usuario`
+     * const usuariosWithId_usuarioOnly = await prisma.usuarios.updateManyAndReturn({
+     *   select: { id_usuario: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends UsuariosUpdateManyAndReturnArgs>(args: SelectSubset<T, UsuariosUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UsuariosPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Usuarios.
+     * @param {UsuariosUpsertArgs} args - Arguments to update or create a Usuarios.
+     * @example
+     * // Update or create a Usuarios
+     * const usuarios = await prisma.usuarios.upsert({
+     *   create: {
+     *     // ... data to create a Usuarios
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Usuarios we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UsuariosUpsertArgs>(args: SelectSubset<T, UsuariosUpsertArgs<ExtArgs>>): Prisma__UsuariosClient<$Result.GetResult<Prisma.$UsuariosPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Usuarios.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UsuariosCountArgs} args - Arguments to filter Usuarios to count.
+     * @example
+     * // Count the number of Usuarios
+     * const count = await prisma.usuarios.count({
+     *   where: {
+     *     // ... the filter for the Usuarios we want to count
+     *   }
+     * })
+    **/
+    count<T extends UsuariosCountArgs>(
+      args?: Subset<T, UsuariosCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UsuariosCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Usuarios.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UsuariosAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UsuariosAggregateArgs>(args: Subset<T, UsuariosAggregateArgs>): Prisma.PrismaPromise<GetUsuariosAggregateType<T>>
+
+    /**
+     * Group by Usuarios.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UsuariosGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UsuariosGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UsuariosGroupByArgs['orderBy'] }
+        : { orderBy?: UsuariosGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UsuariosGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUsuariosGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Usuarios model
+   */
+  readonly fields: UsuariosFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Usuarios.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UsuariosClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    cliente<T extends ClientesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClientesDefaultArgs<ExtArgs>>): Prisma__ClientesClient<$Result.GetResult<Prisma.$ClientesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Usuarios model
+   */
+  interface UsuariosFieldRefs {
+    readonly id_usuario: FieldRef<"Usuarios", 'Int'>
+    readonly usuario: FieldRef<"Usuarios", 'String'>
+    readonly contraseña: FieldRef<"Usuarios", 'String'>
+    readonly rol: FieldRef<"Usuarios", 'String'>
+    readonly id_cliente: FieldRef<"Usuarios", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Usuarios findUnique
+   */
+  export type UsuariosFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Usuarios
+     */
+    select?: UsuariosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Usuarios
+     */
+    omit?: UsuariosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsuariosInclude<ExtArgs> | null
+    /**
+     * Filter, which Usuarios to fetch.
+     */
+    where: UsuariosWhereUniqueInput
+  }
+
+  /**
+   * Usuarios findUniqueOrThrow
+   */
+  export type UsuariosFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Usuarios
+     */
+    select?: UsuariosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Usuarios
+     */
+    omit?: UsuariosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsuariosInclude<ExtArgs> | null
+    /**
+     * Filter, which Usuarios to fetch.
+     */
+    where: UsuariosWhereUniqueInput
+  }
+
+  /**
+   * Usuarios findFirst
+   */
+  export type UsuariosFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Usuarios
+     */
+    select?: UsuariosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Usuarios
+     */
+    omit?: UsuariosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsuariosInclude<ExtArgs> | null
+    /**
+     * Filter, which Usuarios to fetch.
+     */
+    where?: UsuariosWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Usuarios to fetch.
+     */
+    orderBy?: UsuariosOrderByWithRelationInput | UsuariosOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Usuarios.
+     */
+    cursor?: UsuariosWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Usuarios from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Usuarios.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Usuarios.
+     */
+    distinct?: UsuariosScalarFieldEnum | UsuariosScalarFieldEnum[]
+  }
+
+  /**
+   * Usuarios findFirstOrThrow
+   */
+  export type UsuariosFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Usuarios
+     */
+    select?: UsuariosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Usuarios
+     */
+    omit?: UsuariosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsuariosInclude<ExtArgs> | null
+    /**
+     * Filter, which Usuarios to fetch.
+     */
+    where?: UsuariosWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Usuarios to fetch.
+     */
+    orderBy?: UsuariosOrderByWithRelationInput | UsuariosOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Usuarios.
+     */
+    cursor?: UsuariosWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Usuarios from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Usuarios.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Usuarios.
+     */
+    distinct?: UsuariosScalarFieldEnum | UsuariosScalarFieldEnum[]
+  }
+
+  /**
+   * Usuarios findMany
+   */
+  export type UsuariosFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Usuarios
+     */
+    select?: UsuariosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Usuarios
+     */
+    omit?: UsuariosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsuariosInclude<ExtArgs> | null
+    /**
+     * Filter, which Usuarios to fetch.
+     */
+    where?: UsuariosWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Usuarios to fetch.
+     */
+    orderBy?: UsuariosOrderByWithRelationInput | UsuariosOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Usuarios.
+     */
+    cursor?: UsuariosWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Usuarios from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Usuarios.
+     */
+    skip?: number
+    distinct?: UsuariosScalarFieldEnum | UsuariosScalarFieldEnum[]
+  }
+
+  /**
+   * Usuarios create
+   */
+  export type UsuariosCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Usuarios
+     */
+    select?: UsuariosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Usuarios
+     */
+    omit?: UsuariosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsuariosInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Usuarios.
+     */
+    data: XOR<UsuariosCreateInput, UsuariosUncheckedCreateInput>
+  }
+
+  /**
+   * Usuarios createMany
+   */
+  export type UsuariosCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Usuarios.
+     */
+    data: UsuariosCreateManyInput | UsuariosCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Usuarios createManyAndReturn
+   */
+  export type UsuariosCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Usuarios
+     */
+    select?: UsuariosSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Usuarios
+     */
+    omit?: UsuariosOmit<ExtArgs> | null
+    /**
+     * The data used to create many Usuarios.
+     */
+    data: UsuariosCreateManyInput | UsuariosCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsuariosIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Usuarios update
+   */
+  export type UsuariosUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Usuarios
+     */
+    select?: UsuariosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Usuarios
+     */
+    omit?: UsuariosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsuariosInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Usuarios.
+     */
+    data: XOR<UsuariosUpdateInput, UsuariosUncheckedUpdateInput>
+    /**
+     * Choose, which Usuarios to update.
+     */
+    where: UsuariosWhereUniqueInput
+  }
+
+  /**
+   * Usuarios updateMany
+   */
+  export type UsuariosUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Usuarios.
+     */
+    data: XOR<UsuariosUpdateManyMutationInput, UsuariosUncheckedUpdateManyInput>
+    /**
+     * Filter which Usuarios to update
+     */
+    where?: UsuariosWhereInput
+    /**
+     * Limit how many Usuarios to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Usuarios updateManyAndReturn
+   */
+  export type UsuariosUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Usuarios
+     */
+    select?: UsuariosSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Usuarios
+     */
+    omit?: UsuariosOmit<ExtArgs> | null
+    /**
+     * The data used to update Usuarios.
+     */
+    data: XOR<UsuariosUpdateManyMutationInput, UsuariosUncheckedUpdateManyInput>
+    /**
+     * Filter which Usuarios to update
+     */
+    where?: UsuariosWhereInput
+    /**
+     * Limit how many Usuarios to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsuariosIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Usuarios upsert
+   */
+  export type UsuariosUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Usuarios
+     */
+    select?: UsuariosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Usuarios
+     */
+    omit?: UsuariosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsuariosInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Usuarios to update in case it exists.
+     */
+    where: UsuariosWhereUniqueInput
+    /**
+     * In case the Usuarios found by the `where` argument doesn't exist, create a new Usuarios with this data.
+     */
+    create: XOR<UsuariosCreateInput, UsuariosUncheckedCreateInput>
+    /**
+     * In case the Usuarios was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UsuariosUpdateInput, UsuariosUncheckedUpdateInput>
+  }
+
+  /**
+   * Usuarios delete
+   */
+  export type UsuariosDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Usuarios
+     */
+    select?: UsuariosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Usuarios
+     */
+    omit?: UsuariosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsuariosInclude<ExtArgs> | null
+    /**
+     * Filter which Usuarios to delete.
+     */
+    where: UsuariosWhereUniqueInput
+  }
+
+  /**
+   * Usuarios deleteMany
+   */
+  export type UsuariosDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Usuarios to delete
+     */
+    where?: UsuariosWhereInput
+    /**
+     * Limit how many Usuarios to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Usuarios without action
+   */
+  export type UsuariosDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Usuarios
+     */
+    select?: UsuariosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Usuarios
+     */
+    omit?: UsuariosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsuariosInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Clientes
+   */
+
+  export type AggregateClientes = {
+    _count: ClientesCountAggregateOutputType | null
+    _avg: ClientesAvgAggregateOutputType | null
+    _sum: ClientesSumAggregateOutputType | null
+    _min: ClientesMinAggregateOutputType | null
+    _max: ClientesMaxAggregateOutputType | null
+  }
+
+  export type ClientesAvgAggregateOutputType = {
+    id_cliente: number | null
+    dni: number | null
+  }
+
+  export type ClientesSumAggregateOutputType = {
+    id_cliente: number | null
+    dni: number | null
+  }
+
+  export type ClientesMinAggregateOutputType = {
+    id_cliente: number | null
+    nombre: string | null
+    apellido: string | null
+    correo: string | null
+    dni: number | null
+    ciudad: string | null
+    barrio: string | null
+    calle: string | null
+  }
+
+  export type ClientesMaxAggregateOutputType = {
+    id_cliente: number | null
+    nombre: string | null
+    apellido: string | null
+    correo: string | null
+    dni: number | null
+    ciudad: string | null
+    barrio: string | null
+    calle: string | null
+  }
+
+  export type ClientesCountAggregateOutputType = {
+    id_cliente: number
+    nombre: number
+    apellido: number
+    correo: number
+    dni: number
+    ciudad: number
+    barrio: number
+    calle: number
+    _all: number
+  }
+
+
+  export type ClientesAvgAggregateInputType = {
+    id_cliente?: true
+    dni?: true
+  }
+
+  export type ClientesSumAggregateInputType = {
+    id_cliente?: true
+    dni?: true
+  }
+
+  export type ClientesMinAggregateInputType = {
+    id_cliente?: true
+    nombre?: true
+    apellido?: true
+    correo?: true
+    dni?: true
+    ciudad?: true
+    barrio?: true
+    calle?: true
+  }
+
+  export type ClientesMaxAggregateInputType = {
+    id_cliente?: true
+    nombre?: true
+    apellido?: true
+    correo?: true
+    dni?: true
+    ciudad?: true
+    barrio?: true
+    calle?: true
+  }
+
+  export type ClientesCountAggregateInputType = {
+    id_cliente?: true
+    nombre?: true
+    apellido?: true
+    correo?: true
+    dni?: true
+    ciudad?: true
+    barrio?: true
+    calle?: true
+    _all?: true
+  }
+
+  export type ClientesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Clientes to aggregate.
+     */
+    where?: ClientesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Clientes to fetch.
+     */
+    orderBy?: ClientesOrderByWithRelationInput | ClientesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ClientesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Clientes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Clientes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Clientes
+    **/
+    _count?: true | ClientesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ClientesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ClientesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ClientesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ClientesMaxAggregateInputType
+  }
+
+  export type GetClientesAggregateType<T extends ClientesAggregateArgs> = {
+        [P in keyof T & keyof AggregateClientes]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateClientes[P]>
+      : GetScalarType<T[P], AggregateClientes[P]>
+  }
+
+
+
+
+  export type ClientesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ClientesWhereInput
+    orderBy?: ClientesOrderByWithAggregationInput | ClientesOrderByWithAggregationInput[]
+    by: ClientesScalarFieldEnum[] | ClientesScalarFieldEnum
+    having?: ClientesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ClientesCountAggregateInputType | true
+    _avg?: ClientesAvgAggregateInputType
+    _sum?: ClientesSumAggregateInputType
+    _min?: ClientesMinAggregateInputType
+    _max?: ClientesMaxAggregateInputType
+  }
+
+  export type ClientesGroupByOutputType = {
+    id_cliente: number
+    nombre: string
+    apellido: string
+    correo: string
+    dni: number
+    ciudad: string
+    barrio: string
+    calle: string
+    _count: ClientesCountAggregateOutputType | null
+    _avg: ClientesAvgAggregateOutputType | null
+    _sum: ClientesSumAggregateOutputType | null
+    _min: ClientesMinAggregateOutputType | null
+    _max: ClientesMaxAggregateOutputType | null
+  }
+
+  type GetClientesGroupByPayload<T extends ClientesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ClientesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ClientesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ClientesGroupByOutputType[P]>
+            : GetScalarType<T[P], ClientesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ClientesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id_cliente?: boolean
+    nombre?: boolean
+    apellido?: boolean
+    correo?: boolean
+    dni?: boolean
+    ciudad?: boolean
+    barrio?: boolean
+    calle?: boolean
+    usuario?: boolean | Clientes$usuarioArgs<ExtArgs>
+    _count?: boolean | ClientesCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["clientes"]>
+
+  export type ClientesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id_cliente?: boolean
+    nombre?: boolean
+    apellido?: boolean
+    correo?: boolean
+    dni?: boolean
+    ciudad?: boolean
+    barrio?: boolean
+    calle?: boolean
+  }, ExtArgs["result"]["clientes"]>
+
+  export type ClientesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id_cliente?: boolean
+    nombre?: boolean
+    apellido?: boolean
+    correo?: boolean
+    dni?: boolean
+    ciudad?: boolean
+    barrio?: boolean
+    calle?: boolean
+  }, ExtArgs["result"]["clientes"]>
+
+  export type ClientesSelectScalar = {
+    id_cliente?: boolean
+    nombre?: boolean
+    apellido?: boolean
+    correo?: boolean
+    dni?: boolean
+    ciudad?: boolean
+    barrio?: boolean
+    calle?: boolean
+  }
+
+  export type ClientesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_cliente" | "nombre" | "apellido" | "correo" | "dni" | "ciudad" | "barrio" | "calle", ExtArgs["result"]["clientes"]>
+  export type ClientesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    usuario?: boolean | Clientes$usuarioArgs<ExtArgs>
+    _count?: boolean | ClientesCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ClientesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type ClientesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $ClientesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Clientes"
+    objects: {
+      usuario: Prisma.$UsuariosPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id_cliente: number
+      nombre: string
+      apellido: string
+      correo: string
+      dni: number
+      ciudad: string
+      barrio: string
+      calle: string
+    }, ExtArgs["result"]["clientes"]>
+    composites: {}
+  }
+
+  type ClientesGetPayload<S extends boolean | null | undefined | ClientesDefaultArgs> = $Result.GetResult<Prisma.$ClientesPayload, S>
+
+  type ClientesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ClientesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ClientesCountAggregateInputType | true
+    }
+
+  export interface ClientesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Clientes'], meta: { name: 'Clientes' } }
+    /**
+     * Find zero or one Clientes that matches the filter.
+     * @param {ClientesFindUniqueArgs} args - Arguments to find a Clientes
+     * @example
+     * // Get one Clientes
+     * const clientes = await prisma.clientes.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ClientesFindUniqueArgs>(args: SelectSubset<T, ClientesFindUniqueArgs<ExtArgs>>): Prisma__ClientesClient<$Result.GetResult<Prisma.$ClientesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Clientes that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ClientesFindUniqueOrThrowArgs} args - Arguments to find a Clientes
+     * @example
+     * // Get one Clientes
+     * const clientes = await prisma.clientes.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ClientesFindUniqueOrThrowArgs>(args: SelectSubset<T, ClientesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ClientesClient<$Result.GetResult<Prisma.$ClientesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Clientes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClientesFindFirstArgs} args - Arguments to find a Clientes
+     * @example
+     * // Get one Clientes
+     * const clientes = await prisma.clientes.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ClientesFindFirstArgs>(args?: SelectSubset<T, ClientesFindFirstArgs<ExtArgs>>): Prisma__ClientesClient<$Result.GetResult<Prisma.$ClientesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Clientes that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClientesFindFirstOrThrowArgs} args - Arguments to find a Clientes
+     * @example
+     * // Get one Clientes
+     * const clientes = await prisma.clientes.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ClientesFindFirstOrThrowArgs>(args?: SelectSubset<T, ClientesFindFirstOrThrowArgs<ExtArgs>>): Prisma__ClientesClient<$Result.GetResult<Prisma.$ClientesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Clientes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClientesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Clientes
+     * const clientes = await prisma.clientes.findMany()
+     * 
+     * // Get first 10 Clientes
+     * const clientes = await prisma.clientes.findMany({ take: 10 })
+     * 
+     * // Only select the `id_cliente`
+     * const clientesWithId_clienteOnly = await prisma.clientes.findMany({ select: { id_cliente: true } })
+     * 
+     */
+    findMany<T extends ClientesFindManyArgs>(args?: SelectSubset<T, ClientesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClientesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Clientes.
+     * @param {ClientesCreateArgs} args - Arguments to create a Clientes.
+     * @example
+     * // Create one Clientes
+     * const Clientes = await prisma.clientes.create({
+     *   data: {
+     *     // ... data to create a Clientes
+     *   }
+     * })
+     * 
+     */
+    create<T extends ClientesCreateArgs>(args: SelectSubset<T, ClientesCreateArgs<ExtArgs>>): Prisma__ClientesClient<$Result.GetResult<Prisma.$ClientesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Clientes.
+     * @param {ClientesCreateManyArgs} args - Arguments to create many Clientes.
+     * @example
+     * // Create many Clientes
+     * const clientes = await prisma.clientes.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ClientesCreateManyArgs>(args?: SelectSubset<T, ClientesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Clientes and returns the data saved in the database.
+     * @param {ClientesCreateManyAndReturnArgs} args - Arguments to create many Clientes.
+     * @example
+     * // Create many Clientes
+     * const clientes = await prisma.clientes.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Clientes and only return the `id_cliente`
+     * const clientesWithId_clienteOnly = await prisma.clientes.createManyAndReturn({
+     *   select: { id_cliente: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ClientesCreateManyAndReturnArgs>(args?: SelectSubset<T, ClientesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClientesPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Clientes.
+     * @param {ClientesDeleteArgs} args - Arguments to delete one Clientes.
+     * @example
+     * // Delete one Clientes
+     * const Clientes = await prisma.clientes.delete({
+     *   where: {
+     *     // ... filter to delete one Clientes
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ClientesDeleteArgs>(args: SelectSubset<T, ClientesDeleteArgs<ExtArgs>>): Prisma__ClientesClient<$Result.GetResult<Prisma.$ClientesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Clientes.
+     * @param {ClientesUpdateArgs} args - Arguments to update one Clientes.
+     * @example
+     * // Update one Clientes
+     * const clientes = await prisma.clientes.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ClientesUpdateArgs>(args: SelectSubset<T, ClientesUpdateArgs<ExtArgs>>): Prisma__ClientesClient<$Result.GetResult<Prisma.$ClientesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Clientes.
+     * @param {ClientesDeleteManyArgs} args - Arguments to filter Clientes to delete.
+     * @example
+     * // Delete a few Clientes
+     * const { count } = await prisma.clientes.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ClientesDeleteManyArgs>(args?: SelectSubset<T, ClientesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Clientes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClientesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Clientes
+     * const clientes = await prisma.clientes.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ClientesUpdateManyArgs>(args: SelectSubset<T, ClientesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Clientes and returns the data updated in the database.
+     * @param {ClientesUpdateManyAndReturnArgs} args - Arguments to update many Clientes.
+     * @example
+     * // Update many Clientes
+     * const clientes = await prisma.clientes.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Clientes and only return the `id_cliente`
+     * const clientesWithId_clienteOnly = await prisma.clientes.updateManyAndReturn({
+     *   select: { id_cliente: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ClientesUpdateManyAndReturnArgs>(args: SelectSubset<T, ClientesUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClientesPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Clientes.
+     * @param {ClientesUpsertArgs} args - Arguments to update or create a Clientes.
+     * @example
+     * // Update or create a Clientes
+     * const clientes = await prisma.clientes.upsert({
+     *   create: {
+     *     // ... data to create a Clientes
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Clientes we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ClientesUpsertArgs>(args: SelectSubset<T, ClientesUpsertArgs<ExtArgs>>): Prisma__ClientesClient<$Result.GetResult<Prisma.$ClientesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Clientes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClientesCountArgs} args - Arguments to filter Clientes to count.
+     * @example
+     * // Count the number of Clientes
+     * const count = await prisma.clientes.count({
+     *   where: {
+     *     // ... the filter for the Clientes we want to count
+     *   }
+     * })
+    **/
+    count<T extends ClientesCountArgs>(
+      args?: Subset<T, ClientesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ClientesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Clientes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClientesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ClientesAggregateArgs>(args: Subset<T, ClientesAggregateArgs>): Prisma.PrismaPromise<GetClientesAggregateType<T>>
+
+    /**
+     * Group by Clientes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ClientesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ClientesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ClientesGroupByArgs['orderBy'] }
+        : { orderBy?: ClientesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ClientesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetClientesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Clientes model
+   */
+  readonly fields: ClientesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Clientes.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ClientesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    usuario<T extends Clientes$usuarioArgs<ExtArgs> = {}>(args?: Subset<T, Clientes$usuarioArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UsuariosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Clientes model
+   */
+  interface ClientesFieldRefs {
+    readonly id_cliente: FieldRef<"Clientes", 'Int'>
+    readonly nombre: FieldRef<"Clientes", 'String'>
+    readonly apellido: FieldRef<"Clientes", 'String'>
+    readonly correo: FieldRef<"Clientes", 'String'>
+    readonly dni: FieldRef<"Clientes", 'Int'>
+    readonly ciudad: FieldRef<"Clientes", 'String'>
+    readonly barrio: FieldRef<"Clientes", 'String'>
+    readonly calle: FieldRef<"Clientes", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Clientes findUnique
+   */
+  export type ClientesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Clientes
+     */
+    select?: ClientesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Clientes
+     */
+    omit?: ClientesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClientesInclude<ExtArgs> | null
+    /**
+     * Filter, which Clientes to fetch.
+     */
+    where: ClientesWhereUniqueInput
+  }
+
+  /**
+   * Clientes findUniqueOrThrow
+   */
+  export type ClientesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Clientes
+     */
+    select?: ClientesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Clientes
+     */
+    omit?: ClientesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClientesInclude<ExtArgs> | null
+    /**
+     * Filter, which Clientes to fetch.
+     */
+    where: ClientesWhereUniqueInput
+  }
+
+  /**
+   * Clientes findFirst
+   */
+  export type ClientesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Clientes
+     */
+    select?: ClientesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Clientes
+     */
+    omit?: ClientesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClientesInclude<ExtArgs> | null
+    /**
+     * Filter, which Clientes to fetch.
+     */
+    where?: ClientesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Clientes to fetch.
+     */
+    orderBy?: ClientesOrderByWithRelationInput | ClientesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Clientes.
+     */
+    cursor?: ClientesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Clientes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Clientes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Clientes.
+     */
+    distinct?: ClientesScalarFieldEnum | ClientesScalarFieldEnum[]
+  }
+
+  /**
+   * Clientes findFirstOrThrow
+   */
+  export type ClientesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Clientes
+     */
+    select?: ClientesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Clientes
+     */
+    omit?: ClientesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClientesInclude<ExtArgs> | null
+    /**
+     * Filter, which Clientes to fetch.
+     */
+    where?: ClientesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Clientes to fetch.
+     */
+    orderBy?: ClientesOrderByWithRelationInput | ClientesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Clientes.
+     */
+    cursor?: ClientesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Clientes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Clientes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Clientes.
+     */
+    distinct?: ClientesScalarFieldEnum | ClientesScalarFieldEnum[]
+  }
+
+  /**
+   * Clientes findMany
+   */
+  export type ClientesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Clientes
+     */
+    select?: ClientesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Clientes
+     */
+    omit?: ClientesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClientesInclude<ExtArgs> | null
+    /**
+     * Filter, which Clientes to fetch.
+     */
+    where?: ClientesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Clientes to fetch.
+     */
+    orderBy?: ClientesOrderByWithRelationInput | ClientesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Clientes.
+     */
+    cursor?: ClientesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Clientes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Clientes.
+     */
+    skip?: number
+    distinct?: ClientesScalarFieldEnum | ClientesScalarFieldEnum[]
+  }
+
+  /**
+   * Clientes create
+   */
+  export type ClientesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Clientes
+     */
+    select?: ClientesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Clientes
+     */
+    omit?: ClientesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClientesInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Clientes.
+     */
+    data: XOR<ClientesCreateInput, ClientesUncheckedCreateInput>
+  }
+
+  /**
+   * Clientes createMany
+   */
+  export type ClientesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Clientes.
+     */
+    data: ClientesCreateManyInput | ClientesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Clientes createManyAndReturn
+   */
+  export type ClientesCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Clientes
+     */
+    select?: ClientesSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Clientes
+     */
+    omit?: ClientesOmit<ExtArgs> | null
+    /**
+     * The data used to create many Clientes.
+     */
+    data: ClientesCreateManyInput | ClientesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Clientes update
+   */
+  export type ClientesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Clientes
+     */
+    select?: ClientesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Clientes
+     */
+    omit?: ClientesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClientesInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Clientes.
+     */
+    data: XOR<ClientesUpdateInput, ClientesUncheckedUpdateInput>
+    /**
+     * Choose, which Clientes to update.
+     */
+    where: ClientesWhereUniqueInput
+  }
+
+  /**
+   * Clientes updateMany
+   */
+  export type ClientesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Clientes.
+     */
+    data: XOR<ClientesUpdateManyMutationInput, ClientesUncheckedUpdateManyInput>
+    /**
+     * Filter which Clientes to update
+     */
+    where?: ClientesWhereInput
+    /**
+     * Limit how many Clientes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Clientes updateManyAndReturn
+   */
+  export type ClientesUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Clientes
+     */
+    select?: ClientesSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Clientes
+     */
+    omit?: ClientesOmit<ExtArgs> | null
+    /**
+     * The data used to update Clientes.
+     */
+    data: XOR<ClientesUpdateManyMutationInput, ClientesUncheckedUpdateManyInput>
+    /**
+     * Filter which Clientes to update
+     */
+    where?: ClientesWhereInput
+    /**
+     * Limit how many Clientes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Clientes upsert
+   */
+  export type ClientesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Clientes
+     */
+    select?: ClientesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Clientes
+     */
+    omit?: ClientesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClientesInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Clientes to update in case it exists.
+     */
+    where: ClientesWhereUniqueInput
+    /**
+     * In case the Clientes found by the `where` argument doesn't exist, create a new Clientes with this data.
+     */
+    create: XOR<ClientesCreateInput, ClientesUncheckedCreateInput>
+    /**
+     * In case the Clientes was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ClientesUpdateInput, ClientesUncheckedUpdateInput>
+  }
+
+  /**
+   * Clientes delete
+   */
+  export type ClientesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Clientes
+     */
+    select?: ClientesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Clientes
+     */
+    omit?: ClientesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClientesInclude<ExtArgs> | null
+    /**
+     * Filter which Clientes to delete.
+     */
+    where: ClientesWhereUniqueInput
+  }
+
+  /**
+   * Clientes deleteMany
+   */
+  export type ClientesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Clientes to delete
+     */
+    where?: ClientesWhereInput
+    /**
+     * Limit how many Clientes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Clientes.usuario
+   */
+  export type Clientes$usuarioArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Usuarios
+     */
+    select?: UsuariosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Usuarios
+     */
+    omit?: UsuariosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsuariosInclude<ExtArgs> | null
+    where?: UsuariosWhereInput
+    orderBy?: UsuariosOrderByWithRelationInput | UsuariosOrderByWithRelationInput[]
+    cursor?: UsuariosWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UsuariosScalarFieldEnum | UsuariosScalarFieldEnum[]
+  }
+
+  /**
+   * Clientes without action
+   */
+  export type ClientesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Clientes
+     */
+    select?: ClientesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Clientes
+     */
+    omit?: ClientesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClientesInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -6955,6 +9411,31 @@ export namespace Prisma {
   };
 
   export type PublicacionesScalarFieldEnum = (typeof PublicacionesScalarFieldEnum)[keyof typeof PublicacionesScalarFieldEnum]
+
+
+  export const UsuariosScalarFieldEnum: {
+    id_usuario: 'id_usuario',
+    usuario: 'usuario',
+    contraseña: 'contraseña',
+    rol: 'rol',
+    id_cliente: 'id_cliente'
+  };
+
+  export type UsuariosScalarFieldEnum = (typeof UsuariosScalarFieldEnum)[keyof typeof UsuariosScalarFieldEnum]
+
+
+  export const ClientesScalarFieldEnum: {
+    id_cliente: 'id_cliente',
+    nombre: 'nombre',
+    apellido: 'apellido',
+    correo: 'correo',
+    dni: 'dni',
+    ciudad: 'ciudad',
+    barrio: 'barrio',
+    calle: 'calle'
+  };
+
+  export type ClientesScalarFieldEnum = (typeof ClientesScalarFieldEnum)[keyof typeof ClientesScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -7328,6 +9809,135 @@ export namespace Prisma {
     fecha?: DateTimeWithAggregatesFilter<"Publicaciones"> | Date | string
   }
 
+  export type UsuariosWhereInput = {
+    AND?: UsuariosWhereInput | UsuariosWhereInput[]
+    OR?: UsuariosWhereInput[]
+    NOT?: UsuariosWhereInput | UsuariosWhereInput[]
+    id_usuario?: IntFilter<"Usuarios"> | number
+    usuario?: StringFilter<"Usuarios"> | string
+    contraseña?: StringFilter<"Usuarios"> | string
+    rol?: StringFilter<"Usuarios"> | string
+    id_cliente?: IntFilter<"Usuarios"> | number
+    cliente?: XOR<ClientesScalarRelationFilter, ClientesWhereInput>
+  }
+
+  export type UsuariosOrderByWithRelationInput = {
+    id_usuario?: SortOrder
+    usuario?: SortOrder
+    contraseña?: SortOrder
+    rol?: SortOrder
+    id_cliente?: SortOrder
+    cliente?: ClientesOrderByWithRelationInput
+  }
+
+  export type UsuariosWhereUniqueInput = Prisma.AtLeast<{
+    id_usuario?: number
+    AND?: UsuariosWhereInput | UsuariosWhereInput[]
+    OR?: UsuariosWhereInput[]
+    NOT?: UsuariosWhereInput | UsuariosWhereInput[]
+    usuario?: StringFilter<"Usuarios"> | string
+    contraseña?: StringFilter<"Usuarios"> | string
+    rol?: StringFilter<"Usuarios"> | string
+    id_cliente?: IntFilter<"Usuarios"> | number
+    cliente?: XOR<ClientesScalarRelationFilter, ClientesWhereInput>
+  }, "id_usuario">
+
+  export type UsuariosOrderByWithAggregationInput = {
+    id_usuario?: SortOrder
+    usuario?: SortOrder
+    contraseña?: SortOrder
+    rol?: SortOrder
+    id_cliente?: SortOrder
+    _count?: UsuariosCountOrderByAggregateInput
+    _avg?: UsuariosAvgOrderByAggregateInput
+    _max?: UsuariosMaxOrderByAggregateInput
+    _min?: UsuariosMinOrderByAggregateInput
+    _sum?: UsuariosSumOrderByAggregateInput
+  }
+
+  export type UsuariosScalarWhereWithAggregatesInput = {
+    AND?: UsuariosScalarWhereWithAggregatesInput | UsuariosScalarWhereWithAggregatesInput[]
+    OR?: UsuariosScalarWhereWithAggregatesInput[]
+    NOT?: UsuariosScalarWhereWithAggregatesInput | UsuariosScalarWhereWithAggregatesInput[]
+    id_usuario?: IntWithAggregatesFilter<"Usuarios"> | number
+    usuario?: StringWithAggregatesFilter<"Usuarios"> | string
+    contraseña?: StringWithAggregatesFilter<"Usuarios"> | string
+    rol?: StringWithAggregatesFilter<"Usuarios"> | string
+    id_cliente?: IntWithAggregatesFilter<"Usuarios"> | number
+  }
+
+  export type ClientesWhereInput = {
+    AND?: ClientesWhereInput | ClientesWhereInput[]
+    OR?: ClientesWhereInput[]
+    NOT?: ClientesWhereInput | ClientesWhereInput[]
+    id_cliente?: IntFilter<"Clientes"> | number
+    nombre?: StringFilter<"Clientes"> | string
+    apellido?: StringFilter<"Clientes"> | string
+    correo?: StringFilter<"Clientes"> | string
+    dni?: IntFilter<"Clientes"> | number
+    ciudad?: StringFilter<"Clientes"> | string
+    barrio?: StringFilter<"Clientes"> | string
+    calle?: StringFilter<"Clientes"> | string
+    usuario?: UsuariosListRelationFilter
+  }
+
+  export type ClientesOrderByWithRelationInput = {
+    id_cliente?: SortOrder
+    nombre?: SortOrder
+    apellido?: SortOrder
+    correo?: SortOrder
+    dni?: SortOrder
+    ciudad?: SortOrder
+    barrio?: SortOrder
+    calle?: SortOrder
+    usuario?: UsuariosOrderByRelationAggregateInput
+  }
+
+  export type ClientesWhereUniqueInput = Prisma.AtLeast<{
+    id_cliente?: number
+    AND?: ClientesWhereInput | ClientesWhereInput[]
+    OR?: ClientesWhereInput[]
+    NOT?: ClientesWhereInput | ClientesWhereInput[]
+    nombre?: StringFilter<"Clientes"> | string
+    apellido?: StringFilter<"Clientes"> | string
+    correo?: StringFilter<"Clientes"> | string
+    dni?: IntFilter<"Clientes"> | number
+    ciudad?: StringFilter<"Clientes"> | string
+    barrio?: StringFilter<"Clientes"> | string
+    calle?: StringFilter<"Clientes"> | string
+    usuario?: UsuariosListRelationFilter
+  }, "id_cliente">
+
+  export type ClientesOrderByWithAggregationInput = {
+    id_cliente?: SortOrder
+    nombre?: SortOrder
+    apellido?: SortOrder
+    correo?: SortOrder
+    dni?: SortOrder
+    ciudad?: SortOrder
+    barrio?: SortOrder
+    calle?: SortOrder
+    _count?: ClientesCountOrderByAggregateInput
+    _avg?: ClientesAvgOrderByAggregateInput
+    _max?: ClientesMaxOrderByAggregateInput
+    _min?: ClientesMinOrderByAggregateInput
+    _sum?: ClientesSumOrderByAggregateInput
+  }
+
+  export type ClientesScalarWhereWithAggregatesInput = {
+    AND?: ClientesScalarWhereWithAggregatesInput | ClientesScalarWhereWithAggregatesInput[]
+    OR?: ClientesScalarWhereWithAggregatesInput[]
+    NOT?: ClientesScalarWhereWithAggregatesInput | ClientesScalarWhereWithAggregatesInput[]
+    id_cliente?: IntWithAggregatesFilter<"Clientes"> | number
+    nombre?: StringWithAggregatesFilter<"Clientes"> | string
+    apellido?: StringWithAggregatesFilter<"Clientes"> | string
+    correo?: StringWithAggregatesFilter<"Clientes"> | string
+    dni?: IntWithAggregatesFilter<"Clientes"> | number
+    ciudad?: StringWithAggregatesFilter<"Clientes"> | string
+    barrio?: StringWithAggregatesFilter<"Clientes"> | string
+    calle?: StringWithAggregatesFilter<"Clientes"> | string
+  }
+
   export type CategoriasCreateInput = {
     nombre: string
     productos?: ProductosCreateNestedManyWithoutCategoriaInput
@@ -7589,6 +10199,136 @@ export namespace Prisma {
     precio?: FloatFieldUpdateOperationsInput | number
     id_producto?: IntFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UsuariosCreateInput = {
+    usuario: string
+    contraseña: string
+    rol: string
+    cliente: ClientesCreateNestedOneWithoutUsuarioInput
+  }
+
+  export type UsuariosUncheckedCreateInput = {
+    id_usuario?: number
+    usuario: string
+    contraseña: string
+    rol: string
+    id_cliente: number
+  }
+
+  export type UsuariosUpdateInput = {
+    usuario?: StringFieldUpdateOperationsInput | string
+    contraseña?: StringFieldUpdateOperationsInput | string
+    rol?: StringFieldUpdateOperationsInput | string
+    cliente?: ClientesUpdateOneRequiredWithoutUsuarioNestedInput
+  }
+
+  export type UsuariosUncheckedUpdateInput = {
+    id_usuario?: IntFieldUpdateOperationsInput | number
+    usuario?: StringFieldUpdateOperationsInput | string
+    contraseña?: StringFieldUpdateOperationsInput | string
+    rol?: StringFieldUpdateOperationsInput | string
+    id_cliente?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type UsuariosCreateManyInput = {
+    id_usuario?: number
+    usuario: string
+    contraseña: string
+    rol: string
+    id_cliente: number
+  }
+
+  export type UsuariosUpdateManyMutationInput = {
+    usuario?: StringFieldUpdateOperationsInput | string
+    contraseña?: StringFieldUpdateOperationsInput | string
+    rol?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type UsuariosUncheckedUpdateManyInput = {
+    id_usuario?: IntFieldUpdateOperationsInput | number
+    usuario?: StringFieldUpdateOperationsInput | string
+    contraseña?: StringFieldUpdateOperationsInput | string
+    rol?: StringFieldUpdateOperationsInput | string
+    id_cliente?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ClientesCreateInput = {
+    nombre: string
+    apellido: string
+    correo: string
+    dni: number
+    ciudad: string
+    barrio: string
+    calle: string
+    usuario?: UsuariosCreateNestedManyWithoutClienteInput
+  }
+
+  export type ClientesUncheckedCreateInput = {
+    id_cliente?: number
+    nombre: string
+    apellido: string
+    correo: string
+    dni: number
+    ciudad: string
+    barrio: string
+    calle: string
+    usuario?: UsuariosUncheckedCreateNestedManyWithoutClienteInput
+  }
+
+  export type ClientesUpdateInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    apellido?: StringFieldUpdateOperationsInput | string
+    correo?: StringFieldUpdateOperationsInput | string
+    dni?: IntFieldUpdateOperationsInput | number
+    ciudad?: StringFieldUpdateOperationsInput | string
+    barrio?: StringFieldUpdateOperationsInput | string
+    calle?: StringFieldUpdateOperationsInput | string
+    usuario?: UsuariosUpdateManyWithoutClienteNestedInput
+  }
+
+  export type ClientesUncheckedUpdateInput = {
+    id_cliente?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    apellido?: StringFieldUpdateOperationsInput | string
+    correo?: StringFieldUpdateOperationsInput | string
+    dni?: IntFieldUpdateOperationsInput | number
+    ciudad?: StringFieldUpdateOperationsInput | string
+    barrio?: StringFieldUpdateOperationsInput | string
+    calle?: StringFieldUpdateOperationsInput | string
+    usuario?: UsuariosUncheckedUpdateManyWithoutClienteNestedInput
+  }
+
+  export type ClientesCreateManyInput = {
+    id_cliente?: number
+    nombre: string
+    apellido: string
+    correo: string
+    dni: number
+    ciudad: string
+    barrio: string
+    calle: string
+  }
+
+  export type ClientesUpdateManyMutationInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    apellido?: StringFieldUpdateOperationsInput | string
+    correo?: StringFieldUpdateOperationsInput | string
+    dni?: IntFieldUpdateOperationsInput | number
+    ciudad?: StringFieldUpdateOperationsInput | string
+    barrio?: StringFieldUpdateOperationsInput | string
+    calle?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ClientesUncheckedUpdateManyInput = {
+    id_cliente?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    apellido?: StringFieldUpdateOperationsInput | string
+    correo?: StringFieldUpdateOperationsInput | string
+    dni?: IntFieldUpdateOperationsInput | number
+    ciudad?: StringFieldUpdateOperationsInput | string
+    barrio?: StringFieldUpdateOperationsInput | string
+    calle?: StringFieldUpdateOperationsInput | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -7931,6 +10671,98 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type ClientesScalarRelationFilter = {
+    is?: ClientesWhereInput
+    isNot?: ClientesWhereInput
+  }
+
+  export type UsuariosCountOrderByAggregateInput = {
+    id_usuario?: SortOrder
+    usuario?: SortOrder
+    contraseña?: SortOrder
+    rol?: SortOrder
+    id_cliente?: SortOrder
+  }
+
+  export type UsuariosAvgOrderByAggregateInput = {
+    id_usuario?: SortOrder
+    id_cliente?: SortOrder
+  }
+
+  export type UsuariosMaxOrderByAggregateInput = {
+    id_usuario?: SortOrder
+    usuario?: SortOrder
+    contraseña?: SortOrder
+    rol?: SortOrder
+    id_cliente?: SortOrder
+  }
+
+  export type UsuariosMinOrderByAggregateInput = {
+    id_usuario?: SortOrder
+    usuario?: SortOrder
+    contraseña?: SortOrder
+    rol?: SortOrder
+    id_cliente?: SortOrder
+  }
+
+  export type UsuariosSumOrderByAggregateInput = {
+    id_usuario?: SortOrder
+    id_cliente?: SortOrder
+  }
+
+  export type UsuariosListRelationFilter = {
+    every?: UsuariosWhereInput
+    some?: UsuariosWhereInput
+    none?: UsuariosWhereInput
+  }
+
+  export type UsuariosOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ClientesCountOrderByAggregateInput = {
+    id_cliente?: SortOrder
+    nombre?: SortOrder
+    apellido?: SortOrder
+    correo?: SortOrder
+    dni?: SortOrder
+    ciudad?: SortOrder
+    barrio?: SortOrder
+    calle?: SortOrder
+  }
+
+  export type ClientesAvgOrderByAggregateInput = {
+    id_cliente?: SortOrder
+    dni?: SortOrder
+  }
+
+  export type ClientesMaxOrderByAggregateInput = {
+    id_cliente?: SortOrder
+    nombre?: SortOrder
+    apellido?: SortOrder
+    correo?: SortOrder
+    dni?: SortOrder
+    ciudad?: SortOrder
+    barrio?: SortOrder
+    calle?: SortOrder
+  }
+
+  export type ClientesMinOrderByAggregateInput = {
+    id_cliente?: SortOrder
+    nombre?: SortOrder
+    apellido?: SortOrder
+    correo?: SortOrder
+    dni?: SortOrder
+    ciudad?: SortOrder
+    barrio?: SortOrder
+    calle?: SortOrder
+  }
+
+  export type ClientesSumOrderByAggregateInput = {
+    id_cliente?: SortOrder
+    dni?: SortOrder
+  }
+
   export type ProductosCreateNestedManyWithoutCategoriaInput = {
     create?: XOR<ProductosCreateWithoutCategoriaInput, ProductosUncheckedCreateWithoutCategoriaInput> | ProductosCreateWithoutCategoriaInput[] | ProductosUncheckedCreateWithoutCategoriaInput[]
     connectOrCreate?: ProductosCreateOrConnectWithoutCategoriaInput | ProductosCreateOrConnectWithoutCategoriaInput[]
@@ -8181,6 +11013,62 @@ export namespace Prisma {
     upsert?: ProductosUpsertWithoutPublicacionesInput
     connect?: ProductosWhereUniqueInput
     update?: XOR<XOR<ProductosUpdateToOneWithWhereWithoutPublicacionesInput, ProductosUpdateWithoutPublicacionesInput>, ProductosUncheckedUpdateWithoutPublicacionesInput>
+  }
+
+  export type ClientesCreateNestedOneWithoutUsuarioInput = {
+    create?: XOR<ClientesCreateWithoutUsuarioInput, ClientesUncheckedCreateWithoutUsuarioInput>
+    connectOrCreate?: ClientesCreateOrConnectWithoutUsuarioInput
+    connect?: ClientesWhereUniqueInput
+  }
+
+  export type ClientesUpdateOneRequiredWithoutUsuarioNestedInput = {
+    create?: XOR<ClientesCreateWithoutUsuarioInput, ClientesUncheckedCreateWithoutUsuarioInput>
+    connectOrCreate?: ClientesCreateOrConnectWithoutUsuarioInput
+    upsert?: ClientesUpsertWithoutUsuarioInput
+    connect?: ClientesWhereUniqueInput
+    update?: XOR<XOR<ClientesUpdateToOneWithWhereWithoutUsuarioInput, ClientesUpdateWithoutUsuarioInput>, ClientesUncheckedUpdateWithoutUsuarioInput>
+  }
+
+  export type UsuariosCreateNestedManyWithoutClienteInput = {
+    create?: XOR<UsuariosCreateWithoutClienteInput, UsuariosUncheckedCreateWithoutClienteInput> | UsuariosCreateWithoutClienteInput[] | UsuariosUncheckedCreateWithoutClienteInput[]
+    connectOrCreate?: UsuariosCreateOrConnectWithoutClienteInput | UsuariosCreateOrConnectWithoutClienteInput[]
+    createMany?: UsuariosCreateManyClienteInputEnvelope
+    connect?: UsuariosWhereUniqueInput | UsuariosWhereUniqueInput[]
+  }
+
+  export type UsuariosUncheckedCreateNestedManyWithoutClienteInput = {
+    create?: XOR<UsuariosCreateWithoutClienteInput, UsuariosUncheckedCreateWithoutClienteInput> | UsuariosCreateWithoutClienteInput[] | UsuariosUncheckedCreateWithoutClienteInput[]
+    connectOrCreate?: UsuariosCreateOrConnectWithoutClienteInput | UsuariosCreateOrConnectWithoutClienteInput[]
+    createMany?: UsuariosCreateManyClienteInputEnvelope
+    connect?: UsuariosWhereUniqueInput | UsuariosWhereUniqueInput[]
+  }
+
+  export type UsuariosUpdateManyWithoutClienteNestedInput = {
+    create?: XOR<UsuariosCreateWithoutClienteInput, UsuariosUncheckedCreateWithoutClienteInput> | UsuariosCreateWithoutClienteInput[] | UsuariosUncheckedCreateWithoutClienteInput[]
+    connectOrCreate?: UsuariosCreateOrConnectWithoutClienteInput | UsuariosCreateOrConnectWithoutClienteInput[]
+    upsert?: UsuariosUpsertWithWhereUniqueWithoutClienteInput | UsuariosUpsertWithWhereUniqueWithoutClienteInput[]
+    createMany?: UsuariosCreateManyClienteInputEnvelope
+    set?: UsuariosWhereUniqueInput | UsuariosWhereUniqueInput[]
+    disconnect?: UsuariosWhereUniqueInput | UsuariosWhereUniqueInput[]
+    delete?: UsuariosWhereUniqueInput | UsuariosWhereUniqueInput[]
+    connect?: UsuariosWhereUniqueInput | UsuariosWhereUniqueInput[]
+    update?: UsuariosUpdateWithWhereUniqueWithoutClienteInput | UsuariosUpdateWithWhereUniqueWithoutClienteInput[]
+    updateMany?: UsuariosUpdateManyWithWhereWithoutClienteInput | UsuariosUpdateManyWithWhereWithoutClienteInput[]
+    deleteMany?: UsuariosScalarWhereInput | UsuariosScalarWhereInput[]
+  }
+
+  export type UsuariosUncheckedUpdateManyWithoutClienteNestedInput = {
+    create?: XOR<UsuariosCreateWithoutClienteInput, UsuariosUncheckedCreateWithoutClienteInput> | UsuariosCreateWithoutClienteInput[] | UsuariosUncheckedCreateWithoutClienteInput[]
+    connectOrCreate?: UsuariosCreateOrConnectWithoutClienteInput | UsuariosCreateOrConnectWithoutClienteInput[]
+    upsert?: UsuariosUpsertWithWhereUniqueWithoutClienteInput | UsuariosUpsertWithWhereUniqueWithoutClienteInput[]
+    createMany?: UsuariosCreateManyClienteInputEnvelope
+    set?: UsuariosWhereUniqueInput | UsuariosWhereUniqueInput[]
+    disconnect?: UsuariosWhereUniqueInput | UsuariosWhereUniqueInput[]
+    delete?: UsuariosWhereUniqueInput | UsuariosWhereUniqueInput[]
+    connect?: UsuariosWhereUniqueInput | UsuariosWhereUniqueInput[]
+    update?: UsuariosUpdateWithWhereUniqueWithoutClienteInput | UsuariosUpdateWithWhereUniqueWithoutClienteInput[]
+    updateMany?: UsuariosUpdateManyWithWhereWithoutClienteInput | UsuariosUpdateManyWithWhereWithoutClienteInput[]
+    deleteMany?: UsuariosScalarWhereInput | UsuariosScalarWhereInput[]
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -8694,6 +11582,114 @@ export namespace Prisma {
     stocks?: StockUncheckedUpdateManyWithoutProductoNestedInput
   }
 
+  export type ClientesCreateWithoutUsuarioInput = {
+    nombre: string
+    apellido: string
+    correo: string
+    dni: number
+    ciudad: string
+    barrio: string
+    calle: string
+  }
+
+  export type ClientesUncheckedCreateWithoutUsuarioInput = {
+    id_cliente?: number
+    nombre: string
+    apellido: string
+    correo: string
+    dni: number
+    ciudad: string
+    barrio: string
+    calle: string
+  }
+
+  export type ClientesCreateOrConnectWithoutUsuarioInput = {
+    where: ClientesWhereUniqueInput
+    create: XOR<ClientesCreateWithoutUsuarioInput, ClientesUncheckedCreateWithoutUsuarioInput>
+  }
+
+  export type ClientesUpsertWithoutUsuarioInput = {
+    update: XOR<ClientesUpdateWithoutUsuarioInput, ClientesUncheckedUpdateWithoutUsuarioInput>
+    create: XOR<ClientesCreateWithoutUsuarioInput, ClientesUncheckedCreateWithoutUsuarioInput>
+    where?: ClientesWhereInput
+  }
+
+  export type ClientesUpdateToOneWithWhereWithoutUsuarioInput = {
+    where?: ClientesWhereInput
+    data: XOR<ClientesUpdateWithoutUsuarioInput, ClientesUncheckedUpdateWithoutUsuarioInput>
+  }
+
+  export type ClientesUpdateWithoutUsuarioInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    apellido?: StringFieldUpdateOperationsInput | string
+    correo?: StringFieldUpdateOperationsInput | string
+    dni?: IntFieldUpdateOperationsInput | number
+    ciudad?: StringFieldUpdateOperationsInput | string
+    barrio?: StringFieldUpdateOperationsInput | string
+    calle?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ClientesUncheckedUpdateWithoutUsuarioInput = {
+    id_cliente?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    apellido?: StringFieldUpdateOperationsInput | string
+    correo?: StringFieldUpdateOperationsInput | string
+    dni?: IntFieldUpdateOperationsInput | number
+    ciudad?: StringFieldUpdateOperationsInput | string
+    barrio?: StringFieldUpdateOperationsInput | string
+    calle?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type UsuariosCreateWithoutClienteInput = {
+    usuario: string
+    contraseña: string
+    rol: string
+  }
+
+  export type UsuariosUncheckedCreateWithoutClienteInput = {
+    id_usuario?: number
+    usuario: string
+    contraseña: string
+    rol: string
+  }
+
+  export type UsuariosCreateOrConnectWithoutClienteInput = {
+    where: UsuariosWhereUniqueInput
+    create: XOR<UsuariosCreateWithoutClienteInput, UsuariosUncheckedCreateWithoutClienteInput>
+  }
+
+  export type UsuariosCreateManyClienteInputEnvelope = {
+    data: UsuariosCreateManyClienteInput | UsuariosCreateManyClienteInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UsuariosUpsertWithWhereUniqueWithoutClienteInput = {
+    where: UsuariosWhereUniqueInput
+    update: XOR<UsuariosUpdateWithoutClienteInput, UsuariosUncheckedUpdateWithoutClienteInput>
+    create: XOR<UsuariosCreateWithoutClienteInput, UsuariosUncheckedCreateWithoutClienteInput>
+  }
+
+  export type UsuariosUpdateWithWhereUniqueWithoutClienteInput = {
+    where: UsuariosWhereUniqueInput
+    data: XOR<UsuariosUpdateWithoutClienteInput, UsuariosUncheckedUpdateWithoutClienteInput>
+  }
+
+  export type UsuariosUpdateManyWithWhereWithoutClienteInput = {
+    where: UsuariosScalarWhereInput
+    data: XOR<UsuariosUpdateManyMutationInput, UsuariosUncheckedUpdateManyWithoutClienteInput>
+  }
+
+  export type UsuariosScalarWhereInput = {
+    AND?: UsuariosScalarWhereInput | UsuariosScalarWhereInput[]
+    OR?: UsuariosScalarWhereInput[]
+    NOT?: UsuariosScalarWhereInput | UsuariosScalarWhereInput[]
+    id_usuario?: IntFilter<"Usuarios"> | number
+    usuario?: StringFilter<"Usuarios"> | string
+    contraseña?: StringFilter<"Usuarios"> | string
+    rol?: StringFilter<"Usuarios"> | string
+    id_cliente?: IntFilter<"Usuarios"> | number
+  }
+
   export type ProductosCreateManyCategoriaInput = {
     id_producto?: number
     nombre: string
@@ -8812,6 +11808,33 @@ export namespace Prisma {
     id_stock?: IntFieldUpdateOperationsInput | number
     cantidad?: IntFieldUpdateOperationsInput | number
     id_producto?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type UsuariosCreateManyClienteInput = {
+    id_usuario?: number
+    usuario: string
+    contraseña: string
+    rol: string
+  }
+
+  export type UsuariosUpdateWithoutClienteInput = {
+    usuario?: StringFieldUpdateOperationsInput | string
+    contraseña?: StringFieldUpdateOperationsInput | string
+    rol?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type UsuariosUncheckedUpdateWithoutClienteInput = {
+    id_usuario?: IntFieldUpdateOperationsInput | number
+    usuario?: StringFieldUpdateOperationsInput | string
+    contraseña?: StringFieldUpdateOperationsInput | string
+    rol?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type UsuariosUncheckedUpdateManyWithoutClienteInput = {
+    id_usuario?: IntFieldUpdateOperationsInput | number
+    usuario?: StringFieldUpdateOperationsInput | string
+    contraseña?: StringFieldUpdateOperationsInput | string
+    rol?: StringFieldUpdateOperationsInput | string
   }
 
 

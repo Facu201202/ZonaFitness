@@ -9,6 +9,8 @@ import Link from "next/link"
 import { useQuery } from "@tanstack/react-query"
 import { Product } from "@/src/types"
 import { useSearchParams } from "next/navigation";
+import LogoBlackBg from "@/components/logos/LogoBlackBg";
+import LogoWhiteBg from "@/components/logos/LogoWhiteBg";
 
 
 export default function Home() {
@@ -17,7 +19,7 @@ export default function Home() {
   const productId = +searchParams.get('producto')!
 
   const fetchProductos = async (): Promise<Product[]> => {
-    
+
     const res = await fetch('/tienda/inicio/api')
     if (!res.ok) throw new Error('Error al traer productos')
     return res.json()
@@ -76,7 +78,7 @@ export default function Home() {
           </Link>
         </div>
         <div className="px-6 lg:px-32 py-6  " >
-          
+
           {isLoading && <p className="text-center font-bold py-10">Cargando...</p>}
           {data && <CardCarousel
             products={data}
@@ -103,7 +105,7 @@ export default function Home() {
           </Link>
         </div>
         <div className="px-6  lg:px-32 py-6 ">
-          {isLoading && <p  className="text-center font-bold py-10">Cargando...</p>}
+          {isLoading && <p className="text-center font-bold py-10">Cargando...</p>}
           {data && <CardCarousel
             products={data}
           />}
@@ -125,11 +127,13 @@ export default function Home() {
           <MainCommentCard />
         </div>
       </div>
+      <LogoBlackBg/>
+      <LogoWhiteBg/>
       {
-        data && productId && <ProductModal productId={productId}  products={data}/>
+        data && productId && <ProductModal productId={productId} products={data} />
       }
-      
-      
+
+
     </>
   )
 }
