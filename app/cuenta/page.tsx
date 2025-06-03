@@ -10,7 +10,7 @@ export default function page() {
   const [login, setLogin] = useState(true)
 
   return (
-    <div className="bg-[#111827] min-h-screen flex justify-center items-center">
+    <div className="bg-[#111827] min-h-screen flex justify-center items-center py-10">
       <div className="w-2xl">
         <LogoBlackBg />
         <div className="mt-10">

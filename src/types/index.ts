@@ -1,4 +1,4 @@
-import { Publicaciones, Productos, Stock, Categorias, Sizes } from '../../src/generated/prisma'
+import { Publicaciones, Productos, Stock, Sizes } from '../../src/generated/prisma'
 import { categoriesTranslate } from '../utils'
 
 export type Product = Pick<Publicaciones, "id_publicacion" | "caracteristicas" | "descuento" | "precio"> & {
