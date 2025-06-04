@@ -82,7 +82,7 @@ export default function ProductInfo({ product, pathname }: ProductInfoProps) {
                 <div>
                     <p className='font-semibold mb-2 text-xl'>Características principales: </p>
                     {Object.entries(feactures).map(([key, value]) => (
-                        <div className='flex items-center'>
+                        <div className='flex items-center' key={key}>
                             <p className='text-[#2D5DA2] bg-[#EAEEF6] rounded-2xl p-1 mr-2'>✓</p>
                             <p className='font-semibold w-1/2 my-2 mr-4 text-sm lg:text-base' key={key}>{key}:</p>
                             <p className='text-sm lg:text-base'>{value}</p>

@@ -35,19 +35,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${montserrat.variable} font-sans antialiased min-h-screen flex flex-col`}
-      >
-        <Navbar />
-        <main className="">
-          <ReactQueryProvider>
-            {children}
-          </ReactQueryProvider>
-        </main>
+    <div
+      className={`${montserrat.variable} font-sans antialiased min-h-screen flex flex-col`}
+    >
+      <Navbar />
+      <main className="">
+        <ReactQueryProvider>
+          {children}
+        </ReactQueryProvider>
+      </main>
 
-        <Footer />
-      </body>
-    </html>
+      <Footer />
+    </div>
   );
 }

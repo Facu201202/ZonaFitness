@@ -5,7 +5,7 @@ import Error from "./Error"
 import type { RegisterForm } from "@/src/schema"
 
 export default function RegisterForm() {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm<RegisterForm>()
+  const { register, handleSubmit, watch, formState: { errors }, setError } = useForm<RegisterForm>()
   const registerUser = async (data: RegisterForm) => {
     const res = await fetch("/cuenta/api/register", {
       method: "POST",
@@ -14,7 +14,15 @@ export default function RegisterForm() {
 
     const response = await res.json()
     if (!res.ok) {
-      toast.error(response.message)
+      toast.error(response.errors)
+    }
+    if (response.errors) {
+      Object.entries(response.errors).forEach(([key, message]) => {
+        setError(key as keyof typeof data, {
+          type: "manual",
+          message: message as string
+        })
+      })
     }
     toast.success(response.message)
   }
@@ -38,22 +46,22 @@ export default function RegisterForm() {
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div className="flex flex-col gap-2 font-semibold">
-              <label htmlFor="name">Nombre *</label>
-              <input type="text" id="name" className="border border-gray-300 p-2 rounded-lg" placeholder="Juan" {...register("name", {
+              <label htmlFor="nombre">Nombre *</label>
+              <input type="text" id="nombre" className="border border-gray-300 p-2 rounded-lg" placeholder="Juan" {...register("nombre", {
                 required: "El nombre es obligatorio"
               })} />
-              {errors.name && (
-                <Error>{errors.name?.message?.toString()}</Error>
+              {errors.nombre && (
+                <Error>{errors.nombre?.message?.toString()}</Error>
               )}
 
             </div>
             <div className="flex flex-col gap-2 font-semibold">
-              <label htmlFor="surname">Apellido *</label>
-              <input type="text" id="surname" className="border border-gray-300 p-2 rounded-lg" placeholder="Pérez" {...register("surname", {
+              <label htmlFor="apellido">Apellido *</label>
+              <input type="text" id="apellido" className="border border-gray-300 p-2 rounded-lg" placeholder="Pérez" {...register("apellido", {
                 required: "El apellido es obligatorio"
               })} />
-              {errors.surname && (
-                <Error>{errors.surname?.message?.toString()}</Error>
+              {errors.apellido && (
+                <Error>{errors.apellido?.message?.toString()}</Error>
               )}
             </div>
             <div className="flex flex-col gap-2 font-semibold">
@@ -70,8 +78,8 @@ export default function RegisterForm() {
               )}
             </div>
             <div className="flex flex-col gap-2 font-semibold">
-              <label htmlFor="username">Nombre de Usuario *</label>
-              <input type="text" id="username" className="border border-gray-300 p-2 rounded-lg" placeholder="juanperez123" {...register("username", {
+              <label htmlFor="usuario">Nombre de Usuario *</label>
+              <input type="text" id="usuario" className="border border-gray-300 p-2 rounded-lg" placeholder="juanperez123" {...register("usuario", {
                 required: "El nombre de usuario es obligatorio",
                 maxLength: {
                   value: 10,
@@ -82,8 +90,8 @@ export default function RegisterForm() {
                   message: "El nombre de usuario debe tener 6 a 10 caracteres"
                 }
               })} />
-              {errors.username && (
-                <Error>{errors.username?.message?.toString()}</Error>
+              {errors.usuario && (
+                <Error>{errors.usuario?.message?.toString()}</Error>
               )}
             </div>
           </div>
@@ -94,16 +102,16 @@ export default function RegisterForm() {
             <p className="font-medium">Información de Contacto</p>
           </div>
           <div className="flex flex-col gap-2 font-semibold">
-            <label htmlFor="email">Correo Electrónico *</label>
-            <input type="email" id="email" className="border border-gray-300 p-2 rounded-lg" placeholder="correo@ejemplo.com"  {...register("email", {
+            <label htmlFor="correo">Correo Electrónico *</label>
+            <input type="email" id="correo" className="border border-gray-300 p-2 rounded-lg" placeholder="correo@ejemplo.com"  {...register("correo", {
               required: "El correo es obligatorio",
               pattern: {
                 value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                 message: "Formato de correo no válido"
               }
             })} />
-            {errors.email && (
-              <Error>{errors.email?.message?.toString()}</Error>
+            {errors.correo && (
+              <Error>{errors.correo?.message?.toString()}</Error>
             )}
           </div>
         </div>
@@ -114,36 +122,36 @@ export default function RegisterForm() {
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div className="flex flex-col gap-2 font-semibold">
-              <label htmlFor="">Ciudad *</label>
-              <input type="text" id="city" className="border border-gray-300 p-2 rounded-lg" placeholder="Apóstoles" {...register("city", {
+              <label htmlFor="ciudad">Ciudad *</label>
+              <input type="text" id="ciudad" className="border border-gray-300 p-2 rounded-lg" placeholder="Apóstoles" {...register("ciudad", {
                 required: "El nombre de la ciudad es obligatorio",
                 minLength: { value: 2, message: "La ciudad debe tener más de 2 caracteres" },
                 maxLength: { value: 15, message: "La ciudad debe tener menos de 15 caracteres" }
               })} />
-              {errors.city && (
-                <Error>{errors.city?.message?.toString()}</Error>
+              {errors.ciudad && (
+                <Error>{errors.ciudad?.message?.toString()}</Error>
               )}
             </div>
             <div className="flex flex-col gap-2 font-semibold">
-              <label htmlFor="">Barrio *</label>
-              <input type="text" id="neighborhood" className="border border-gray-300 p-2 rounded-lg" placeholder="San Jorge" {...register("neighborhood", {
+              <label htmlFor="barrio">Barrio *</label>
+              <input type="text" id="barrio" className="border border-gray-300 p-2 rounded-lg" placeholder="San Jorge" {...register("barrio", {
                 required: "El barrio es obligatorio",
                 minLength: { value: 2, message: "El nombre del barrio debe tener más de 2 caracteres" },
                 maxLength: { value: 20, message: "El nombre del barrio debe tener menos de 20 caracteres" }
               })} />
-              {errors.neighborhood && (
-                <Error>{errors.neighborhood?.message?.toString()}</Error>
+              {errors.barrio && (
+                <Error>{errors.barrio?.message?.toString()}</Error>
               )}
             </div>
             <div className="flex flex-col gap-2 font-semibold col-span-2">
-              <label htmlFor="">Calle y Número *</label>
-              <input type="text" id="street" className="border border-gray-300 p-2 rounded-lg" placeholder="Av. Misiones 213" {...register("street", {
+              <label htmlFor="calle">Calle y Número *</label>
+              <input type="text" id="calle" className="border border-gray-300 p-2 rounded-lg" placeholder="Av. Misiones 213" {...register("calle", {
                 required: "El nombre de la calle es obligatorio",
                 minLength: { value: 2, message: "El nombre de la calle debe tener más de 2 caracteres" },
                 maxLength: { value: 30, message: "El nomber de la calle debe tener menos de 30 caracteres" }
               })} />
-              {errors.street && (
-                <Error>{errors.street?.message?.toString()}</Error>
+              {errors.calle && (
+                <Error>{errors.calle?.message?.toString()}</Error>
               )}
             </div>
           </div>
@@ -155,8 +163,8 @@ export default function RegisterForm() {
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             <div className="flex flex-col gap-2 font-semibold">
-              <label htmlFor="">Contraseña *</label>
-              <input type="password" id="password" className="border border-gray-300 p-2 rounded-lg" placeholder="●●●●●●●●" {...register("password", {
+              <label htmlFor="contraseña">Contraseña *</label>
+              <input type="password" id="contraseña" className="border border-gray-300 p-2 rounded-lg" placeholder="●●●●●●●●" {...register("contraseña", {
                 required: "La contraseña es obligatoria",
                 minLength: {
                   value: 8,
@@ -167,19 +175,19 @@ export default function RegisterForm() {
                   message: "Debe tener mayúsculas, minúsculas y números"
                 }
               })} />
-              {errors.password && (
-                <Error>{errors.password?.message?.toString()}</Error>
+              {errors.contraseña && (
+                <Error>{errors.contraseña?.message?.toString()}</Error>
               )}
             </div>
             <div className="flex flex-col gap-2 font-semibold">
-              <label htmlFor="">Confirmar Contraseña *</label>
-              <input type="password" id="confirmpassword" className="border border-gray-300 p-2 rounded-lg" placeholder="●●●●●●●●" {...register("confirmpassword", {
+              <label htmlFor="comfirmarContraseña">Confirmar Contraseña *</label>
+              <input type="password" id="comfirmarContraseña" className="border border-gray-300 p-2 rounded-lg" placeholder="●●●●●●●●" {...register("comfirmarContraseña", {
                 required: "Debes confirmar la contraseña",
                 validate: value =>
                   value === password || "Las contraseñas no coinciden"
               })} />
-              {errors.confirmpassword && (
-                <Error>{errors.confirmpassword?.message?.toString()}</Error>
+              {errors.comfirmarContraseña && (
+                <Error>{errors.comfirmarContraseña?.message?.toString()}</Error>
               )}
             </div>
           </div>

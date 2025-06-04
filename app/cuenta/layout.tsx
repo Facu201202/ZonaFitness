@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import { Montserrat } from 'next/font/google'
-import {ToastContainer} from "react-toastify"
+import { ToastContainer } from "react-toastify"
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -33,15 +33,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${montserrat.variable} font-sans antialiased min-h-screen flex flex-col`}
-      >
-        <main>
-            {children}
-        </main>
-        <ToastContainer/>
-      </body>
-    </html>
+    <div className={`${montserrat.variable} font-sans antialiased min-h-screen flex flex-col`}>
+      <main >
+        {children}
+      </main>
+      <ToastContainer />
+    </div>
+
   );
 }

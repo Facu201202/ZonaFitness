@@ -127,8 +127,6 @@ export default function Home() {
           <MainCommentCard />
         </div>
       </div>
-      <LogoBlackBg/>
-      <LogoWhiteBg/>
       {
         data && productId && <ProductModal productId={productId} products={data} />
       }

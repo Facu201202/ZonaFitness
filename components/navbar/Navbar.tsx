@@ -26,7 +26,7 @@ export default function Navbar() {
                         type="text"
                     />
                 </div>
-                <Link href={""} className="hover:text-[#275DA2]">Iniciar Sesion</Link>
+                <Link href={"/cuenta"} className="hover:text-[#275DA2]">Iniciar Sesion</Link>
             </div>
 
             {/* Botón hamburguesa (Mobile) */}
