@@ -5,26 +5,34 @@ import Error from "./Error"
 import type { RegisterForm } from "@/src/schema"
 
 export default function RegisterForm() {
-  const { register, handleSubmit, watch, formState: { errors }, setError } = useForm<RegisterForm>()
+  const { register, handleSubmit, watch, formState: { errors }, setError, clearErrors } = useForm<RegisterForm>()
   const registerUser = async (data: RegisterForm) => {
+    clearErrors()
     const res = await fetch("/cuenta/api/register", {
       method: "POST",
       body: JSON.stringify(data)
     })
-
     const response = await res.json()
     if (!res.ok) {
-      toast.error(response.errors)
-    }
-    if (response.errors) {
-      Object.entries(response.errors).forEach(([key, message]) => {
-        setError(key as keyof typeof data, {
-          type: "manual",
-          message: message as string
+      if (res.status === 400) {
+        toast.error(response.errors)
+        return
+      }
+      if (res.status === 409) {
+        Object.entries(response.errors).forEach(([key, message]) => {
+          setError(key as keyof typeof data, {
+            type: "manual",
+            message: message as string
+          })
         })
-      })
+        return
+      }
+      toast.error(response.errors)
+      return
     }
+
     toast.success(response.message)
+
   }
 
   const password = watch("contraseña")

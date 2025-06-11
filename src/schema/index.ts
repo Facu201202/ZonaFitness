@@ -29,7 +29,12 @@ export const registerFormSchema = z.object({
 
 export const registerUserSchema = registerFormSchema.pick({usuario: true, contraseña: true}).extend({rol: z.string()})
 export const registerClientSchema = registerFormSchema.omit({comfirmarContraseña: true, usuario: true, contraseña: true, })
+export const loginUserSchema = registerUserSchema.omit({rol: true})
+export const loginUserFormSchema = registerUserSchema.omit({rol: true}).extend({validateError: z.string()})
 
 export type RegisterForm = z.infer<typeof registerFormSchema>
 export type RegisterUser = z.infer<typeof registerUserSchema>
 export type RegisterClient = z.infer<typeof registerClientSchema>
+
+export type LoginUser = z.infer<typeof loginUserSchema>
+export type LoginUserForm = z.infer<typeof loginUserFormSchema>

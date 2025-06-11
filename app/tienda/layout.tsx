@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers"
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import Navbar from "@/components/navbar/Navbar";
@@ -29,16 +30,19 @@ export const metadata: Metadata = {
   description: "ZonaFitness",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headerList = await headers()     
+  const userId = headerList.get("x-user-id")
+  const isLogin = !!userId
   return (
     <div
       className={`${montserrat.variable} font-sans antialiased min-h-screen flex flex-col`}
     >
-      <Navbar />
+      <Navbar isLogin={isLogin}/>
       <main className="">
         <ReactQueryProvider>
           {children}

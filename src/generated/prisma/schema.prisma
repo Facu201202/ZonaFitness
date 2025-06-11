@@ -56,7 +56,7 @@ model Publicaciones {
 
 model Usuarios {
   id_usuario  Int      @id @default(autoincrement())
-  usuario     String
+  usuario     String   @unique
   contraseña String
   rol         String
   id_cliente  Int
@@ -67,8 +67,8 @@ model Clientes {
   id_cliente Int        @id @default(autoincrement())
   nombre     String
   apellido   String
-  correo     String
-  dni        Int
+  correo     String     @unique
+  dni        Int        @unique
   ciudad     String
   barrio     String
   calle      String

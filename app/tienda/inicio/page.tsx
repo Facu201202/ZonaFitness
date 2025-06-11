@@ -9,8 +9,6 @@ import Link from "next/link"
 import { useQuery } from "@tanstack/react-query"
 import { Product } from "@/src/types"
 import { useSearchParams } from "next/navigation";
-import LogoBlackBg from "@/components/logos/LogoBlackBg";
-import LogoWhiteBg from "@/components/logos/LogoWhiteBg";
 
 
 export default function Home() {

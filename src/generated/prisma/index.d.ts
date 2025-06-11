@@ -9832,15 +9832,15 @@ export namespace Prisma {
 
   export type UsuariosWhereUniqueInput = Prisma.AtLeast<{
     id_usuario?: number
+    usuario?: string
     AND?: UsuariosWhereInput | UsuariosWhereInput[]
     OR?: UsuariosWhereInput[]
     NOT?: UsuariosWhereInput | UsuariosWhereInput[]
-    usuario?: StringFilter<"Usuarios"> | string
     contraseña?: StringFilter<"Usuarios"> | string
     rol?: StringFilter<"Usuarios"> | string
     id_cliente?: IntFilter<"Usuarios"> | number
     cliente?: XOR<ClientesScalarRelationFilter, ClientesWhereInput>
-  }, "id_usuario">
+  }, "id_usuario" | "usuario">
 
   export type UsuariosOrderByWithAggregationInput = {
     id_usuario?: SortOrder
@@ -9895,18 +9895,18 @@ export namespace Prisma {
 
   export type ClientesWhereUniqueInput = Prisma.AtLeast<{
     id_cliente?: number
+    correo?: string
+    dni?: number
     AND?: ClientesWhereInput | ClientesWhereInput[]
     OR?: ClientesWhereInput[]
     NOT?: ClientesWhereInput | ClientesWhereInput[]
     nombre?: StringFilter<"Clientes"> | string
     apellido?: StringFilter<"Clientes"> | string
-    correo?: StringFilter<"Clientes"> | string
-    dni?: IntFilter<"Clientes"> | number
     ciudad?: StringFilter<"Clientes"> | string
     barrio?: StringFilter<"Clientes"> | string
     calle?: StringFilter<"Clientes"> | string
     usuario?: UsuariosListRelationFilter
-  }, "id_cliente">
+  }, "id_cliente" | "correo" | "dni">
 
   export type ClientesOrderByWithAggregationInput = {
     id_cliente?: SortOrder

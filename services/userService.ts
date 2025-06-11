@@ -1,4 +1,4 @@
-import { RegisterClient, RegisterUser } from "@/src/schema";
+import { LoginUser, RegisterClient, RegisterUser } from "@/src/schema";
 import { prisma } from "@/src/lib/prisma"
 import bcrypt from "bcrypt"
 
@@ -33,13 +33,13 @@ export async function createAccount(userData: RegisterUser, client: RegisterClie
 
 async function validateNewUSer(username: RegisterUser["usuario"], email: RegisterClient["correo"], dni: RegisterClient["dni"]) {
     const [usernameExists, emailExists, dniExists] = await Promise.all([
-        prisma.usuarios.findFirst({
+        prisma.usuarios.findUnique({
             where: { usuario: username }
         }),
-        prisma.clientes.findFirst({
+        prisma.clientes.findUnique({
             where: { correo: email }
         }),
-        prisma.clientes.findFirst({
+        prisma.clientes.findUnique({
             where: { dni: Number(dni) }
         })
     ])
@@ -51,4 +51,10 @@ async function validateNewUSer(username: RegisterUser["usuario"], email: Registe
     if (dniExists) errores.dni = "El DNI ya existe"
 
     return errores
+}
+
+export async function findUser(user: LoginUser) {
+    return prisma.usuarios.findFirst({
+        where: {usuario: user.usuario}
+    })
 }
