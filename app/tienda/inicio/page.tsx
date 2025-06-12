@@ -81,6 +81,7 @@ export default function Home() {
           {data && <CardCarousel
             products={data}
           />}
+          {(!data && !isLoading) && <p className="text-center font-bold py-10">No hay productos disponibles</p>}
 
         </div>
       </div>
@@ -107,6 +108,7 @@ export default function Home() {
           {data && <CardCarousel
             products={data}
           />}
+          {(!data && !isLoading) && <p className="text-center font-bold py-10">No hay productos disponibles</p>}
 
         </div>
       </div>
