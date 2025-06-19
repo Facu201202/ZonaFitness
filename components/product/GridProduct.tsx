@@ -15,7 +15,7 @@ export default function GridProduct({ products }: GridProductProps) {
                         price={publication.precio}
                         name={publication.producto.nombre}
                         category={publication.producto.categoria.nombre}
-                        src={"/products/t-shirts/" + publication.producto.foto}
+                        src={publication.producto.foto}
                         opinionsCant={24}
                     />
                 </div>

@@ -128,7 +128,9 @@ export default function Home() {
         </div>
       </div>
       {
-        data && productId && <ProductModal productId={productId} products={data} />
+        (data && productId != null) ? (
+          <ProductModal productId={productId} products={data} />
+        ) : null
       }
 
 

@@ -1,16 +1,20 @@
 "use client"
 import Link from "next/link"
-
+import {useForm} from "react-hook-form"
 import { useState } from "react"
 import { MagnifyingGlassIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
 import UserButton from "./UserButton";
 import Image from "next/image";
 import LogoutButton from "./LogoutButton";
+import { redirect } from "next/navigation";
 
 
 export default function Navbar({ isLogin }: { isLogin: boolean }) {
     const [menuOpen, setMenuOpen] = useState(false);
-
+    const {handleSubmit, register} = useForm<{search: string}>()
+    const searchProduct = (data: {search: string}) => {
+        redirect(`/tienda/search?searchProduct=${data.search}`)
+    }
     return (
         <div className="py-4 px-3 flex justify-between items-center relative border-b border-gray-300">
             <div className="flex w-md items-end gap-4">
@@ -23,14 +27,16 @@ export default function Navbar({ isLogin }: { isLogin: boolean }) {
                 </div>
             </div>
             <div className="hidden lg:flex justify-start w-sm text-[#434346] items-center gap-4 px-2">
-                <div className="relative">
+                <form className="relative" onSubmit={handleSubmit(searchProduct)}>
                     <MagnifyingGlassIcon className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
                     <input
                         className="border border-gray-400 rounded-full px-3 py-1 focus:border-[#275DA2]"
                         placeholder="Buscar Productos..."
                         type="text"
+                        id="search"
+                        {...register("search")}
                     />
-                </div>
+                </form>
                 {isLogin ? (
                     <UserButton />
                 ) : (<Link href={"/cuenta"} className="hover:text-[#275DA2]">Iniciar Sesion</Link>)}
