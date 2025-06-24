@@ -1,18 +1,25 @@
-import { useState } from "react"
-import {useSearchParams, useRouter} from "next/navigation"
+import { useEffect, useState } from "react"
+import { useSearchParams, useRouter } from "next/navigation"
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import { formatCurrency } from "@/src/utils";
 
 export default function FilterOptions() {
+    const searchParams = useSearchParams()
+    const router = useRouter()
     const [open, setOpen] = useState({
         price: false,
         category: false,
         size: false,
         discount: false
     })
-    const [price, setPrice] = useState(200000)
-    const searchParams = useSearchParams()
-    const router = useRouter()
+    const handleInitialPrice = () => {
+        if (searchParams.get("precioMax")) {
+            return Number(searchParams.get("precioMax"))
+        } else {
+            return 200000
+        }
+    }
+    const [price, setPrice] = useState(handleInitialPrice)
     const categories = ["Remeras", "Pantalones", "Gorras", "Zapatillas"]
     const sizes = ["XS", "S", "M", "L", "XL", "XXL", "36", "36.5", "37", "37.5", "38", "38.5", "39", "39.5", "40", "40.5", "41", "41.5", "42", "42.5", "43", "Único"]
 
@@ -20,15 +27,22 @@ export default function FilterOptions() {
         const params = new URLSearchParams(searchParams.toString())
         const items = params.getAll(filterName)
 
-        if(items.includes(name)){
+        if (items.includes(name)) {
             const newParams = items.filter(i => i !== name)
             params.delete(filterName)
             newParams.forEach(param => params.append(filterName, param))
-        }else{
+        } else {
             params.append(filterName, name)
         }
         router.push(`?${params.toString()}`)
     }
+
+    const handleChecked = (name: string, filterName: string) => {
+        const params = new URLSearchParams(searchParams.toString())
+        const items = params.getAll(filterName)
+        return items.includes(name)
+    }
+
     const handleRangeChange = (value: number) => {
         const params = new URLSearchParams(searchParams.toString())
         params.set("precioMax", value.toString())
@@ -36,6 +50,7 @@ export default function FilterOptions() {
         setPrice(value)
     }
 
+    useEffect(() =>{console.log("cambio la url")}, [searchParams])
     return (
         <div>
             <div className="border-b border-gray-400 py-3">
@@ -49,13 +64,13 @@ export default function FilterOptions() {
                         }`}
                 >
                     <form className="mt-3">
-                        <input 
-                            type="range" 
-                            className="w-full accent-[#2D5DA2]" 
-                            min="0" 
-                            max="200000" 
-                            value={price} 
-                            step="20000" 
+                        <input
+                            type="range"
+                            className="w-full accent-[#2D5DA2]"
+                            min="0"
+                            max="200000"
+                            value={price}
+                            step="20000"
                             onChange={e => handleRangeChange(Number(e.target.value))}
                         />
                         <div className="flex justify-between text-sm">
@@ -79,7 +94,7 @@ export default function FilterOptions() {
                         {categories.map(c => (
                             <div className="flex flex-row-reverse items-center justify-end gap-2" key={c}>
                                 <label htmlFor={`${c}`}>{c}</label>
-                                <input type="checkbox" id={`${c}`} onClick={() => handleClick(c, "categoria")} />
+                                <input type="checkbox" defaultChecked={handleChecked(c, "categoria")} id={`${c}`} onClick={() => handleClick(c, "categoria")} />
                             </div>
                         ))}
                     </form>
@@ -98,7 +113,7 @@ export default function FilterOptions() {
                         {sizes.map(size => (
                             <div className="flex flex-row-reverse items-center justify-end gap-2" key={size}>
                                 <label htmlFor={`${size}`}>{size}</label>
-                                <input type="checkbox" id={`${size}`} onClick={() => handleClick(size, "talle")}/>
+                                <input type="checkbox" defaultChecked={handleChecked(size, "talle")} id={`${size}`} onClick={() => handleClick(size, "talle")} />
                             </div>
                         ))}
                     </form>
@@ -116,7 +131,7 @@ export default function FilterOptions() {
                     <form>
                         <div className="flex flex-row-reverse items-center justify-end gap-2">
                             <label htmlFor="active">Activar</label>
-                            <input type="checkbox" id={`active`} onClick={() => handleClick("true", "descuento")}/>
+                            <input type="checkbox" defaultChecked={searchParams.get("descuento") ? true : false} id={`active`} onClick={() => handleClick("true", "descuento")} />
                         </div>
                     </form>
                 </div>

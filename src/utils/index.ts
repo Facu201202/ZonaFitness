@@ -34,7 +34,6 @@ export function translateCategory(categoria: Categoria) {
 }
 
 export const createQueryFilter = (searchParams: ReadonlyURLSearchParams) => {
-
     const filters = {
         search: searchParams.get("searchProduct") || "",
         categories: searchParams.getAll("categoria"),
