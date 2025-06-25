@@ -7,29 +7,30 @@ import FilterOptions from "@/components/FilterOptions";
 import { useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query"
 import { createQueryFilter } from "@/src/utils";
+import Pagination from "@/components/Pagination";
+
 
 export default function page() {
     const searchParams = useSearchParams()
     const productId = +searchParams.get('producto')!
-    const searchedProduct = searchParams.get("searchProduct")
     const urlQueryFilter = createQueryFilter(searchParams)
+    const params = new URLSearchParams(searchParams.toString())
 
-
-    const fetchSearchProductos = async (): Promise<Product[]> => {
+    const fetchSearchProductos = async (): Promise<{products: Product[], countProducts: number}> => {
         const res = await fetch(`/tienda/search/api?${urlQueryFilter.toString()}`)
         if (!res.ok) throw new Error('Error al traer productos')
         return res.json()
     }
 
-
     const { data, isLoading } = useQuery({
-        queryKey: ['SearchProductos', searchedProduct],
+        queryKey: ['SearchProductos', urlQueryFilter.toString()],
         queryFn: () => fetchSearchProductos(),
         staleTime: 0,
         gcTime: 0,
     });
 
-
+    const totalPages = data && Math.ceil(data.countProducts / 9)
+    const page = Number(searchParams.get("page")) || 1
 
     return (
         <div className="w-7xl m-auto py-5 flex gap-6">
@@ -47,17 +48,21 @@ export default function page() {
 
                 </div>
                 {isLoading && <p className="text-center font-bold py-10">Cargando...</p>}
-                {data && <GridProduct
-                    products={data}
-                />}
+                {(data && totalPages) &&
+                    <>
+                        <GridProduct
+                            products={data.products}
+                        />
+                        <Pagination totalPages={totalPages} page={page} params={params}/>
+                    </>}
                 {(!data && !isLoading) && <p className="text-center font-bold py-10">No hay productos disponibles</p>}
+
             </div>
             {
                 (data && productId != null) ? (
-                    <ProductModal productId={productId} products={data} />
+                    <ProductModal productId={productId} products={data.products} />
                 ) : null
             }
-
         </div>
     )
 }

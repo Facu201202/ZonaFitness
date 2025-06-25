@@ -1,5 +1,5 @@
 import { ReadonlyURLSearchParams } from "next/navigation";
-import { Categoria } from "../types";
+import { Categoria, FiltersData } from "../types";
 
 export function formatCurrency(amount: number) {
     return new Intl.NumberFormat("es-AR", {
@@ -34,18 +34,21 @@ export function translateCategory(categoria: Categoria) {
 }
 
 export const createQueryFilter = (searchParams: ReadonlyURLSearchParams) => {
+    const skip = Number(searchParams.get("page")) || 1
     const filters = {
         search: searchParams.get("searchProduct") || "",
         categories: searchParams.getAll("categoria"),
         sizes: searchParams.getAll("talle"),
         discount: searchParams.get("descuento") || false,
-        price: searchParams.get("precioMax") || 200000
+        price: searchParams.get("precioMax") || 200000,
+        skipPage: (skip - 1) * 9
     }
 
     const queryString = new URLSearchParams({
         search: filters.search,
         discount: filters.discount.toString(),
-        price: filters.price.toString()
+        price: filters.price.toString(),
+        skipPage: filters.skipPage.toString()
     })
 
     filters.categories.forEach(c => queryString.append("category", c))
@@ -55,7 +58,30 @@ export const createQueryFilter = (searchParams: ReadonlyURLSearchParams) => {
 }
 
 
-
-
+export const createWhereFilter = (filters: FiltersData) => {
+    const where: any = {
+        producto: {
+            ...(filters.categories.length > 0 && {
+                categoria: { nombre: { in: filters.categories } }
+            }),
+            ...(filters.search && {
+                nombre: {
+                    contains: filters.search,
+                    mode: 'insensitive'
+                }
+            }),
+            ...(filters.sizes.length > 0 && {
+                stocks: {
+                    some: {
+                        talle: { talle: { in: filters.sizes } },
+                        cantidad: { gt: 0 }
+                    }
+                }
+            })
+        },
+        precio: { lte: filters.price }
+    }
+    return where
+}
 
 

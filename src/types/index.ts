@@ -18,6 +18,7 @@ export type FiltersData = {
     sizes: string[];
     discount: string | boolean;
     price: number;
+    skipPage: number
 }
 
 

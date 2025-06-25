@@ -50,7 +50,12 @@ export default function FilterOptions() {
         setPrice(value)
     }
 
-    useEffect(() =>{console.log("cambio la url")}, [searchParams])
+    useEffect(() => {
+        const precio = Number(searchParams.get("precioMax")) || 200000
+        if (precio !== price) {
+            setPrice(precio)
+        }
+    }, [searchParams])
     return (
         <div>
             <div className="border-b border-gray-400 py-3">
@@ -94,7 +99,7 @@ export default function FilterOptions() {
                         {categories.map(c => (
                             <div className="flex flex-row-reverse items-center justify-end gap-2" key={c}>
                                 <label htmlFor={`${c}`}>{c}</label>
-                                <input type="checkbox" defaultChecked={handleChecked(c, "categoria")} id={`${c}`} onClick={() => handleClick(c, "categoria")} />
+                                <input type="checkbox" checked={handleChecked(c, "categoria")} id={`${c}`} onChange={() => handleClick(c, "categoria")} />
                             </div>
                         ))}
                     </form>
@@ -113,7 +118,7 @@ export default function FilterOptions() {
                         {sizes.map(size => (
                             <div className="flex flex-row-reverse items-center justify-end gap-2" key={size}>
                                 <label htmlFor={`${size}`}>{size}</label>
-                                <input type="checkbox" defaultChecked={handleChecked(size, "talle")} id={`${size}`} onClick={() => handleClick(size, "talle")} />
+                                <input type="checkbox" checked={handleChecked(size, "talle")} id={`${size}`} onChange={() => handleClick(size, "talle")} />
                             </div>
                         ))}
                     </form>
@@ -131,7 +136,7 @@ export default function FilterOptions() {
                     <form>
                         <div className="flex flex-row-reverse items-center justify-end gap-2">
                             <label htmlFor="active">Activar</label>
-                            <input type="checkbox" defaultChecked={searchParams.get("descuento") ? true : false} id={`active`} onClick={() => handleClick("true", "descuento")} />
+                            <input type="checkbox" checked={searchParams.get("descuento") ? true : false} id={`active`} onChange={() => handleClick("true", "descuento")} />
                         </div>
                     </form>
                 </div>

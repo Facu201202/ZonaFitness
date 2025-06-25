@@ -3,7 +3,7 @@ import { useKeenSlider } from "keen-slider/react"
 import "keen-slider/keen-slider.min.css"
 import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/24/solid"
 import ProductCard from "./ProductCard"
-import { Product } from "@/src/types"
+import { Categoria, Product } from "@/src/types"
 
 type CardCarouselProps = {
   products: Product[]
@@ -38,7 +38,7 @@ export default function CardCarousel({ products }: CardCarouselProps) {
               id_publication={publication.id_publicacion}
               price={publication.precio}
               name={publication.producto.nombre}
-              category={publication.producto.categoria.nombre}
+              category={publication.producto.categoria.nombre as Categoria}
               src={publication.producto.foto}
               opinionsCant={24}
             />

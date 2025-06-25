@@ -11,7 +11,7 @@ import { redirect } from "next/navigation";
 
 export default function Navbar({ isLogin }: { isLogin: boolean }) {
     const [menuOpen, setMenuOpen] = useState(false);
-    const {handleSubmit, register} = useForm<{search: string}>()
+    const {handleSubmit, register, reset} = useForm<{search: string}>()
     const searchProduct = (data: {search: string}) => {
         redirect(`/tienda/search?searchProduct=${data.search}`)
     }
@@ -20,18 +20,19 @@ export default function Navbar({ isLogin }: { isLogin: boolean }) {
             <div className="flex w-md items-end gap-4">
                 <h2 className="text-2xl text-[#275DA2]">ZonaFitness</h2>
                 <div className="hidden lg:flex gap-6 text-[#434346]">
-                    <Link href={"/tienda/inicio"} className="hover:text-[#275DA2]">Inicio</Link>
-                    <Link href={"/tienda/search"} className="hover:text-[#275DA2]">Productos</Link>
-                    <Link href={""} className="hover:text-[#275DA2]">Categorías</Link>
-                    <Link href={""} className="hover:text-[#275DA2]">Ofertas</Link>
+                    <Link href={"/tienda/inicio"} onClick={() => reset()} className="hover:text-[#275DA2]">Inicio</Link>
+                    <Link href={"/tienda/search"} onClick={() => reset()} className="hover:text-[#275DA2]">Productos</Link>
+                    <Link href={""} onClick={() => reset()} className="hover:text-[#275DA2]" >Categorías</Link>
+                    <Link href={""} onClick={() => reset()} className="hover:text-[#275DA2]">Ofertas</Link>
                 </div>
             </div>
             <div className="hidden lg:flex justify-start w-sm text-[#434346] items-center gap-4 px-2">
                 <form className="relative" onSubmit={handleSubmit(searchProduct)}>
-                    <MagnifyingGlassIcon className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+                    <MagnifyingGlassIcon className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 hover:cursor-pointer" onClick={handleSubmit(searchProduct)}/>
                     <input
                         className="border border-gray-400 rounded-full px-3 py-1 focus:border-[#275DA2]"
                         placeholder="Buscar Productos..."
+                        defaultValue={""}
                         type="text"
                         id="search"
                         {...register("search")}

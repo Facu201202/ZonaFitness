@@ -1,5 +1,6 @@
 import { prisma } from "@/src/lib/prisma"
 import { FiltersData } from "@/src/types";
+import { createWhereFilter } from "@/src/utils";
 
 export async function getProducts() {
     return await prisma.publicaciones.findMany({
@@ -44,29 +45,10 @@ export async function getProducts() {
 }
 
 export async function getSearchedProducts(filters: FiltersData) {
-    const where: any = {
-        producto: {
-            ...(filters.categories.length > 0 && {
-                categoria: { nombre: { in: filters.categories } }
-            }),
-            ...(filters.search && {
-                nombre: {
-                    contains: filters.search,
-                    mode: 'insensitive'
-                }
-            }),
-            ...(filters.sizes.length > 0 && {
-                stocks: {
-                    some: {
-                        talle: { talle: { in: filters.sizes } },
-                        cantidad: { gt: 0 }
-                    }
-                }
-            })
-        },
-        precio: { lte: filters.price }
-    }
+    const where = createWhereFilter(filters)
     return await prisma.publicaciones.findMany({
+        take: 9,
+        skip: filters.skipPage,
         where,
         select: {
             id_publicacion: true,
@@ -100,4 +82,11 @@ export async function getSearchedProducts(filters: FiltersData) {
         }
     });
 
+}
+
+export async function  getSearchedProductsCount(filters: FiltersData) {
+    const where = createWhereFilter(filters)
+    return await prisma.publicaciones.count({
+        where
+    })
 }
