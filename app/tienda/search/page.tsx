@@ -33,13 +33,13 @@ export default function page() {
     const page = Number(searchParams.get("page")) || 1
 
     return (
-        <div className="w-7xl m-auto py-5 flex gap-6">
-            <div className=" basis-1/5">
+        <div className="lg:w-7xl m-auto py-5 flex flex-col lg:flex-row gap-6 px-3 lg:px-0">
+            <div className="lg:basis-1/5">
                 <p className="text-2xl font-bold mb-5">Filtros</p>
                 <FilterOptions />
             </div>
-            <div className="flex-1">
-                <div className="flex justify-between mb-5">
+            <div className="lg:flex-1 ">
+                <div className="flex flex-col lg:flex-row gap-3 lg:justify-between mb-5">
                     <h3 className="text-2xl font-bold">Productos</h3>
                     <div className="flex gap-2 items-center">
                         <p className="text-sm text-gray-500">Ordenar por:</p>

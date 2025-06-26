@@ -57,6 +57,7 @@ export default function Pagination({ totalPages, page, params }: PaginationProps
             }
             {pages.map(currentPage => (
                 <button
+                    key={currentPage}
                     onClick={() => handleSelectPage(currentPage)}
                     className={`${currentPage === page && "font-bold bg-gray-800"} bg-gray-700 text-white p-2  hover:cursor-pointer  hover:bg-gray-800`}
                 >

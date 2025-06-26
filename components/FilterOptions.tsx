@@ -26,7 +26,7 @@ export default function FilterOptions() {
     const handleClick = (name: string, filterName: string) => {
         const params = new URLSearchParams(searchParams.toString())
         const items = params.getAll(filterName)
-
+        params.delete("page")
         if (items.includes(name)) {
             const newParams = items.filter(i => i !== name)
             params.delete(filterName)
@@ -34,6 +34,7 @@ export default function FilterOptions() {
         } else {
             params.append(filterName, name)
         }
+
         router.push(`?${params.toString()}`)
     }
 
@@ -45,6 +46,7 @@ export default function FilterOptions() {
 
     const handleRangeChange = (value: number) => {
         const params = new URLSearchParams(searchParams.toString())
+        params.delete("page")
         params.set("precioMax", value.toString())
         router.push(`?${params.toString()}`)
         setPrice(value)
