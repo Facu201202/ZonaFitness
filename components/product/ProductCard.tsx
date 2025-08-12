@@ -1,22 +1,26 @@
 import Link from "next/link"
 import Image from "next/image"
+import { useSearchParams , usePathname } from 'next/navigation'
 import Qualification from "../Qualification"
 import { useState } from "react"
-import { formatCurrency } from "@/src/utils"
+import { formatCurrency, translateCategory } from "@/src/utils"
 import { HeartIcon } from "@heroicons/react/24/solid"
 import { HeartIcon as HeartIconOutline } from "@heroicons/react/24/outline"
+import { Categoria } from "@/src/types"
 
 type ProductCardProps = {
     id_publication: number,
     price: number,
     name: string,
-    category: string,
+    category: Categoria,
     src: string,
     opinionsCant: number
 }
 
 export default function ProductCard({ price, name, category, src, opinionsCant, id_publication }: ProductCardProps) {
-    
+    const pathname = usePathname()
+    const  searchParams = useSearchParams();
+    const fullUrl = pathname + '?' + searchParams.toString();
     const [isClicked, setIsClicked] = useState(false)
 
     const handleClick = () => {
@@ -38,7 +42,7 @@ export default function ProductCard({ price, name, category, src, opinionsCant, 
                 )}
 
                 <Image
-                    src={src}
+                    src={`/products/${translateCategory(category)}/` + src}
                     alt={category}
                     className="object-contain mx-auto z-0"
                     fill
@@ -57,7 +61,7 @@ export default function ProductCard({ price, name, category, src, opinionsCant, 
                 <div className="flex justify-between">
                     <p className="font-bold">{formatCurrency(price)}</p>
                     <Link
-                        href={`?producto=${id_publication}`}
+                        href={`${fullUrl}&producto=${id_publication}`}
                         scroll={false}
                         className="rounded-full px-3 py-1 bg-[#2D5DA2] hover:bg-[#275ca2b6] text-white"
                     >Comprar</Link>

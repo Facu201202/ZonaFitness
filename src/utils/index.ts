@@ -1,4 +1,5 @@
-import { Categoria } from "../types";
+import { ReadonlyURLSearchParams } from "next/navigation";
+import { Categoria, FiltersData } from "../types";
 
 export function formatCurrency(amount: number) {
     return new Intl.NumberFormat("es-AR", {
@@ -6,7 +7,6 @@ export function formatCurrency(amount: number) {
         currency: "ARS"
     }).format(amount)
 }
-
 
 export function formatFeatures(str: string) {
     const lines = str.trim().split('\n').filter(line => line.trim() !== '');
@@ -30,5 +30,63 @@ export const categoriesTranslate = {
 }
 
 export function translateCategory(categoria: Categoria) {
-  return categoriesTranslate[categoria]
+    return categoriesTranslate[categoria]
+}
+
+export const createQueryFilter = (searchParams: ReadonlyURLSearchParams) => {
+    const skip = Number(searchParams.get("page")) || 1
+    const filters = {
+        search: searchParams.get("searchProduct") || "",
+        categories: searchParams.getAll("categoria"),
+        sizes: searchParams.getAll("talle"),
+        discount: searchParams.get("descuento") || false,
+        price: searchParams.get("precioMax") || 200000,
+        skipPage: (skip - 1) * 9
+    }
+
+    const queryString = new URLSearchParams({
+        search: filters.search,
+        discount: filters.discount.toString(),
+        price: filters.price.toString(),
+        skipPage: filters.skipPage.toString()
+    })
+
+    filters.categories.forEach(c => queryString.append("category", c))
+    filters.sizes.forEach(s => queryString.append("size", s))
+
+    return queryString
+}
+
+
+export const createWhereFilter = (filters: FiltersData) => {
+    const where: any = {
+        producto: {
+            ...(filters.categories.length > 0 && {
+                categoria: { nombre: { in: filters.categories } }
+            }),
+            ...(filters.search && {
+                nombre: {
+                    contains: filters.search,
+                    mode: 'insensitive'
+                }
+            }),
+            ...(filters.sizes.length > 0 && {
+                stocks: {
+                    some: {
+                        talle: { talle: { in: filters.sizes } },
+                        cantidad: { gt: 0 }
+                    }
+                }
+            })
+        },
+        precio: { lte: filters.price }
+    }
+    return where
+}
+
+
+export const sizes = {
+    Remeras_pantalones: ["XS", "S", "M", "L", "XL", "XXL"],
+    Gorras: ["Único"],
+    Zapatillas: ["36", "36.5", "37", "37.5", "38", "38.5", "39", "39.5", "40", "40.5", "41", "41.5", "42", "42.5", "43"]
 }
