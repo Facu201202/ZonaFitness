@@ -52,4 +52,49 @@ model Publicaciones {
   id_producto     Int
   producto        Productos @relation(fields: [id_producto], references: [id_producto])
   fecha           DateTime  @default(now())
+  ventas          Ventas[]
+}
+
+model Usuarios {
+  id_usuario  Int      @id @default(autoincrement())
+  usuario     String   @unique
+  contraseña String
+  rol         String
+  id_cliente  Int
+  cliente     Clientes @relation(fields: [id_cliente], references: [id_cliente])
+  saldo       Saldos[]
+  compras     Ventas[]
+}
+
+model Clientes {
+  id_cliente Int        @id @default(autoincrement())
+  nombre     String
+  apellido   String
+  correo     String     @unique
+  dni        Int        @unique
+  ciudad     String
+  barrio     String
+  calle      String
+  usuario    Usuarios[]
+}
+
+model Saldos {
+  id_saldo   Int      @id @default(autoincrement())
+  saldo      Float
+  id_usuario Int
+  usuario    Usuarios @relation(fields: [id_usuario], references: [id_usuario])
+}
+
+model Ventas {
+  id_venta       Int           @id @default(autoincrement())
+  cantida        Int
+  precio_total   Float
+  fecha          DateTime      @default(now())
+  talle          String
+  estado         String
+  id_comentario  Int?
+  id_publicacion Int
+  id_usuario     Int
+  publicacion    Publicaciones @relation(fields: [id_publicacion], references: [id_publicacion])
+  usuario        Usuarios      @relation(fields: [id_usuario], references: [id_usuario])
 }

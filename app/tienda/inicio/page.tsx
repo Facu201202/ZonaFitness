@@ -17,7 +17,7 @@ export default function Home() {
   const productId = +searchParams.get('producto')!
 
   const fetchProductos = async (): Promise<Product[]> => {
-    
+
     const res = await fetch('/tienda/inicio/api')
     if (!res.ok) throw new Error('Error al traer productos')
     return res.json()
@@ -76,11 +76,12 @@ export default function Home() {
           </Link>
         </div>
         <div className="px-6 lg:px-32 py-6  " >
-          
+
           {isLoading && <p className="text-center font-bold py-10">Cargando...</p>}
           {data && <CardCarousel
             products={data}
           />}
+          {(!data && !isLoading) && <p className="text-center font-bold py-10">No hay productos disponibles</p>}
 
         </div>
       </div>
@@ -103,10 +104,11 @@ export default function Home() {
           </Link>
         </div>
         <div className="px-6  lg:px-32 py-6 ">
-          {isLoading && <p  className="text-center font-bold py-10">Cargando...</p>}
+          {isLoading && <p className="text-center font-bold py-10">Cargando...</p>}
           {data && <CardCarousel
             products={data}
           />}
+          {(!data && !isLoading) && <p className="text-center font-bold py-10">No hay productos disponibles</p>}
 
         </div>
       </div>
@@ -126,10 +128,12 @@ export default function Home() {
         </div>
       </div>
       {
-        data && productId && <ProductModal productId={productId}  products={data}/>
+        (data && productId != null) ? (
+          <ProductModal productId={productId} products={data} />
+        ) : null
       }
-      
-      
+
+
     </>
   )
 }

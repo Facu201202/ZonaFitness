@@ -1,4 +1,4 @@
-import { Product } from '@/src/types'
+import { Categoria, Product } from '@/src/types'
 import { translateCategory, formatFeatures, formatCurrency } from '@/src/utils'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -9,11 +9,10 @@ import Qualification from '../Qualification'
 import SizesButton from '../SizesButton'
 
 type ProductInfoProps = {
-    product: Product,
-    pathname: string
+    product: Product
 }
 
-export default function ProductInfo({ product, pathname }: ProductInfoProps) {
+export default function ProductInfo({ product }: ProductInfoProps) {
     const [isClicked, setIsClicked] = useState(false)
 
     const handleClick = () => {
@@ -26,7 +25,7 @@ export default function ProductInfo({ product, pathname }: ProductInfoProps) {
             <div className='lg:w-1/2 lg:px-8'>
                 <div className='relative w-auto h-[500px] lg:mb-12'>
                     <Image
-                        src={`/products/${translateCategory(product.producto.categoria.nombre)}/` + product.producto.foto}
+                        src={`/products/${translateCategory(product.producto.categoria.nombre as Categoria)}/` + product.producto.foto}
                         fill
                         alt='imangen del producto'
                         sizes="(max-width: 768px) 100vw, 50vw"
@@ -82,7 +81,7 @@ export default function ProductInfo({ product, pathname }: ProductInfoProps) {
                 <div>
                     <p className='font-semibold mb-2 text-xl'>Características principales: </p>
                     {Object.entries(feactures).map(([key, value]) => (
-                        <div className='flex items-center'>
+                        <div className='flex items-center' key={key}>
                             <p className='text-[#2D5DA2] bg-[#EAEEF6] rounded-2xl p-1 mr-2'>✓</p>
                             <p className='font-semibold w-1/2 my-2 mr-4 text-sm lg:text-base' key={key}>{key}:</p>
                             <p className='text-sm lg:text-base'>{value}</p>
@@ -91,13 +90,13 @@ export default function ProductInfo({ product, pathname }: ProductInfoProps) {
                 </div>
                 <div className='flex flex-col gap-2'>
                     <Link
-                        href={pathname}
+                        href={""}
                         scroll={false}
                         className=" bg-[#2D5DA2] text-white px-4 py-3 rounded text-center font-semibold hover:bg-[#2d52a2] flex justify-center items-center gap-3"
                     >{<ShoppingCartIcon className='h-5 w-5' />}  Añadir al carrito
                     </Link>
                     <Link
-                        href={pathname}
+                        href={""}
                         scroll={false}
                         className=" border border-[#2D5DA2] text-[#2D5DA2] px-4 py-3 rounded text-center font-semibold hover:bg-[#2D5DA2] hover:text-white flex justify-center items-center gap-3"
                     >{<CreditCardIcon className='h-5 w-5' />} Comprar ahora
