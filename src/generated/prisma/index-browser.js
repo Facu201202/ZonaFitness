@@ -177,6 +177,24 @@ exports.Prisma.ClientesScalarFieldEnum = {
   calle: 'calle'
 };
 
+exports.Prisma.SaldosScalarFieldEnum = {
+  id_saldo: 'id_saldo',
+  saldo: 'saldo',
+  id_usuario: 'id_usuario'
+};
+
+exports.Prisma.VentasScalarFieldEnum = {
+  id_venta: 'id_venta',
+  cantida: 'cantida',
+  precio_total: 'precio_total',
+  fecha: 'fecha',
+  talle: 'talle',
+  estado: 'estado',
+  id_comentario: 'id_comentario',
+  id_publicacion: 'id_publicacion',
+  id_usuario: 'id_usuario'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -187,6 +205,11 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
 
 exports.Prisma.ModelName = {
   Categorias: 'Categorias',
@@ -195,7 +218,9 @@ exports.Prisma.ModelName = {
   Stock: 'Stock',
   Publicaciones: 'Publicaciones',
   Usuarios: 'Usuarios',
-  Clientes: 'Clientes'
+  Clientes: 'Clientes',
+  Saldos: 'Saldos',
+  Ventas: 'Ventas'
 };
 
 /**

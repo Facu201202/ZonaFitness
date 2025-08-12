@@ -7,7 +7,7 @@ type GridProductProps = {
 
 export default function GridProduct({ products }: GridProductProps) {
     return (
-        <div className='grid lg:grid-cols-3 gap-5 max-w-5xl'>
+        <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-5 xl:max-w-5xl'>
             {products.map((publication) => (
                 <div key={publication.id_publicacion} className="keen-slider__slide min-w-0 border-1 border-transparent shadow-xl hover:border-black hover:cursor-pointer">
                     <ProductCard

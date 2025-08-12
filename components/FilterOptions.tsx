@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
-import { formatCurrency } from "@/src/utils";
+import { formatCurrency, sizes } from "@/src/utils";
 
 export default function FilterOptions() {
     const searchParams = useSearchParams()
@@ -21,7 +21,11 @@ export default function FilterOptions() {
     }
     const [price, setPrice] = useState(handleInitialPrice)
     const categories = ["Remeras", "Pantalones", "Gorras", "Zapatillas"]
-    const sizes = ["XS", "S", "M", "L", "XL", "XXL", "36", "36.5", "37", "37.5", "38", "38.5", "39", "39.5", "40", "40.5", "41", "41.5", "42", "42.5", "43", "Único"]
+    const sizeGroups = [
+        { items: sizes.Remeras_pantalones, categories: ["Pantalones", "Remeras"] },
+        { items: sizes.Zapatillas, categories: ["Zapatillas"] },
+        { items: sizes.Gorras, categories: ["Gorras"] },
+    ];
 
     const handleClick = (name: string, filterName: string) => {
         const params = new URLSearchParams(searchParams.toString())
@@ -50,6 +54,11 @@ export default function FilterOptions() {
         params.set("precioMax", value.toString())
         router.push(`?${params.toString()}`)
         setPrice(value)
+    }
+
+    const handleDisabled = (category: string[]) => {
+        const categoryParams = searchParams.getAll("categoria")
+        return category.some(cat => categoryParams.includes(cat)) ? false : true
     }
 
     useEffect(() => {
@@ -117,12 +126,29 @@ export default function FilterOptions() {
                         }`}
                 >
                     <form className="grid grid-cols-3">
-                        {sizes.map(size => (
-                            <div className="flex flex-row-reverse items-center justify-end gap-2" key={size}>
-                                <label htmlFor={`${size}`}>{size}</label>
-                                <input type="checkbox" checked={handleChecked(size, "talle")} id={`${size}`} onChange={() => handleClick(size, "talle")} />
-                            </div>
-                        ))}
+                        {sizeGroups.map(({ items, categories }) => {
+                            const isDisabled = handleDisabled(categories);
+                            return items.map(size => {
+                                const isChecked = handleChecked(size, "talle");
+
+                                return (
+                                    <div
+                                        key={size}
+                                        className={`flex flex-row-reverse items-center justify-end gap-2 ${isDisabled ? "text-gray-400" : ""
+                                            }`}
+                                    >
+                                        <label htmlFor={size}>{size}</label>
+                                        <input
+                                            type="checkbox"
+                                            id={size}
+                                            disabled={isDisabled}
+                                            checked={isChecked}
+                                            onChange={() => handleClick(size, "talle")}
+                                        />
+                                    </div>
+                                );
+                            });
+                        })}
                     </form>
                 </div>
             </div>
