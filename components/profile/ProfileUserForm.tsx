@@ -1,16 +1,19 @@
 "use client"
 import { UserIcon, LockClosedIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/outline"
-import { toast } from "react-toastify"
 import { useForm } from "react-hook-form"
+import { useSearchParams } from 'next/navigation'
 import Error from "../login-register/Error"
 
 export default function ProfileUserForm() {
+    const searchParams = useSearchParams();
+    const editUser = +searchParams.get('editUser')!
+    let editUserActive = editUser === 1 ? true : false
     const { register, handleSubmit, watch, formState: { errors }, setError, clearErrors } = useForm()
     const password = watch("contraseña")
     return (
         <>
             <form className=" flex flex-col gap-3">
-                <div className="flex gap-3">
+                <div className="lg:flex gap-3">
                     <div className="mb-5 bg-white px-5 py-8 rounded-2xl shadow flex-auto">
                         <div className="flex gap-2 text-xl mb-5">
                             <UserIcon className="h-5 w-5 self-center" />
@@ -19,8 +22,12 @@ export default function ProfileUserForm() {
                         <div className="grid grid-cols-2 gap-3">
                             <div className="flex flex-col gap-2 font-semibold">
                                 <label htmlFor="nombre">Nombre</label>
-                                <input type="text" disabled id="nombre" className="border border-gray-300 p-2 rounded-lg" placeholder="Juan" {...register("nombre", {
-                                    required: "El nombre es obligatorio"
+                                <input type="text" disabled={!editUserActive} id="nombre" className={`border ${editUserActive ? "border-gray-400 " : "border-gray-200 text-gray-400 pointer-events-none"} p-2 rounded-lg`} defaultValue={"hola"} {...register("nombre", {
+                                    required: "El nombre es obligatorio",
+                                    pattern: {
+                                        value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/,
+                                        message: "Solo se permiten letras y espacios"
+                                    }
                                 })} />
                                 {errors.nombre && (
                                     <Error>{errors.nombre?.message?.toString()}</Error>
@@ -29,8 +36,12 @@ export default function ProfileUserForm() {
                             </div>
                             <div className="flex flex-col gap-2 font-semibold">
                                 <label htmlFor="apellido">Apellido</label>
-                                <input type="text" id="apellido" className="border border-gray-300 p-2 rounded-lg" placeholder="Pérez" {...register("apellido", {
-                                    required: "El apellido es obligatorio"
+                                <input type="text" id="apellido" disabled={!editUserActive} className={`border ${editUserActive ? "border-gray-400 " : "border-gray-200 text-gray-400 pointer-events-none"} p-2 rounded-lg`} defaultValue={"hola"} {...register("apellido", {
+                                    required: "El apellido es obligatorio",
+                                    pattern: {
+                                        value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/,
+                                        message: "Solo se permiten letras y espacios"
+                                    }
                                 })} />
                                 {errors.apellido && (
                                     <Error>{errors.apellido?.message?.toString()}</Error>
@@ -38,7 +49,7 @@ export default function ProfileUserForm() {
                             </div>
                             <div className="flex flex-col gap-2 font-semibold">
                                 <label htmlFor="dni">DNI</label>
-                                <input type="text" id="dni" className="border border-gray-300 p-2 rounded-lg" placeholder="21425" {...register("dni", {
+                                <input type="text" id="dni" disabled={!editUserActive} className={`border ${editUserActive ? "border-gray-400 " : "border-gray-200 text-gray-400 pointer-events-none"} p-2 rounded-lg`} {...register("dni", {
                                     required: "El DNI es obligatorio",
                                     pattern: {
                                         value: /^[0-9]{7,8}$/,
@@ -51,7 +62,7 @@ export default function ProfileUserForm() {
                             </div>
                             <div className="flex flex-col gap-2 font-semibold">
                                 <label htmlFor="usuario">Nombre de Usuario</label>
-                                <input type="text" id="usuario" className="border border-gray-300 p-2 rounded-lg" placeholder="juanperez123" {...register("usuario", {
+                                <input type="text" id="usuario" disabled={!editUserActive} className={`border ${editUserActive ? "border-gray-400 " : "border-gray-200 text-gray-400 pointer-events-none"} p-2 rounded-lg`} {...register("usuario", {
                                     required: "El nombre de usuario es obligatorio",
                                     maxLength: {
                                         value: 10,
@@ -76,7 +87,7 @@ export default function ProfileUserForm() {
                         </div>
                         <div className="flex flex-col gap-2 font-semibold">
                             <label htmlFor="correo">Correo Electrónico</label>
-                            <input type="email" id="correo" className="border border-gray-300 p-2 rounded-lg" placeholder="correo@ejemplo.com"  {...register("correo", {
+                            <input type="email" id="correo" disabled={!editUserActive} className={`border ${editUserActive ? "border-gray-400 " : "border-gray-200 text-gray-400 pointer-events-none"} p-2 rounded-lg`}  {...register("correo", {
                                 required: "El correo es obligatorio",
                                 pattern: {
                                     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -89,7 +100,7 @@ export default function ProfileUserForm() {
                         </div>
                     </div>
                 </div>
-                <div className="flex gap-3">
+                <div className="lg:flex gap-3">
                     <div className="mb-5 bg-white px-5 py-8 rounded-2xl shadow flex-auto">
                         <div className="flex gap-2 text-xl mb-5">
                             <MapPinIcon className="h-5 w-5 self-center" />
@@ -98,7 +109,7 @@ export default function ProfileUserForm() {
                         <div className="grid grid-cols-2 gap-3">
                             <div className="flex flex-col gap-2 font-semibold">
                                 <label htmlFor="ciudad">Ciudad</label>
-                                <input type="text" id="ciudad" className="border border-gray-300 p-2 rounded-lg" placeholder="Apóstoles" {...register("ciudad", {
+                                <input type="text" id="ciudad" disabled={!editUserActive} className={`border ${editUserActive ? "border-gray-400 " : "border-gray-200 text-gray-400 pointer-events-none"} p-2 rounded-lg`} {...register("ciudad", {
                                     required: "El nombre de la ciudad es obligatorio",
                                     minLength: { value: 2, message: "La ciudad debe tener más de 2 caracteres" },
                                     maxLength: { value: 15, message: "La ciudad debe tener menos de 15 caracteres" }
@@ -109,7 +120,7 @@ export default function ProfileUserForm() {
                             </div>
                             <div className="flex flex-col gap-2 font-semibold">
                                 <label htmlFor="barrio">Barrio</label>
-                                <input type="text" id="barrio" className="border border-gray-300 p-2 rounded-lg" placeholder="San Jorge" {...register("barrio", {
+                                <input type="text" id="barrio" disabled={!editUserActive} className={`border ${editUserActive ? "border-gray-400 " : "border-gray-200 text-gray-400 pointer-events-none"} p-2 rounded-lg`} {...register("barrio", {
                                     required: "El barrio es obligatorio",
                                     minLength: { value: 2, message: "El nombre del barrio debe tener más de 2 caracteres" },
                                     maxLength: { value: 20, message: "El nombre del barrio debe tener menos de 20 caracteres" }
@@ -120,7 +131,7 @@ export default function ProfileUserForm() {
                             </div>
                             <div className="flex flex-col gap-2 font-semibold col-span-2">
                                 <label htmlFor="calle">Calle y Número</label>
-                                <input type="text" id="calle" className="border border-gray-300 p-2 rounded-lg" placeholder="Av. Misiones 213" {...register("calle", {
+                                <input type="text" id="calle" disabled={!editUserActive} className={`border ${editUserActive ? "border-gray-400 " : "border-gray-200 text-gray-400 pointer-events-none"} p-2 rounded-lg`} {...register("calle", {
                                     required: "El nombre de la calle es obligatorio",
                                     minLength: { value: 2, message: "El nombre de la calle debe tener más de 2 caracteres" },
                                     maxLength: { value: 30, message: "El nomber de la calle debe tener menos de 30 caracteres" }
@@ -140,7 +151,7 @@ export default function ProfileUserForm() {
                         <div className="grid grid-cols-1 gap-3">
                             <div className="flex flex-col gap-2 font-semibold">
                                 <label htmlFor="contraseña">Contraseña</label>
-                                <input type="password" id="contraseña" className="border border-gray-300 p-2 rounded-lg" placeholder="●●●●●●●●" {...register("contraseña", {
+                                <input type="password" id="contraseña" disabled={!editUserActive} className={`border ${editUserActive ? "border-gray-400 " : "border-gray-200 text-gray-400 pointer-events-none"} p-2 rounded-lg`} placeholder="●●●●●●●●" {...register("contraseña", {
                                     required: "La contraseña es obligatoria",
                                     minLength: {
                                         value: 8,
@@ -157,7 +168,7 @@ export default function ProfileUserForm() {
                             </div>
                             <div className="flex flex-col gap-2 font-semibold">
                                 <label htmlFor="comfirmarContraseña">Confirmar Contraseña</label>
-                                <input type="password" id="comfirmarContraseña" className="border border-gray-300 p-2 rounded-lg" placeholder="●●●●●●●●" {...register("comfirmarContraseña", {
+                                <input type="password" id="comfirmarContraseña" disabled={!editUserActive} className={`border ${editUserActive ? "border-gray-400 " : "border-gray-200 text-gray-400 pointer-events-none"} p-2 rounded-lg`} placeholder="●●●●●●●●" {...register("comfirmarContraseña", {
                                     required: "Debes confirmar la contraseña",
                                     validate: value =>
                                         value === password || "Las contraseñas no coinciden"

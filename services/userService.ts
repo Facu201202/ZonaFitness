@@ -58,3 +58,13 @@ export async function findUser(user: LoginUser) {
         where: {usuario: user.usuario}
     })
 }
+
+export async function getUserData(id: number) {
+    return prisma.usuarios.findFirst({
+        where: {id_usuario: id},
+        select: {
+            cliente: true, 
+            usuario: true
+        }
+    })
+}

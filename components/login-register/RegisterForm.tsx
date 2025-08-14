@@ -56,7 +56,11 @@ export default function RegisterForm() {
             <div className="flex flex-col gap-2 font-semibold">
               <label htmlFor="nombre">Nombre *</label>
               <input type="text" id="nombre" className="border border-gray-300 p-2 rounded-lg" placeholder="Juan" {...register("nombre", {
-                required: "El nombre es obligatorio"
+                required: "El nombre es obligatorio",
+                pattern: {
+                  value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/,
+                  message: "Solo se permiten letras y espacios"
+                }
               })} />
               {errors.nombre && (
                 <Error>{errors.nombre?.message?.toString()}</Error>
@@ -66,7 +70,11 @@ export default function RegisterForm() {
             <div className="flex flex-col gap-2 font-semibold">
               <label htmlFor="apellido">Apellido *</label>
               <input type="text" id="apellido" className="border border-gray-300 p-2 rounded-lg" placeholder="Pérez" {...register("apellido", {
-                required: "El apellido es obligatorio"
+                required: "El apellido es obligatorio",
+                pattern: {
+                  value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/,
+                  message: "Solo se permiten letras y espacios"
+                }
               })} />
               {errors.apellido && (
                 <Error>{errors.apellido?.message?.toString()}</Error>

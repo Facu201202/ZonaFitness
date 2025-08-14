@@ -43,8 +43,8 @@ export default async function RootLayout({
       className={`${montserrat.variable} font-sans antialiased min-h-screen flex flex-col`}
     >
       <Navbar isLogin={isLogin}/>
-      <main className="">
-        <ReactQueryProvider>
+      <main className="min-h-screen">
+        <ReactQueryProvider userId={userId}>
           {children}
         </ReactQueryProvider>
       </main>
