@@ -6,6 +6,7 @@ import ProfilePurchases from "@/components/profile/ProfilePurchases"
 import ProfileUserForm from "@/components/profile/ProfileUserForm"
 import ProfileWallet from "@/components/profile/ProfileWallet"
 import { useUserStore } from "@/src/stores/userStore"
+import { ProfileUserData } from "@/src/types"
 import { useQuery } from "@tanstack/react-query"
 import { useState } from "react"
 
@@ -14,7 +15,7 @@ export default function page() {
 
   const [section, setSection] = useState(1)
 
-  const fetchUserData = async () => {
+  const fetchUserData = async (): Promise<ProfileUserData> => {
     const res = await fetch(`/tienda/perfil/api/${userId}`)
     if (!res.ok) throw new Error("Error al acceder al perfil")
     return res.json()
@@ -34,7 +35,7 @@ export default function page() {
   return (
     <div className="bg-gray-100 min-h-screen py-12 px-3">
       <div className="flex flex-col gap-6 max-w-5xl mx-auto">
-        <ProfileBanner />
+        <ProfileBanner userData={data}/>
         <div className="bg-white flex flex-col lg:flex-row mb-2 rounded-lg shadow">
           <button className={`rounded-lg flex-1 text-center py-2 hover:cursor-pointer  font-semibold ${section === 1 && "bg-[#111827] text-white"}`} onClick={() => setSection(1)}>Datos Personales</button>
           <button className={`rounded-lg flex-1 text-center py-2 hover:cursor-pointer font-semibold ${section === 2 && "bg-[#111827] text-white"}`} onClick={() => setSection(2)}>Mis Compras</button>
@@ -42,7 +43,7 @@ export default function page() {
           <button className={`rounded-lg flex-1 text-center py-2 hover:cursor-pointer font-semibold ${section === 4 && "bg-[#111827] text-white"}`} onClick={() => setSection(4)}>Mis Reseñas</button>
           <button className={`rounded-lg flex-1 text-center py-2 hover:cursor-pointer font-semibold ${section === 5 && "bg-[#111827] text-white"}`} onClick={() => setSection(5)}>Saldo</button>
         </div>
-        {section === 1 && <ProfileUserForm />}
+        {section === 1 && <ProfileUserForm userData={data}/>}
         {section === 2 && <ProfilePurchases />}
         {section === 3 && <ProfileFavorites />}
         {section === 4 && <ProfileComments />}

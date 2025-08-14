@@ -21,6 +21,17 @@ export type FiltersData = {
     skipPage: number
 }
 
-
+export type ProfileUserData = {
+    usuario: string,
+    cliente: {
+        correo: string,
+        nombre: string,
+        apellido: string,
+        dni: number,
+        ciudad: string,
+        barrio: string,
+        calle: string
+    }
+}
 
 export type Categoria = keyof typeof categoriesTranslate;

@@ -63,7 +63,17 @@ export async function getUserData(id: number) {
     return prisma.usuarios.findFirst({
         where: {id_usuario: id},
         select: {
-            cliente: true, 
+            cliente: {
+                select: {
+                    nombre: true,
+                    apellido: true,
+                    correo: true,
+                    dni: true,
+                    barrio: true,
+                    calle: true,
+                    ciudad: true
+                }
+            },
             usuario: true
         }
     })
