@@ -22,6 +22,8 @@ export type FiltersData = {
 }
 
 export type ProfileUserData = {
+    id_usuario: number,
+    id_cliente: number
     usuario: string,
     cliente: {
         correo: string,
@@ -34,4 +36,27 @@ export type ProfileUserData = {
     }
 }
 
+export type ProfileUserDataForm = {
+    usuario: string,
+    correo: string,
+    nombre: string,
+    apellido: string,
+    dni: number,
+    ciudad: string,
+    barrio: string,
+    calle: string
+
+}
+
+
 export type Categoria = keyof typeof categoriesTranslate;
+
+export type ChangePasswordForm = {
+    contraseñaActual: string,
+    contraseñaNueva: string,
+    confirmarContraseña: string
+}
+
+export type ChangePasswordData = ChangePasswordForm & {
+    id_usuario: number
+}

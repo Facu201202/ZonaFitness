@@ -1,19 +1,49 @@
 "use client"
-import { UserIcon, LockClosedIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/outline"
+import { UserIcon, PencilSquareIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/outline"
 import { useForm } from "react-hook-form"
 import { useSearchParams } from 'next/navigation'
 import Error from "../login-register/Error"
-import { ProfileUserData } from "@/src/types"
+import { toast } from "react-toastify"
+import { ProfileUserData, ProfileUserDataForm } from "@/src/types"
 
-export default function ProfileUserForm({userData}: {userData: ProfileUserData}) {
+export default function ProfileUserForm({ userData }: { userData: ProfileUserData }) {
     const searchParams = useSearchParams();
     const editUser = +searchParams.get('editUser')!
     let editUserActive = editUser === 1 ? true : false
-    const { register, handleSubmit, watch, formState: { errors }, setError, clearErrors } = useForm()
-    const password = watch("contraseña")
+    const { register, handleSubmit, formState: { errors }, setError, clearErrors } = useForm<ProfileUserDataForm>()
+    const changeUserInfo = async (data: ProfileUserDataForm) => {
+        clearErrors()
+        const res = await fetch("/tienda/perfil/api/editUser", {
+            method: "POST",
+            body: JSON.stringify({ ...data, id_usuario: userData.id_usuario, id_cliente: userData.id_cliente })
+        })
+        const response = await res.json()
+        if (!res.ok) {
+            if (res.status === 400) {
+                toast.error(response.errors)
+                return
+            }
+            if (res.status === 409) {
+                Object.entries(response.errors).forEach(([key, message]) => {
+                    setError(key as keyof typeof data, {
+                        type: "manual",
+                        message: message as string
+                    })
+                })
+                return
+            }
+            toast.error(response.errors)
+            return
+        }
+
+        toast.success(response.message)
+        setTimeout(() => {
+                location.href = window.location.pathname;
+            }, 2000);
+    }
     return (
         <>
-            <form className=" flex flex-col gap-3">
+            <form className=" flex flex-col gap-3" onSubmit={handleSubmit(changeUserInfo)}>
                 <div className="lg:flex gap-3">
                     <div className="mb-5 bg-white px-5 py-8 rounded-2xl shadow flex-auto">
                         <div className="flex gap-2 text-xl mb-5">
@@ -144,43 +174,13 @@ export default function ProfileUserForm({userData}: {userData: ProfileUserData})
                         </div>
                     </div>
 
-                    <div className="mb-5 bg-white px-5 py-8 rounded-2xl shadow flex-1/3">
-                        <div className="flex gap-2 text-xl mb-5">
-                            <LockClosedIcon className="h-5 w-5 self-center" />
-                            <p className="font-medium">Seguridad</p>
-                            <input type="checkbox" />
-                        </div>
-                        <div className="grid grid-cols-1 gap-3">
-                            <div className="flex flex-col gap-2 font-semibold">
-                                <label htmlFor="contraseña">Contraseña</label>
-                                <input type="password" id="contraseña" disabled={!editUserActive} className={`border ${editUserActive ? "border-gray-400 " : "border-gray-200 text-gray-400 pointer-events-none"} p-2 rounded-lg`} placeholder="●●●●●●●●" {...register("contraseña", {
-                                    required: "La contraseña es obligatoria",
-                                    minLength: {
-                                        value: 8,
-                                        message: "Debe tener al menos 8 caracteres"
-                                    },
-                                    pattern: {
-                                        value: /^(?=.*[A-Z])(?=.*\d)(?=.*[a-z]).{8,}$/,
-                                        message: "Debe tener mayúsculas, minúsculas y números"
-                                    }
-                                })} />
-                                {errors.contraseña && (
-                                    <Error>{errors.contraseña?.message?.toString()}</Error>
-                                )}
-                            </div>
-                            <div className="flex flex-col gap-2 font-semibold">
-                                <label htmlFor="comfirmarContraseña">Confirmar Contraseña</label>
-                                <input type="password" id="comfirmarContraseña" disabled={!editUserActive} className={`border ${editUserActive ? "border-gray-400 " : "border-gray-200 text-gray-400 pointer-events-none"} p-2 rounded-lg`} placeholder="●●●●●●●●" {...register("comfirmarContraseña", {
-                                    required: "Debes confirmar la contraseña",
-                                    validate: value =>
-                                        value === password || "Las contraseñas no coinciden"
-                                })} />
-                                {errors.comfirmarContraseña && (
-                                    <Error>{errors.comfirmarContraseña?.message?.toString()}</Error>
-                                )}
-                            </div>
-                        </div>
-                    </div>
+
+                </div>
+                <div className={`${editUserActive ? "flex justify-end" : "hidden"}`}>
+                    <button className="flex gap-2 w-fit items-center font-semibold shadow bg-[#222a3b] text-white rounded-xl px-4 py-2 hover:cursor-pointer hover:bg-[#19202e]">
+                        <PencilSquareIcon className="h-5 w-5" />
+                        Guardar
+                    </button>
                 </div>
             </form>
         </>
