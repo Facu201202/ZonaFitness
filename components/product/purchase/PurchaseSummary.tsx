@@ -1,8 +1,12 @@
 import { useSearchParams } from 'next/navigation'
 import { ClockIcon } from "@heroicons/react/24/outline"
 import Image from 'next/image'
+import {toast} from "react-toastify"
 import { formatCurrency, translateCategory } from '@/src/utils'
 import { Categoria } from '@/src/types'
+import { useState } from 'react'
+import Error from '@/components/Error'
+
 type PurchaseSummaryProps = {
     image: string,
     productName: string,
@@ -11,11 +15,23 @@ type PurchaseSummaryProps = {
 }
 
 export default function PurchaseSummary({ image, productName, category, price }: PurchaseSummaryProps) {
+    const [error, setError] = useState(false)
     const searchParams = useSearchParams()
     const params = new URLSearchParams(searchParams.toString())
     const size = params.get("ModalTalle")
     const quantity = Number(params.get("cantidad")) || 1
     const total = (price * quantity) + 3000 + 1100
+    const deliveryMethod = params.get("entrega")
+    const paymentMethod = params.get("pago")
+
+
+    const handlePurchaseButton = () => {
+        if(!deliveryMethod || !paymentMethod) {
+            setError(true)
+        }
+        
+    }
+
     return (
         <div className='shadow border border-gray-300 rounded-2xl p-4'>
             <p className='font-medium text-lg mb-3'>Resumen de la compra</p>
@@ -56,11 +72,18 @@ export default function PurchaseSummary({ image, productName, category, price }:
                     <p className='font-bold text-xl'>Total</p>
                     <p className='font-bold text-xl'>{formatCurrency(total)}</p>
                 </div>
-                <div className='bg-blue-50 text-blue-600 p-3 rounded-lg flex gap-2 items-center font-semibold'>
-                    <ClockIcon className='w-5 h-5' />
-                    Entrega estimada: 1-3 días hábiles
-                </div>
+                {deliveryMethod === "home" && (
+                    <div className='bg-blue-50 text-blue-600 p-3 rounded-lg flex gap-2 items-center font-semibold'>
+                        <ClockIcon className='w-5 h-5' />
+                        Entrega estimada: 1-3 días hábiles
+                    </div>
+                )}
+                {error && (
+                    <Error>Seleecione un método de pago y de envio</Error>
+                )}
+
                 <button
+                onClick={() => handlePurchaseButton()}
                     className="text-white bg-green-600 py-2 w-full rounded-lg text-center font-semibold hover:bg-green-700 hover:cursor-pointer"
                 > Confirmar Compra
                 </button>

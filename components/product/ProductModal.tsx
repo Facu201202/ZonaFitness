@@ -30,7 +30,10 @@ export default function ProductModal({ productId, products }: ProductModalProps)
     params.delete("cantidad")
     params.delete("ModalTalle")
     router.replace(`?${params.toString()}`, { scroll: false })
-    setActiveModal("Product")
+    setTimeout(() => {
+      setActiveModal("Product")
+    }, 2000);
+
   }
 
   const { data } = useQuery({

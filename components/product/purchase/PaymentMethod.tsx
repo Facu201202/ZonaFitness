@@ -1,7 +1,37 @@
+import { useUserStore } from "@/src/stores/userStore"
 import { formatCurrency } from "@/src/utils"
 import { CreditCardIcon, WalletIcon } from "@heroicons/react/24/outline"
+import { useQuery } from "@tanstack/react-query"
+import { useRouter, useSearchParams } from 'next/navigation'
+
 export default function PaymentMethod() {
-    return (
+    const searchParams = useSearchParams();
+    const router = useRouter()
+    const params = new URLSearchParams(searchParams.toString())
+    const userId = useUserStore(state => state.userId)
+
+
+    const fetchUserbalance = async () => {
+        const res = await fetch(`/tienda/inicio/api/balance/${userId}`)
+        if (!res.ok) throw new Error("Saldo no encontrado")
+        return res.json()
+    }
+
+    const { data, isLoading, isError } = useQuery({
+        queryKey: ["saldo", userId],
+        queryFn: () => fetchUserbalance(),
+        enabled: userId ? true : false
+    })
+
+    const handleClick = (method: string) => {
+        params.set("pago", method)
+        router.replace(`?${params.toString()}`, { scroll: false })
+    }
+
+    if (isLoading) return <p className="text-center font-bold">...</p>
+    if (isError) return <p className="text-center font-bold">Error inesperado, intentelo de nuevo más tarde</p>
+
+    if (data) return (
         <div className='shadow border border-gray-300 rounded-2xl p-4'>
             <div className="flex gap-2 items-center mb-3">
                 <CreditCardIcon className='w-5 h-5' />
@@ -10,12 +40,12 @@ export default function PaymentMethod() {
             <form className="py-5 flex flex-col gap-4">
                 <div className="border rounded-lg border-gray-300 p-3 flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center">
                     <div className="flex gap-3 items-center">
-                        <input type="radio" name="deliveryOption" value={"Home"} className="accent-black hover:cursor-pointer h-4 w-4" />
+                        <input type="radio" name="deliveryOption" value={"Home"} className="accent-black hover:cursor-pointer h-4 w-4"  onClick={() => handleClick("storeWallet")}/>
                         <div className="flex items-center gap-2 flex-1">
                             <WalletIcon className="w-5 h-5 text-emerald-700" />
                             <div>
                                 <p className="font-medium">Dinero en cuenta</p>
-                                <p className="text-gray-700 text-sm sm:text-base font-medium">Saldo Disponible: $45.000</p>
+                                <p className="text-gray-700 text-sm sm:text-base font-medium">Saldo Disponible: {formatCurrency(data.saldo)}</p>
                             </div>
                         </div>
                     </div>

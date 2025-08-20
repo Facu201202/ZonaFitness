@@ -1,7 +1,7 @@
 import { UserIcon, LockClosedIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/outline"
 import { toast } from "react-toastify"
 import { useForm } from "react-hook-form"
-import Error from "./Error"
+import Error from "../Error"
 import type { RegisterForm } from "@/src/schema"
 
 export default function RegisterForm() {

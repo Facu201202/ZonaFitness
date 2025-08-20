@@ -2,7 +2,7 @@
 import { UserIcon, PencilSquareIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/outline"
 import { useForm } from "react-hook-form"
 import { useSearchParams } from 'next/navigation'
-import Error from "../login-register/Error"
+import Error from "../Error"
 import { toast } from "react-toastify"
 import { ProfileUserData, ProfileUserDataForm } from "@/src/types"
 

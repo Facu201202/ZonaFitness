@@ -173,3 +173,14 @@ export async function updatePassword(data: ChangePasswordData) {
         }
     })
 }
+
+export async function getUserBalance(id: number) {
+    return prisma.saldos.findFirst({
+        where: {
+            id_usuario: id
+        },
+        select: {
+            saldo: true
+        }
+    })
+}

@@ -1,7 +1,7 @@
 "use client"
 import { PencilSquareIcon } from "@heroicons/react/24/outline"
 import { useForm } from "react-hook-form"
-import Error from "../login-register/Error"
+import Error from "../Error"
 import { toast } from "react-toastify"
 import { ChangePasswordForm } from "@/src/types"
 

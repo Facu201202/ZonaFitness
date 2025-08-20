@@ -1,6 +1,6 @@
 import { EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline"
 import { useForm } from "react-hook-form"
-import Error from "./Error"
+import Error from "../Error"
 import { LoginUserForm } from "@/src/schema"
 import { toast } from "react-toastify"
 import { redirect } from "next/navigation"
