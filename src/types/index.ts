@@ -33,7 +33,8 @@ export type ProfileUserData = {
         ciudad: string,
         barrio: string,
         calle: string
-    }
+    },
+    saldo: [{saldo: number}]
 }
 
 export type ProfileUserDataForm = {

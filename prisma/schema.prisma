@@ -92,6 +92,7 @@ model Ventas {
   fecha DateTime @default(now())
   talle String
   estado String
+  n_comprobante String @unique
   id_comentario Int?
   id_publicacion Int
   id_usuario Int

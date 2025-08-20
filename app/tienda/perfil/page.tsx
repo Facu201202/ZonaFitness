@@ -31,8 +31,8 @@ export default function page() {
   if (isLoading) return <div className="min-h-screen"></div>
   if (isError) return <p>Error al cargar datos</p>;
   if (!data) return null;
-  console.log(data)
-
+  const userBalance = data.saldo[0].saldo
+  
   return (
     <div className="bg-gray-200 min-h-screen py-12 px-3">
       <div className="flex flex-col gap-6 max-w-5xl mx-auto">
@@ -49,7 +49,7 @@ export default function page() {
         {section === 2 && <ProfilePurchases />}
         {section === 3 && <ProfileFavorites />}
         {section === 4 && <ProfileComments />}
-        {section === 5 && <ProfileWallet />}
+        {section === 5 && <ProfileWallet userBalance={userBalance}/>}
         {section === 6 && <ProfileUserPasswordForm userId={data.id_usuario}/>}
       </div>
     </div>

@@ -8,7 +8,6 @@ export async function middleware(req: NextRequest) {
     const pathname = req.nextUrl.pathname
 
     if (!token && authRoutes.some(route => pathname.startsWith(route))) {
-        console.log(req.url)
         return NextResponse.redirect(new URL("/cuenta", req.url))
     }
 

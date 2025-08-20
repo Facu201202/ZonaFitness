@@ -77,7 +77,12 @@ export async function getUserData(id: number) {
             },
             usuario: true,
             id_usuario: true,
-            id_cliente: true
+            id_cliente: true,
+            saldo: {
+                select: {
+                    saldo: true
+                }
+            }
         }
     })
 }

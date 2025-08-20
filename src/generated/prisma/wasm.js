@@ -190,6 +190,7 @@ exports.Prisma.VentasScalarFieldEnum = {
   fecha: 'fecha',
   talle: 'talle',
   estado: 'estado',
+  n_comprobante: 'n_comprobante',
   id_comentario: 'id_comentario',
   id_publicacion: 'id_publicacion',
   id_usuario: 'id_usuario'

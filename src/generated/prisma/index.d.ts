@@ -10798,6 +10798,7 @@ export namespace Prisma {
     fecha: Date | null
     talle: string | null
     estado: string | null
+    n_comprobante: string | null
     id_comentario: number | null
     id_publicacion: number | null
     id_usuario: number | null
@@ -10810,6 +10811,7 @@ export namespace Prisma {
     fecha: Date | null
     talle: string | null
     estado: string | null
+    n_comprobante: string | null
     id_comentario: number | null
     id_publicacion: number | null
     id_usuario: number | null
@@ -10822,6 +10824,7 @@ export namespace Prisma {
     fecha: number
     talle: number
     estado: number
+    n_comprobante: number
     id_comentario: number
     id_publicacion: number
     id_usuario: number
@@ -10854,6 +10857,7 @@ export namespace Prisma {
     fecha?: true
     talle?: true
     estado?: true
+    n_comprobante?: true
     id_comentario?: true
     id_publicacion?: true
     id_usuario?: true
@@ -10866,6 +10870,7 @@ export namespace Prisma {
     fecha?: true
     talle?: true
     estado?: true
+    n_comprobante?: true
     id_comentario?: true
     id_publicacion?: true
     id_usuario?: true
@@ -10878,6 +10883,7 @@ export namespace Prisma {
     fecha?: true
     talle?: true
     estado?: true
+    n_comprobante?: true
     id_comentario?: true
     id_publicacion?: true
     id_usuario?: true
@@ -10977,6 +10983,7 @@ export namespace Prisma {
     fecha: Date
     talle: string
     estado: string
+    n_comprobante: string
     id_comentario: number | null
     id_publicacion: number
     id_usuario: number
@@ -11008,6 +11015,7 @@ export namespace Prisma {
     fecha?: boolean
     talle?: boolean
     estado?: boolean
+    n_comprobante?: boolean
     id_comentario?: boolean
     id_publicacion?: boolean
     id_usuario?: boolean
@@ -11022,6 +11030,7 @@ export namespace Prisma {
     fecha?: boolean
     talle?: boolean
     estado?: boolean
+    n_comprobante?: boolean
     id_comentario?: boolean
     id_publicacion?: boolean
     id_usuario?: boolean
@@ -11036,6 +11045,7 @@ export namespace Prisma {
     fecha?: boolean
     talle?: boolean
     estado?: boolean
+    n_comprobante?: boolean
     id_comentario?: boolean
     id_publicacion?: boolean
     id_usuario?: boolean
@@ -11050,12 +11060,13 @@ export namespace Prisma {
     fecha?: boolean
     talle?: boolean
     estado?: boolean
+    n_comprobante?: boolean
     id_comentario?: boolean
     id_publicacion?: boolean
     id_usuario?: boolean
   }
 
-  export type VentasOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_venta" | "cantida" | "precio_total" | "fecha" | "talle" | "estado" | "id_comentario" | "id_publicacion" | "id_usuario", ExtArgs["result"]["ventas"]>
+  export type VentasOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_venta" | "cantida" | "precio_total" | "fecha" | "talle" | "estado" | "n_comprobante" | "id_comentario" | "id_publicacion" | "id_usuario", ExtArgs["result"]["ventas"]>
   export type VentasInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     publicacion?: boolean | PublicacionesDefaultArgs<ExtArgs>
     usuario?: boolean | UsuariosDefaultArgs<ExtArgs>
@@ -11082,6 +11093,7 @@ export namespace Prisma {
       fecha: Date
       talle: string
       estado: string
+      n_comprobante: string
       id_comentario: number | null
       id_publicacion: number
       id_usuario: number
@@ -11516,6 +11528,7 @@ export namespace Prisma {
     readonly fecha: FieldRef<"Ventas", 'DateTime'>
     readonly talle: FieldRef<"Ventas", 'String'>
     readonly estado: FieldRef<"Ventas", 'String'>
+    readonly n_comprobante: FieldRef<"Ventas", 'String'>
     readonly id_comentario: FieldRef<"Ventas", 'Int'>
     readonly id_publicacion: FieldRef<"Ventas", 'Int'>
     readonly id_usuario: FieldRef<"Ventas", 'Int'>
@@ -12041,6 +12054,7 @@ export namespace Prisma {
     fecha: 'fecha',
     talle: 'talle',
     estado: 'estado',
+    n_comprobante: 'n_comprobante',
     id_comentario: 'id_comentario',
     id_publicacion: 'id_publicacion',
     id_usuario: 'id_usuario'
@@ -12623,6 +12637,7 @@ export namespace Prisma {
     fecha?: DateTimeFilter<"Ventas"> | Date | string
     talle?: StringFilter<"Ventas"> | string
     estado?: StringFilter<"Ventas"> | string
+    n_comprobante?: StringFilter<"Ventas"> | string
     id_comentario?: IntNullableFilter<"Ventas"> | number | null
     id_publicacion?: IntFilter<"Ventas"> | number
     id_usuario?: IntFilter<"Ventas"> | number
@@ -12637,6 +12652,7 @@ export namespace Prisma {
     fecha?: SortOrder
     talle?: SortOrder
     estado?: SortOrder
+    n_comprobante?: SortOrder
     id_comentario?: SortOrderInput | SortOrder
     id_publicacion?: SortOrder
     id_usuario?: SortOrder
@@ -12646,6 +12662,7 @@ export namespace Prisma {
 
   export type VentasWhereUniqueInput = Prisma.AtLeast<{
     id_venta?: number
+    n_comprobante?: string
     AND?: VentasWhereInput | VentasWhereInput[]
     OR?: VentasWhereInput[]
     NOT?: VentasWhereInput | VentasWhereInput[]
@@ -12659,7 +12676,7 @@ export namespace Prisma {
     id_usuario?: IntFilter<"Ventas"> | number
     publicacion?: XOR<PublicacionesScalarRelationFilter, PublicacionesWhereInput>
     usuario?: XOR<UsuariosScalarRelationFilter, UsuariosWhereInput>
-  }, "id_venta">
+  }, "id_venta" | "n_comprobante">
 
   export type VentasOrderByWithAggregationInput = {
     id_venta?: SortOrder
@@ -12668,6 +12685,7 @@ export namespace Prisma {
     fecha?: SortOrder
     talle?: SortOrder
     estado?: SortOrder
+    n_comprobante?: SortOrder
     id_comentario?: SortOrderInput | SortOrder
     id_publicacion?: SortOrder
     id_usuario?: SortOrder
@@ -12688,6 +12706,7 @@ export namespace Prisma {
     fecha?: DateTimeWithAggregatesFilter<"Ventas"> | Date | string
     talle?: StringWithAggregatesFilter<"Ventas"> | string
     estado?: StringWithAggregatesFilter<"Ventas"> | string
+    n_comprobante?: StringWithAggregatesFilter<"Ventas"> | string
     id_comentario?: IntNullableWithAggregatesFilter<"Ventas"> | number | null
     id_publicacion?: IntWithAggregatesFilter<"Ventas"> | number
     id_usuario?: IntWithAggregatesFilter<"Ventas"> | number
@@ -13142,6 +13161,7 @@ export namespace Prisma {
     fecha?: Date | string
     talle: string
     estado: string
+    n_comprobante: string
     id_comentario?: number | null
     publicacion: PublicacionesCreateNestedOneWithoutVentasInput
     usuario: UsuariosCreateNestedOneWithoutComprasInput
@@ -13154,6 +13174,7 @@ export namespace Prisma {
     fecha?: Date | string
     talle: string
     estado: string
+    n_comprobante: string
     id_comentario?: number | null
     id_publicacion: number
     id_usuario: number
@@ -13165,6 +13186,7 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
     estado?: StringFieldUpdateOperationsInput | string
+    n_comprobante?: StringFieldUpdateOperationsInput | string
     id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
     publicacion?: PublicacionesUpdateOneRequiredWithoutVentasNestedInput
     usuario?: UsuariosUpdateOneRequiredWithoutComprasNestedInput
@@ -13177,6 +13199,7 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
     estado?: StringFieldUpdateOperationsInput | string
+    n_comprobante?: StringFieldUpdateOperationsInput | string
     id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
     id_publicacion?: IntFieldUpdateOperationsInput | number
     id_usuario?: IntFieldUpdateOperationsInput | number
@@ -13189,6 +13212,7 @@ export namespace Prisma {
     fecha?: Date | string
     talle: string
     estado: string
+    n_comprobante: string
     id_comentario?: number | null
     id_publicacion: number
     id_usuario: number
@@ -13200,6 +13224,7 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
     estado?: StringFieldUpdateOperationsInput | string
+    n_comprobante?: StringFieldUpdateOperationsInput | string
     id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
@@ -13210,6 +13235,7 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
     estado?: StringFieldUpdateOperationsInput | string
+    n_comprobante?: StringFieldUpdateOperationsInput | string
     id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
     id_publicacion?: IntFieldUpdateOperationsInput | number
     id_usuario?: IntFieldUpdateOperationsInput | number
@@ -13730,6 +13756,7 @@ export namespace Prisma {
     fecha?: SortOrder
     talle?: SortOrder
     estado?: SortOrder
+    n_comprobante?: SortOrder
     id_comentario?: SortOrder
     id_publicacion?: SortOrder
     id_usuario?: SortOrder
@@ -13751,6 +13778,7 @@ export namespace Prisma {
     fecha?: SortOrder
     talle?: SortOrder
     estado?: SortOrder
+    n_comprobante?: SortOrder
     id_comentario?: SortOrder
     id_publicacion?: SortOrder
     id_usuario?: SortOrder
@@ -13763,6 +13791,7 @@ export namespace Prisma {
     fecha?: SortOrder
     talle?: SortOrder
     estado?: SortOrder
+    n_comprobante?: SortOrder
     id_comentario?: SortOrder
     id_publicacion?: SortOrder
     id_usuario?: SortOrder
@@ -14802,6 +14831,7 @@ export namespace Prisma {
     fecha?: Date | string
     talle: string
     estado: string
+    n_comprobante: string
     id_comentario?: number | null
     usuario: UsuariosCreateNestedOneWithoutComprasInput
   }
@@ -14813,6 +14843,7 @@ export namespace Prisma {
     fecha?: Date | string
     talle: string
     estado: string
+    n_comprobante: string
     id_comentario?: number | null
     id_usuario: number
   }
@@ -14885,6 +14916,7 @@ export namespace Prisma {
     fecha?: DateTimeFilter<"Ventas"> | Date | string
     talle?: StringFilter<"Ventas"> | string
     estado?: StringFilter<"Ventas"> | string
+    n_comprobante?: StringFilter<"Ventas"> | string
     id_comentario?: IntNullableFilter<"Ventas"> | number | null
     id_publicacion?: IntFilter<"Ventas"> | number
     id_usuario?: IntFilter<"Ventas"> | number
@@ -14941,6 +14973,7 @@ export namespace Prisma {
     fecha?: Date | string
     talle: string
     estado: string
+    n_comprobante: string
     id_comentario?: number | null
     publicacion: PublicacionesCreateNestedOneWithoutVentasInput
   }
@@ -14952,6 +14985,7 @@ export namespace Prisma {
     fecha?: Date | string
     talle: string
     estado: string
+    n_comprobante: string
     id_comentario?: number | null
     id_publicacion: number
   }
@@ -15376,6 +15410,7 @@ export namespace Prisma {
     fecha?: Date | string
     talle: string
     estado: string
+    n_comprobante: string
     id_comentario?: number | null
     id_usuario: number
   }
@@ -15386,6 +15421,7 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
     estado?: StringFieldUpdateOperationsInput | string
+    n_comprobante?: StringFieldUpdateOperationsInput | string
     id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
     usuario?: UsuariosUpdateOneRequiredWithoutComprasNestedInput
   }
@@ -15397,6 +15433,7 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
     estado?: StringFieldUpdateOperationsInput | string
+    n_comprobante?: StringFieldUpdateOperationsInput | string
     id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
     id_usuario?: IntFieldUpdateOperationsInput | number
   }
@@ -15408,6 +15445,7 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
     estado?: StringFieldUpdateOperationsInput | string
+    n_comprobante?: StringFieldUpdateOperationsInput | string
     id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
     id_usuario?: IntFieldUpdateOperationsInput | number
   }
@@ -15424,6 +15462,7 @@ export namespace Prisma {
     fecha?: Date | string
     talle: string
     estado: string
+    n_comprobante: string
     id_comentario?: number | null
     id_publicacion: number
   }
@@ -15448,6 +15487,7 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
     estado?: StringFieldUpdateOperationsInput | string
+    n_comprobante?: StringFieldUpdateOperationsInput | string
     id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
     publicacion?: PublicacionesUpdateOneRequiredWithoutVentasNestedInput
   }
@@ -15459,6 +15499,7 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
     estado?: StringFieldUpdateOperationsInput | string
+    n_comprobante?: StringFieldUpdateOperationsInput | string
     id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
     id_publicacion?: IntFieldUpdateOperationsInput | number
   }
@@ -15470,6 +15511,7 @@ export namespace Prisma {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
     estado?: StringFieldUpdateOperationsInput | string
+    n_comprobante?: StringFieldUpdateOperationsInput | string
     id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
     id_publicacion?: IntFieldUpdateOperationsInput | number
   }
