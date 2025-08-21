@@ -7,6 +7,7 @@ import { useProductStore } from "@/src/stores/productStore"
 import PurchaseSummary from "./purchase/PurchaseSummary"
 import DeliveryMethod from "./purchase/DeliveryMethod"
 import PaymentMethod from "./purchase/PaymentMethod"
+import SuccessPurchase from "./successPurchase/SuccessPurchase"
 
 type ToggleProductProps = {
     product: Product,
@@ -18,7 +19,7 @@ export default function ToggleProduct({ product, products, deleteParamsFunction 
     const activeModal = useProductStore(state => state.activeModal)
     return (
         <div>
-            {activeModal === "Product" ? (
+            {activeModal === "Product" && (
                 <div>
                     <div className='flex justify-end mb-5'>
                         <XMarkIcon className='w-5 h-5 hover:cursor-pointer' onClick={() => deleteParamsFunction()} />
@@ -29,16 +30,22 @@ export default function ToggleProduct({ product, products, deleteParamsFunction 
                         <RelatedProducts products={products} />
                     </div>
                 </div>
-            ) : (
-                <div  className="lg:p-4">
+            )} 
+            {activeModal === "Purchase" && (
+                <div className="lg:p-4">
                     <p className="text-2xl font-medium">Opciones de Compra</p>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 my-6">
                         <div className="flex flex-col gap-7">
-                            <DeliveryMethod/>
-                            <PaymentMethod/>
+                            <DeliveryMethod />
+                            <PaymentMethod />
                         </div>
-                        <div>{<PurchaseSummary image={product.producto.foto} productName={product.producto.nombre} price={product.precio} category={product.producto.categoria.nombre} />}</div>
+                        <div>{<PurchaseSummary image={product.producto.foto} productName={product.producto.nombre} price={product.precio} category={product.producto.categoria.nombre} publicationId={product.id_publicacion} />}</div>
                     </div>
+                </div>
+            )}
+            {activeModal === "SuccessPurchase" && (
+                <div className="lg:p-4">
+                    <SuccessPurchase/>
                 </div>
             )}
         </div>

@@ -1,9 +1,8 @@
 import { Categoria, Product } from '@/src/types'
-import { translateCategory, formatFeatures, formatCurrency } from '@/src/utils'
+import { translateCategory, formatFeatures, formatCurrency, sizes } from '@/src/utils'
 import { useProductStore } from '@/src/stores/productStore'
 import Image from 'next/image'
 import Link from 'next/link'
-import { toast } from "react-toastify"
 import { useSearchParams, useRouter, redirect } from "next/navigation"
 import { useEffect, useState } from 'react'
 import { HeartIcon } from "@heroicons/react/24/solid"
@@ -26,6 +25,15 @@ export default function ProductInfo({ product }: ProductInfoProps) {
     const [isClicked, setIsClicked] = useState(false)
     const [isSizeActive, setisSizeActive] = useState(false)
     const [quantity, setQuantity] = useState(Number(params.get("cantidad")) || 1)
+
+    const category = product.producto.categoria.nombre as keyof typeof sizes
+    const currentSizes = params.get("ModalTalle")
+
+    if (currentSizes && !sizes[category].includes(currentSizes)) {
+        params.delete("ModalTalle")
+        router.replace(`?${params.toString()}`)
+    }
+
 
     useEffect(() => {
         setQuantity(Number(params.get("cantidad")) || 1)
@@ -54,8 +62,8 @@ export default function ProductInfo({ product }: ProductInfoProps) {
     const handlePurchaseButton = () => {
         if (!userId) redirect("/cuenta")
         if (!params.get("ModalTalle")) {
-           setisSizeActive(true)
-           return
+            setisSizeActive(true)
+            return
         }
         setActiveModal("Purchase")
     }
@@ -117,6 +125,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
                     <p className={`font-semibold text-amber-600 ${isSizeActive ? "inline" : "hidden"}`}>Seleccione un talle</p>
                     <div className='flex flex-wrap gap-2 mt-2'>
                         {product.producto.stocks.map((stock) => (
+
                             <SizesButton key={stock.talle.talle} size={stock.talle.talle} stock={stock.cantidad} currentQuantity={quantity} />
                         ))}
                     </div>

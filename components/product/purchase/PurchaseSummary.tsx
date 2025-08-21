@@ -1,35 +1,54 @@
 import { useSearchParams } from 'next/navigation'
 import { ClockIcon } from "@heroicons/react/24/outline"
 import Image from 'next/image'
-import {toast} from "react-toastify"
 import { formatCurrency, translateCategory } from '@/src/utils'
-import { Categoria } from '@/src/types'
+import { Categoria, PurchaseData } from '@/src/types'
 import { useState } from 'react'
 import Error from '@/components/Error'
+import { useProductStore } from '@/src/stores/productStore'
+import { useUserStore } from '@/src/stores/userStore'
 
 type PurchaseSummaryProps = {
     image: string,
     productName: string,
     category: string,
-    price: number
+    price: number,
+    publicationId: number
 }
 
-export default function PurchaseSummary({ image, productName, category, price }: PurchaseSummaryProps) {
+export default function PurchaseSummary({ image, productName, category, price, publicationId }: PurchaseSummaryProps) {
     const [error, setError] = useState(false)
     const searchParams = useSearchParams()
     const params = new URLSearchParams(searchParams.toString())
     const size = params.get("ModalTalle")
     const quantity = Number(params.get("cantidad")) || 1
-    const total = (price * quantity) + 3000 + 1100
     const deliveryMethod = params.get("entrega")
     const paymentMethod = params.get("pago")
-
-
-    const handlePurchaseButton = () => {
-        if(!deliveryMethod || !paymentMethod) {
+    const setCurrentTotalPurchase = useProductStore(state => state.setCurrentTotalPurchase)
+    const setCurrentPurchase = useProductStore(state => state.setCurrentPurchase)
+    const setActiveModal = useProductStore(state => state.setActiveModal)
+    const userId = useUserStore(state => state.userId)
+    const total = (price * quantity) + 3000 + 1100
+    setCurrentTotalPurchase(total)
+    
+    const handlePurchaseButton = async() => {
+        if (!deliveryMethod || !paymentMethod) {
             setError(true)
+            return
         }
-        
+        const purchaseData: PurchaseData = {
+            cantidad: quantity,
+            precio_total: total,
+            talle: size!,
+            id_publicacion: publicationId,
+            id_usuario: +userId!,
+            entrega: deliveryMethod,
+            pago: paymentMethod
+        }
+
+        setCurrentPurchase(purchaseData)
+        setActiveModal("SuccessPurchase")
+
     }
 
     return (
@@ -83,7 +102,7 @@ export default function PurchaseSummary({ image, productName, category, price }:
                 )}
 
                 <button
-                onClick={() => handlePurchaseButton()}
+                    onClick={() => handlePurchaseButton()}
                     className="text-white bg-green-600 py-2 w-full rounded-lg text-center font-semibold hover:bg-green-700 hover:cursor-pointer"
                 > Confirmar Compra
                 </button>

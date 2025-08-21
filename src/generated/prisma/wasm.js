@@ -185,7 +185,7 @@ exports.Prisma.SaldosScalarFieldEnum = {
 
 exports.Prisma.VentasScalarFieldEnum = {
   id_venta: 'id_venta',
-  cantida: 'cantida',
+  cantidad: 'cantidad',
   precio_total: 'precio_total',
   fecha: 'fecha',
   talle: 'talle',

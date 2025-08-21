@@ -29,6 +29,8 @@ export default function ProductModal({ productId, products }: ProductModalProps)
     params.delete("producto")
     params.delete("cantidad")
     params.delete("ModalTalle")
+    params.delete("pago")
+    params.delete("entrega")
     router.replace(`?${params.toString()}`, { scroll: false })
     setTimeout(() => {
       setActiveModal("Product")

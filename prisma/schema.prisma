@@ -87,7 +87,7 @@ model Saldos {
 
 model Ventas {
   id_venta Int @id @default(autoincrement())
-  cantida Int
+  cantidad Int
   precio_total Float
   fecha DateTime @default(now())
   talle String

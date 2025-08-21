@@ -1,4 +1,4 @@
-import { Publicaciones, Productos, Stock, Sizes } from '../../src/generated/prisma'
+import { Publicaciones, Productos, Stock, Sizes, Ventas } from '../../src/generated/prisma'
 import { categoriesTranslate } from '../utils'
 
 export type Product = Pick<Publicaciones, "id_publicacion" | "caracteristicas" | "descuento" | "precio"> & {
@@ -60,4 +60,9 @@ export type ChangePasswordForm = {
 
 export type ChangePasswordData = ChangePasswordForm & {
     id_usuario: number
+}
+
+export type PurchaseData = Pick<Ventas, "cantidad" | "precio_total" | "talle" | "id_publicacion" | "id_usuario"> & {
+    entrega: string,
+    pago: string
 }

@@ -1,4 +1,4 @@
-import { createAccount, updateUserInfo } from "@/services/userService"
+import {updateUserInfo } from "@/services/userService"
 import { editClientSchema, editUserSchema } from "@/src/schema"
 import { NextRequest, NextResponse } from "next/server"
 

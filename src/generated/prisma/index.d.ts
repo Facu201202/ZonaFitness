@@ -10775,7 +10775,7 @@ export namespace Prisma {
 
   export type VentasAvgAggregateOutputType = {
     id_venta: number | null
-    cantida: number | null
+    cantidad: number | null
     precio_total: number | null
     id_comentario: number | null
     id_publicacion: number | null
@@ -10784,7 +10784,7 @@ export namespace Prisma {
 
   export type VentasSumAggregateOutputType = {
     id_venta: number | null
-    cantida: number | null
+    cantidad: number | null
     precio_total: number | null
     id_comentario: number | null
     id_publicacion: number | null
@@ -10793,7 +10793,7 @@ export namespace Prisma {
 
   export type VentasMinAggregateOutputType = {
     id_venta: number | null
-    cantida: number | null
+    cantidad: number | null
     precio_total: number | null
     fecha: Date | null
     talle: string | null
@@ -10806,7 +10806,7 @@ export namespace Prisma {
 
   export type VentasMaxAggregateOutputType = {
     id_venta: number | null
-    cantida: number | null
+    cantidad: number | null
     precio_total: number | null
     fecha: Date | null
     talle: string | null
@@ -10819,7 +10819,7 @@ export namespace Prisma {
 
   export type VentasCountAggregateOutputType = {
     id_venta: number
-    cantida: number
+    cantidad: number
     precio_total: number
     fecha: number
     talle: number
@@ -10834,7 +10834,7 @@ export namespace Prisma {
 
   export type VentasAvgAggregateInputType = {
     id_venta?: true
-    cantida?: true
+    cantidad?: true
     precio_total?: true
     id_comentario?: true
     id_publicacion?: true
@@ -10843,7 +10843,7 @@ export namespace Prisma {
 
   export type VentasSumAggregateInputType = {
     id_venta?: true
-    cantida?: true
+    cantidad?: true
     precio_total?: true
     id_comentario?: true
     id_publicacion?: true
@@ -10852,7 +10852,7 @@ export namespace Prisma {
 
   export type VentasMinAggregateInputType = {
     id_venta?: true
-    cantida?: true
+    cantidad?: true
     precio_total?: true
     fecha?: true
     talle?: true
@@ -10865,7 +10865,7 @@ export namespace Prisma {
 
   export type VentasMaxAggregateInputType = {
     id_venta?: true
-    cantida?: true
+    cantidad?: true
     precio_total?: true
     fecha?: true
     talle?: true
@@ -10878,7 +10878,7 @@ export namespace Prisma {
 
   export type VentasCountAggregateInputType = {
     id_venta?: true
-    cantida?: true
+    cantidad?: true
     precio_total?: true
     fecha?: true
     talle?: true
@@ -10978,7 +10978,7 @@ export namespace Prisma {
 
   export type VentasGroupByOutputType = {
     id_venta: number
-    cantida: number
+    cantidad: number
     precio_total: number
     fecha: Date
     talle: string
@@ -11010,7 +11010,7 @@ export namespace Prisma {
 
   export type VentasSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id_venta?: boolean
-    cantida?: boolean
+    cantidad?: boolean
     precio_total?: boolean
     fecha?: boolean
     talle?: boolean
@@ -11025,7 +11025,7 @@ export namespace Prisma {
 
   export type VentasSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id_venta?: boolean
-    cantida?: boolean
+    cantidad?: boolean
     precio_total?: boolean
     fecha?: boolean
     talle?: boolean
@@ -11040,7 +11040,7 @@ export namespace Prisma {
 
   export type VentasSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id_venta?: boolean
-    cantida?: boolean
+    cantidad?: boolean
     precio_total?: boolean
     fecha?: boolean
     talle?: boolean
@@ -11055,7 +11055,7 @@ export namespace Prisma {
 
   export type VentasSelectScalar = {
     id_venta?: boolean
-    cantida?: boolean
+    cantidad?: boolean
     precio_total?: boolean
     fecha?: boolean
     talle?: boolean
@@ -11066,7 +11066,7 @@ export namespace Prisma {
     id_usuario?: boolean
   }
 
-  export type VentasOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_venta" | "cantida" | "precio_total" | "fecha" | "talle" | "estado" | "n_comprobante" | "id_comentario" | "id_publicacion" | "id_usuario", ExtArgs["result"]["ventas"]>
+  export type VentasOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_venta" | "cantidad" | "precio_total" | "fecha" | "talle" | "estado" | "n_comprobante" | "id_comentario" | "id_publicacion" | "id_usuario", ExtArgs["result"]["ventas"]>
   export type VentasInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     publicacion?: boolean | PublicacionesDefaultArgs<ExtArgs>
     usuario?: boolean | UsuariosDefaultArgs<ExtArgs>
@@ -11088,7 +11088,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id_venta: number
-      cantida: number
+      cantidad: number
       precio_total: number
       fecha: Date
       talle: string
@@ -11523,7 +11523,7 @@ export namespace Prisma {
    */
   interface VentasFieldRefs {
     readonly id_venta: FieldRef<"Ventas", 'Int'>
-    readonly cantida: FieldRef<"Ventas", 'Int'>
+    readonly cantidad: FieldRef<"Ventas", 'Int'>
     readonly precio_total: FieldRef<"Ventas", 'Float'>
     readonly fecha: FieldRef<"Ventas", 'DateTime'>
     readonly talle: FieldRef<"Ventas", 'String'>
@@ -12049,7 +12049,7 @@ export namespace Prisma {
 
   export const VentasScalarFieldEnum: {
     id_venta: 'id_venta',
-    cantida: 'cantida',
+    cantidad: 'cantidad',
     precio_total: 'precio_total',
     fecha: 'fecha',
     talle: 'talle',
@@ -12632,7 +12632,7 @@ export namespace Prisma {
     OR?: VentasWhereInput[]
     NOT?: VentasWhereInput | VentasWhereInput[]
     id_venta?: IntFilter<"Ventas"> | number
-    cantida?: IntFilter<"Ventas"> | number
+    cantidad?: IntFilter<"Ventas"> | number
     precio_total?: FloatFilter<"Ventas"> | number
     fecha?: DateTimeFilter<"Ventas"> | Date | string
     talle?: StringFilter<"Ventas"> | string
@@ -12647,7 +12647,7 @@ export namespace Prisma {
 
   export type VentasOrderByWithRelationInput = {
     id_venta?: SortOrder
-    cantida?: SortOrder
+    cantidad?: SortOrder
     precio_total?: SortOrder
     fecha?: SortOrder
     talle?: SortOrder
@@ -12666,7 +12666,7 @@ export namespace Prisma {
     AND?: VentasWhereInput | VentasWhereInput[]
     OR?: VentasWhereInput[]
     NOT?: VentasWhereInput | VentasWhereInput[]
-    cantida?: IntFilter<"Ventas"> | number
+    cantidad?: IntFilter<"Ventas"> | number
     precio_total?: FloatFilter<"Ventas"> | number
     fecha?: DateTimeFilter<"Ventas"> | Date | string
     talle?: StringFilter<"Ventas"> | string
@@ -12680,7 +12680,7 @@ export namespace Prisma {
 
   export type VentasOrderByWithAggregationInput = {
     id_venta?: SortOrder
-    cantida?: SortOrder
+    cantidad?: SortOrder
     precio_total?: SortOrder
     fecha?: SortOrder
     talle?: SortOrder
@@ -12701,7 +12701,7 @@ export namespace Prisma {
     OR?: VentasScalarWhereWithAggregatesInput[]
     NOT?: VentasScalarWhereWithAggregatesInput | VentasScalarWhereWithAggregatesInput[]
     id_venta?: IntWithAggregatesFilter<"Ventas"> | number
-    cantida?: IntWithAggregatesFilter<"Ventas"> | number
+    cantidad?: IntWithAggregatesFilter<"Ventas"> | number
     precio_total?: FloatWithAggregatesFilter<"Ventas"> | number
     fecha?: DateTimeWithAggregatesFilter<"Ventas"> | Date | string
     talle?: StringWithAggregatesFilter<"Ventas"> | string
@@ -13156,7 +13156,7 @@ export namespace Prisma {
   }
 
   export type VentasCreateInput = {
-    cantida: number
+    cantidad: number
     precio_total: number
     fecha?: Date | string
     talle: string
@@ -13169,7 +13169,7 @@ export namespace Prisma {
 
   export type VentasUncheckedCreateInput = {
     id_venta?: number
-    cantida: number
+    cantidad: number
     precio_total: number
     fecha?: Date | string
     talle: string
@@ -13181,7 +13181,7 @@ export namespace Prisma {
   }
 
   export type VentasUpdateInput = {
-    cantida?: IntFieldUpdateOperationsInput | number
+    cantidad?: IntFieldUpdateOperationsInput | number
     precio_total?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
@@ -13194,7 +13194,7 @@ export namespace Prisma {
 
   export type VentasUncheckedUpdateInput = {
     id_venta?: IntFieldUpdateOperationsInput | number
-    cantida?: IntFieldUpdateOperationsInput | number
+    cantidad?: IntFieldUpdateOperationsInput | number
     precio_total?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
@@ -13207,7 +13207,7 @@ export namespace Prisma {
 
   export type VentasCreateManyInput = {
     id_venta?: number
-    cantida: number
+    cantidad: number
     precio_total: number
     fecha?: Date | string
     talle: string
@@ -13219,7 +13219,7 @@ export namespace Prisma {
   }
 
   export type VentasUpdateManyMutationInput = {
-    cantida?: IntFieldUpdateOperationsInput | number
+    cantidad?: IntFieldUpdateOperationsInput | number
     precio_total?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
@@ -13230,7 +13230,7 @@ export namespace Prisma {
 
   export type VentasUncheckedUpdateManyInput = {
     id_venta?: IntFieldUpdateOperationsInput | number
-    cantida?: IntFieldUpdateOperationsInput | number
+    cantidad?: IntFieldUpdateOperationsInput | number
     precio_total?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
@@ -13751,7 +13751,7 @@ export namespace Prisma {
 
   export type VentasCountOrderByAggregateInput = {
     id_venta?: SortOrder
-    cantida?: SortOrder
+    cantidad?: SortOrder
     precio_total?: SortOrder
     fecha?: SortOrder
     talle?: SortOrder
@@ -13764,7 +13764,7 @@ export namespace Prisma {
 
   export type VentasAvgOrderByAggregateInput = {
     id_venta?: SortOrder
-    cantida?: SortOrder
+    cantidad?: SortOrder
     precio_total?: SortOrder
     id_comentario?: SortOrder
     id_publicacion?: SortOrder
@@ -13773,7 +13773,7 @@ export namespace Prisma {
 
   export type VentasMaxOrderByAggregateInput = {
     id_venta?: SortOrder
-    cantida?: SortOrder
+    cantidad?: SortOrder
     precio_total?: SortOrder
     fecha?: SortOrder
     talle?: SortOrder
@@ -13786,7 +13786,7 @@ export namespace Prisma {
 
   export type VentasMinOrderByAggregateInput = {
     id_venta?: SortOrder
-    cantida?: SortOrder
+    cantidad?: SortOrder
     precio_total?: SortOrder
     fecha?: SortOrder
     talle?: SortOrder
@@ -13799,7 +13799,7 @@ export namespace Prisma {
 
   export type VentasSumOrderByAggregateInput = {
     id_venta?: SortOrder
-    cantida?: SortOrder
+    cantidad?: SortOrder
     precio_total?: SortOrder
     id_comentario?: SortOrder
     id_publicacion?: SortOrder
@@ -14826,7 +14826,7 @@ export namespace Prisma {
   }
 
   export type VentasCreateWithoutPublicacionInput = {
-    cantida: number
+    cantidad: number
     precio_total: number
     fecha?: Date | string
     talle: string
@@ -14838,7 +14838,7 @@ export namespace Prisma {
 
   export type VentasUncheckedCreateWithoutPublicacionInput = {
     id_venta?: number
-    cantida: number
+    cantidad: number
     precio_total: number
     fecha?: Date | string
     talle: string
@@ -14911,7 +14911,7 @@ export namespace Prisma {
     OR?: VentasScalarWhereInput[]
     NOT?: VentasScalarWhereInput | VentasScalarWhereInput[]
     id_venta?: IntFilter<"Ventas"> | number
-    cantida?: IntFilter<"Ventas"> | number
+    cantidad?: IntFilter<"Ventas"> | number
     precio_total?: FloatFilter<"Ventas"> | number
     fecha?: DateTimeFilter<"Ventas"> | Date | string
     talle?: StringFilter<"Ventas"> | string
@@ -14968,7 +14968,7 @@ export namespace Prisma {
   }
 
   export type VentasCreateWithoutUsuarioInput = {
-    cantida: number
+    cantidad: number
     precio_total: number
     fecha?: Date | string
     talle: string
@@ -14980,7 +14980,7 @@ export namespace Prisma {
 
   export type VentasUncheckedCreateWithoutUsuarioInput = {
     id_venta?: number
-    cantida: number
+    cantidad: number
     precio_total: number
     fecha?: Date | string
     talle: string
@@ -15405,7 +15405,7 @@ export namespace Prisma {
 
   export type VentasCreateManyPublicacionInput = {
     id_venta?: number
-    cantida: number
+    cantidad: number
     precio_total: number
     fecha?: Date | string
     talle: string
@@ -15416,7 +15416,7 @@ export namespace Prisma {
   }
 
   export type VentasUpdateWithoutPublicacionInput = {
-    cantida?: IntFieldUpdateOperationsInput | number
+    cantidad?: IntFieldUpdateOperationsInput | number
     precio_total?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
@@ -15428,7 +15428,7 @@ export namespace Prisma {
 
   export type VentasUncheckedUpdateWithoutPublicacionInput = {
     id_venta?: IntFieldUpdateOperationsInput | number
-    cantida?: IntFieldUpdateOperationsInput | number
+    cantidad?: IntFieldUpdateOperationsInput | number
     precio_total?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
@@ -15440,7 +15440,7 @@ export namespace Prisma {
 
   export type VentasUncheckedUpdateManyWithoutPublicacionInput = {
     id_venta?: IntFieldUpdateOperationsInput | number
-    cantida?: IntFieldUpdateOperationsInput | number
+    cantidad?: IntFieldUpdateOperationsInput | number
     precio_total?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
@@ -15457,7 +15457,7 @@ export namespace Prisma {
 
   export type VentasCreateManyUsuarioInput = {
     id_venta?: number
-    cantida: number
+    cantidad: number
     precio_total: number
     fecha?: Date | string
     talle: string
@@ -15482,7 +15482,7 @@ export namespace Prisma {
   }
 
   export type VentasUpdateWithoutUsuarioInput = {
-    cantida?: IntFieldUpdateOperationsInput | number
+    cantidad?: IntFieldUpdateOperationsInput | number
     precio_total?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
@@ -15494,7 +15494,7 @@ export namespace Prisma {
 
   export type VentasUncheckedUpdateWithoutUsuarioInput = {
     id_venta?: IntFieldUpdateOperationsInput | number
-    cantida?: IntFieldUpdateOperationsInput | number
+    cantidad?: IntFieldUpdateOperationsInput | number
     precio_total?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
@@ -15506,7 +15506,7 @@ export namespace Prisma {
 
   export type VentasUncheckedUpdateManyWithoutUsuarioInput = {
     id_venta?: IntFieldUpdateOperationsInput | number
-    cantida?: IntFieldUpdateOperationsInput | number
+    cantidad?: IntFieldUpdateOperationsInput | number
     precio_total?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
