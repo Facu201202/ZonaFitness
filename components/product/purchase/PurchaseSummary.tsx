@@ -3,7 +3,7 @@ import { ClockIcon } from "@heroicons/react/24/outline"
 import Image from 'next/image'
 import { formatCurrency, translateCategory } from '@/src/utils'
 import { Categoria, PurchaseData } from '@/src/types'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Error from '@/components/Error'
 import { useProductStore } from '@/src/stores/productStore'
 import { useUserStore } from '@/src/stores/userStore'
@@ -29,9 +29,12 @@ export default function PurchaseSummary({ image, productName, category, price, p
     const setActiveModal = useProductStore(state => state.setActiveModal)
     const userId = useUserStore(state => state.userId)
     const total = (price * quantity) + 3000 + 1100
-    setCurrentTotalPurchase(total)
-    
-    const handlePurchaseButton = async() => {
+    useEffect(() => {
+        setCurrentTotalPurchase(total)
+    }, [total])
+
+
+    const handlePurchaseButton = async () => {
         if (!deliveryMethod || !paymentMethod) {
             setError(true)
             return
@@ -60,8 +63,9 @@ export default function PurchaseSummary({ image, productName, category, price, p
                         src={`/products/${translateCategory(category as Categoria)}/` + image}
                         width={50}
                         height={50}
+                        style={{ width: "auto"}}
                         alt='imangen del producto'
-                        className="object-contain rounded"
+                        className=" object-contain rounded"
                     />
                     <div className='flex-1'>
                         <p className='font-medium'>{productName}</p>

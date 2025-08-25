@@ -1,9 +1,10 @@
 import { useProductStore } from "@/src/stores/productStore"
 import { useUserStore } from "@/src/stores/userStore"
-import { formatCurrency } from "@/src/utils"
+import { formatCurrency, paymentMethods } from "@/src/utils"
 import { CreditCardIcon, WalletIcon } from "@heroicons/react/24/outline"
 import { useQuery } from "@tanstack/react-query"
 import { useRouter, useSearchParams } from 'next/navigation'
+import { useEffect } from "react"
 
 export default function PaymentMethod() {
     const searchParams = useSearchParams();
@@ -11,8 +12,17 @@ export default function PaymentMethod() {
     const params = new URLSearchParams(searchParams.toString())
     const userId = useUserStore(state => state.userId)
     const currentTotalPurchase = useProductStore(state => state.currentTotalPurchase)
+    const method = params.get("pago")
 
-    const fetchUserbalance = async (): Promise<{ saldo: number}> => {
+    useEffect(() => {
+        if (method && !paymentMethods.includes(method)) {
+            params.delete("pago")
+            router.replace(`?${params.toString()}`, { scroll: false })
+        }
+    }, [params])
+
+
+    const fetchUserbalance = async (): Promise<{ saldo: number }> => {
         const res = await fetch(`/tienda/inicio/api/balance/${userId}`)
         if (!res.ok) throw new Error("Saldo no encontrado")
         return res.json()
@@ -42,9 +52,9 @@ export default function PaymentMethod() {
             <form className="py-5 flex flex-col gap-4">
                 <div className={`border rounded-lg border-gray-300 p-3 flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center ${data.saldo < currentTotalPurchase && "text-gray-400 select-none pointer-events-none"}`}>
                     <div className="flex gap-3 items-center">
-                        <input type="radio" name="deliveryOption" value={"Home"} className={`accent-black hover:cursor-pointer h-4 w-4  ${data.saldo < currentTotalPurchase ? "hidden" : ""}`}  onClick={() => handleClick("storeWallet")}/>
+                        <input type="radio" name="deliveryOption" defaultChecked={method === "storeWallet"} className={`accent-black hover:cursor-pointer h-4 w-4  ${data.saldo < currentTotalPurchase ? "hidden" : ""}`} onClick={() => handleClick("storeWallet")} />
                         <div className="flex items-center gap-2 flex-1">
-                            <WalletIcon className={`w-5 h-5  ${data.saldo < currentTotalPurchase ? "text-gray-400" : "text-emerald-700"}`}/>
+                            <WalletIcon className={`w-5 h-5  ${data.saldo < currentTotalPurchase ? "text-gray-400" : "text-emerald-700"}`} />
                             <div>
                                 <p className="font-medium">Dinero en cuenta</p>
                                 <p className={`text-sm sm:text-base font-medium ${data.saldo < currentTotalPurchase ? "text-gray-300" : "text-gray-700"}`}>Saldo Disponible: {formatCurrency(data.saldo)}</p>

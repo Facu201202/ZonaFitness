@@ -1,11 +1,20 @@
-import { formatCurrency } from "@/src/utils"
+import { deliveryMethods, formatCurrency } from "@/src/utils"
 import { TruckIcon, HomeIcon, MapPinIcon } from "@heroicons/react/24/outline"
 import { useRouter, useSearchParams } from 'next/navigation'
+import { useEffect } from "react";
 
 export default function DeliveryMethod() {
     const searchParams = useSearchParams();
     const router = useRouter()
     const params = new URLSearchParams(searchParams.toString())
+    const method = params.get("entrega")
+
+    useEffect(() => {
+        if (method && !deliveryMethods.includes(method)) {
+            params.delete("entrega")
+            router.replace(`?${params.toString()}`, { scroll: false })
+        }
+    }, [params])
 
     const handleClick = (method: string) => {
         params.set("entrega", method)
@@ -20,7 +29,7 @@ export default function DeliveryMethod() {
             <form className="py-5 flex flex-col gap-4">
                 <div className="border rounded-lg border-gray-300 p-3 flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center">
                     <div className="flex gap-3 items-center">
-                        <input type="radio" name="deliveryOption" className="accent-black hover:cursor-pointer h-4 w-4" onClick={() => handleClick("home")} />
+                        <input type="radio" name="deliveryOption" className="accent-black hover:cursor-pointer h-4 w-4" defaultChecked={method === "home"} onClick={() => handleClick("home")} />
                         <div className="flex items-center gap-2 flex-1">
                             <HomeIcon className="w-5 h-5" />
                             <div>
@@ -34,7 +43,7 @@ export default function DeliveryMethod() {
                 </div>
                 <div className="border rounded-lg border-gray-300 p-3 flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center ">
                     <div className="flex gap-3 items-center">
-                        <input type="radio" name="deliveryOption" className="accent-black hover:cursor-pointer h-4 w-4" onClick={() => handleClick("store")} />
+                        <input type="radio" name="deliveryOption" className="accent-black hover:cursor-pointer h-4 w-4" defaultChecked={method === "store"} onClick={() => handleClick("store")} />
                         <div className="flex items-center gap-2 flex-1">
                             <MapPinIcon className="w-5 h-5" />
                             <div>
