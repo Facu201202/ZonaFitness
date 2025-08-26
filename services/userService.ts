@@ -180,7 +180,20 @@ export async function getUserBalance(id: number) {
             id_usuario: id
         },
         select: {
-            saldo: true
+            saldo: true,
+            id_saldo: true
+        }
+    })
+}
+
+export async function decrementBalance(amount: number, userId: number, balanceId: number){
+    return await prisma.saldos.update({
+        where: {
+            id_usuario: userId,
+            id_saldo: balanceId
+        },
+        data: {
+            saldo: {decrement: amount}
         }
     })
 }

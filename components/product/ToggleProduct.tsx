@@ -45,7 +45,7 @@ export default function ToggleProduct({ product, products, deleteParamsFunction 
             )}
             {activeModal === "SuccessPurchase" && (
                 <div className="lg:p-4">
-                    <SuccessPurchase/>
+                    <SuccessPurchase deleteParamsFunction={deleteParamsFunction}/>
                 </div>
             )}
         </div>

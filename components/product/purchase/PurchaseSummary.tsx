@@ -28,7 +28,7 @@ export default function PurchaseSummary({ image, productName, category, price, p
     const setCurrentPurchase = useProductStore(state => state.setCurrentPurchase)
     const setActiveModal = useProductStore(state => state.setActiveModal)
     const userId = useUserStore(state => state.userId)
-    const total = (price * quantity) + 3000 + 1100
+    const total = (price * quantity) + (deliveryMethod === "home" ? 3000 : 0) + 1100
     useEffect(() => {
         setCurrentTotalPurchase(total)
     }, [total])
@@ -82,7 +82,7 @@ export default function PurchaseSummary({ image, productName, category, price, p
                 </div>
                 <div className='flex justify-between'>
                     <p>Envío</p>
-                    <p>{formatCurrency(3000)}</p>
+                    <p>{formatCurrency(deliveryMethod === "home" ? 3000 : 0)}</p>
                 </div>
                 <div className='flex justify-between'>
                     <p>Impuestos</p>

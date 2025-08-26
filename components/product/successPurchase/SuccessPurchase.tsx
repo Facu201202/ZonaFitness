@@ -4,40 +4,42 @@ import { useMutation } from "@tanstack/react-query"
 import { useEffect } from "react"
 import ErrorPurchase from "./ErrorPurchase"
 
+type SuccessPurchaseProps = {
+    deleteParamsFunction: () => void
+}
 
-export default function SuccessPurchase() {
+export default function SuccessPurchase({deleteParamsFunction}: SuccessPurchaseProps) {
     const {currentPurchase} = useProductStore(state => state)
-
-    
-
     const fetchPurchase = async (data: PurchaseData) => {
         const res = await fetch("/tienda/inicio/api/purchase", {
             method: "POST",
             body: JSON.stringify(data)
         })
         const response = await res.json()
-        console.log("funcion")
         if (!res.ok) {
             console.log("error:", response)
         }
+        console.log(response)
         return response
     }
 
-    const {mutate ,isPending, isError, isSuccess} = useMutation({
+    const mutation = useMutation({
         mutationKey: ["purchase", [currentPurchase.id_publicacion, currentPurchase.id_usuario]],
         mutationFn: () => fetchPurchase(currentPurchase)
     })
 
     useEffect(() => {
         if(currentPurchase.id_publicacion && currentPurchase.id_usuario){
-            mutate()
+            mutation.mutate()
         }
     }, [currentPurchase.id_publicacion, currentPurchase.id_usuario])
 
-    if(isPending) return <p>Cargando...</p>
-    if(isError) return <ErrorPurchase publication={currentPurchase.id_publicacion}/>
+    if(mutation.isPending) return <p>Cargando...</p>
+    if(mutation.isError) return <ErrorPurchase publication={currentPurchase.id_publicacion} deleteParamsFunction={deleteParamsFunction}/>
 
-    isSuccess && (
-        <div>SuccessPurchase</div>
+    return (
+        <div>
+            {mutation.isSuccess && <p>Success</p>}
+        </div>
     )
 }
