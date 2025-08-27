@@ -1,3 +1,4 @@
+import { DeliveryMethods } from "@/src/types";
 import { deliveryMethods, formatCurrency } from "@/src/utils"
 import { TruckIcon, HomeIcon, MapPinIcon } from "@heroicons/react/24/outline"
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -7,7 +8,7 @@ export default function DeliveryMethod() {
     const searchParams = useSearchParams();
     const router = useRouter()
     const params = new URLSearchParams(searchParams.toString())
-    const method = params.get("entrega")
+    const method = params.get("entrega") as DeliveryMethods | null
 
     useEffect(() => {
         if (method && !deliveryMethods.includes(method)) {
@@ -16,7 +17,7 @@ export default function DeliveryMethod() {
         }
     }, [params])
 
-    const handleClick = (method: string) => {
+    const handleClick = (method: DeliveryMethods) => {
         params.set("entrega", method)
         router.replace(`?${params.toString()}`, { scroll: false })
     }
@@ -29,7 +30,7 @@ export default function DeliveryMethod() {
             <form className="py-5 flex flex-col gap-4">
                 <div className="border rounded-lg border-gray-300 p-3 flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center">
                     <div className="flex gap-3 items-center">
-                        <input type="radio" name="deliveryOption" className="accent-black hover:cursor-pointer h-4 w-4" defaultChecked={method === "home"} onClick={() => handleClick("home")} />
+                        <input type="radio" name="deliveryOption" className="accent-black hover:cursor-pointer h-4 w-4" defaultChecked={method === "DOMICILIO"} onClick={() => handleClick("DOMICILIO")} />
                         <div className="flex items-center gap-2 flex-1">
                             <HomeIcon className="w-5 h-5" />
                             <div>
@@ -43,7 +44,7 @@ export default function DeliveryMethod() {
                 </div>
                 <div className="border rounded-lg border-gray-300 p-3 flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center ">
                     <div className="flex gap-3 items-center">
-                        <input type="radio" name="deliveryOption" className="accent-black hover:cursor-pointer h-4 w-4" defaultChecked={method === "store"} onClick={() => handleClick("store")} />
+                        <input type="radio" name="deliveryOption" className="accent-black hover:cursor-pointer h-4 w-4" defaultChecked={method === "SUCURSAL"} onClick={() => handleClick("SUCURSAL")} />
                         <div className="flex items-center gap-2 flex-1">
                             <MapPinIcon className="w-5 h-5" />
                             <div>

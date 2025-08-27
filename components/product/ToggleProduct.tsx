@@ -1,5 +1,5 @@
 import { XMarkIcon } from "@heroicons/react/24/solid"
-import { Product } from '@/src/types'
+import { Product, PurchaseData, SuccessPurchaseData } from '@/src/types'
 import ProductInfo from './ProductInfo'
 import ProductComments from './ProductComments'
 import RelatedProducts from './RelatedProducts'
@@ -8,6 +8,10 @@ import PurchaseSummary from "./purchase/PurchaseSummary"
 import DeliveryMethod from "./purchase/DeliveryMethod"
 import PaymentMethod from "./purchase/PaymentMethod"
 import SuccessPurchase from "./successPurchase/SuccessPurchase"
+import { useMutation } from "@tanstack/react-query"
+import { useState } from "react"
+import ErrorPurchase from "./successPurchase/ErrorPurchase"
+
 
 type ToggleProductProps = {
     product: Product,
@@ -17,6 +21,43 @@ type ToggleProductProps = {
 
 export default function ToggleProduct({ product, products, deleteParamsFunction }: ToggleProductProps) {
     const activeModal = useProductStore(state => state.activeModal)
+    const setsuccessPurchaseData = useProductStore(state => state.setsuccessPurchaseData)
+    const [mutateState, setMutateState] = useState({
+        error: false,
+        success: false,
+        loading:false
+    })
+    const { currentPurchase } = useProductStore(state => state)
+    const fetchPurchase = async (data: PurchaseData)=> {
+        setMutateState({...mutateState, loading: true})
+        setTimeout(() => {
+
+        }, 3000)
+        const res = await fetch("/tienda/inicio/api/purchase", {
+            method: "POST",
+            body: JSON.stringify(data)
+        })
+        const response = await res.json()
+        if (!res.ok) {
+            console.log("error:", response)
+            throw new Error(response.message || "Error en la compra")
+        }
+        setMutateState({...mutateState, loading: false})
+        return response
+    }
+
+    const mutation = useMutation({
+        mutationKey: ["purchase", [currentPurchase.id_publicacion, currentPurchase.id_usuario]],
+        mutationFn: (data: PurchaseData) => fetchPurchase(data),
+        onError: () => {
+            setMutateState({...mutateState, error: true})
+        },
+        onSuccess: (data) => {
+            setMutateState({...mutateState, success: true})
+            setsuccessPurchaseData(data.venta)
+        }   
+    })
+
     return (
         <div>
             {activeModal === "Product" && (
@@ -30,7 +71,7 @@ export default function ToggleProduct({ product, products, deleteParamsFunction 
                         <RelatedProducts products={products} />
                     </div>
                 </div>
-            )} 
+            )}
             {activeModal === "Purchase" && (
                 <div className="lg:p-4">
                     <p className="text-2xl font-medium">Opciones de Compra</p>
@@ -39,13 +80,15 @@ export default function ToggleProduct({ product, products, deleteParamsFunction 
                             <DeliveryMethod />
                             <PaymentMethod />
                         </div>
-                        <div>{<PurchaseSummary image={product.producto.foto} productName={product.producto.nombre} price={product.precio} category={product.producto.categoria.nombre} publicationId={product.id_publicacion} />}</div>
+                        <div>{<PurchaseSummary mutate={mutation.mutate} image={product.producto.foto} productName={product.producto.nombre} price={product.precio} category={product.producto.categoria.nombre} publicationId={product.id_publicacion} />}</div>
                     </div>
                 </div>
             )}
             {activeModal === "SuccessPurchase" && (
                 <div className="lg:p-4">
-                    <SuccessPurchase deleteParamsFunction={deleteParamsFunction}/>
+                    {mutateState.loading && <p className="text-center font-bold uppercase">Cargando...</p>}
+                    {mutateState.error && <ErrorPurchase deleteParamsFunction={deleteParamsFunction} />}
+                    {mutateState.success && <SuccessPurchase/>}
                 </div>
             )}
         </div>

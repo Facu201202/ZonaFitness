@@ -2,6 +2,8 @@ import { EditClient, EditUser, LoginUser, RegisterClient, RegisterUser } from "@
 import { prisma } from "@/src/lib/prisma"
 import bcrypt from "bcrypt"
 import { ChangePasswordData } from "@/src/types";
+import { Prisma, PrismaClient } from "@/src/generated/prisma";
+import { DefaultArgs } from "@/src/generated/prisma/runtime/library";
 
 export async function createAccount(userData: RegisterUser, client: RegisterClient) {
 
@@ -186,7 +188,7 @@ export async function getUserBalance(id: number) {
     })
 }
 
-export async function decrementBalance(amount: number, userId: number, balanceId: number){
+export async function decrementBalance(amount: number, userId: number, balanceId: number, tx: PrismaClient | Prisma.TransactionClient){
     return await prisma.saldos.update({
         where: {
             id_usuario: userId,

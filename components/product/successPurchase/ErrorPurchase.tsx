@@ -1,11 +1,10 @@
 import { XCircleIcon } from "@heroicons/react/24/outline"
 
 type ErrorPurchaseProps = {
-    deleteParamsFunction: () => void,
-    publication: number
+    deleteParamsFunction: () => void
 }
 
-export default function ErrorPurchase({publication, deleteParamsFunction}: ErrorPurchaseProps) {
+export default function ErrorPurchase({deleteParamsFunction}: ErrorPurchaseProps) {
     return (
         <div className="font-bold flex flex-col items-center lg: mt-10">
             <XCircleIcon className="w-55 h-55 text-red-400 lg:w-70 lg:h-70" />

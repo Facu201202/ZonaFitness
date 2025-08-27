@@ -1,6 +1,9 @@
+import { Prisma, PrismaClient } from "@/src/generated/prisma";
+import { DefaultArgs } from "@/src/generated/prisma/runtime/library";
 import { prisma } from "@/src/lib/prisma"
-import { FiltersData } from "@/src/types";
+import { FiltersData, SaleData } from "@/src/types";
 import { createWhereFilter } from "@/src/utils";
+import {nanoid} from "nanoid"
 
 export async function getProducts() {
     return await prisma.publicaciones.findMany({
@@ -110,8 +113,8 @@ export async function findProductStock(idProduct: number, size:string){
     })
 }
 
-export async function decrementProductStock(stockId: number, quantity: number){
-    return prisma.stock.update({
+export async function decrementProductStock(stockId: number, quantity: number, tx: PrismaClient | Prisma.TransactionClient){
+    return tx.stock.update({
         where: {
             id_stock: stockId
         },
@@ -121,16 +124,31 @@ export async function decrementProductStock(stockId: number, quantity: number){
     })
 }
 
-export async function createSale(saleData){
-    return await prisma.ventas.create({
+export async function createSale(saleData: SaleData, tx: PrismaClient | Prisma.TransactionClient){
+    return await tx.ventas.create({
         data: {
             cantidad: saleData.cantidad,
             precio_total: saleData.precio_total,
             talle: saleData.talle,
-            estado: "Pendiente",
             id_publicacion: saleData.id_publicacion,
             id_usuario: saleData.id_usuario,
-            n_comprobante: 
+            n_comprobante: "VEN-" + nanoid(8),
+            metodo_entrega: saleData.metodo_entrega,
+            metodo_pago: saleData.metodo_pago
+        },
+        select: {
+            n_comprobante: true,
+            precio_total: true,
+            metodo_entrega: true,
+            publicacion: {
+                select: {
+                    producto: {
+                        select: {
+                            nombre:  true
+                        }
+                    }
+                }
+            }
         }
     })
 }

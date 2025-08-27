@@ -190,6 +190,8 @@ exports.Prisma.VentasScalarFieldEnum = {
   fecha: 'fecha',
   talle: 'talle',
   estado: 'estado',
+  metodo_entrega: 'metodo_entrega',
+  metodo_pago: 'metodo_pago',
   n_comprobante: 'n_comprobante',
   id_comentario: 'id_comentario',
   id_publicacion: 'id_publicacion',
@@ -210,7 +212,22 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+exports.EstadoEnvio = exports.$Enums.EstadoEnvio = {
+  PENDIENTE: 'PENDIENTE',
+  APROBADO: 'APROBADO',
+  EN_CAMINO: 'EN_CAMINO',
+  ENTREGADO: 'ENTREGADO',
+  CANCELADO: 'CANCELADO'
+};
 
+exports.MetodoEnvio = exports.$Enums.MetodoEnvio = {
+  SUCURSAL: 'SUCURSAL',
+  DOMICILIO: 'DOMICILIO'
+};
+
+exports.MetodoPago = exports.$Enums.MetodoPago = {
+  DINERO_EN_CUENTA: 'DINERO_EN_CUENTA'
+};
 
 exports.Prisma.ModelName = {
   Categorias: 'Categorias',

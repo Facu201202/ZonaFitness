@@ -1,5 +1,6 @@
 import { ReadonlyURLSearchParams } from "next/navigation";
 import { Categoria, FiltersData } from "../types";
+import { MetodoEnvio, MetodoPago } from "../generated/prisma";
 
 export function formatCurrency(amount: number) {
     return new Intl.NumberFormat("es-AR", {
@@ -93,5 +94,5 @@ export const sizes = {
     Zapatillas: ["36", "36.5", "37", "37.5", "38", "38.5", "39", "39.5", "40", "40.5", "41", "41.5", "42", "42.5", "43"]
 }
 
-export const deliveryMethods = ["home", "store"]
-export const paymentMethods = ["storeWallet"]
+export const deliveryMethods = Object.values(MetodoEnvio)
+export const paymentMethods = Object.values(MetodoPago) 

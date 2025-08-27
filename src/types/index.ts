@@ -1,4 +1,4 @@
-import { Publicaciones, Productos, Stock, Sizes, Ventas } from '../../src/generated/prisma'
+import { Publicaciones, Productos, Stock, Sizes, Ventas, MetodoPago, MetodoEnvio } from '../../src/generated/prisma'
 import { categoriesTranslate } from '../utils'
 
 export type Product = Pick<Publicaciones, "id_publicacion" | "caracteristicas" | "descuento" | "precio"> & {
@@ -65,4 +65,15 @@ export type ChangePasswordData = ChangePasswordForm & {
 export type PurchaseData = Pick<Ventas, "cantidad" | "precio_total" | "talle" | "id_publicacion" | "id_usuario"> & {
     entrega: string,
     pago: string
+}
+
+export type SaleData = Pick<Ventas, "cantidad" | "precio_total" | "talle" | "id_publicacion" | "id_usuario" | "metodo_entrega" | "metodo_pago" >
+
+export type PaymentMethods = keyof typeof MetodoPago
+export type DeliveryMethods = keyof typeof MetodoEnvio
+
+export type SuccessPurchaseData = Pick<Ventas, "metodo_entrega" | "n_comprobante" | "precio_total"> & {
+    publicacion: {
+        producto: Pick<Productos, "nombre">
+    }
 }

@@ -7,16 +7,18 @@ import { useEffect, useState } from 'react'
 import Error from '@/components/Error'
 import { useProductStore } from '@/src/stores/productStore'
 import { useUserStore } from '@/src/stores/userStore'
+import { UseMutateFunction } from '@tanstack/react-query'
 
 type PurchaseSummaryProps = {
     image: string,
     productName: string,
     category: string,
     price: number,
-    publicationId: number
+    publicationId: number,
+    mutate: UseMutateFunction<any, Error, PurchaseData, unknown>
 }
 
-export default function PurchaseSummary({ image, productName, category, price, publicationId }: PurchaseSummaryProps) {
+export default function PurchaseSummary({ image, productName, category, price, publicationId, mutate }: PurchaseSummaryProps) {
     const [error, setError] = useState(false)
     const searchParams = useSearchParams()
     const params = new URLSearchParams(searchParams.toString())
@@ -28,7 +30,7 @@ export default function PurchaseSummary({ image, productName, category, price, p
     const setCurrentPurchase = useProductStore(state => state.setCurrentPurchase)
     const setActiveModal = useProductStore(state => state.setActiveModal)
     const userId = useUserStore(state => state.userId)
-    const total = (price * quantity) + (deliveryMethod === "home" ? 3000 : 0) + 1100
+    const total = (price * quantity) + (deliveryMethod === "DOMICILIO" ? 3000 : 0) + 1100
     useEffect(() => {
         setCurrentTotalPurchase(total)
     }, [total])
@@ -39,6 +41,7 @@ export default function PurchaseSummary({ image, productName, category, price, p
             setError(true)
             return
         }
+      
         const purchaseData: PurchaseData = {
             cantidad: quantity,
             precio_total: total,
@@ -52,6 +55,9 @@ export default function PurchaseSummary({ image, productName, category, price, p
         setCurrentPurchase(purchaseData)
         setActiveModal("SuccessPurchase")
 
+        if(publicationId && userId){
+           mutate(purchaseData)
+        }
     }
 
     return (
@@ -82,7 +88,7 @@ export default function PurchaseSummary({ image, productName, category, price, p
                 </div>
                 <div className='flex justify-between'>
                     <p>Envío</p>
-                    <p>{formatCurrency(deliveryMethod === "home" ? 3000 : 0)}</p>
+                    <p>{formatCurrency(deliveryMethod === "DOMICILIO" ? 3000 : 0)}</p>
                 </div>
                 <div className='flex justify-between'>
                     <p>Impuestos</p>
@@ -95,7 +101,7 @@ export default function PurchaseSummary({ image, productName, category, price, p
                     <p className='font-bold text-xl'>Total</p>
                     <p className='font-bold text-xl'>{formatCurrency(total)}</p>
                 </div>
-                {deliveryMethod === "home" && (
+                {deliveryMethod === "DOMICILIO" && (
                     <div className='bg-blue-50 text-blue-600 p-3 rounded-lg flex gap-2 items-center font-semibold'>
                         <ClockIcon className='w-5 h-5' />
                         Entrega estimada: 1-3 días hábiles

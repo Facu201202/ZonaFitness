@@ -60,6 +60,49 @@ export type Saldos = $Result.DefaultSelection<Prisma.$SaldosPayload>
 export type Ventas = $Result.DefaultSelection<Prisma.$VentasPayload>
 
 /**
+ * Enums
+ */
+export namespace $Enums {
+  export const EstadoEnvio: {
+  PENDIENTE: 'PENDIENTE',
+  APROBADO: 'APROBADO',
+  EN_CAMINO: 'EN_CAMINO',
+  ENTREGADO: 'ENTREGADO',
+  CANCELADO: 'CANCELADO'
+};
+
+export type EstadoEnvio = (typeof EstadoEnvio)[keyof typeof EstadoEnvio]
+
+
+export const MetodoEnvio: {
+  SUCURSAL: 'SUCURSAL',
+  DOMICILIO: 'DOMICILIO'
+};
+
+export type MetodoEnvio = (typeof MetodoEnvio)[keyof typeof MetodoEnvio]
+
+
+export const MetodoPago: {
+  DINERO_EN_CUENTA: 'DINERO_EN_CUENTA'
+};
+
+export type MetodoPago = (typeof MetodoPago)[keyof typeof MetodoPago]
+
+}
+
+export type EstadoEnvio = $Enums.EstadoEnvio
+
+export const EstadoEnvio: typeof $Enums.EstadoEnvio
+
+export type MetodoEnvio = $Enums.MetodoEnvio
+
+export const MetodoEnvio: typeof $Enums.MetodoEnvio
+
+export type MetodoPago = $Enums.MetodoPago
+
+export const MetodoPago: typeof $Enums.MetodoPago
+
+/**
  * ##  Prisma Client ʲˢ
  *
  * Type-safe database client for TypeScript & Node.js
@@ -10797,7 +10840,9 @@ export namespace Prisma {
     precio_total: number | null
     fecha: Date | null
     talle: string | null
-    estado: string | null
+    estado: $Enums.EstadoEnvio | null
+    metodo_entrega: $Enums.MetodoEnvio | null
+    metodo_pago: $Enums.MetodoPago | null
     n_comprobante: string | null
     id_comentario: number | null
     id_publicacion: number | null
@@ -10810,7 +10855,9 @@ export namespace Prisma {
     precio_total: number | null
     fecha: Date | null
     talle: string | null
-    estado: string | null
+    estado: $Enums.EstadoEnvio | null
+    metodo_entrega: $Enums.MetodoEnvio | null
+    metodo_pago: $Enums.MetodoPago | null
     n_comprobante: string | null
     id_comentario: number | null
     id_publicacion: number | null
@@ -10824,6 +10871,8 @@ export namespace Prisma {
     fecha: number
     talle: number
     estado: number
+    metodo_entrega: number
+    metodo_pago: number
     n_comprobante: number
     id_comentario: number
     id_publicacion: number
@@ -10857,6 +10906,8 @@ export namespace Prisma {
     fecha?: true
     talle?: true
     estado?: true
+    metodo_entrega?: true
+    metodo_pago?: true
     n_comprobante?: true
     id_comentario?: true
     id_publicacion?: true
@@ -10870,6 +10921,8 @@ export namespace Prisma {
     fecha?: true
     talle?: true
     estado?: true
+    metodo_entrega?: true
+    metodo_pago?: true
     n_comprobante?: true
     id_comentario?: true
     id_publicacion?: true
@@ -10883,6 +10936,8 @@ export namespace Prisma {
     fecha?: true
     talle?: true
     estado?: true
+    metodo_entrega?: true
+    metodo_pago?: true
     n_comprobante?: true
     id_comentario?: true
     id_publicacion?: true
@@ -10982,7 +11037,9 @@ export namespace Prisma {
     precio_total: number
     fecha: Date
     talle: string
-    estado: string
+    estado: $Enums.EstadoEnvio
+    metodo_entrega: $Enums.MetodoEnvio
+    metodo_pago: $Enums.MetodoPago
     n_comprobante: string
     id_comentario: number | null
     id_publicacion: number
@@ -11015,6 +11072,8 @@ export namespace Prisma {
     fecha?: boolean
     talle?: boolean
     estado?: boolean
+    metodo_entrega?: boolean
+    metodo_pago?: boolean
     n_comprobante?: boolean
     id_comentario?: boolean
     id_publicacion?: boolean
@@ -11030,6 +11089,8 @@ export namespace Prisma {
     fecha?: boolean
     talle?: boolean
     estado?: boolean
+    metodo_entrega?: boolean
+    metodo_pago?: boolean
     n_comprobante?: boolean
     id_comentario?: boolean
     id_publicacion?: boolean
@@ -11045,6 +11106,8 @@ export namespace Prisma {
     fecha?: boolean
     talle?: boolean
     estado?: boolean
+    metodo_entrega?: boolean
+    metodo_pago?: boolean
     n_comprobante?: boolean
     id_comentario?: boolean
     id_publicacion?: boolean
@@ -11060,13 +11123,15 @@ export namespace Prisma {
     fecha?: boolean
     talle?: boolean
     estado?: boolean
+    metodo_entrega?: boolean
+    metodo_pago?: boolean
     n_comprobante?: boolean
     id_comentario?: boolean
     id_publicacion?: boolean
     id_usuario?: boolean
   }
 
-  export type VentasOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_venta" | "cantidad" | "precio_total" | "fecha" | "talle" | "estado" | "n_comprobante" | "id_comentario" | "id_publicacion" | "id_usuario", ExtArgs["result"]["ventas"]>
+  export type VentasOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_venta" | "cantidad" | "precio_total" | "fecha" | "talle" | "estado" | "metodo_entrega" | "metodo_pago" | "n_comprobante" | "id_comentario" | "id_publicacion" | "id_usuario", ExtArgs["result"]["ventas"]>
   export type VentasInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     publicacion?: boolean | PublicacionesDefaultArgs<ExtArgs>
     usuario?: boolean | UsuariosDefaultArgs<ExtArgs>
@@ -11092,7 +11157,9 @@ export namespace Prisma {
       precio_total: number
       fecha: Date
       talle: string
-      estado: string
+      estado: $Enums.EstadoEnvio
+      metodo_entrega: $Enums.MetodoEnvio
+      metodo_pago: $Enums.MetodoPago
       n_comprobante: string
       id_comentario: number | null
       id_publicacion: number
@@ -11527,7 +11594,9 @@ export namespace Prisma {
     readonly precio_total: FieldRef<"Ventas", 'Float'>
     readonly fecha: FieldRef<"Ventas", 'DateTime'>
     readonly talle: FieldRef<"Ventas", 'String'>
-    readonly estado: FieldRef<"Ventas", 'String'>
+    readonly estado: FieldRef<"Ventas", 'EstadoEnvio'>
+    readonly metodo_entrega: FieldRef<"Ventas", 'MetodoEnvio'>
+    readonly metodo_pago: FieldRef<"Ventas", 'MetodoPago'>
     readonly n_comprobante: FieldRef<"Ventas", 'String'>
     readonly id_comentario: FieldRef<"Ventas", 'Int'>
     readonly id_publicacion: FieldRef<"Ventas", 'Int'>
@@ -12054,6 +12123,8 @@ export namespace Prisma {
     fecha: 'fecha',
     talle: 'talle',
     estado: 'estado',
+    metodo_entrega: 'metodo_entrega',
+    metodo_pago: 'metodo_pago',
     n_comprobante: 'n_comprobante',
     id_comentario: 'id_comentario',
     id_publicacion: 'id_publicacion',
@@ -12152,6 +12223,48 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'EstadoEnvio'
+   */
+  export type EnumEstadoEnvioFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EstadoEnvio'>
+    
+
+
+  /**
+   * Reference to a field of type 'EstadoEnvio[]'
+   */
+  export type ListEnumEstadoEnvioFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EstadoEnvio[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'MetodoEnvio'
+   */
+  export type EnumMetodoEnvioFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MetodoEnvio'>
+    
+
+
+  /**
+   * Reference to a field of type 'MetodoEnvio[]'
+   */
+  export type ListEnumMetodoEnvioFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MetodoEnvio[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'MetodoPago'
+   */
+  export type EnumMetodoPagoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MetodoPago'>
+    
+
+
+  /**
+   * Reference to a field of type 'MetodoPago[]'
+   */
+  export type ListEnumMetodoPagoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MetodoPago[]'>
     
   /**
    * Deep Input Types
@@ -12636,7 +12749,9 @@ export namespace Prisma {
     precio_total?: FloatFilter<"Ventas"> | number
     fecha?: DateTimeFilter<"Ventas"> | Date | string
     talle?: StringFilter<"Ventas"> | string
-    estado?: StringFilter<"Ventas"> | string
+    estado?: EnumEstadoEnvioFilter<"Ventas"> | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFilter<"Ventas"> | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFilter<"Ventas"> | $Enums.MetodoPago
     n_comprobante?: StringFilter<"Ventas"> | string
     id_comentario?: IntNullableFilter<"Ventas"> | number | null
     id_publicacion?: IntFilter<"Ventas"> | number
@@ -12652,6 +12767,8 @@ export namespace Prisma {
     fecha?: SortOrder
     talle?: SortOrder
     estado?: SortOrder
+    metodo_entrega?: SortOrder
+    metodo_pago?: SortOrder
     n_comprobante?: SortOrder
     id_comentario?: SortOrderInput | SortOrder
     id_publicacion?: SortOrder
@@ -12670,7 +12787,9 @@ export namespace Prisma {
     precio_total?: FloatFilter<"Ventas"> | number
     fecha?: DateTimeFilter<"Ventas"> | Date | string
     talle?: StringFilter<"Ventas"> | string
-    estado?: StringFilter<"Ventas"> | string
+    estado?: EnumEstadoEnvioFilter<"Ventas"> | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFilter<"Ventas"> | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFilter<"Ventas"> | $Enums.MetodoPago
     id_comentario?: IntNullableFilter<"Ventas"> | number | null
     id_publicacion?: IntFilter<"Ventas"> | number
     id_usuario?: IntFilter<"Ventas"> | number
@@ -12685,6 +12804,8 @@ export namespace Prisma {
     fecha?: SortOrder
     talle?: SortOrder
     estado?: SortOrder
+    metodo_entrega?: SortOrder
+    metodo_pago?: SortOrder
     n_comprobante?: SortOrder
     id_comentario?: SortOrderInput | SortOrder
     id_publicacion?: SortOrder
@@ -12705,7 +12826,9 @@ export namespace Prisma {
     precio_total?: FloatWithAggregatesFilter<"Ventas"> | number
     fecha?: DateTimeWithAggregatesFilter<"Ventas"> | Date | string
     talle?: StringWithAggregatesFilter<"Ventas"> | string
-    estado?: StringWithAggregatesFilter<"Ventas"> | string
+    estado?: EnumEstadoEnvioWithAggregatesFilter<"Ventas"> | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioWithAggregatesFilter<"Ventas"> | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoWithAggregatesFilter<"Ventas"> | $Enums.MetodoPago
     n_comprobante?: StringWithAggregatesFilter<"Ventas"> | string
     id_comentario?: IntNullableWithAggregatesFilter<"Ventas"> | number | null
     id_publicacion?: IntWithAggregatesFilter<"Ventas"> | number
@@ -13160,7 +13283,9 @@ export namespace Prisma {
     precio_total: number
     fecha?: Date | string
     talle: string
-    estado: string
+    estado?: $Enums.EstadoEnvio
+    metodo_entrega: $Enums.MetodoEnvio
+    metodo_pago: $Enums.MetodoPago
     n_comprobante: string
     id_comentario?: number | null
     publicacion: PublicacionesCreateNestedOneWithoutVentasInput
@@ -13173,7 +13298,9 @@ export namespace Prisma {
     precio_total: number
     fecha?: Date | string
     talle: string
-    estado: string
+    estado?: $Enums.EstadoEnvio
+    metodo_entrega: $Enums.MetodoEnvio
+    metodo_pago: $Enums.MetodoPago
     n_comprobante: string
     id_comentario?: number | null
     id_publicacion: number
@@ -13185,7 +13312,9 @@ export namespace Prisma {
     precio_total?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
-    estado?: StringFieldUpdateOperationsInput | string
+    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
     n_comprobante?: StringFieldUpdateOperationsInput | string
     id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
     publicacion?: PublicacionesUpdateOneRequiredWithoutVentasNestedInput
@@ -13198,7 +13327,9 @@ export namespace Prisma {
     precio_total?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
-    estado?: StringFieldUpdateOperationsInput | string
+    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
     n_comprobante?: StringFieldUpdateOperationsInput | string
     id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
     id_publicacion?: IntFieldUpdateOperationsInput | number
@@ -13211,7 +13342,9 @@ export namespace Prisma {
     precio_total: number
     fecha?: Date | string
     talle: string
-    estado: string
+    estado?: $Enums.EstadoEnvio
+    metodo_entrega: $Enums.MetodoEnvio
+    metodo_pago: $Enums.MetodoPago
     n_comprobante: string
     id_comentario?: number | null
     id_publicacion: number
@@ -13223,7 +13356,9 @@ export namespace Prisma {
     precio_total?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
-    estado?: StringFieldUpdateOperationsInput | string
+    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
     n_comprobante?: StringFieldUpdateOperationsInput | string
     id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
   }
@@ -13234,7 +13369,9 @@ export namespace Prisma {
     precio_total?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
-    estado?: StringFieldUpdateOperationsInput | string
+    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
     n_comprobante?: StringFieldUpdateOperationsInput | string
     id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
     id_publicacion?: IntFieldUpdateOperationsInput | number
@@ -13728,6 +13865,27 @@ export namespace Prisma {
     id_usuario?: SortOrder
   }
 
+  export type EnumEstadoEnvioFilter<$PrismaModel = never> = {
+    equals?: $Enums.EstadoEnvio | EnumEstadoEnvioFieldRefInput<$PrismaModel>
+    in?: $Enums.EstadoEnvio[] | ListEnumEstadoEnvioFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EstadoEnvio[] | ListEnumEstadoEnvioFieldRefInput<$PrismaModel>
+    not?: NestedEnumEstadoEnvioFilter<$PrismaModel> | $Enums.EstadoEnvio
+  }
+
+  export type EnumMetodoEnvioFilter<$PrismaModel = never> = {
+    equals?: $Enums.MetodoEnvio | EnumMetodoEnvioFieldRefInput<$PrismaModel>
+    in?: $Enums.MetodoEnvio[] | ListEnumMetodoEnvioFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MetodoEnvio[] | ListEnumMetodoEnvioFieldRefInput<$PrismaModel>
+    not?: NestedEnumMetodoEnvioFilter<$PrismaModel> | $Enums.MetodoEnvio
+  }
+
+  export type EnumMetodoPagoFilter<$PrismaModel = never> = {
+    equals?: $Enums.MetodoPago | EnumMetodoPagoFieldRefInput<$PrismaModel>
+    in?: $Enums.MetodoPago[] | ListEnumMetodoPagoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MetodoPago[] | ListEnumMetodoPagoFieldRefInput<$PrismaModel>
+    not?: NestedEnumMetodoPagoFilter<$PrismaModel> | $Enums.MetodoPago
+  }
+
   export type IntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -13756,6 +13914,8 @@ export namespace Prisma {
     fecha?: SortOrder
     talle?: SortOrder
     estado?: SortOrder
+    metodo_entrega?: SortOrder
+    metodo_pago?: SortOrder
     n_comprobante?: SortOrder
     id_comentario?: SortOrder
     id_publicacion?: SortOrder
@@ -13778,6 +13938,8 @@ export namespace Prisma {
     fecha?: SortOrder
     talle?: SortOrder
     estado?: SortOrder
+    metodo_entrega?: SortOrder
+    metodo_pago?: SortOrder
     n_comprobante?: SortOrder
     id_comentario?: SortOrder
     id_publicacion?: SortOrder
@@ -13791,6 +13953,8 @@ export namespace Prisma {
     fecha?: SortOrder
     talle?: SortOrder
     estado?: SortOrder
+    metodo_entrega?: SortOrder
+    metodo_pago?: SortOrder
     n_comprobante?: SortOrder
     id_comentario?: SortOrder
     id_publicacion?: SortOrder
@@ -13804,6 +13968,36 @@ export namespace Prisma {
     id_comentario?: SortOrder
     id_publicacion?: SortOrder
     id_usuario?: SortOrder
+  }
+
+  export type EnumEstadoEnvioWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.EstadoEnvio | EnumEstadoEnvioFieldRefInput<$PrismaModel>
+    in?: $Enums.EstadoEnvio[] | ListEnumEstadoEnvioFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EstadoEnvio[] | ListEnumEstadoEnvioFieldRefInput<$PrismaModel>
+    not?: NestedEnumEstadoEnvioWithAggregatesFilter<$PrismaModel> | $Enums.EstadoEnvio
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumEstadoEnvioFilter<$PrismaModel>
+    _max?: NestedEnumEstadoEnvioFilter<$PrismaModel>
+  }
+
+  export type EnumMetodoEnvioWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MetodoEnvio | EnumMetodoEnvioFieldRefInput<$PrismaModel>
+    in?: $Enums.MetodoEnvio[] | ListEnumMetodoEnvioFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MetodoEnvio[] | ListEnumMetodoEnvioFieldRefInput<$PrismaModel>
+    not?: NestedEnumMetodoEnvioWithAggregatesFilter<$PrismaModel> | $Enums.MetodoEnvio
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumMetodoEnvioFilter<$PrismaModel>
+    _max?: NestedEnumMetodoEnvioFilter<$PrismaModel>
+  }
+
+  export type EnumMetodoPagoWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MetodoPago | EnumMetodoPagoFieldRefInput<$PrismaModel>
+    in?: $Enums.MetodoPago[] | ListEnumMetodoPagoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MetodoPago[] | ListEnumMetodoPagoFieldRefInput<$PrismaModel>
+    not?: NestedEnumMetodoPagoWithAggregatesFilter<$PrismaModel> | $Enums.MetodoPago
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumMetodoPagoFilter<$PrismaModel>
+    _max?: NestedEnumMetodoPagoFilter<$PrismaModel>
   }
 
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -14282,6 +14476,18 @@ export namespace Prisma {
     connect?: UsuariosWhereUniqueInput
   }
 
+  export type EnumEstadoEnvioFieldUpdateOperationsInput = {
+    set?: $Enums.EstadoEnvio
+  }
+
+  export type EnumMetodoEnvioFieldUpdateOperationsInput = {
+    set?: $Enums.MetodoEnvio
+  }
+
+  export type EnumMetodoPagoFieldUpdateOperationsInput = {
+    set?: $Enums.MetodoPago
+  }
+
   export type NullableIntFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
@@ -14429,6 +14635,27 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedEnumEstadoEnvioFilter<$PrismaModel = never> = {
+    equals?: $Enums.EstadoEnvio | EnumEstadoEnvioFieldRefInput<$PrismaModel>
+    in?: $Enums.EstadoEnvio[] | ListEnumEstadoEnvioFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EstadoEnvio[] | ListEnumEstadoEnvioFieldRefInput<$PrismaModel>
+    not?: NestedEnumEstadoEnvioFilter<$PrismaModel> | $Enums.EstadoEnvio
+  }
+
+  export type NestedEnumMetodoEnvioFilter<$PrismaModel = never> = {
+    equals?: $Enums.MetodoEnvio | EnumMetodoEnvioFieldRefInput<$PrismaModel>
+    in?: $Enums.MetodoEnvio[] | ListEnumMetodoEnvioFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MetodoEnvio[] | ListEnumMetodoEnvioFieldRefInput<$PrismaModel>
+    not?: NestedEnumMetodoEnvioFilter<$PrismaModel> | $Enums.MetodoEnvio
+  }
+
+  export type NestedEnumMetodoPagoFilter<$PrismaModel = never> = {
+    equals?: $Enums.MetodoPago | EnumMetodoPagoFieldRefInput<$PrismaModel>
+    in?: $Enums.MetodoPago[] | ListEnumMetodoPagoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MetodoPago[] | ListEnumMetodoPagoFieldRefInput<$PrismaModel>
+    not?: NestedEnumMetodoPagoFilter<$PrismaModel> | $Enums.MetodoPago
+  }
+
   export type NestedIntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -14438,6 +14665,36 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedEnumEstadoEnvioWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.EstadoEnvio | EnumEstadoEnvioFieldRefInput<$PrismaModel>
+    in?: $Enums.EstadoEnvio[] | ListEnumEstadoEnvioFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EstadoEnvio[] | ListEnumEstadoEnvioFieldRefInput<$PrismaModel>
+    not?: NestedEnumEstadoEnvioWithAggregatesFilter<$PrismaModel> | $Enums.EstadoEnvio
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumEstadoEnvioFilter<$PrismaModel>
+    _max?: NestedEnumEstadoEnvioFilter<$PrismaModel>
+  }
+
+  export type NestedEnumMetodoEnvioWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MetodoEnvio | EnumMetodoEnvioFieldRefInput<$PrismaModel>
+    in?: $Enums.MetodoEnvio[] | ListEnumMetodoEnvioFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MetodoEnvio[] | ListEnumMetodoEnvioFieldRefInput<$PrismaModel>
+    not?: NestedEnumMetodoEnvioWithAggregatesFilter<$PrismaModel> | $Enums.MetodoEnvio
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumMetodoEnvioFilter<$PrismaModel>
+    _max?: NestedEnumMetodoEnvioFilter<$PrismaModel>
+  }
+
+  export type NestedEnumMetodoPagoWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MetodoPago | EnumMetodoPagoFieldRefInput<$PrismaModel>
+    in?: $Enums.MetodoPago[] | ListEnumMetodoPagoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MetodoPago[] | ListEnumMetodoPagoFieldRefInput<$PrismaModel>
+    not?: NestedEnumMetodoPagoWithAggregatesFilter<$PrismaModel> | $Enums.MetodoPago
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumMetodoPagoFilter<$PrismaModel>
+    _max?: NestedEnumMetodoPagoFilter<$PrismaModel>
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -14830,7 +15087,9 @@ export namespace Prisma {
     precio_total: number
     fecha?: Date | string
     talle: string
-    estado: string
+    estado?: $Enums.EstadoEnvio
+    metodo_entrega: $Enums.MetodoEnvio
+    metodo_pago: $Enums.MetodoPago
     n_comprobante: string
     id_comentario?: number | null
     usuario: UsuariosCreateNestedOneWithoutComprasInput
@@ -14842,7 +15101,9 @@ export namespace Prisma {
     precio_total: number
     fecha?: Date | string
     talle: string
-    estado: string
+    estado?: $Enums.EstadoEnvio
+    metodo_entrega: $Enums.MetodoEnvio
+    metodo_pago: $Enums.MetodoPago
     n_comprobante: string
     id_comentario?: number | null
     id_usuario: number
@@ -14915,7 +15176,9 @@ export namespace Prisma {
     precio_total?: FloatFilter<"Ventas"> | number
     fecha?: DateTimeFilter<"Ventas"> | Date | string
     talle?: StringFilter<"Ventas"> | string
-    estado?: StringFilter<"Ventas"> | string
+    estado?: EnumEstadoEnvioFilter<"Ventas"> | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFilter<"Ventas"> | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFilter<"Ventas"> | $Enums.MetodoPago
     n_comprobante?: StringFilter<"Ventas"> | string
     id_comentario?: IntNullableFilter<"Ventas"> | number | null
     id_publicacion?: IntFilter<"Ventas"> | number
@@ -14972,7 +15235,9 @@ export namespace Prisma {
     precio_total: number
     fecha?: Date | string
     talle: string
-    estado: string
+    estado?: $Enums.EstadoEnvio
+    metodo_entrega: $Enums.MetodoEnvio
+    metodo_pago: $Enums.MetodoPago
     n_comprobante: string
     id_comentario?: number | null
     publicacion: PublicacionesCreateNestedOneWithoutVentasInput
@@ -14984,7 +15249,9 @@ export namespace Prisma {
     precio_total: number
     fecha?: Date | string
     talle: string
-    estado: string
+    estado?: $Enums.EstadoEnvio
+    metodo_entrega: $Enums.MetodoEnvio
+    metodo_pago: $Enums.MetodoPago
     n_comprobante: string
     id_comentario?: number | null
     id_publicacion: number
@@ -15409,7 +15676,9 @@ export namespace Prisma {
     precio_total: number
     fecha?: Date | string
     talle: string
-    estado: string
+    estado?: $Enums.EstadoEnvio
+    metodo_entrega: $Enums.MetodoEnvio
+    metodo_pago: $Enums.MetodoPago
     n_comprobante: string
     id_comentario?: number | null
     id_usuario: number
@@ -15420,7 +15689,9 @@ export namespace Prisma {
     precio_total?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
-    estado?: StringFieldUpdateOperationsInput | string
+    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
     n_comprobante?: StringFieldUpdateOperationsInput | string
     id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
     usuario?: UsuariosUpdateOneRequiredWithoutComprasNestedInput
@@ -15432,7 +15703,9 @@ export namespace Prisma {
     precio_total?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
-    estado?: StringFieldUpdateOperationsInput | string
+    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
     n_comprobante?: StringFieldUpdateOperationsInput | string
     id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
     id_usuario?: IntFieldUpdateOperationsInput | number
@@ -15444,7 +15717,9 @@ export namespace Prisma {
     precio_total?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
-    estado?: StringFieldUpdateOperationsInput | string
+    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
     n_comprobante?: StringFieldUpdateOperationsInput | string
     id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
     id_usuario?: IntFieldUpdateOperationsInput | number
@@ -15461,7 +15736,9 @@ export namespace Prisma {
     precio_total: number
     fecha?: Date | string
     talle: string
-    estado: string
+    estado?: $Enums.EstadoEnvio
+    metodo_entrega: $Enums.MetodoEnvio
+    metodo_pago: $Enums.MetodoPago
     n_comprobante: string
     id_comentario?: number | null
     id_publicacion: number
@@ -15486,7 +15763,9 @@ export namespace Prisma {
     precio_total?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
-    estado?: StringFieldUpdateOperationsInput | string
+    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
     n_comprobante?: StringFieldUpdateOperationsInput | string
     id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
     publicacion?: PublicacionesUpdateOneRequiredWithoutVentasNestedInput
@@ -15498,7 +15777,9 @@ export namespace Prisma {
     precio_total?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
-    estado?: StringFieldUpdateOperationsInput | string
+    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
     n_comprobante?: StringFieldUpdateOperationsInput | string
     id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
     id_publicacion?: IntFieldUpdateOperationsInput | number
@@ -15510,7 +15791,9 @@ export namespace Prisma {
     precio_total?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
-    estado?: StringFieldUpdateOperationsInput | string
+    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
     n_comprobante?: StringFieldUpdateOperationsInput | string
     id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
     id_publicacion?: IntFieldUpdateOperationsInput | number

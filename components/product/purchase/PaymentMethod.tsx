@@ -1,5 +1,6 @@
 import { useProductStore } from "@/src/stores/productStore"
 import { useUserStore } from "@/src/stores/userStore"
+import { PaymentMethods } from "@/src/types"
 import { formatCurrency, paymentMethods } from "@/src/utils"
 import { CreditCardIcon, WalletIcon } from "@heroicons/react/24/outline"
 import { useQuery } from "@tanstack/react-query"
@@ -12,7 +13,7 @@ export default function PaymentMethod() {
     const params = new URLSearchParams(searchParams.toString())
     const userId = useUserStore(state => state.userId)
     const currentTotalPurchase = useProductStore(state => state.currentTotalPurchase)
-    const method = params.get("pago")
+    const method = params.get("pago") as PaymentMethods | null
 
     useEffect(() => {
         if (method && !paymentMethods.includes(method)) {
@@ -34,7 +35,7 @@ export default function PaymentMethod() {
         enabled: userId ? true : false
     })
 
-    const handleClick = (method: string) => {
+    const handleClick = (method: PaymentMethods) => {
         params.set("pago", method)
         router.replace(`?${params.toString()}`, { scroll: false })
     }
@@ -52,7 +53,7 @@ export default function PaymentMethod() {
             <form className="py-5 flex flex-col gap-4">
                 <div className={`border rounded-lg border-gray-300 p-3 flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center ${data.saldo < currentTotalPurchase && "text-gray-400 select-none pointer-events-none"}`}>
                     <div className="flex gap-3 items-center">
-                        <input type="radio" name="deliveryOption" defaultChecked={method === "storeWallet"} className={`accent-black hover:cursor-pointer h-4 w-4  ${data.saldo < currentTotalPurchase ? "hidden" : ""}`} onClick={() => handleClick("storeWallet")} />
+                        <input type="radio" name="paymentOption" defaultChecked={method === "DINERO_EN_CUENTA"} className={`accent-black hover:cursor-pointer h-4 w-4  ${data.saldo < currentTotalPurchase ? "hidden" : ""}`} onClick={() => handleClick("DINERO_EN_CUENTA")} />
                         <div className="flex items-center gap-2 flex-1">
                             <WalletIcon className={`w-5 h-5  ${data.saldo < currentTotalPurchase ? "text-gray-400" : "text-emerald-700"}`} />
                             <div>
@@ -65,7 +66,7 @@ export default function PaymentMethod() {
                 </div>
                 <div className="border rounded-lg border-gray-300 p-3 flex flex-col justify-between gap-3 sm:flex-row sm:justify-between sm:items-center text-gray-400 select-none pointer-events-none " >
                     <div className="flex gap-3 items-center">
-                        <input type="radio" name="deliveryOption" value={"store"} className="accent-black hover:cursor-pointer h-4 w-4 hidden" />
+                        <input type="radio" name="paymentOption" className="accent-black hover:cursor-pointer h-4 w-4 hidden" />
                         <div className="flex items-center gap-2 flex-1">
                             <CreditCardIcon className="w-5 h-5" />
                             <div>
