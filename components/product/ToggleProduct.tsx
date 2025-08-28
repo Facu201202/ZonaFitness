@@ -11,6 +11,7 @@ import SuccessPurchase from "./successPurchase/SuccessPurchase"
 import { useMutation } from "@tanstack/react-query"
 import { useState } from "react"
 import ErrorPurchase from "./successPurchase/ErrorPurchase"
+import Spinner from "../Spinner"
 
 
 type ToggleProductProps = {
@@ -85,8 +86,8 @@ export default function ToggleProduct({ product, products, deleteParamsFunction 
                 </div>
             )}
             {activeModal === "SuccessPurchase" && (
-                <div className="lg:p-4">
-                    {mutateState.loading && <p className="text-center font-bold uppercase">Cargando...</p>}
+                <div className="lg:p-2 h-full">
+                    {mutateState.loading && <Spinner/>}
                     {mutateState.error && <ErrorPurchase deleteParamsFunction={deleteParamsFunction} />}
                     {mutateState.success && <SuccessPurchase/>}
                 </div>

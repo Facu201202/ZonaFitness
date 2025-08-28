@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query'
 import { Product } from '@/src/types'
 import ToggleProduct from './ToggleProduct'
 import { useProductStore } from "@/src/stores/productStore"
+import Spinner from '../Spinner'
 
 type ProductModalProps = {
   productId: number,
@@ -50,11 +51,11 @@ export default function ProductModal({ productId, products }: ProductModalProps)
       <Dialog onClose={() => handleCloseModal()} className="relative z-50">
         <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
         <div className="fixed inset-0 flex items-center justify-center p-4">
-          <DialogPanel className="w-6xl h-full space-y-4 border bg-white p-4 overflow-y-auto">
+          <DialogPanel className="w-fit h-full space-y-4 border bg-white p-4 overflow-y-auto">
             {data ?
               (
                 <ToggleProduct product={data} products={products} deleteParamsFunction={handleCloseModal} />
-              ) : (<p className='font-bold text-center'>Cargando...</p>)
+              ) : (<Spinner/>)
             }
           </DialogPanel>
         </div>
