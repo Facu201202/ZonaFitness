@@ -51,7 +51,7 @@ export default function ProductModal({ productId, products }: ProductModalProps)
       <Dialog onClose={() => handleCloseModal()} className="relative z-50">
         <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
         <div className="fixed inset-0 flex items-center justify-center p-4">
-          <DialogPanel className="w-fit h-full space-y-4 border bg-white p-4 overflow-y-auto">
+          <DialogPanel className="w-fit max-w-7xl h-full space-y-4 border bg-white p-4 overflow-y-auto">
             {data ?
               (
                 <ToggleProduct product={data} products={products} deleteParamsFunction={handleCloseModal} />

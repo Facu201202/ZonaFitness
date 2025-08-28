@@ -137,6 +137,7 @@ export async function createSale(saleData: SaleData, tx: PrismaClient | Prisma.T
             metodo_pago: saleData.metodo_pago
         },
         select: {
+            id_venta: true,
             n_comprobante: true,
             precio_total: true,
             metodo_entrega: true,

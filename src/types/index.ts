@@ -72,7 +72,7 @@ export type SaleData = Pick<Ventas, "cantidad" | "precio_total" | "talle" | "id_
 export type PaymentMethods = keyof typeof MetodoPago
 export type DeliveryMethods = keyof typeof MetodoEnvio
 
-export type SuccessPurchaseData = Pick<Ventas, "metodo_entrega" | "n_comprobante" | "precio_total"> & {
+export type SuccessPurchaseData = Pick<Ventas, "metodo_entrega" | "n_comprobante" | "precio_total" | "id_venta"> & {
     publicacion: {
         producto: Pick<Productos, "nombre">
     }

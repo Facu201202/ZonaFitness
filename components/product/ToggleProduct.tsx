@@ -12,6 +12,7 @@ import { useMutation } from "@tanstack/react-query"
 import { useState } from "react"
 import ErrorPurchase from "./successPurchase/ErrorPurchase"
 import Spinner from "../Spinner"
+import Receipt from "./successPurchase/Receipt"
 
 
 type ToggleProductProps = {
@@ -26,11 +27,11 @@ export default function ToggleProduct({ product, products, deleteParamsFunction 
     const [mutateState, setMutateState] = useState({
         error: false,
         success: false,
-        loading:false
+        loading: false
     })
     const { currentPurchase } = useProductStore(state => state)
-    const fetchPurchase = async (data: PurchaseData)=> {
-        setMutateState({...mutateState, loading: true})
+    const fetchPurchase = async (data: PurchaseData) => {
+        setMutateState({ ...mutateState, loading: true })
         setTimeout(() => {
 
         }, 3000)
@@ -43,7 +44,7 @@ export default function ToggleProduct({ product, products, deleteParamsFunction 
             console.log("error:", response)
             throw new Error(response.message || "Error en la compra")
         }
-        setMutateState({...mutateState, loading: false})
+        setMutateState({ ...mutateState, loading: false })
         return response
     }
 
@@ -51,16 +52,16 @@ export default function ToggleProduct({ product, products, deleteParamsFunction 
         mutationKey: ["purchase", [currentPurchase.id_publicacion, currentPurchase.id_usuario]],
         mutationFn: (data: PurchaseData) => fetchPurchase(data),
         onError: () => {
-            setMutateState({...mutateState, error: true})
+            setMutateState({ ...mutateState, error: true })
         },
         onSuccess: (data) => {
-            setMutateState({...mutateState, success: true})
+            setMutateState({ ...mutateState, success: true })
             setsuccessPurchaseData(data.venta)
-        }   
+        }
     })
 
     return (
-        <div>
+        <div className="h-full">
             {activeModal === "Product" && (
                 <div>
                     <div className='flex justify-end mb-5'>
@@ -85,11 +86,19 @@ export default function ToggleProduct({ product, products, deleteParamsFunction 
                     </div>
                 </div>
             )}
+
             {activeModal === "SuccessPurchase" && (
                 <div className="lg:p-2 h-full">
-                    {mutateState.loading && <Spinner/>}
+                    {mutateState.loading && <Spinner />}
                     {mutateState.error && <ErrorPurchase deleteParamsFunction={deleteParamsFunction} />}
-                    {mutateState.success && <SuccessPurchase/>}
+                    {mutateState.success &&
+                        (<div>
+                            <div className='flex justify-end'>
+                                <XMarkIcon className='w-5 h-5 hover:cursor-pointer' onClick={() => deleteParamsFunction()} />
+                            </div>
+                            <SuccessPurchase />
+                        </div>
+                        )}
                 </div>
             )}
         </div>
