@@ -4,13 +4,10 @@ import { MetodoEnvio, MetodoPago } from "@/src/generated/prisma"
 import { prisma } from "@/src/lib/prisma"
 import { PurchaseData, SaleData } from "@/src/types"
 import { NextRequest, NextResponse } from "next/server"
-
-const taxes = 1100
-const homeDeliveryPrice = 3000
+import { taxes, homeDeliveryPrice } from "@/src/utils"
 
 export async function POST(req: NextRequest) {
     const body: PurchaseData = await req.json()
-    console.log("Backend", body)
     const deliveryMethod = MetodoEnvio[body.entrega as MetodoEnvio]
     const paymentMethod = MetodoPago[body.pago as MetodoPago]
     try {
@@ -61,7 +58,6 @@ export async function POST(req: NextRequest) {
         }, { status: 201 })
 
     } catch (error) {
-        console.log(error)
         return NextResponse.json({ error: "Error de servidor" }, { status: 500 })
     }
 }

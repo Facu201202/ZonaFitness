@@ -199,3 +199,32 @@ export async function decrementBalance(amount: number, userId: number, balanceId
         }
     })
 }
+
+export async function getUserPurchase(id: number) {
+    return await prisma.ventas.findMany({
+        where: {
+            id_usuario: id
+        },
+        select: {
+            n_comprobante: true,
+            fecha: true,
+            precio_total: true,
+            estado: true,
+            publicacion: {
+                select: {
+                    producto: {
+                        select: {
+                            nombre: true,
+                            foto: true,
+                            categoria: {
+                                select: {
+                                    nombre: true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    })
+}

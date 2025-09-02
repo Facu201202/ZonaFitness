@@ -92,7 +92,7 @@ export default function ToggleProduct({ product, products, deleteParamsFunction 
                     {mutateState.loading && <Spinner />}
                     {mutateState.error && <ErrorPurchase deleteParamsFunction={deleteParamsFunction} />}
                     {mutateState.success &&
-                        (<div>
+                        (<div className="h-full">
                             <div className='flex justify-end'>
                                 <XMarkIcon className='w-5 h-5 hover:cursor-pointer' onClick={() => deleteParamsFunction()} />
                             </div>

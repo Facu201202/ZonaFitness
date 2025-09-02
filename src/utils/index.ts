@@ -1,6 +1,6 @@
 import { ReadonlyURLSearchParams } from "next/navigation";
 import { Categoria, FiltersData } from "../types";
-import { MetodoEnvio, MetodoPago } from "../generated/prisma";
+import { EstadoEnvio, MetodoEnvio, MetodoPago } from "../generated/prisma";
 
 export function formatCurrency(amount: number) {
     return new Intl.NumberFormat("es-AR", {
@@ -95,4 +95,15 @@ export const sizes = {
 }
 
 export const deliveryMethods = Object.values(MetodoEnvio)
-export const paymentMethods = Object.values(MetodoPago) 
+export const paymentMethods = Object.values(MetodoPago)
+
+export const taxes = 1100
+export const homeDeliveryPrice = 3000
+
+export const purchaseStateBgColor: Record<EstadoEnvio, [string, string]> = {
+  [EstadoEnvio.PENDIENTE]: ["bg-yellow-100", "text-yellow-700"],   
+  [EstadoEnvio.APROBADO]: ["bg-green-100", "text-green-700"],      
+  [EstadoEnvio.EN_CAMINO]: ["bg-blue-100", "text-blue-700"],  
+  [EstadoEnvio.ENTREGADO]: ["bg-indigo-100", "text-indigo-700"],   
+  [EstadoEnvio.CANCELADO]: ["bg-red-100", "text-red-700"],    
+}

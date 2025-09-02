@@ -34,7 +34,7 @@ export type ProfileUserData = {
         barrio: string,
         calle: string
     },
-    saldo: [{saldo: number}]
+    saldo: [{ saldo: number }]
 }
 
 export type ProfileUserDataForm = {
@@ -67,7 +67,7 @@ export type PurchaseData = Pick<Ventas, "cantidad" | "precio_total" | "talle" | 
     pago: string
 }
 
-export type SaleData = Pick<Ventas, "cantidad" | "precio_total" | "talle" | "id_publicacion" | "id_usuario" | "metodo_entrega" | "metodo_pago" >
+export type SaleData = Pick<Ventas, "cantidad" | "precio_total" | "talle" | "id_publicacion" | "id_usuario" | "metodo_entrega" | "metodo_pago">
 
 export type PaymentMethods = keyof typeof MetodoPago
 export type DeliveryMethods = keyof typeof MetodoEnvio
@@ -76,4 +76,25 @@ export type SuccessPurchaseData = Pick<Ventas, "metodo_entrega" | "n_comprobante
     publicacion: {
         producto: Pick<Productos, "nombre">
     }
+}
+
+export type PurchaseInfo = Pick<Ventas, "cantidad" | "precio_total" | "fecha" | "talle" | "metodo_entrega" | "metodo_pago" | "n_comprobante"> & {
+    publicacion: {
+        producto: Pick<Productos, "nombre">
+    },
+    taxes: number,
+    deliveryPrice: number
+}
+
+
+export type UserPurchase = Pick<Ventas, "n_comprobante" | "estado" | "fecha" | "precio_total"> & {
+    publicacion: {
+        producto: {
+            nombre: string;
+            foto: string;
+            categoria: {
+                nombre: string
+            }
+        };
+    };
 }

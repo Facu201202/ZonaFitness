@@ -46,7 +46,7 @@ export default function page() {
           <button className={`rounded-lg flex-1 text-center py-2 hover:cursor-pointer font-semibold ${section === 6 && "bg-[#111827] text-white"}`} onClick={() => setSection(6)}>Cambiar Contraseña</button>
         </div>
         {section === 1 && <ProfileUserForm userData={data}/>}
-        {section === 2 && <ProfilePurchases />}
+        {section === 2 && <ProfilePurchases userId={data.id_usuario}/>}
         {section === 3 && <ProfileFavorites />}
         {section === 4 && <ProfileComments />}
         {section === 5 && <ProfileWallet userBalance={userBalance}/>}

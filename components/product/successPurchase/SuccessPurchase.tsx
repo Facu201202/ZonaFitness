@@ -7,6 +7,7 @@ import Receipt from "./Receipt"
 
 export default function SuccessPurchase() {
     const successPurchaseData = useProductStore(state => state.successPurchaseData)
+    const isReceiptSuccess = useProductStore(state => state.isReceiptSuccess)
     const [isReceiptActive, setIsReceiptActive] = useState(false)
     const receiptRef = useRef<HTMLDivElement>(null)
     const createPDF = () => {
@@ -24,17 +25,18 @@ export default function SuccessPurchase() {
     }
 
     useLayoutEffect(() => {
-        if (isReceiptActive && receiptRef.current) {
+        console.log("hola desde el effect")
+        if (isReceiptActive && receiptRef.current && isReceiptSuccess) {
+            console.log("si paso")
             setTimeout(() => {
                 createPDF()
             }, 1000);
-
         }
-    }, [isReceiptActive])
+    }, [isReceiptActive, isReceiptSuccess])
 
     return (
-        <div className="max-w-lg select-none">
-            {isReceiptActive ? <Receipt receiptRef={receiptRef} /> : (
+        <div className="max-w-lg select-none h-full">
+            {isReceiptActive ? <Receipt receiptRef={receiptRef} purchaseId={successPurchaseData.id_venta} /> : (
                 <div>
                     <p className="font-bold text-lg lg:text-xl mb-1">¡Compra Confirmada!</p>
                     <div className="flex flex-col gap-2">
