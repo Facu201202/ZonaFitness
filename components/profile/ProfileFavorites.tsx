@@ -8,7 +8,7 @@ type ProfileFavoritesProps = {
     userId: number
 }
 
-export default function ProfileFavorites({userId}: ProfileFavoritesProps) {
+export default function ProfileFavorites({ userId }: ProfileFavoritesProps) {
     const searchParams = useSearchParams()
     const productId = +searchParams.get('producto')!
     const fetchProductos = async (): Promise<Product[]> => {
@@ -27,10 +27,11 @@ export default function ProfileFavorites({userId}: ProfileFavoritesProps) {
             <div className="py-6 bg-white px-5 rounded-2xl" >
 
                 {isLoading && <p className="text-center font-bold py-10">Cargando...</p>}
-                {data && <CardCarousel
-                    products={data}
-                    isProfile={true}
-                />}
+                {data &&
+                    <CardCarousel
+                        products={data}
+                        isProfile={true}
+                    />}
                 {(!data && !isLoading) && <p className="text-center font-bold py-10">No hay productos disponibles</p>}
 
             </div>
