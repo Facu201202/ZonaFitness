@@ -47,7 +47,7 @@ export default function page() {
         </div>
         {section === 1 && <ProfileUserForm userData={data}/>}
         {section === 2 && <ProfilePurchases userId={data.id_usuario}/>}
-        {section === 3 && <ProfileFavorites />}
+        {section === 3 && <ProfileFavorites userId={+userId!}/>}
         {section === 4 && <ProfileComments />}
         {section === 5 && <ProfileWallet userBalance={userBalance}/>}
         {section === 6 && <ProfileUserPasswordForm userId={data.id_usuario}/>}

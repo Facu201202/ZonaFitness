@@ -1,5 +1,4 @@
 import { Prisma, PrismaClient } from "@/src/generated/prisma";
-import { DefaultArgs } from "@/src/generated/prisma/runtime/library";
 import { prisma } from "@/src/lib/prisma"
 import { FiltersData, SaleData } from "@/src/types";
 import { createWhereFilter } from "@/src/utils";

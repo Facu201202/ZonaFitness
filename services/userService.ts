@@ -169,7 +169,7 @@ export async function updatePassword(data: ChangePasswordData) {
     const hashedPassword = await bcrypt.hash(data.contraseñaNueva, 10)
 
     return prisma.usuarios.update({
-        where: {id_usuario: data.id_usuario},
+        where: { id_usuario: data.id_usuario },
         data: {
             contraseña: hashedPassword
         }
@@ -188,14 +188,14 @@ export async function getUserBalance(id: number) {
     })
 }
 
-export async function decrementBalance(amount: number, userId: number, balanceId: number, tx: PrismaClient | Prisma.TransactionClient){
+export async function decrementBalance(amount: number, userId: number, balanceId: number, tx: PrismaClient | Prisma.TransactionClient) {
     return await prisma.saldos.update({
         where: {
             id_usuario: userId,
             id_saldo: balanceId
         },
         data: {
-            saldo: {decrement: amount}
+            saldo: { decrement: amount }
         }
     })
 }
@@ -228,3 +228,69 @@ export async function getUserPurchase(id: number) {
         }
     })
 }
+
+export async function addToFavorites(id_publicacion: number, id_usuario: number) {
+    const favoritesExists = await prisma.favoritos.findUnique({
+        where: { id_usuario_id_publicacion: { id_usuario, id_publicacion } }
+    })
+
+    if (favoritesExists) {
+        await prisma.favoritos.delete({
+            where: { id_favorito: favoritesExists.id_favorito }
+        })
+
+        return { added: false }
+    } else {
+        await prisma.favoritos.create({
+            data: {
+                id_usuario: id_usuario,
+                id_publicacion: id_publicacion
+            }
+        })
+        return { added: true }
+    }
+
+}
+
+export async function getUserFavorites(userId: number) {
+    return await prisma.favoritos.findMany({
+        where: { id_usuario: userId },
+        select: {
+            publicacion: {
+                select: {
+                    id_publicacion: true,
+                    caracteristicas: true,
+                    descuento: true,
+                    precio: true,
+                    producto: {
+                        select: {
+                            id_producto: true,
+                            nombre: true,
+                            foto: true,
+                            color: true,
+                            genero: true,
+                            categoria: {
+                                select: {
+                                    nombre: true
+                                }
+                            },
+                            stocks: {
+                                select: {
+                                    cantidad: true,
+                                    talle: {
+                                        select: {
+                                            talle: true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    })
+}
+
+ 

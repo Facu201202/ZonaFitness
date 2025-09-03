@@ -10,6 +10,7 @@ import { HeartIcon as HeartIconOutline, CreditCardIcon, ShoppingCartIcon, TruckI
 import Qualification from '../Qualification'
 import SizesButton from '../SizesButton'
 import { useUserStore } from '@/src/stores/userStore'
+import { useMutation } from '@tanstack/react-query'
 
 type ProductInfoProps = {
     product: Product
@@ -29,6 +30,22 @@ export default function ProductInfo({ product }: ProductInfoProps) {
     const category = product.producto.categoria.nombre as keyof typeof sizes
     const currentSizes = params.get("ModalTalle")
 
+    const mutate = useMutation({
+        mutationFn: async() => {
+            const data = {
+                userId: +userId!,
+                publicationId: product.id_publicacion
+            }
+            const res = await fetch('/tienda/inicio/api/favorites', {
+                method: "POST",
+                body: JSON.stringify(data)
+            })
+
+            return res.json()
+        },
+        onSuccess: (data) => setIsClicked(data.added)
+    })
+
     if (currentSizes && !sizes[category].includes(currentSizes)) {
         params.delete("ModalTalle")
         router.replace(`?${params.toString()}`)
@@ -40,7 +57,9 @@ export default function ProductInfo({ product }: ProductInfoProps) {
     }, [searchParams])
 
     const handleClick = () => {
-        setIsClicked(!isClicked)
+        if(userId && product) {
+            mutate.mutate()
+        }
     }
 
     const handleQuantityIncrease = () => {

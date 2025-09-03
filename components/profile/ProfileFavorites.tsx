@@ -4,17 +4,21 @@ import { useSearchParams } from "next/navigation";
 import CardCarousel from "../product/CardCarousel"
 import ProductModal from "../product/ProductModal"
 
-export default function ProfileFavorites() {
+type ProfileFavoritesProps = {
+    userId: number
+}
+
+export default function ProfileFavorites({userId}: ProfileFavoritesProps) {
     const searchParams = useSearchParams()
     const productId = +searchParams.get('producto')!
     const fetchProductos = async (): Promise<Product[]> => {
 
-        const res = await fetch('/tienda/inicio/api')
+        const res = await fetch(`/tienda/perfil/api/userFavorites/${userId}`)
         if (!res.ok) throw new Error('Error al traer productos')
         return res.json()
     }
     const { data, isLoading } = useQuery({
-        queryKey: ["productos"],
+        queryKey: ["favorites_products", userId],
         queryFn: fetchProductos
     })
     return (

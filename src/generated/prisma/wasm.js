@@ -198,6 +198,12 @@ exports.Prisma.VentasScalarFieldEnum = {
   id_usuario: 'id_usuario'
 };
 
+exports.Prisma.FavoritosScalarFieldEnum = {
+  id_favorito: 'id_favorito',
+  id_usuario: 'id_usuario',
+  id_publicacion: 'id_publicacion'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -238,7 +244,8 @@ exports.Prisma.ModelName = {
   Usuarios: 'Usuarios',
   Clientes: 'Clientes',
   Saldos: 'Saldos',
-  Ventas: 'Ventas'
+  Ventas: 'Ventas',
+  Favoritos: 'Favoritos'
 };
 
 /**
