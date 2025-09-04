@@ -4,7 +4,7 @@ import { FiltersData, SaleData } from "@/src/types";
 import { createWhereFilter } from "@/src/utils";
 import {nanoid} from "nanoid"
 
-export async function getProducts() {
+export async function getProducts(id:number) {
     return await prisma.publicaciones.findMany({
         take: 10,
         where: {
@@ -39,7 +39,13 @@ export async function getProducts() {
                                 }
                             }
                         }
-                    }
+                    },
+                    
+                }
+            },
+            favoritos: {
+                where: {
+                    id_usuario: id
                 }
             }
         }

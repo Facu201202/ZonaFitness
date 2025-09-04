@@ -5,12 +5,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useSearchParams, useRouter, redirect } from "next/navigation"
 import { useEffect, useState } from 'react'
-import { HeartIcon } from "@heroicons/react/24/solid"
-import { HeartIcon as HeartIconOutline, CreditCardIcon, ShoppingCartIcon, TruckIcon, ClockIcon, ArrowUturnLeftIcon } from "@heroicons/react/24/outline"
+import {CreditCardIcon, ShoppingCartIcon, TruckIcon, ClockIcon, ArrowUturnLeftIcon } from "@heroicons/react/24/outline"
 import Qualification from '../Qualification'
 import SizesButton from '../SizesButton'
 import { useUserStore } from '@/src/stores/userStore'
-import { useMutation } from '@tanstack/react-query'
+import FavoriteButton from './FavoriteButton'
 
 type ProductInfoProps = {
     product: Product
@@ -23,28 +22,11 @@ export default function ProductInfo({ product }: ProductInfoProps) {
     const params = new URLSearchParams(searchParams.toString())
     const setActiveModal = useProductStore(state => state.setActiveModal)
 
-    const [isClicked, setIsClicked] = useState(false)
     const [isSizeActive, setisSizeActive] = useState(false)
     const [quantity, setQuantity] = useState(Number(params.get("cantidad")) || 1)
 
     const category = product.producto.categoria.nombre as keyof typeof sizes
     const currentSizes = params.get("ModalTalle")
-
-    const mutate = useMutation({
-        mutationFn: async() => {
-            const data = {
-                userId: +userId!,
-                publicationId: product.id_publicacion
-            }
-            const res = await fetch('/tienda/inicio/api/favorites', {
-                method: "POST",
-                body: JSON.stringify(data)
-            })
-
-            return res.json()
-        },
-        onSuccess: (data) => setIsClicked(data.added)
-    })
 
     if (currentSizes && !sizes[category].includes(currentSizes)) {
         params.delete("ModalTalle")
@@ -56,11 +38,6 @@ export default function ProductInfo({ product }: ProductInfoProps) {
         setQuantity(Number(params.get("cantidad")) || 1)
     }, [searchParams])
 
-    const handleClick = () => {
-        if(userId && product) {
-            mutate.mutate()
-        }
-    }
 
     const handleQuantityIncrease = () => {
         const quantityValue = (quantity + 1) > 10 ? 10 : quantity + 1
@@ -112,16 +89,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
             <div className='lg:w-1/2 flex flex-col gap-6'>
                 <div className='flex justify-between'>
                     <h2 className="text-3xl lg:text-4xl font-bold lg:w-4/5">{product.producto.nombre}</h2>
-                    {isClicked ? (
-                        <HeartIcon
-                            className="h-8 w-8 lg:h-10 lg:w-10 right-1.5 hover:text-[#2D5DA2] hover:cursor-pointer"
-                            onClick={handleClick}
-                        />
-                    ) : (
-                        <HeartIconOutline
-                            className="h-8 w-8 lg:h-10 lg:w-10 right-1.5 hover:text-[#2D5DA2] hover:cursor-pointer"
-                            onClick={handleClick} />
-                    )}
+                    <FavoriteButton product={product} iscarrusel={false}/>
                 </div>
                 <div className="flex gap-2">
                     <Qualification stars={4} width='w-6' height='h-6' />

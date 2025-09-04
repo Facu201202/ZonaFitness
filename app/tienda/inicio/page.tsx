@@ -9,16 +9,17 @@ import Link from "next/link"
 import { useQuery } from "@tanstack/react-query"
 import { Product } from "@/src/types"
 import { useSearchParams } from "next/navigation";
+import { useUserStore } from "@/src/stores/userStore";
 
 
 export default function Home() {
-
+  const userid = useUserStore(state => state.userId)
   const searchParams = useSearchParams()
   const productId = +searchParams.get('producto')!
 
   const fetchProductos = async (): Promise<Product[]> => {
 
-    const res = await fetch('/tienda/inicio/api')
+    const res = await fetch(`/tienda/inicio/api/products/${userid}`)
     if (!res.ok) throw new Error('Error al traer productos')
     return res.json()
   }

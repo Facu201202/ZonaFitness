@@ -12,7 +12,6 @@ import { useMutation } from "@tanstack/react-query"
 import { useState } from "react"
 import ErrorPurchase from "./successPurchase/ErrorPurchase"
 import Spinner from "../Spinner"
-import Receipt from "./successPurchase/Receipt"
 
 
 type ToggleProductProps = {

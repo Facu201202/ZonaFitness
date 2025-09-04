@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ errors: "Usuario o contraseña incorrectos" }, { status: 401 })
         }
 
-        const token = generateJwt(userExists.id_usuario, userExists.rol)
+        const token = generateJwt(userExists.id_usuario, userExists.rol, userExists.usuario)
         if (!token) {
             throw new Error("Error al crear el token")
         }

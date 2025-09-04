@@ -5,9 +5,10 @@ import Error from "../Error"
 import type { RegisterForm } from "@/src/schema"
 
 export default function RegisterForm() {
-  const { register, handleSubmit, watch, formState: { errors }, setError, clearErrors } = useForm<RegisterForm>()
+  const { register, handleSubmit,reset, watch, formState: { errors }, setError, clearErrors} = useForm<RegisterForm>()
   const registerUser = async (data: RegisterForm) => {
     clearErrors()
+
     const res = await fetch("/cuenta/api/register", {
       method: "POST",
       body: JSON.stringify(data)
@@ -30,8 +31,8 @@ export default function RegisterForm() {
       toast.error(response.errors)
       return
     }
-
-    toast.success(response.message)
+    reset()
+    toast.success("Usuario registrado")
 
   }
 

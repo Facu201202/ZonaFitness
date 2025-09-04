@@ -1,4 +1,4 @@
-import { Publicaciones, Productos, Stock, Sizes, Ventas, MetodoPago, MetodoEnvio } from '../../src/generated/prisma'
+import { Publicaciones, Productos, Stock, Sizes, Ventas, MetodoPago, MetodoEnvio, Favoritos } from '../../src/generated/prisma'
 import { categoriesTranslate } from '../utils'
 
 export type Product = Pick<Publicaciones, "id_publicacion" | "caracteristicas" | "descuento" | "precio"> & {
@@ -10,6 +10,7 @@ export type Product = Pick<Publicaciones, "id_publicacion" | "caracteristicas" |
             talle: Pick<Sizes, "talle">
         }>
     }
+    favoritos: Array<Favoritos>
 }
 
 export type FiltersData = {

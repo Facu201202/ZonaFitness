@@ -4,9 +4,9 @@ import { useSearchParams , usePathname } from 'next/navigation'
 import Qualification from "../Qualification"
 import { useState } from "react"
 import { formatCurrency, translateCategory } from "@/src/utils"
-import { HeartIcon } from "@heroicons/react/24/solid"
-import { HeartIcon as HeartIconOutline } from "@heroicons/react/24/outline"
-import { Categoria } from "@/src/types"
+import { Categoria, Product } from "@/src/types"
+
+import FavoriteButton from "./FavoriteButton"
 
 type ProductCardProps = {
     id_publication: number,
@@ -14,32 +14,18 @@ type ProductCardProps = {
     name: string,
     category: Categoria,
     src: string,
-    opinionsCant: number
+    opinionsCant: number,
+    product: Product
 }
 
-export default function ProductCard({ price, name, category, src, opinionsCant, id_publication }: ProductCardProps) {
+export default function ProductCard({ price, name, category, src, opinionsCant, id_publication, product }: ProductCardProps) {
     const pathname = usePathname()
     const  searchParams = useSearchParams();
     const fullUrl = pathname + '?' + searchParams.toString();
-    const [isClicked, setIsClicked] = useState(false)
-
-    const handleClick = () => {
-        setIsClicked(!isClicked)
-    }
 
     return (
         <div className="overflow-hidden rounded-2xl h-full">
             <div className="min-h-64 p-2 relative">
-                {isClicked ? (
-                    <HeartIcon
-                        className="absolute h-6 w-6 right-1.5 z-10 hover:text-[#2D5DA2]"
-                        onClick={handleClick}
-                    />
-                ) : (
-                    <HeartIconOutline
-                        className="absolute h-6 w-6 right-1.5 z-10 hover:text-[#2D5DA2]"
-                        onClick={handleClick} />
-                )}
 
                 <Image
                     src={`/products/${translateCategory(category)}/` + src}

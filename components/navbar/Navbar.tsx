@@ -7,10 +7,12 @@ import UserButton from "./UserButton";
 import Image from "next/image";
 import LogoutButton from "./LogoutButton";
 import { redirect } from "next/navigation";
+import { useUserStore } from "@/src/stores/userStore";
 
 
 export default function Navbar({ isLogin }: { isLogin: boolean }) {
     const [menuOpen, setMenuOpen] = useState(false);
+    const userName = useUserStore(state => state.userName)
     const {handleSubmit, register, reset} = useForm<{search: string}>()
     const searchProduct = (data: {search: string}) => {
         redirect(`/tienda/search?searchProduct=${data.search}`)
@@ -61,7 +63,7 @@ export default function Navbar({ isLogin }: { isLogin: boolean }) {
                         <div className=" flex gap-2 items-center border-b w-full pb-2">
                             <Image src={"/user.png"} alt="" height={50} width={50} className="rounded-full" />
                             <div className="flex flex-col ">
-                                <p className="text-xl font-medium">Facundo</p>
+                                <p className="text-xl font-medium">{userName}</p>
                                 <Link href={""} className="hover:text-[#275DA2] text-xs" onClick={() => setMenuOpen(false)}>Mi perfil</Link>
                             </div>
 

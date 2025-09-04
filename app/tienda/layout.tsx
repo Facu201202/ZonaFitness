@@ -37,6 +37,7 @@ export default async function RootLayout({
 }>) {
   const headerList = await headers()     
   const userId = headerList.get("x-user-id")
+  const userName = headerList.get("x-user-name")
   const isLogin = !!userId
   return (
     <div
@@ -44,7 +45,7 @@ export default async function RootLayout({
     >
       <Navbar isLogin={isLogin}/>
       <main className="min-h-screen">
-        <ReactQueryProvider userId={userId}>
+        <ReactQueryProvider userId={userId} userName={userName}>
           {children}
         </ReactQueryProvider>
       </main>

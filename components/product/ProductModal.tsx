@@ -40,9 +40,11 @@ export default function ProductModal({ productId, products }: ProductModalProps)
   }
 
   const { data } = useQuery({
-    queryKey: ["producto", productId],
+    queryKey: ["Producto", productId],
     queryFn: () => fetchProducto(productId),
-    enabled: productExist
+    enabled: productExist,
+    staleTime: 0,
+    refetchOnMount: true
   })
 
 

@@ -11,6 +11,7 @@ type CardCarouselProps = {
 }
 
 export default function CardCarousel({ products, isProfile }: CardCarouselProps) {
+  console.log(products)
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     slides: {
       perView: isProfile? 3 : 4,
@@ -42,6 +43,7 @@ export default function CardCarousel({ products, isProfile }: CardCarouselProps)
               category={publication.producto.categoria.nombre as Categoria}
               src={publication.producto.foto}
               opinionsCant={24}
+              product={publication}
             />
           </div>
         ))}
