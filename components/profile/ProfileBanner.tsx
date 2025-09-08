@@ -9,7 +9,7 @@ export default function ProfileBanner({userData, section}: {userData: ProfileUse
   const searchParams = useSearchParams();
   const fullUrl = pathname + '?' + searchParams.toString();
   const editUser = +searchParams.get('editUser')!
-  let editUserActive = editUser === 1 ? true : false
+  const editUserActive = editUser === 1 ? true : false
 
   return (
     <div className="bg-[#0F172B] rounded-2xl px-5 py-8 shadow sm:flex justify-between items-center">

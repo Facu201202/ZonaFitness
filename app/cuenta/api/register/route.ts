@@ -23,6 +23,7 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ message: "Usuario registrado exitosamente" }, { status: 201 })
 
     } catch (error) {
+        console.log(error)
         return NextResponse.json({ errors: "Error de servidor" }, { status: 500 })
     }
 }

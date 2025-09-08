@@ -2,11 +2,9 @@ import Link from "next/link"
 import Image from "next/image"
 import { useSearchParams , usePathname } from 'next/navigation'
 import Qualification from "../Qualification"
-import { useState } from "react"
 import { formatCurrency, translateCategory } from "@/src/utils"
 import { Categoria, Product } from "@/src/types"
 
-import FavoriteButton from "./FavoriteButton"
 
 type ProductCardProps = {
     id_publication: number,
@@ -15,10 +13,9 @@ type ProductCardProps = {
     category: Categoria,
     src: string,
     opinionsCant: number,
-    product: Product
 }
 
-export default function ProductCard({ price, name, category, src, opinionsCant, id_publication, product }: ProductCardProps) {
+export default function ProductCard({ price, name, category, src, opinionsCant, id_publication }: ProductCardProps) {
     const pathname = usePathname()
     const  searchParams = useSearchParams();
     const fullUrl = pathname + '?' + searchParams.toString();

@@ -11,7 +11,7 @@ import { ProfileUserData } from "@/src/types"
 import { useQuery } from "@tanstack/react-query"
 import { useState } from "react"
 
-export default function page() {
+export default function Page() {
   const userId = useUserStore(state => state.userId);
 
   const [section, setSection] = useState(1)

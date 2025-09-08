@@ -4,8 +4,9 @@ import { NextResponse, NextRequest } from "next/server"
 
 export const dynamic = "force-dynamic"
 
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
-    const id: number = params.id ? Number(params.id) : 0
-    const products: Product[] = await getProducts(id)
+export async function GET(req: NextRequest, context: { params: Promise<{ id: string }> }) {
+    const { id } = await context.params;
+    const idNum = id ? Number(id) : 0;
+    const products: Product[] = await getProducts(idNum)
     return NextResponse.json(products)
 }

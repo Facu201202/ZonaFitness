@@ -12,7 +12,7 @@ type FavoriteButtonProps = {
 
 export default function FavoriteButton({ product, iscarrusel }: FavoriteButtonProps) {
     const userId = useUserStore(state => state.userId)
-    const [isClicked, setIsClicked] = useState(product.favoritos[0]?.id_publicacion ? true : false)
+    const [isClicked, setIsClicked] = useState((product.favoritos?.length) ? true : false)
     const QueryClient = useQueryClient()
     const mutate = useMutation({
         mutationKey: ["favoriteProduct", [product.id_publicacion, userId]],
