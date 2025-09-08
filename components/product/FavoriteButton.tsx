@@ -28,9 +28,13 @@ export default function FavoriteButton({ product, iscarrusel }: FavoriteButtonPr
 
             return res.json()
         },
-        onSuccess: (data) => { setIsClicked(data.added), QueryClient.invalidateQueries({ queryKey: ["favorites_products", userId] }), QueryClient.invalidateQueries({ queryKey: ["Producto", product.id_publicacion] }) },
+        onSuccess: (data) => {
+                setIsClicked(data.added),
+                QueryClient.invalidateQueries({ queryKey: ["favorites_products", userId] }),
+                QueryClient.invalidateQueries({ queryKey: ["Producto", product.id_publicacion] })
+        },
         onSettled: () => {
-            QueryClient.invalidateQueries({ queryKey: ["favoriteProduct", [product.id_publicacion, userId]] })
+            QueryClient.invalidateQueries({ queryKey: ["Producto", [product.id_publicacion]], })
         }
     })
     const handleClick = () => {
@@ -47,7 +51,7 @@ export default function FavoriteButton({ product, iscarrusel }: FavoriteButtonPr
                 />
             ) : (
                 <HeartIconOutline
-                    className={`${iscarrusel ? "absolute h-6 w-6 z-10 " : " h-8 w-8 lg:h-10 lg:w-10 "} right-1.5 hover:text-[#2D5DA2] hover:cursor-pointer ${!userId || mutate.isPending  && "pointer-events-none"}`}
+                    className={`${iscarrusel ? "absolute h-6 w-6 z-10 " : " h-8 w-8 lg:h-10 lg:w-10 "} right-1.5 hover:text-[#2D5DA2] hover:cursor-pointer ${!userId || mutate.isPending && "pointer-events-none"}`}
                     onClick={handleClick} />
             )}
         </>

@@ -37,13 +37,14 @@ export default async function RootLayout({
 
   const headersList =  await headers()
   const userId = headersList.get("x-user-id") || null
+  const userName = headersList.get("x-user-name")
   return (
     <html lang="en">
       <body
         className={`${montserrat.variable} font-sans antialiased min-h-screen flex flex-col`}
       >
         <main className="">
-          <ReactQueryProvider userId={userId}>
+          <ReactQueryProvider userId={userId} userName={userName}>
             {children}
           </ReactQueryProvider>
         </main>

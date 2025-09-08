@@ -6,6 +6,7 @@ import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import { Montserrat } from 'next/font/google'
 import ReactQueryProvider from "../providers/ReactQueryProvider";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -37,8 +38,8 @@ export default async function RootLayout({
 }>) {
   const headerList = await headers()     
   const userId = headerList.get("x-user-id")
-  const userName = headerList.get("x-user-name")
   const isLogin = !!userId
+  const userName = headerList.get("x-user-name")
   return (
     <div
       className={`${montserrat.variable} font-sans antialiased min-h-screen flex flex-col`}
@@ -47,6 +48,7 @@ export default async function RootLayout({
       <main className="min-h-screen">
         <ReactQueryProvider userId={userId} userName={userName}>
           {children}
+          <ReactQueryDevtools initialIsOpen={false} />
         </ReactQueryProvider>
       </main>
 

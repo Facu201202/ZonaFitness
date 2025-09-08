@@ -24,15 +24,16 @@ export default function ProfileFavorites({ userId }: ProfileFavoritesProps) {
     return (
         <>
             <h3 className="text-3xl font-medium">Productos Favoritos</h3>
-            <div className="py-6 bg-white px-5 rounded-2xl" >
+            <div className="py-6 bg-white px-5 rounded-2xl min-h-56" >
 
                 {isLoading && <p className="text-center font-bold py-10">Cargando...</p>}
-                {data &&
+                {(data && data.length > 0) &&
                     <CardCarousel
                         products={data}
                         isProfile={true}
                     />}
                 {(!data && !isLoading) && <p className="text-center font-bold py-10">No hay productos disponibles</p>}
+                {(data && data.length === 0) && <p className="text-center font-bold py-10">No hay productos en favoritos</p>}
 
             </div>
             {
