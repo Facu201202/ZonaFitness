@@ -6,13 +6,15 @@ import ProductCard from "./ProductCard"
 import { Categoria, Product } from "@/src/types"
 
 type CardCarouselProps = {
-  products: Product[]
+  products: Product[],
+  isProfile?: boolean
 }
 
-export default function CardCarousel({ products }: CardCarouselProps) {
+export default function CardCarousel({ products, isProfile }: CardCarouselProps) {
+  console.log(products)
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     slides: {
-      perView: 4,
+      perView: isProfile? 3 : 4,
       spacing: 16,
     },
     breakpoints: {
@@ -41,6 +43,7 @@ export default function CardCarousel({ products }: CardCarouselProps) {
               category={publication.producto.categoria.nombre as Categoria}
               src={publication.producto.foto}
               opinionsCant={24}
+              product={publication}
             />
           </div>
         ))}

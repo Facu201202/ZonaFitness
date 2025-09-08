@@ -10,7 +10,7 @@ type ProductCommentCardProps = {
 
 export default function ProductCommentCard({ name, comment, stars, date }: ProductCommentCardProps) {
     return (
-        <div className="border rounded-lg p-5 border-gray-200">
+        <div className="border rounded-lg p-5 border-gray-200 bg-white shadow">
             <div className="flex justify-between">
                 <div className="flex items-center gap-3">
                     <Image src="/user.png" alt="User" width={50} height={50} className="rounded-full" />

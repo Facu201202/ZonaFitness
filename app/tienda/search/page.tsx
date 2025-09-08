@@ -33,7 +33,7 @@ export default function page() {
     const page = Number(searchParams.get("page")) || 1
 
     return (
-        <div className="xl:max-w-7xl m-auto py-5 flex flex-col lg:flex-row gap-6 px-3">
+        <div className="xl:max-w-7xl m-auto py-5 flex flex-col lg:flex-row gap-6 px-3 min-h-[1500px]">
             <div className="lg:basis-1/5">
                 <p className="text-2xl font-bold mb-5">Filtros</p>
                 <FilterOptions />

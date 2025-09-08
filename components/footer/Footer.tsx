@@ -4,7 +4,7 @@ import {FaFacebook, FaTwitter, FaWhatsapp} from "react-icons/fa"
 
 export default function Footer() {
     return (
-        <div className="bg-[#111827] text-white mt-auto">
+        <div className="bg-[#111827] text-white">
             <div className="flex flex-col gap-6 justify-center lg:p-8 lg:flex-row lg:justify-between">
                 <div className="flex flex-col gap-4 text-center border-b p-4 lg:border-none lg:text-left lg:pt-0">
                     <h4 className="font-bold text-2xl">ZonaFitness</h4>

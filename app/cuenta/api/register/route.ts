@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server"
 
 export async function POST(req: NextRequest) {
     const body = await req.json()
-    console.log(body)
+
     const resultUser = registerUserSchema.safeParse({...body, rol: "usuario"})
     const resultClient = registerClientSchema.safeParse(body)
     try {

@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { redirect } from "next/navigation";
 
 type PopularCategoryProps = {
     src: string,
@@ -8,7 +9,7 @@ type PopularCategoryProps = {
 
 export default function PopularCategory({ src, name }: PopularCategoryProps) {
     return (
-        <div className="relative 2xl:w-72 2xl:h-96 lg:w-56 lg:h-72 w-44 h-52  overflow-hidden rounded-lg shadow-lg group">
+        <div className="relative 2xl:w-72 2xl:h-96 lg:w-56 lg:h-72 w-44 h-52  overflow-hidden rounded-lg shadow-lg group" onClick={() => redirect(`/tienda/search?categoria=${name}`)}>
             <Image
                 src={src}
                 alt={name}

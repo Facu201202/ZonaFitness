@@ -3,11 +3,9 @@ import { Fragment } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useQuery } from '@tanstack/react-query'
 import { Product } from '@/src/types'
-import ProductInfo from './ProductInfo'
-import ProductComments from './ProductComments'
-import RelatedProducts from './RelatedProducts'
-import { XMarkIcon } from "@heroicons/react/24/solid"
-
+import ToggleProduct from './ToggleProduct'
+import { useProductStore } from "@/src/stores/productStore"
+import Spinner from '../Spinner'
 
 type ProductModalProps = {
   productId: number,
@@ -19,44 +17,47 @@ export default function ProductModal({ productId, products }: ProductModalProps)
   const router = useRouter()
   let productExist = productId !== 0 ? true : false
 
+  const setActiveModal = useProductStore(state => state.setActiveModal)
+
   const fetchProducto = async (id: number): Promise<Product> => {
     const res = await fetch(`/tienda/inicio/api/${id}`)
     if (!res.ok) throw new Error('Error al traer productos')
     return res.json()
   }
 
-  const deleteParams = () => {
+  const handleCloseModal = () => {
     const params = new URLSearchParams(searchParams.toString())
     params.delete("producto")
+    params.delete("cantidad")
+    params.delete("ModalTalle")
+    params.delete("pago")
+    params.delete("entrega")
     router.replace(`?${params.toString()}`, { scroll: false })
+    setTimeout(() => {
+      setActiveModal("Product")
+    }, 2000);
+
   }
 
   const { data } = useQuery({
-    queryKey: ["producto", productId],
+    queryKey: ["Producto", productId],
     queryFn: () => fetchProducto(productId),
-    enabled: productExist
+    enabled: productExist,
+    staleTime: 0,
+    refetchOnMount: true
   })
 
 
   return (
     <Transition show={productExist} as={Fragment}>
-      <Dialog onClose={() => deleteParams()} className="relative z-50">
+      <Dialog onClose={() => handleCloseModal()} className="relative z-50">
         <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
         <div className="fixed inset-0 flex items-center justify-center p-4">
-          <DialogPanel className="w-6xl h-full space-y-4 border bg-white p-4 overflow-y-auto">
+          <DialogPanel className="w-fit max-w-7xl h-full space-y-4 border bg-white p-4 overflow-y-auto">
             {data ?
               (
-                <div>
-                  <div className='flex justify-end mb-5'>
-                    <XMarkIcon className='w-5 h-5 hover:cursor-pointer' onClick={() => deleteParams()} />
-                  </div>
-                  <div className='lg:p-3'>
-                    <ProductInfo product={data} />
-                    <ProductComments />
-                    <RelatedProducts products={products} />
-                  </div>
-                </div>
-              ) : (<p className='font-bold text-center'>Cargando...</p>)
+                <ToggleProduct product={data} products={products} deleteParamsFunction={handleCloseModal} />
+              ) : (<Spinner/>)
             }
           </DialogPanel>
         </div>

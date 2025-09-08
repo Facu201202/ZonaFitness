@@ -185,14 +185,23 @@ exports.Prisma.SaldosScalarFieldEnum = {
 
 exports.Prisma.VentasScalarFieldEnum = {
   id_venta: 'id_venta',
-  cantida: 'cantida',
+  cantidad: 'cantidad',
   precio_total: 'precio_total',
   fecha: 'fecha',
   talle: 'talle',
   estado: 'estado',
+  metodo_entrega: 'metodo_entrega',
+  metodo_pago: 'metodo_pago',
+  n_comprobante: 'n_comprobante',
   id_comentario: 'id_comentario',
   id_publicacion: 'id_publicacion',
   id_usuario: 'id_usuario'
+};
+
+exports.Prisma.FavoritosScalarFieldEnum = {
+  id_favorito: 'id_favorito',
+  id_usuario: 'id_usuario',
+  id_publicacion: 'id_publicacion'
 };
 
 exports.Prisma.SortOrder = {
@@ -209,7 +218,22 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+exports.EstadoEnvio = exports.$Enums.EstadoEnvio = {
+  PENDIENTE: 'PENDIENTE',
+  APROBADO: 'APROBADO',
+  EN_CAMINO: 'EN_CAMINO',
+  ENTREGADO: 'ENTREGADO',
+  CANCELADO: 'CANCELADO'
+};
 
+exports.MetodoEnvio = exports.$Enums.MetodoEnvio = {
+  SUCURSAL: 'SUCURSAL',
+  DOMICILIO: 'DOMICILIO'
+};
+
+exports.MetodoPago = exports.$Enums.MetodoPago = {
+  DINERO_EN_CUENTA: 'DINERO_EN_CUENTA'
+};
 
 exports.Prisma.ModelName = {
   Categorias: 'Categorias',
@@ -220,7 +244,8 @@ exports.Prisma.ModelName = {
   Usuarios: 'Usuarios',
   Clientes: 'Clientes',
   Saldos: 'Saldos',
-  Ventas: 'Ventas'
+  Ventas: 'Ventas',
+  Favoritos: 'Favoritos'
 };
 
 /**

@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Montserrat } from 'next/font/google'
 import ReactQueryProvider from "./providers/ReactQueryProvider";
+import { headers } from "next/headers";
+import { ToastContainer } from "react-toastify"
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -27,21 +29,26 @@ export const metadata: Metadata = {
   description: "ZonaFitness",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const headersList =  await headers()
+  const userId = headersList.get("x-user-id") || null
+  const userName = headersList.get("x-user-name")
   return (
     <html lang="en">
       <body
         className={`${montserrat.variable} font-sans antialiased min-h-screen flex flex-col`}
       >
         <main className="">
-          <ReactQueryProvider>
+          <ReactQueryProvider userId={userId} userName={userName}>
             {children}
           </ReactQueryProvider>
         </main>
+        <ToastContainer />
       </body>
     </html>
   );

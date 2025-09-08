@@ -1,5 +1,6 @@
 import { ReadonlyURLSearchParams } from "next/navigation";
 import { Categoria, FiltersData } from "../types";
+import { EstadoEnvio, MetodoEnvio, MetodoPago } from "../generated/prisma";
 
 export function formatCurrency(amount: number) {
     return new Intl.NumberFormat("es-AR", {
@@ -87,6 +88,22 @@ export const createWhereFilter = (filters: FiltersData) => {
 
 export const sizes = {
     Remeras_pantalones: ["XS", "S", "M", "L", "XL", "XXL"],
+    Remeras: ["XS", "S", "M", "L", "XL", "XXL"],
+    Pantalones: ["XS", "S", "M", "L", "XL", "XXL"],
     Gorras: ["Único"],
     Zapatillas: ["36", "36.5", "37", "37.5", "38", "38.5", "39", "39.5", "40", "40.5", "41", "41.5", "42", "42.5", "43"]
+}
+
+export const deliveryMethods = Object.values(MetodoEnvio)
+export const paymentMethods = Object.values(MetodoPago)
+
+export const taxes = 1100
+export const homeDeliveryPrice = 3000
+
+export const purchaseStateBgColor: Record<EstadoEnvio, [string, string]> = {
+  [EstadoEnvio.PENDIENTE]: ["bg-yellow-100", "text-yellow-700"],   
+  [EstadoEnvio.APROBADO]: ["bg-green-100", "text-green-700"],      
+  [EstadoEnvio.EN_CAMINO]: ["bg-blue-100", "text-blue-700"],  
+  [EstadoEnvio.ENTREGADO]: ["bg-indigo-100", "text-indigo-700"],   
+  [EstadoEnvio.CANCELADO]: ["bg-red-100", "text-red-700"],    
 }
