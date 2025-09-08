@@ -10,7 +10,7 @@ import { createQueryFilter } from "@/src/utils";
 import Pagination from "@/components/Pagination";
 
 
-export default function page() {
+export default function Page() {
     const searchParams = useSearchParams()
     const productId = +searchParams.get('producto')!
     const urlQueryFilter = createQueryFilter(searchParams)

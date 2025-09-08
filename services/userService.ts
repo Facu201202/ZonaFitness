@@ -1,9 +1,8 @@
 import { EditClient, EditUser, LoginUser, RegisterClient, RegisterUser } from "@/src/schema";
 import { prisma } from "@/src/lib/prisma"
 import bcrypt from "bcrypt"
-import { ChangePasswordData } from "@/src/types";
+import { ChangePasswordData, ClientData } from "@/src/types";
 import { Prisma, PrismaClient } from "@/src/generated/prisma";
-import { DefaultArgs } from "@/src/generated/prisma/runtime/library";
 
 export async function createAccount(userData: RegisterUser, client: RegisterClient) {
 
@@ -11,26 +10,35 @@ export async function createAccount(userData: RegisterUser, client: RegisterClie
 
     if (Object.keys(validateErrors).length > 0) {
         return { message: validateErrors }
-
     }
+
+    const clientData: ClientData = {
+        nombre: client.nombre!,
+        apellido: client.apellido!,
+        dni: Number(client.dni),
+        correo: client.correo!,
+        ciudad: client.ciudad!,
+        barrio: client.barrio!,
+        calle: client.calle!,
+    };
 
     const hashedPassword = await bcrypt.hash(userData.contraseña, 10)
     const user = { ...userData, contraseña: hashedPassword }
     const { id_cliente } = await prisma.clientes.create({
-        data: {
-            ...client,
-            dni: Number(client.dni)
-        }
+        data: clientData
     })
+    
     if (!id_cliente) {
         return { message: "No se pudo crear el cliente" }
     }
 
     return prisma.usuarios.create({
         data: {
-            ...user,
-            id_cliente
-        }
+            cliente: { connect: { id_cliente } },
+            contraseña: user.contraseña,
+            usuario: user.usuario!,
+            rol: user.rol!,
+        },
     })
 }
 
@@ -285,7 +293,8 @@ export async function getUserFavorites(userId: number) {
                                 }
                             }
                         }
-                    }
+                    },
+                    favoritos: true
                 }
             }
 
@@ -293,4 +302,3 @@ export async function getUserFavorites(userId: number) {
     })
 }
 
- 

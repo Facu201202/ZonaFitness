@@ -7,16 +7,17 @@ export const dynamic = "force-dynamic"
 
 
 
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
-    const id = Number(params.id)
-    const purchaseInfo = await getPurchase(id)
+export async function GET(req: NextRequest, context: { params: Promise<{ id: string }> }) {
+    const { id } = await context.params;
+    const idNum = Number(id);
+    const purchaseInfo = await getPurchase(idNum)
 
-    if(!purchaseInfo) {
-        return NextResponse.json({error: "Error al traer la venta"}, {status: 404})
+    if (!purchaseInfo) {
+        return NextResponse.json({ error: "Error al traer la venta" }, { status: 404 })
     }
 
     const deliveryPrice = purchaseInfo.metodo_entrega === MetodoEnvio["DOMICILIO"] ? 3000 : 0
 
-    return NextResponse.json({...purchaseInfo, taxes, deliveryPrice})
+    return NextResponse.json({ ...purchaseInfo, taxes, deliveryPrice })
 }
 

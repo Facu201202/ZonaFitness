@@ -9,7 +9,7 @@ import { ProfileUserData, ProfileUserDataForm } from "@/src/types"
 export default function ProfileUserForm({ userData }: { userData: ProfileUserData }) {
     const searchParams = useSearchParams();
     const editUser = +searchParams.get('editUser')!
-    let editUserActive = editUser === 1 ? true : false
+    const editUserActive = editUser === 1 ? true : false
     const { register, handleSubmit, formState: { errors }, setError, clearErrors } = useForm<ProfileUserDataForm>()
     const changeUserInfo = async (data: ProfileUserDataForm) => {
         clearErrors()

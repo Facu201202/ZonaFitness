@@ -60,7 +60,7 @@ export const createQueryFilter = (searchParams: ReadonlyURLSearchParams) => {
 
 
 export const createWhereFilter = (filters: FiltersData) => {
-    const where: any = {
+    const where: Record<string, unknown> = {
         producto: {
             ...(filters.categories.length > 0 && {
                 categoria: { nombre: { in: filters.categories } }

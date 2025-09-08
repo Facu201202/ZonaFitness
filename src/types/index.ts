@@ -1,4 +1,4 @@
-import { Publicaciones, Productos, Stock, Sizes, Ventas, MetodoPago, MetodoEnvio, Favoritos } from '../../src/generated/prisma'
+import { Publicaciones, Productos, Stock, Sizes, Ventas, MetodoPago, MetodoEnvio, Favoritos, Clientes } from '../../src/generated/prisma'
 import { categoriesTranslate } from '../utils'
 
 export type Product = Pick<Publicaciones, "id_publicacion" | "caracteristicas" | "descuento" | "precio"> & {
@@ -10,7 +10,7 @@ export type Product = Pick<Publicaciones, "id_publicacion" | "caracteristicas" |
             talle: Pick<Sizes, "talle">
         }>
     }
-    favoritos: Array<Favoritos>
+    favoritos?: Array<Favoritos>
 }
 
 export type FiltersData = {
@@ -35,7 +35,7 @@ export type ProfileUserData = {
         barrio: string,
         calle: string
     },
-    saldo: [{ saldo: number }]
+    saldo: { saldo: number }[]
 }
 
 export type ProfileUserDataForm = {
@@ -99,3 +99,6 @@ export type UserPurchase = Pick<Ventas, "n_comprobante" | "estado" | "fecha" | "
         };
     };
 }
+
+
+export type ClientData = Omit<Clientes, "id_cliente">

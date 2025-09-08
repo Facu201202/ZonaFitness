@@ -1,11 +1,10 @@
 "use client"
-
 import LoginForm from "@/components/login-register/LoginForm";
 import RegisterForm from "@/components/login-register/RegisterForm";
 import LogoBlackBg from "@/components/logos/LogoBlackBg";
 import { useState } from "react";
 
-export default function page() {
+export default function Page() {
 
   const [login, setLogin] = useState(true)
 

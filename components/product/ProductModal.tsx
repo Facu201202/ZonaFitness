@@ -15,7 +15,7 @@ type ProductModalProps = {
 export default function ProductModal({ productId, products }: ProductModalProps) {
   const searchParams = useSearchParams();
   const router = useRouter()
-  let productExist = productId !== 0 ? true : false
+  const productExist = productId !== 0 ? true : false
 
   const setActiveModal = useProductStore(state => state.setActiveModal)
 
