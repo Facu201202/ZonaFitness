@@ -53,6 +53,7 @@ model Publicaciones {
   producto        Productos @relation(fields: [id_producto], references: [id_producto])
   fecha           DateTime  @default(now())
   ventas Ventas[]
+  favoritos Favoritos[]
 }
 
 model Usuarios {
@@ -64,6 +65,7 @@ model Usuarios {
   cliente Clientes  @relation(fields: [id_cliente], references: [id_cliente])
   saldo Saldos[]
   compras Ventas[]
+  favoritos Favoritos[]
 }
 
 model Clientes {
@@ -85,16 +87,45 @@ model Saldos {
   usuario Usuarios @relation(fields: [id_usuario], references: [id_usuario])
 }
 
+enum EstadoEnvio {
+  PENDIENTE
+  APROBADO
+  EN_CAMINO
+  ENTREGADO
+  CANCELADO
+}
+
+enum MetodoEnvio {
+  SUCURSAL
+  DOMICILIO
+}
+
+enum MetodoPago {
+  DINERO_EN_CUENTA
+}
+
 model Ventas {
   id_venta Int @id @default(autoincrement())
-  cantida Int
+  cantidad Int
   precio_total Float
   fecha DateTime @default(now())
   talle String
-  estado String
+  estado EstadoEnvio @default(PENDIENTE)
+  metodo_entrega MetodoEnvio 
+  metodo_pago MetodoPago
+  n_comprobante String @unique
   id_comentario Int?
   id_publicacion Int
   id_usuario Int
   publicacion Publicaciones @relation(fields: [id_publicacion], references: [id_publicacion])
   usuario Usuarios @relation(fields: [id_usuario], references: [id_usuario])
+}
+
+model Favoritos {
+  id_favorito Int @id @default(autoincrement())
+  id_usuario Int
+  id_publicacion Int
+  publicacion Publicaciones @relation(fields: [id_publicacion], references: [id_publicacion])
+  usuario Usuarios @relation(fields: [id_usuario], references: [id_usuario])
+  @@unique([id_usuario, id_publicacion])
 }

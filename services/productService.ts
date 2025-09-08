@@ -1,8 +1,10 @@
+import { Prisma, PrismaClient } from "@/src/generated/prisma";
 import { prisma } from "@/src/lib/prisma"
-import { FiltersData } from "@/src/types";
+import { FiltersData, SaleData } from "@/src/types";
 import { createWhereFilter } from "@/src/utils";
+import {nanoid} from "nanoid"
 
-export async function getProducts() {
+export async function getProducts(id:number) {
     return await prisma.publicaciones.findMany({
         take: 10,
         where: {
@@ -37,9 +39,23 @@ export async function getProducts() {
                                 }
                             }
                         }
-                    }
+                    },
+                    
+                }
+            },
+            favoritos: {
+                where: {
+                    id_usuario: id
                 }
             }
+        }
+    })
+}
+
+export async function getProduct(id: number) {
+    return await prisma.publicaciones.findFirst({
+        where: {
+            id_publicacion: id
         }
     })
 }
@@ -88,5 +104,57 @@ export async function  getSearchedProductsCount(filters: FiltersData) {
     const where = createWhereFilter(filters)
     return await prisma.publicaciones.count({
         where
+    })
+}
+
+export async function findProductStock(idProduct: number, size:string){
+    return prisma.stock.findFirst({
+        where:{
+            id_producto: idProduct,
+            talle: {
+                talle: size
+            }
+        }
+    })
+}
+
+export async function decrementProductStock(stockId: number, quantity: number, tx: PrismaClient | Prisma.TransactionClient){
+    return tx.stock.update({
+        where: {
+            id_stock: stockId
+        },
+        data: {
+            cantidad: {decrement: quantity}
+        }
+    })
+}
+
+export async function createSale(saleData: SaleData, tx: PrismaClient | Prisma.TransactionClient){
+    return await tx.ventas.create({
+        data: {
+            cantidad: saleData.cantidad,
+            precio_total: saleData.precio_total,
+            talle: saleData.talle,
+            id_publicacion: saleData.id_publicacion,
+            id_usuario: saleData.id_usuario,
+            n_comprobante: "VEN-" + nanoid(8),
+            metodo_entrega: saleData.metodo_entrega,
+            metodo_pago: saleData.metodo_pago
+        },
+        select: {
+            id_venta: true,
+            n_comprobante: true,
+            precio_total: true,
+            metodo_entrega: true,
+            publicacion: {
+                select: {
+                    producto: {
+                        select: {
+                            nombre:  true
+                        }
+                    }
+                }
+            }
+        }
     })
 }

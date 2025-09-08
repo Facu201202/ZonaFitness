@@ -38,3 +38,9 @@ export type RegisterClient = z.infer<typeof registerClientSchema>
 
 export type LoginUser = z.infer<typeof loginUserSchema>
 export type LoginUserForm = z.infer<typeof loginUserFormSchema>
+
+export const editUserSchema = registerFormSchema.pick({usuario: true}).extend({id_usuario: z.number()})
+export const editClientSchema = registerFormSchema.omit({usuario: true, contraseña: true, comfirmarContraseña: true}).extend({id_cliente: z.number()})
+
+export type EditUser = z.infer<typeof editUserSchema>
+export type EditClient = z.infer<typeof editClientSchema>

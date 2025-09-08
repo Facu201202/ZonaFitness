@@ -8,7 +8,6 @@ export async function middleware(req: NextRequest) {
     const pathname = req.nextUrl.pathname
 
     if (!token && authRoutes.some(route => pathname.startsWith(route))) {
-        console.log(req.url)
         return NextResponse.redirect(new URL("/cuenta", req.url))
     }
 
@@ -18,6 +17,7 @@ export async function middleware(req: NextRequest) {
         const {payload} = await jwtVerify(token, secret) 
         const response = NextResponse.next()
         response.headers.set("x-user-id", payload.id_usuario as string)
+        response.headers.set("x-user-name", payload.usuario as string)
         return response
     } catch (error) {
         console.log(error)
