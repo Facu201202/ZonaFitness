@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Montserrat } from 'next/font/google'
 import ReactQueryProvider from "./providers/ReactQueryProvider";
-import { headers } from "next/headers";
 import { ToastContainer } from "react-toastify"
 
 const montserrat = Montserrat({
@@ -11,7 +10,6 @@ const montserrat = Montserrat({
   variable: '--font-montserrat',
   display: 'swap',
 })
-
 
 
 export const metadata: Metadata = {
@@ -25,16 +23,13 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  const headersList =  await headers()
-  const userId = headersList.get("x-user-id") || null
-  const userName = headersList.get("x-user-name")
   return (
     <html lang="en">
       <body
         className={`${montserrat.variable} font-sans antialiased min-h-screen flex flex-col`}
       >
         <main className="">
-          <ReactQueryProvider userId={userId} userName={userName}>
+          <ReactQueryProvider>
             {children}
           </ReactQueryProvider>
         </main>

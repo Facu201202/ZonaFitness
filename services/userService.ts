@@ -1,7 +1,7 @@
 import { EditClient, EditUser, LoginUser, RegisterClient, RegisterUser } from "@/src/schema";
 import { prisma } from "@/src/lib/prisma"
 import bcrypt from "bcrypt"
-import { ChangePasswordData, ClientData } from "@/src/types";
+import { ChangePasswordData, ClientData, OpinionData } from "@/src/types";
 import { Prisma, PrismaClient } from "@/src/generated/prisma";
 
 export async function createAccount(userData: RegisterUser, client: RegisterClient) {
@@ -27,7 +27,7 @@ export async function createAccount(userData: RegisterUser, client: RegisterClie
     const { id_cliente } = await prisma.clientes.create({
         data: clientData
     })
-    
+
     if (!id_cliente) {
         return { message: "No se pudo crear el cliente" }
     }
@@ -213,7 +213,9 @@ export async function getUserPurchase(id: number) {
         where: {
             id_usuario: id
         },
+        orderBy: { fecha: 'desc' },
         select: {
+            id_venta: true,
             n_comprobante: true,
             fecha: true,
             precio_total: true,
@@ -231,6 +233,14 @@ export async function getUserPurchase(id: number) {
                             }
                         }
                     }
+                }
+            },
+            opinion: {
+                select: {
+                    id_opinion: true,
+                    comentario: true,
+                    calificacion: true,
+                    fecha: true
                 }
             }
         }
@@ -302,3 +312,71 @@ export async function getUserFavorites(userId: number) {
     })
 }
 
+export async function getOneUserPurchase(purchaseId: number, userId: number) {
+    return await prisma.ventas.findFirst({
+        where: {
+            id_usuario: userId,
+            id_venta: purchaseId
+        }
+    })
+}
+
+export async function createUserComment(data: OpinionData) {
+    return await prisma.opiniones.create({
+        data: {
+            calificacion: data.rating,
+            comentario: data.comment,
+            id_usuario: data.userId,
+            id_venta: data.purchaseId
+        }
+    })
+}
+
+
+export async function getUserComment(commentId: number) {
+    return await prisma.opiniones.findFirst({
+        where: {id_opinion: commentId},
+        select: {
+            id_opinion: true,
+            calificacion: true,
+            comentario: true,
+            fecha: true,
+            usuario: {
+                select: {
+                    cliente: {
+                        select: {
+                            nombre: true
+                        }
+                    }
+                }
+            }
+        }
+    })
+}
+
+export async function getuserCommentList(userId: number) {
+    return prisma.opiniones.findMany({
+        where: { id_usuario: userId },
+        select: {
+            id_opinion: true,
+            calificacion: true,
+            comentario: true,
+            fecha: true,
+            usuario: {
+                select: {
+                    cliente: {
+                        select: {
+                            nombre: true
+                        }
+                    }
+                }
+            }
+        }
+    })
+}
+
+export async function deleteUserComment(commentId: number) {
+    return await prisma.opiniones.delete({
+        where: {id_opinion: commentId}
+    })
+}

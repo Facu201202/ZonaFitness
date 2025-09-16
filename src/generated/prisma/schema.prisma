@@ -66,6 +66,7 @@ model Usuarios {
   saldo       Saldos[]
   compras     Ventas[]
   favoritos   Favoritos[]
+  opiniones   Opiniones[]
 }
 
 model Clientes {
@@ -119,6 +120,7 @@ model Ventas {
   id_usuario     Int
   publicacion    Publicaciones @relation(fields: [id_publicacion], references: [id_publicacion])
   usuario        Usuarios      @relation(fields: [id_usuario], references: [id_usuario])
+  opinion        Opiniones[]
 }
 
 model Favoritos {
@@ -129,4 +131,15 @@ model Favoritos {
   usuario        Usuarios      @relation(fields: [id_usuario], references: [id_usuario])
 
   @@unique([id_usuario, id_publicacion])
+}
+
+model Opiniones {
+  id_opinion   Int      @id @default(autoincrement())
+  calificacion Float
+  fecha        DateTime @default(now())
+  comentario   String
+  id_usuario   Int
+  id_venta     Int
+  usuario      Usuarios @relation(fields: [id_usuario], references: [id_usuario])
+  venta        Ventas   @relation(fields: [id_venta], references: [id_venta])
 }

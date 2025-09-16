@@ -36,15 +36,16 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const headerList = await headers()     
+  const headerList = await headers()
   const userId = headerList.get("x-user-id")
-  const isLogin = !!userId
   const userName = headerList.get("x-user-name")
+  const isLogin = !!userId
+
   return (
     <div
       className={`${montserrat.variable} font-sans antialiased min-h-screen flex flex-col`}
     >
-      <Navbar isLogin={isLogin}/>
+      <Navbar isLogin={isLogin} />
       <main className="min-h-screen">
         <ReactQueryProvider userId={userId} userName={userName}>
           {children}

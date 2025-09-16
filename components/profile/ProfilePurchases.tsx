@@ -2,6 +2,8 @@ import { UserPurchase } from "@/src/types";
 import Spinner from "../Spinner";
 import PurchaseInfoCard from "./PurchaseInfoCard";
 import { useQuery } from "@tanstack/react-query";
+import ProfileCommentModal from "./ProfileCommentModal";
+import ProfileCurrentCommentModal from "./ProfileCurrentCommentModal";
 
 type ProfilePurchasesProps = {
     userId: number
@@ -34,7 +36,9 @@ export default function ProfilePurchases({ userId }: ProfilePurchasesProps) {
                     <PurchaseInfoCard key={purchase.n_comprobante} userPurchase={purchase} />
                 ))
             )}
-
+            
+            <ProfileCommentModal/>
+            <ProfileCurrentCommentModal/>
         </>
     )
 }

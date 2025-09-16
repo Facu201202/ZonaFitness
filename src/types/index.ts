@@ -1,4 +1,4 @@
-import { Publicaciones, Productos, Stock, Sizes, Ventas, MetodoPago, MetodoEnvio, Favoritos, Clientes } from '../../src/generated/prisma'
+import { Publicaciones, Productos, Stock, Sizes, Ventas, MetodoPago, MetodoEnvio, Favoritos, Clientes, Opiniones } from '../../src/generated/prisma'
 import { categoriesTranslate } from '../utils'
 
 export type Product = Pick<Publicaciones, "id_publicacion" | "caracteristicas" | "descuento" | "precio"> & {
@@ -88,7 +88,7 @@ export type PurchaseInfo = Pick<Ventas, "cantidad" | "precio_total" | "fecha" | 
 }
 
 
-export type UserPurchase = Pick<Ventas, "n_comprobante" | "estado" | "fecha" | "precio_total"> & {
+export type UserPurchase = Pick<Ventas, "n_comprobante" | "estado" | "fecha" | "precio_total" | "id_venta"> & {
     publicacion: {
         producto: {
             nombre: string;
@@ -97,8 +97,40 @@ export type UserPurchase = Pick<Ventas, "n_comprobante" | "estado" | "fecha" | "
                 nombre: string
             }
         };
-    };
+    },
+    opinion: {
+        id_opinion: number;
+    }[];
 }
 
 
 export type ClientData = Omit<Clientes, "id_cliente">
+
+export type OpinionData = {
+    rating: number;
+    comment: string;
+    userId: number;
+    purchaseId: number;
+}
+
+export type UserComment = Omit<Opiniones, "id_opinion" | "id_usuario" | "id_venta"> & {
+    usuario: {
+        cliente: {
+            nombre: string;
+        };
+    };
+}
+
+export type UserCommentList = Omit<Opiniones, "id_usuario" | "id_venta"> & {
+    usuario: {
+        cliente: {
+            nombre: string;
+        };
+    };
+}
+
+export type RelatedCommentsProduct = Omit<Opiniones, "id_usuario" | "id_venta"> & {
+    usuario: {
+        usuario: string;
+    }
+}

@@ -1,7 +1,7 @@
 "use client"
 import { PencilSquareIcon } from "@heroicons/react/24/outline"
 import { useForm } from "react-hook-form"
-import Error from "../Error"
+import ErrorMessage from "../ErrorMessage"
 import { toast } from "react-toastify"
 import { ChangePasswordForm } from "@/src/types"
 
@@ -59,7 +59,7 @@ export default function ProfileUserPasswordForm({userId}: {userId: number}) {
                             }
                         })} />
                         {errors.contraseñaActual && (
-                            <Error>{errors.contraseñaActual?.message?.toString()}</Error>
+                            <ErrorMessage>{errors.contraseñaActual?.message?.toString()}</ErrorMessage>
                         )}
                     </div>
                     <div className="flex flex-col gap-2 font-semibold">
@@ -76,7 +76,7 @@ export default function ProfileUserPasswordForm({userId}: {userId: number}) {
                             }
                         })} />
                         {errors.contraseñaNueva && (
-                            <Error>{errors.contraseñaNueva?.message?.toString()}</Error>
+                            <ErrorMessage>{errors.contraseñaNueva?.message?.toString()}</ErrorMessage>
                         )}
                     </div>
                     <div className="flex flex-col gap-2 font-semibold">
@@ -87,7 +87,7 @@ export default function ProfileUserPasswordForm({userId}: {userId: number}) {
                                 value === password || "Las contraseñas no coinciden"
                         })} />
                         {errors.confirmarContraseña && (
-                            <Error>{errors.confirmarContraseña?.message?.toString()}</Error>
+                            <ErrorMessage>{errors.confirmarContraseña?.message?.toString()}</ErrorMessage>
                         )}
                     </div>
                 </div>

@@ -2,9 +2,10 @@ import { Prisma, PrismaClient } from "@/src/generated/prisma";
 import { prisma } from "@/src/lib/prisma"
 import { FiltersData, SaleData } from "@/src/types";
 import { createWhereFilter } from "@/src/utils";
-import {nanoid} from "nanoid"
+import { nanoid } from "nanoid"
+import { skip } from "node:test";
 
-export async function getProducts(id:number) {
+export async function getProducts(id: number) {
     return await prisma.publicaciones.findMany({
         take: 10,
         where: {
@@ -40,7 +41,7 @@ export async function getProducts(id:number) {
                             }
                         }
                     },
-                    
+
                 }
             },
             favoritos: {
@@ -100,16 +101,39 @@ export async function getSearchedProducts(filters: FiltersData) {
 
 }
 
-export async function  getSearchedProductsCount(filters: FiltersData) {
+export async function getProductComments(publicationId: number, page: number) {
+    return await prisma.opiniones.findMany({
+        take: 5,
+        skip: page * 5,
+        where: {
+            venta: {
+                id_publicacion: publicationId
+            }
+        },
+        select: {
+            id_opinion: true,
+            comentario: true,
+            calificacion: true,
+            fecha: true,
+            usuario: {
+                select: {
+                 usuario: true
+                }
+            }
+        }
+    })
+}
+
+export async function getSearchedProductsCount(filters: FiltersData) {
     const where = createWhereFilter(filters)
     return await prisma.publicaciones.count({
         where
     })
 }
 
-export async function findProductStock(idProduct: number, size:string){
+export async function findProductStock(idProduct: number, size: string) {
     return prisma.stock.findFirst({
-        where:{
+        where: {
             id_producto: idProduct,
             talle: {
                 talle: size
@@ -118,18 +142,18 @@ export async function findProductStock(idProduct: number, size:string){
     })
 }
 
-export async function decrementProductStock(stockId: number, quantity: number, tx: PrismaClient | Prisma.TransactionClient){
+export async function decrementProductStock(stockId: number, quantity: number, tx: PrismaClient | Prisma.TransactionClient) {
     return tx.stock.update({
         where: {
             id_stock: stockId
         },
         data: {
-            cantidad: {decrement: quantity}
+            cantidad: { decrement: quantity }
         }
     })
 }
 
-export async function createSale(saleData: SaleData, tx: PrismaClient | Prisma.TransactionClient){
+export async function createSale(saleData: SaleData, tx: PrismaClient | Prisma.TransactionClient) {
     return await tx.ventas.create({
         data: {
             cantidad: saleData.cantidad,
@@ -150,7 +174,7 @@ export async function createSale(saleData: SaleData, tx: PrismaClient | Prisma.T
                 select: {
                     producto: {
                         select: {
-                            nombre:  true
+                            nombre: true
                         }
                     }
                 }

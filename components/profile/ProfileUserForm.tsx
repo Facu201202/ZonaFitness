@@ -2,7 +2,7 @@
 import { UserIcon, PencilSquareIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/outline"
 import { useForm } from "react-hook-form"
 import { useSearchParams } from 'next/navigation'
-import Error from "../Error"
+import ErrorMessage from "../ErrorMessage"
 import { toast } from "react-toastify"
 import { ProfileUserData, ProfileUserDataForm } from "@/src/types"
 
@@ -61,7 +61,7 @@ export default function ProfileUserForm({ userData }: { userData: ProfileUserDat
                                     }
                                 })} />
                                 {errors.nombre && (
-                                    <Error>{errors.nombre?.message?.toString()}</Error>
+                                    <ErrorMessage>{errors.nombre?.message?.toString()}</ErrorMessage>
                                 )}
 
                             </div>
@@ -75,7 +75,7 @@ export default function ProfileUserForm({ userData }: { userData: ProfileUserDat
                                     }
                                 })} />
                                 {errors.apellido && (
-                                    <Error>{errors.apellido?.message?.toString()}</Error>
+                                    <ErrorMessage>{errors.apellido?.message?.toString()}</ErrorMessage>
                                 )}
                             </div>
                             <div className="flex flex-col gap-2 font-semibold">
@@ -88,7 +88,7 @@ export default function ProfileUserForm({ userData }: { userData: ProfileUserDat
                                     }
                                 })} />
                                 {errors.dni && (
-                                    <Error>{errors.dni?.message?.toString()}</Error>
+                                    <ErrorMessage>{errors.dni?.message?.toString()}</ErrorMessage>
                                 )}
                             </div>
                             <div className="flex flex-col gap-2 font-semibold">
@@ -105,7 +105,7 @@ export default function ProfileUserForm({ userData }: { userData: ProfileUserDat
                                     }
                                 })} />
                                 {errors.usuario && (
-                                    <Error>{errors.usuario?.message?.toString()}</Error>
+                                    <ErrorMessage>{errors.usuario?.message?.toString()}</ErrorMessage>
                                 )}
                             </div>
                         </div>
@@ -126,7 +126,7 @@ export default function ProfileUserForm({ userData }: { userData: ProfileUserDat
                                 }
                             })} />
                             {errors.correo && (
-                                <Error>{errors.correo?.message?.toString()}</Error>
+                                <ErrorMessage>{errors.correo?.message?.toString()}</ErrorMessage>
                             )}
                         </div>
                     </div>
@@ -146,7 +146,7 @@ export default function ProfileUserForm({ userData }: { userData: ProfileUserDat
                                     maxLength: { value: 15, message: "La ciudad debe tener menos de 15 caracteres" }
                                 })} />
                                 {errors.ciudad && (
-                                    <Error>{errors.ciudad?.message?.toString()}</Error>
+                                    <ErrorMessage>{errors.ciudad?.message?.toString()}</ErrorMessage>
                                 )}
                             </div>
                             <div className="flex flex-col gap-2 font-semibold">
@@ -157,7 +157,7 @@ export default function ProfileUserForm({ userData }: { userData: ProfileUserDat
                                     maxLength: { value: 20, message: "El nombre del barrio debe tener menos de 20 caracteres" }
                                 })} />
                                 {errors.barrio && (
-                                    <Error>{errors.barrio?.message?.toString()}</Error>
+                                    <ErrorMessage>{errors.barrio?.message?.toString()}</ErrorMessage>
                                 )}
                             </div>
                             <div className="flex flex-col gap-2 font-semibold col-span-2">
@@ -168,7 +168,7 @@ export default function ProfileUserForm({ userData }: { userData: ProfileUserDat
                                     maxLength: { value: 30, message: "El nomber de la calle debe tener menos de 30 caracteres" }
                                 })} />
                                 {errors.calle && (
-                                    <Error>{errors.calle?.message?.toString()}</Error>
+                                    <ErrorMessage>{errors.calle?.message?.toString()}</ErrorMessage>
                                 )}
                             </div>
                         </div>

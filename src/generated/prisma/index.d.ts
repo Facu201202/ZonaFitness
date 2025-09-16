@@ -63,6 +63,11 @@ export type Ventas = $Result.DefaultSelection<Prisma.$VentasPayload>
  * 
  */
 export type Favoritos = $Result.DefaultSelection<Prisma.$FavoritosPayload>
+/**
+ * Model Opiniones
+ * 
+ */
+export type Opiniones = $Result.DefaultSelection<Prisma.$OpinionesPayload>
 
 /**
  * Enums
@@ -331,6 +336,16 @@ export class PrismaClient<
     * ```
     */
   get favoritos(): Prisma.FavoritosDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.opiniones`: Exposes CRUD operations for the **Opiniones** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Opiniones
+    * const opiniones = await prisma.opiniones.findMany()
+    * ```
+    */
+  get opiniones(): Prisma.OpinionesDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -567,7 +582,7 @@ export namespace Prisma {
   ? False
   : T extends Uint8Array
   ? False
-  : T extends bigint
+  : T extends BigInt
   ? False
   : T extends object
   ? True
@@ -780,7 +795,8 @@ export namespace Prisma {
     Clientes: 'Clientes',
     Saldos: 'Saldos',
     Ventas: 'Ventas',
-    Favoritos: 'Favoritos'
+    Favoritos: 'Favoritos',
+    Opiniones: 'Opiniones'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -799,7 +815,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "categorias" | "productos" | "sizes" | "stock" | "publicaciones" | "usuarios" | "clientes" | "saldos" | "ventas" | "favoritos"
+      modelProps: "categorias" | "productos" | "sizes" | "stock" | "publicaciones" | "usuarios" | "clientes" | "saldos" | "ventas" | "favoritos" | "opiniones"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1543,6 +1559,80 @@ export namespace Prisma {
           }
         }
       }
+      Opiniones: {
+        payload: Prisma.$OpinionesPayload<ExtArgs>
+        fields: Prisma.OpinionesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.OpinionesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OpinionesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.OpinionesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OpinionesPayload>
+          }
+          findFirst: {
+            args: Prisma.OpinionesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OpinionesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.OpinionesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OpinionesPayload>
+          }
+          findMany: {
+            args: Prisma.OpinionesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OpinionesPayload>[]
+          }
+          create: {
+            args: Prisma.OpinionesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OpinionesPayload>
+          }
+          createMany: {
+            args: Prisma.OpinionesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.OpinionesCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OpinionesPayload>[]
+          }
+          delete: {
+            args: Prisma.OpinionesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OpinionesPayload>
+          }
+          update: {
+            args: Prisma.OpinionesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OpinionesPayload>
+          }
+          deleteMany: {
+            args: Prisma.OpinionesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.OpinionesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.OpinionesUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OpinionesPayload>[]
+          }
+          upsert: {
+            args: Prisma.OpinionesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OpinionesPayload>
+          }
+          aggregate: {
+            args: Prisma.OpinionesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateOpiniones>
+          }
+          groupBy: {
+            args: Prisma.OpinionesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<OpinionesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.OpinionesCountArgs<ExtArgs>
+            result: $Utils.Optional<OpinionesCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1637,6 +1727,7 @@ export namespace Prisma {
     saldos?: SaldosOmit
     ventas?: VentasOmit
     favoritos?: FavoritosOmit
+    opiniones?: OpinionesOmit
   }
 
   /* Types for Logging */
@@ -1876,12 +1967,14 @@ export namespace Prisma {
     saldo: number
     compras: number
     favoritos: number
+    opiniones: number
   }
 
   export type UsuariosCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     saldo?: boolean | UsuariosCountOutputTypeCountSaldoArgs
     compras?: boolean | UsuariosCountOutputTypeCountComprasArgs
     favoritos?: boolean | UsuariosCountOutputTypeCountFavoritosArgs
+    opiniones?: boolean | UsuariosCountOutputTypeCountOpinionesArgs
   }
 
   // Custom InputTypes
@@ -1916,6 +2009,13 @@ export namespace Prisma {
     where?: FavoritosWhereInput
   }
 
+  /**
+   * UsuariosCountOutputType without action
+   */
+  export type UsuariosCountOutputTypeCountOpinionesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OpinionesWhereInput
+  }
+
 
   /**
    * Count Type ClientesCountOutputType
@@ -1945,6 +2045,37 @@ export namespace Prisma {
    */
   export type ClientesCountOutputTypeCountUsuarioArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: UsuariosWhereInput
+  }
+
+
+  /**
+   * Count Type VentasCountOutputType
+   */
+
+  export type VentasCountOutputType = {
+    opinion: number
+  }
+
+  export type VentasCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    opinion?: boolean | VentasCountOutputTypeCountOpinionArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * VentasCountOutputType without action
+   */
+  export type VentasCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VentasCountOutputType
+     */
+    select?: VentasCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * VentasCountOutputType without action
+   */
+  export type VentasCountOutputTypeCountOpinionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OpinionesWhereInput
   }
 
 
@@ -7772,6 +7903,7 @@ export namespace Prisma {
     saldo?: boolean | Usuarios$saldoArgs<ExtArgs>
     compras?: boolean | Usuarios$comprasArgs<ExtArgs>
     favoritos?: boolean | Usuarios$favoritosArgs<ExtArgs>
+    opiniones?: boolean | Usuarios$opinionesArgs<ExtArgs>
     _count?: boolean | UsuariosCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["usuarios"]>
 
@@ -7807,6 +7939,7 @@ export namespace Prisma {
     saldo?: boolean | Usuarios$saldoArgs<ExtArgs>
     compras?: boolean | Usuarios$comprasArgs<ExtArgs>
     favoritos?: boolean | Usuarios$favoritosArgs<ExtArgs>
+    opiniones?: boolean | Usuarios$opinionesArgs<ExtArgs>
     _count?: boolean | UsuariosCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UsuariosIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7823,6 +7956,7 @@ export namespace Prisma {
       saldo: Prisma.$SaldosPayload<ExtArgs>[]
       compras: Prisma.$VentasPayload<ExtArgs>[]
       favoritos: Prisma.$FavoritosPayload<ExtArgs>[]
+      opiniones: Prisma.$OpinionesPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id_usuario: number
@@ -8228,6 +8362,7 @@ export namespace Prisma {
     saldo<T extends Usuarios$saldoArgs<ExtArgs> = {}>(args?: Subset<T, Usuarios$saldoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SaldosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     compras<T extends Usuarios$comprasArgs<ExtArgs> = {}>(args?: Subset<T, Usuarios$comprasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VentasPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     favoritos<T extends Usuarios$favoritosArgs<ExtArgs> = {}>(args?: Subset<T, Usuarios$favoritosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavoritosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    opiniones<T extends Usuarios$opinionesArgs<ExtArgs> = {}>(args?: Subset<T, Usuarios$opinionesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OpinionesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8727,6 +8862,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: FavoritosScalarFieldEnum | FavoritosScalarFieldEnum[]
+  }
+
+  /**
+   * Usuarios.opiniones
+   */
+  export type Usuarios$opinionesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Opiniones
+     */
+    select?: OpinionesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Opiniones
+     */
+    omit?: OpinionesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OpinionesInclude<ExtArgs> | null
+    where?: OpinionesWhereInput
+    orderBy?: OpinionesOrderByWithRelationInput | OpinionesOrderByWithRelationInput[]
+    cursor?: OpinionesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: OpinionesScalarFieldEnum | OpinionesScalarFieldEnum[]
   }
 
   /**
@@ -11245,6 +11404,8 @@ export namespace Prisma {
     id_usuario?: boolean
     publicacion?: boolean | PublicacionesDefaultArgs<ExtArgs>
     usuario?: boolean | UsuariosDefaultArgs<ExtArgs>
+    opinion?: boolean | Ventas$opinionArgs<ExtArgs>
+    _count?: boolean | VentasCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ventas"]>
 
   export type VentasSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -11300,6 +11461,8 @@ export namespace Prisma {
   export type VentasInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     publicacion?: boolean | PublicacionesDefaultArgs<ExtArgs>
     usuario?: boolean | UsuariosDefaultArgs<ExtArgs>
+    opinion?: boolean | Ventas$opinionArgs<ExtArgs>
+    _count?: boolean | VentasCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type VentasIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     publicacion?: boolean | PublicacionesDefaultArgs<ExtArgs>
@@ -11315,6 +11478,7 @@ export namespace Prisma {
     objects: {
       publicacion: Prisma.$PublicacionesPayload<ExtArgs>
       usuario: Prisma.$UsuariosPayload<ExtArgs>
+      opinion: Prisma.$OpinionesPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id_venta: number
@@ -11725,6 +11889,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     publicacion<T extends PublicacionesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PublicacionesDefaultArgs<ExtArgs>>): Prisma__PublicacionesClient<$Result.GetResult<Prisma.$PublicacionesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     usuario<T extends UsuariosDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsuariosDefaultArgs<ExtArgs>>): Prisma__UsuariosClient<$Result.GetResult<Prisma.$UsuariosPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    opinion<T extends Ventas$opinionArgs<ExtArgs> = {}>(args?: Subset<T, Ventas$opinionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OpinionesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12159,6 +12324,30 @@ export namespace Prisma {
      * Limit how many Ventas to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Ventas.opinion
+   */
+  export type Ventas$opinionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Opiniones
+     */
+    select?: OpinionesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Opiniones
+     */
+    omit?: OpinionesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OpinionesInclude<ExtArgs> | null
+    where?: OpinionesWhereInput
+    orderBy?: OpinionesOrderByWithRelationInput | OpinionesOrderByWithRelationInput[]
+    cursor?: OpinionesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: OpinionesScalarFieldEnum | OpinionesScalarFieldEnum[]
   }
 
   /**
@@ -13263,6 +13452,1131 @@ export namespace Prisma {
 
 
   /**
+   * Model Opiniones
+   */
+
+  export type AggregateOpiniones = {
+    _count: OpinionesCountAggregateOutputType | null
+    _avg: OpinionesAvgAggregateOutputType | null
+    _sum: OpinionesSumAggregateOutputType | null
+    _min: OpinionesMinAggregateOutputType | null
+    _max: OpinionesMaxAggregateOutputType | null
+  }
+
+  export type OpinionesAvgAggregateOutputType = {
+    id_opinion: number | null
+    calificacion: number | null
+    id_usuario: number | null
+    id_venta: number | null
+  }
+
+  export type OpinionesSumAggregateOutputType = {
+    id_opinion: number | null
+    calificacion: number | null
+    id_usuario: number | null
+    id_venta: number | null
+  }
+
+  export type OpinionesMinAggregateOutputType = {
+    id_opinion: number | null
+    calificacion: number | null
+    fecha: Date | null
+    comentario: string | null
+    id_usuario: number | null
+    id_venta: number | null
+  }
+
+  export type OpinionesMaxAggregateOutputType = {
+    id_opinion: number | null
+    calificacion: number | null
+    fecha: Date | null
+    comentario: string | null
+    id_usuario: number | null
+    id_venta: number | null
+  }
+
+  export type OpinionesCountAggregateOutputType = {
+    id_opinion: number
+    calificacion: number
+    fecha: number
+    comentario: number
+    id_usuario: number
+    id_venta: number
+    _all: number
+  }
+
+
+  export type OpinionesAvgAggregateInputType = {
+    id_opinion?: true
+    calificacion?: true
+    id_usuario?: true
+    id_venta?: true
+  }
+
+  export type OpinionesSumAggregateInputType = {
+    id_opinion?: true
+    calificacion?: true
+    id_usuario?: true
+    id_venta?: true
+  }
+
+  export type OpinionesMinAggregateInputType = {
+    id_opinion?: true
+    calificacion?: true
+    fecha?: true
+    comentario?: true
+    id_usuario?: true
+    id_venta?: true
+  }
+
+  export type OpinionesMaxAggregateInputType = {
+    id_opinion?: true
+    calificacion?: true
+    fecha?: true
+    comentario?: true
+    id_usuario?: true
+    id_venta?: true
+  }
+
+  export type OpinionesCountAggregateInputType = {
+    id_opinion?: true
+    calificacion?: true
+    fecha?: true
+    comentario?: true
+    id_usuario?: true
+    id_venta?: true
+    _all?: true
+  }
+
+  export type OpinionesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Opiniones to aggregate.
+     */
+    where?: OpinionesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Opiniones to fetch.
+     */
+    orderBy?: OpinionesOrderByWithRelationInput | OpinionesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: OpinionesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Opiniones from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Opiniones.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Opiniones
+    **/
+    _count?: true | OpinionesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: OpinionesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: OpinionesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: OpinionesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: OpinionesMaxAggregateInputType
+  }
+
+  export type GetOpinionesAggregateType<T extends OpinionesAggregateArgs> = {
+        [P in keyof T & keyof AggregateOpiniones]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateOpiniones[P]>
+      : GetScalarType<T[P], AggregateOpiniones[P]>
+  }
+
+
+
+
+  export type OpinionesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OpinionesWhereInput
+    orderBy?: OpinionesOrderByWithAggregationInput | OpinionesOrderByWithAggregationInput[]
+    by: OpinionesScalarFieldEnum[] | OpinionesScalarFieldEnum
+    having?: OpinionesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: OpinionesCountAggregateInputType | true
+    _avg?: OpinionesAvgAggregateInputType
+    _sum?: OpinionesSumAggregateInputType
+    _min?: OpinionesMinAggregateInputType
+    _max?: OpinionesMaxAggregateInputType
+  }
+
+  export type OpinionesGroupByOutputType = {
+    id_opinion: number
+    calificacion: number
+    fecha: Date
+    comentario: string
+    id_usuario: number
+    id_venta: number
+    _count: OpinionesCountAggregateOutputType | null
+    _avg: OpinionesAvgAggregateOutputType | null
+    _sum: OpinionesSumAggregateOutputType | null
+    _min: OpinionesMinAggregateOutputType | null
+    _max: OpinionesMaxAggregateOutputType | null
+  }
+
+  type GetOpinionesGroupByPayload<T extends OpinionesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<OpinionesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof OpinionesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], OpinionesGroupByOutputType[P]>
+            : GetScalarType<T[P], OpinionesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type OpinionesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id_opinion?: boolean
+    calificacion?: boolean
+    fecha?: boolean
+    comentario?: boolean
+    id_usuario?: boolean
+    id_venta?: boolean
+    usuario?: boolean | UsuariosDefaultArgs<ExtArgs>
+    venta?: boolean | VentasDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["opiniones"]>
+
+  export type OpinionesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id_opinion?: boolean
+    calificacion?: boolean
+    fecha?: boolean
+    comentario?: boolean
+    id_usuario?: boolean
+    id_venta?: boolean
+    usuario?: boolean | UsuariosDefaultArgs<ExtArgs>
+    venta?: boolean | VentasDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["opiniones"]>
+
+  export type OpinionesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id_opinion?: boolean
+    calificacion?: boolean
+    fecha?: boolean
+    comentario?: boolean
+    id_usuario?: boolean
+    id_venta?: boolean
+    usuario?: boolean | UsuariosDefaultArgs<ExtArgs>
+    venta?: boolean | VentasDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["opiniones"]>
+
+  export type OpinionesSelectScalar = {
+    id_opinion?: boolean
+    calificacion?: boolean
+    fecha?: boolean
+    comentario?: boolean
+    id_usuario?: boolean
+    id_venta?: boolean
+  }
+
+  export type OpinionesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_opinion" | "calificacion" | "fecha" | "comentario" | "id_usuario" | "id_venta", ExtArgs["result"]["opiniones"]>
+  export type OpinionesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    usuario?: boolean | UsuariosDefaultArgs<ExtArgs>
+    venta?: boolean | VentasDefaultArgs<ExtArgs>
+  }
+  export type OpinionesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    usuario?: boolean | UsuariosDefaultArgs<ExtArgs>
+    venta?: boolean | VentasDefaultArgs<ExtArgs>
+  }
+  export type OpinionesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    usuario?: boolean | UsuariosDefaultArgs<ExtArgs>
+    venta?: boolean | VentasDefaultArgs<ExtArgs>
+  }
+
+  export type $OpinionesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Opiniones"
+    objects: {
+      usuario: Prisma.$UsuariosPayload<ExtArgs>
+      venta: Prisma.$VentasPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id_opinion: number
+      calificacion: number
+      fecha: Date
+      comentario: string
+      id_usuario: number
+      id_venta: number
+    }, ExtArgs["result"]["opiniones"]>
+    composites: {}
+  }
+
+  type OpinionesGetPayload<S extends boolean | null | undefined | OpinionesDefaultArgs> = $Result.GetResult<Prisma.$OpinionesPayload, S>
+
+  type OpinionesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<OpinionesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: OpinionesCountAggregateInputType | true
+    }
+
+  export interface OpinionesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Opiniones'], meta: { name: 'Opiniones' } }
+    /**
+     * Find zero or one Opiniones that matches the filter.
+     * @param {OpinionesFindUniqueArgs} args - Arguments to find a Opiniones
+     * @example
+     * // Get one Opiniones
+     * const opiniones = await prisma.opiniones.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends OpinionesFindUniqueArgs>(args: SelectSubset<T, OpinionesFindUniqueArgs<ExtArgs>>): Prisma__OpinionesClient<$Result.GetResult<Prisma.$OpinionesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Opiniones that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {OpinionesFindUniqueOrThrowArgs} args - Arguments to find a Opiniones
+     * @example
+     * // Get one Opiniones
+     * const opiniones = await prisma.opiniones.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends OpinionesFindUniqueOrThrowArgs>(args: SelectSubset<T, OpinionesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__OpinionesClient<$Result.GetResult<Prisma.$OpinionesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Opiniones that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OpinionesFindFirstArgs} args - Arguments to find a Opiniones
+     * @example
+     * // Get one Opiniones
+     * const opiniones = await prisma.opiniones.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends OpinionesFindFirstArgs>(args?: SelectSubset<T, OpinionesFindFirstArgs<ExtArgs>>): Prisma__OpinionesClient<$Result.GetResult<Prisma.$OpinionesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Opiniones that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OpinionesFindFirstOrThrowArgs} args - Arguments to find a Opiniones
+     * @example
+     * // Get one Opiniones
+     * const opiniones = await prisma.opiniones.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends OpinionesFindFirstOrThrowArgs>(args?: SelectSubset<T, OpinionesFindFirstOrThrowArgs<ExtArgs>>): Prisma__OpinionesClient<$Result.GetResult<Prisma.$OpinionesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Opiniones that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OpinionesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Opiniones
+     * const opiniones = await prisma.opiniones.findMany()
+     * 
+     * // Get first 10 Opiniones
+     * const opiniones = await prisma.opiniones.findMany({ take: 10 })
+     * 
+     * // Only select the `id_opinion`
+     * const opinionesWithId_opinionOnly = await prisma.opiniones.findMany({ select: { id_opinion: true } })
+     * 
+     */
+    findMany<T extends OpinionesFindManyArgs>(args?: SelectSubset<T, OpinionesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OpinionesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Opiniones.
+     * @param {OpinionesCreateArgs} args - Arguments to create a Opiniones.
+     * @example
+     * // Create one Opiniones
+     * const Opiniones = await prisma.opiniones.create({
+     *   data: {
+     *     // ... data to create a Opiniones
+     *   }
+     * })
+     * 
+     */
+    create<T extends OpinionesCreateArgs>(args: SelectSubset<T, OpinionesCreateArgs<ExtArgs>>): Prisma__OpinionesClient<$Result.GetResult<Prisma.$OpinionesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Opiniones.
+     * @param {OpinionesCreateManyArgs} args - Arguments to create many Opiniones.
+     * @example
+     * // Create many Opiniones
+     * const opiniones = await prisma.opiniones.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends OpinionesCreateManyArgs>(args?: SelectSubset<T, OpinionesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Opiniones and returns the data saved in the database.
+     * @param {OpinionesCreateManyAndReturnArgs} args - Arguments to create many Opiniones.
+     * @example
+     * // Create many Opiniones
+     * const opiniones = await prisma.opiniones.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Opiniones and only return the `id_opinion`
+     * const opinionesWithId_opinionOnly = await prisma.opiniones.createManyAndReturn({
+     *   select: { id_opinion: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends OpinionesCreateManyAndReturnArgs>(args?: SelectSubset<T, OpinionesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OpinionesPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Opiniones.
+     * @param {OpinionesDeleteArgs} args - Arguments to delete one Opiniones.
+     * @example
+     * // Delete one Opiniones
+     * const Opiniones = await prisma.opiniones.delete({
+     *   where: {
+     *     // ... filter to delete one Opiniones
+     *   }
+     * })
+     * 
+     */
+    delete<T extends OpinionesDeleteArgs>(args: SelectSubset<T, OpinionesDeleteArgs<ExtArgs>>): Prisma__OpinionesClient<$Result.GetResult<Prisma.$OpinionesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Opiniones.
+     * @param {OpinionesUpdateArgs} args - Arguments to update one Opiniones.
+     * @example
+     * // Update one Opiniones
+     * const opiniones = await prisma.opiniones.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends OpinionesUpdateArgs>(args: SelectSubset<T, OpinionesUpdateArgs<ExtArgs>>): Prisma__OpinionesClient<$Result.GetResult<Prisma.$OpinionesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Opiniones.
+     * @param {OpinionesDeleteManyArgs} args - Arguments to filter Opiniones to delete.
+     * @example
+     * // Delete a few Opiniones
+     * const { count } = await prisma.opiniones.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends OpinionesDeleteManyArgs>(args?: SelectSubset<T, OpinionesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Opiniones.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OpinionesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Opiniones
+     * const opiniones = await prisma.opiniones.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends OpinionesUpdateManyArgs>(args: SelectSubset<T, OpinionesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Opiniones and returns the data updated in the database.
+     * @param {OpinionesUpdateManyAndReturnArgs} args - Arguments to update many Opiniones.
+     * @example
+     * // Update many Opiniones
+     * const opiniones = await prisma.opiniones.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Opiniones and only return the `id_opinion`
+     * const opinionesWithId_opinionOnly = await prisma.opiniones.updateManyAndReturn({
+     *   select: { id_opinion: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends OpinionesUpdateManyAndReturnArgs>(args: SelectSubset<T, OpinionesUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OpinionesPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Opiniones.
+     * @param {OpinionesUpsertArgs} args - Arguments to update or create a Opiniones.
+     * @example
+     * // Update or create a Opiniones
+     * const opiniones = await prisma.opiniones.upsert({
+     *   create: {
+     *     // ... data to create a Opiniones
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Opiniones we want to update
+     *   }
+     * })
+     */
+    upsert<T extends OpinionesUpsertArgs>(args: SelectSubset<T, OpinionesUpsertArgs<ExtArgs>>): Prisma__OpinionesClient<$Result.GetResult<Prisma.$OpinionesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Opiniones.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OpinionesCountArgs} args - Arguments to filter Opiniones to count.
+     * @example
+     * // Count the number of Opiniones
+     * const count = await prisma.opiniones.count({
+     *   where: {
+     *     // ... the filter for the Opiniones we want to count
+     *   }
+     * })
+    **/
+    count<T extends OpinionesCountArgs>(
+      args?: Subset<T, OpinionesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], OpinionesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Opiniones.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OpinionesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends OpinionesAggregateArgs>(args: Subset<T, OpinionesAggregateArgs>): Prisma.PrismaPromise<GetOpinionesAggregateType<T>>
+
+    /**
+     * Group by Opiniones.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OpinionesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends OpinionesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: OpinionesGroupByArgs['orderBy'] }
+        : { orderBy?: OpinionesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, OpinionesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetOpinionesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Opiniones model
+   */
+  readonly fields: OpinionesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Opiniones.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__OpinionesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    usuario<T extends UsuariosDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsuariosDefaultArgs<ExtArgs>>): Prisma__UsuariosClient<$Result.GetResult<Prisma.$UsuariosPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    venta<T extends VentasDefaultArgs<ExtArgs> = {}>(args?: Subset<T, VentasDefaultArgs<ExtArgs>>): Prisma__VentasClient<$Result.GetResult<Prisma.$VentasPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Opiniones model
+   */
+  interface OpinionesFieldRefs {
+    readonly id_opinion: FieldRef<"Opiniones", 'Int'>
+    readonly calificacion: FieldRef<"Opiniones", 'Float'>
+    readonly fecha: FieldRef<"Opiniones", 'DateTime'>
+    readonly comentario: FieldRef<"Opiniones", 'String'>
+    readonly id_usuario: FieldRef<"Opiniones", 'Int'>
+    readonly id_venta: FieldRef<"Opiniones", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Opiniones findUnique
+   */
+  export type OpinionesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Opiniones
+     */
+    select?: OpinionesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Opiniones
+     */
+    omit?: OpinionesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OpinionesInclude<ExtArgs> | null
+    /**
+     * Filter, which Opiniones to fetch.
+     */
+    where: OpinionesWhereUniqueInput
+  }
+
+  /**
+   * Opiniones findUniqueOrThrow
+   */
+  export type OpinionesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Opiniones
+     */
+    select?: OpinionesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Opiniones
+     */
+    omit?: OpinionesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OpinionesInclude<ExtArgs> | null
+    /**
+     * Filter, which Opiniones to fetch.
+     */
+    where: OpinionesWhereUniqueInput
+  }
+
+  /**
+   * Opiniones findFirst
+   */
+  export type OpinionesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Opiniones
+     */
+    select?: OpinionesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Opiniones
+     */
+    omit?: OpinionesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OpinionesInclude<ExtArgs> | null
+    /**
+     * Filter, which Opiniones to fetch.
+     */
+    where?: OpinionesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Opiniones to fetch.
+     */
+    orderBy?: OpinionesOrderByWithRelationInput | OpinionesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Opiniones.
+     */
+    cursor?: OpinionesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Opiniones from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Opiniones.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Opiniones.
+     */
+    distinct?: OpinionesScalarFieldEnum | OpinionesScalarFieldEnum[]
+  }
+
+  /**
+   * Opiniones findFirstOrThrow
+   */
+  export type OpinionesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Opiniones
+     */
+    select?: OpinionesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Opiniones
+     */
+    omit?: OpinionesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OpinionesInclude<ExtArgs> | null
+    /**
+     * Filter, which Opiniones to fetch.
+     */
+    where?: OpinionesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Opiniones to fetch.
+     */
+    orderBy?: OpinionesOrderByWithRelationInput | OpinionesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Opiniones.
+     */
+    cursor?: OpinionesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Opiniones from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Opiniones.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Opiniones.
+     */
+    distinct?: OpinionesScalarFieldEnum | OpinionesScalarFieldEnum[]
+  }
+
+  /**
+   * Opiniones findMany
+   */
+  export type OpinionesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Opiniones
+     */
+    select?: OpinionesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Opiniones
+     */
+    omit?: OpinionesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OpinionesInclude<ExtArgs> | null
+    /**
+     * Filter, which Opiniones to fetch.
+     */
+    where?: OpinionesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Opiniones to fetch.
+     */
+    orderBy?: OpinionesOrderByWithRelationInput | OpinionesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Opiniones.
+     */
+    cursor?: OpinionesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Opiniones from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Opiniones.
+     */
+    skip?: number
+    distinct?: OpinionesScalarFieldEnum | OpinionesScalarFieldEnum[]
+  }
+
+  /**
+   * Opiniones create
+   */
+  export type OpinionesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Opiniones
+     */
+    select?: OpinionesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Opiniones
+     */
+    omit?: OpinionesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OpinionesInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Opiniones.
+     */
+    data: XOR<OpinionesCreateInput, OpinionesUncheckedCreateInput>
+  }
+
+  /**
+   * Opiniones createMany
+   */
+  export type OpinionesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Opiniones.
+     */
+    data: OpinionesCreateManyInput | OpinionesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Opiniones createManyAndReturn
+   */
+  export type OpinionesCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Opiniones
+     */
+    select?: OpinionesSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Opiniones
+     */
+    omit?: OpinionesOmit<ExtArgs> | null
+    /**
+     * The data used to create many Opiniones.
+     */
+    data: OpinionesCreateManyInput | OpinionesCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OpinionesIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Opiniones update
+   */
+  export type OpinionesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Opiniones
+     */
+    select?: OpinionesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Opiniones
+     */
+    omit?: OpinionesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OpinionesInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Opiniones.
+     */
+    data: XOR<OpinionesUpdateInput, OpinionesUncheckedUpdateInput>
+    /**
+     * Choose, which Opiniones to update.
+     */
+    where: OpinionesWhereUniqueInput
+  }
+
+  /**
+   * Opiniones updateMany
+   */
+  export type OpinionesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Opiniones.
+     */
+    data: XOR<OpinionesUpdateManyMutationInput, OpinionesUncheckedUpdateManyInput>
+    /**
+     * Filter which Opiniones to update
+     */
+    where?: OpinionesWhereInput
+    /**
+     * Limit how many Opiniones to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Opiniones updateManyAndReturn
+   */
+  export type OpinionesUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Opiniones
+     */
+    select?: OpinionesSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Opiniones
+     */
+    omit?: OpinionesOmit<ExtArgs> | null
+    /**
+     * The data used to update Opiniones.
+     */
+    data: XOR<OpinionesUpdateManyMutationInput, OpinionesUncheckedUpdateManyInput>
+    /**
+     * Filter which Opiniones to update
+     */
+    where?: OpinionesWhereInput
+    /**
+     * Limit how many Opiniones to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OpinionesIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Opiniones upsert
+   */
+  export type OpinionesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Opiniones
+     */
+    select?: OpinionesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Opiniones
+     */
+    omit?: OpinionesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OpinionesInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Opiniones to update in case it exists.
+     */
+    where: OpinionesWhereUniqueInput
+    /**
+     * In case the Opiniones found by the `where` argument doesn't exist, create a new Opiniones with this data.
+     */
+    create: XOR<OpinionesCreateInput, OpinionesUncheckedCreateInput>
+    /**
+     * In case the Opiniones was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<OpinionesUpdateInput, OpinionesUncheckedUpdateInput>
+  }
+
+  /**
+   * Opiniones delete
+   */
+  export type OpinionesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Opiniones
+     */
+    select?: OpinionesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Opiniones
+     */
+    omit?: OpinionesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OpinionesInclude<ExtArgs> | null
+    /**
+     * Filter which Opiniones to delete.
+     */
+    where: OpinionesWhereUniqueInput
+  }
+
+  /**
+   * Opiniones deleteMany
+   */
+  export type OpinionesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Opiniones to delete
+     */
+    where?: OpinionesWhereInput
+    /**
+     * Limit how many Opiniones to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Opiniones without action
+   */
+  export type OpinionesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Opiniones
+     */
+    select?: OpinionesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Opiniones
+     */
+    omit?: OpinionesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OpinionesInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -13388,6 +14702,18 @@ export namespace Prisma {
   };
 
   export type FavoritosScalarFieldEnum = (typeof FavoritosScalarFieldEnum)[keyof typeof FavoritosScalarFieldEnum]
+
+
+  export const OpinionesScalarFieldEnum: {
+    id_opinion: 'id_opinion',
+    calificacion: 'calificacion',
+    fecha: 'fecha',
+    comentario: 'comentario',
+    id_usuario: 'id_usuario',
+    id_venta: 'id_venta'
+  };
+
+  export type OpinionesScalarFieldEnum = (typeof OpinionesScalarFieldEnum)[keyof typeof OpinionesScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -13830,6 +15156,7 @@ export namespace Prisma {
     saldo?: SaldosListRelationFilter
     compras?: VentasListRelationFilter
     favoritos?: FavoritosListRelationFilter
+    opiniones?: OpinionesListRelationFilter
   }
 
   export type UsuariosOrderByWithRelationInput = {
@@ -13842,6 +15169,7 @@ export namespace Prisma {
     saldo?: SaldosOrderByRelationAggregateInput
     compras?: VentasOrderByRelationAggregateInput
     favoritos?: FavoritosOrderByRelationAggregateInput
+    opiniones?: OpinionesOrderByRelationAggregateInput
   }
 
   export type UsuariosWhereUniqueInput = Prisma.AtLeast<{
@@ -13857,6 +15185,7 @@ export namespace Prisma {
     saldo?: SaldosListRelationFilter
     compras?: VentasListRelationFilter
     favoritos?: FavoritosListRelationFilter
+    opiniones?: OpinionesListRelationFilter
   }, "id_usuario" | "usuario">
 
   export type UsuariosOrderByWithAggregationInput = {
@@ -14020,6 +15349,7 @@ export namespace Prisma {
     id_usuario?: IntFilter<"Ventas"> | number
     publicacion?: XOR<PublicacionesScalarRelationFilter, PublicacionesWhereInput>
     usuario?: XOR<UsuariosScalarRelationFilter, UsuariosWhereInput>
+    opinion?: OpinionesListRelationFilter
   }
 
   export type VentasOrderByWithRelationInput = {
@@ -14037,6 +15367,7 @@ export namespace Prisma {
     id_usuario?: SortOrder
     publicacion?: PublicacionesOrderByWithRelationInput
     usuario?: UsuariosOrderByWithRelationInput
+    opinion?: OpinionesOrderByRelationAggregateInput
   }
 
   export type VentasWhereUniqueInput = Prisma.AtLeast<{
@@ -14057,6 +15388,7 @@ export namespace Prisma {
     id_usuario?: IntFilter<"Ventas"> | number
     publicacion?: XOR<PublicacionesScalarRelationFilter, PublicacionesWhereInput>
     usuario?: XOR<UsuariosScalarRelationFilter, UsuariosWhereInput>
+    opinion?: OpinionesListRelationFilter
   }, "id_venta" | "n_comprobante">
 
   export type VentasOrderByWithAggregationInput = {
@@ -14146,6 +15478,71 @@ export namespace Prisma {
     id_favorito?: IntWithAggregatesFilter<"Favoritos"> | number
     id_usuario?: IntWithAggregatesFilter<"Favoritos"> | number
     id_publicacion?: IntWithAggregatesFilter<"Favoritos"> | number
+  }
+
+  export type OpinionesWhereInput = {
+    AND?: OpinionesWhereInput | OpinionesWhereInput[]
+    OR?: OpinionesWhereInput[]
+    NOT?: OpinionesWhereInput | OpinionesWhereInput[]
+    id_opinion?: IntFilter<"Opiniones"> | number
+    calificacion?: FloatFilter<"Opiniones"> | number
+    fecha?: DateTimeFilter<"Opiniones"> | Date | string
+    comentario?: StringFilter<"Opiniones"> | string
+    id_usuario?: IntFilter<"Opiniones"> | number
+    id_venta?: IntFilter<"Opiniones"> | number
+    usuario?: XOR<UsuariosScalarRelationFilter, UsuariosWhereInput>
+    venta?: XOR<VentasScalarRelationFilter, VentasWhereInput>
+  }
+
+  export type OpinionesOrderByWithRelationInput = {
+    id_opinion?: SortOrder
+    calificacion?: SortOrder
+    fecha?: SortOrder
+    comentario?: SortOrder
+    id_usuario?: SortOrder
+    id_venta?: SortOrder
+    usuario?: UsuariosOrderByWithRelationInput
+    venta?: VentasOrderByWithRelationInput
+  }
+
+  export type OpinionesWhereUniqueInput = Prisma.AtLeast<{
+    id_opinion?: number
+    AND?: OpinionesWhereInput | OpinionesWhereInput[]
+    OR?: OpinionesWhereInput[]
+    NOT?: OpinionesWhereInput | OpinionesWhereInput[]
+    calificacion?: FloatFilter<"Opiniones"> | number
+    fecha?: DateTimeFilter<"Opiniones"> | Date | string
+    comentario?: StringFilter<"Opiniones"> | string
+    id_usuario?: IntFilter<"Opiniones"> | number
+    id_venta?: IntFilter<"Opiniones"> | number
+    usuario?: XOR<UsuariosScalarRelationFilter, UsuariosWhereInput>
+    venta?: XOR<VentasScalarRelationFilter, VentasWhereInput>
+  }, "id_opinion">
+
+  export type OpinionesOrderByWithAggregationInput = {
+    id_opinion?: SortOrder
+    calificacion?: SortOrder
+    fecha?: SortOrder
+    comentario?: SortOrder
+    id_usuario?: SortOrder
+    id_venta?: SortOrder
+    _count?: OpinionesCountOrderByAggregateInput
+    _avg?: OpinionesAvgOrderByAggregateInput
+    _max?: OpinionesMaxOrderByAggregateInput
+    _min?: OpinionesMinOrderByAggregateInput
+    _sum?: OpinionesSumOrderByAggregateInput
+  }
+
+  export type OpinionesScalarWhereWithAggregatesInput = {
+    AND?: OpinionesScalarWhereWithAggregatesInput | OpinionesScalarWhereWithAggregatesInput[]
+    OR?: OpinionesScalarWhereWithAggregatesInput[]
+    NOT?: OpinionesScalarWhereWithAggregatesInput | OpinionesScalarWhereWithAggregatesInput[]
+    id_opinion?: IntWithAggregatesFilter<"Opiniones"> | number
+    calificacion?: FloatWithAggregatesFilter<"Opiniones"> | number
+    fecha?: DateTimeWithAggregatesFilter<"Opiniones"> | Date | string
+    comentario?: StringWithAggregatesFilter<"Opiniones"> | string
+    id_usuario?: IntWithAggregatesFilter<"Opiniones"> | number
+    id_venta?: IntWithAggregatesFilter<"Opiniones"> | number
   }
 
   export type CategoriasCreateInput = {
@@ -14427,6 +15824,7 @@ export namespace Prisma {
     saldo?: SaldosCreateNestedManyWithoutUsuarioInput
     compras?: VentasCreateNestedManyWithoutUsuarioInput
     favoritos?: FavoritosCreateNestedManyWithoutUsuarioInput
+    opiniones?: OpinionesCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuariosUncheckedCreateInput = {
@@ -14438,6 +15836,7 @@ export namespace Prisma {
     saldo?: SaldosUncheckedCreateNestedManyWithoutUsuarioInput
     compras?: VentasUncheckedCreateNestedManyWithoutUsuarioInput
     favoritos?: FavoritosUncheckedCreateNestedManyWithoutUsuarioInput
+    opiniones?: OpinionesUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuariosUpdateInput = {
@@ -14448,6 +15847,7 @@ export namespace Prisma {
     saldo?: SaldosUpdateManyWithoutUsuarioNestedInput
     compras?: VentasUpdateManyWithoutUsuarioNestedInput
     favoritos?: FavoritosUpdateManyWithoutUsuarioNestedInput
+    opiniones?: OpinionesUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuariosUncheckedUpdateInput = {
@@ -14459,6 +15859,7 @@ export namespace Prisma {
     saldo?: SaldosUncheckedUpdateManyWithoutUsuarioNestedInput
     compras?: VentasUncheckedUpdateManyWithoutUsuarioNestedInput
     favoritos?: FavoritosUncheckedUpdateManyWithoutUsuarioNestedInput
+    opiniones?: OpinionesUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuariosCreateManyInput = {
@@ -14611,6 +16012,7 @@ export namespace Prisma {
     id_comentario?: number | null
     publicacion: PublicacionesCreateNestedOneWithoutVentasInput
     usuario: UsuariosCreateNestedOneWithoutComprasInput
+    opinion?: OpinionesCreateNestedManyWithoutVentaInput
   }
 
   export type VentasUncheckedCreateInput = {
@@ -14626,6 +16028,7 @@ export namespace Prisma {
     id_comentario?: number | null
     id_publicacion: number
     id_usuario: number
+    opinion?: OpinionesUncheckedCreateNestedManyWithoutVentaInput
   }
 
   export type VentasUpdateInput = {
@@ -14640,6 +16043,7 @@ export namespace Prisma {
     id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
     publicacion?: PublicacionesUpdateOneRequiredWithoutVentasNestedInput
     usuario?: UsuariosUpdateOneRequiredWithoutComprasNestedInput
+    opinion?: OpinionesUpdateManyWithoutVentaNestedInput
   }
 
   export type VentasUncheckedUpdateInput = {
@@ -14655,6 +16059,7 @@ export namespace Prisma {
     id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
     id_publicacion?: IntFieldUpdateOperationsInput | number
     id_usuario?: IntFieldUpdateOperationsInput | number
+    opinion?: OpinionesUncheckedUpdateManyWithoutVentaNestedInput
   }
 
   export type VentasCreateManyInput = {
@@ -14735,6 +16140,64 @@ export namespace Prisma {
     id_favorito?: IntFieldUpdateOperationsInput | number
     id_usuario?: IntFieldUpdateOperationsInput | number
     id_publicacion?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type OpinionesCreateInput = {
+    calificacion: number
+    fecha?: Date | string
+    comentario: string
+    usuario: UsuariosCreateNestedOneWithoutOpinionesInput
+    venta: VentasCreateNestedOneWithoutOpinionInput
+  }
+
+  export type OpinionesUncheckedCreateInput = {
+    id_opinion?: number
+    calificacion: number
+    fecha?: Date | string
+    comentario: string
+    id_usuario: number
+    id_venta: number
+  }
+
+  export type OpinionesUpdateInput = {
+    calificacion?: FloatFieldUpdateOperationsInput | number
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    comentario?: StringFieldUpdateOperationsInput | string
+    usuario?: UsuariosUpdateOneRequiredWithoutOpinionesNestedInput
+    venta?: VentasUpdateOneRequiredWithoutOpinionNestedInput
+  }
+
+  export type OpinionesUncheckedUpdateInput = {
+    id_opinion?: IntFieldUpdateOperationsInput | number
+    calificacion?: FloatFieldUpdateOperationsInput | number
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    comentario?: StringFieldUpdateOperationsInput | string
+    id_usuario?: IntFieldUpdateOperationsInput | number
+    id_venta?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type OpinionesCreateManyInput = {
+    id_opinion?: number
+    calificacion: number
+    fecha?: Date | string
+    comentario: string
+    id_usuario: number
+    id_venta: number
+  }
+
+  export type OpinionesUpdateManyMutationInput = {
+    calificacion?: FloatFieldUpdateOperationsInput | number
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    comentario?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type OpinionesUncheckedUpdateManyInput = {
+    id_opinion?: IntFieldUpdateOperationsInput | number
+    calificacion?: FloatFieldUpdateOperationsInput | number
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    comentario?: StringFieldUpdateOperationsInput | string
+    id_usuario?: IntFieldUpdateOperationsInput | number
+    id_venta?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -15108,7 +16571,17 @@ export namespace Prisma {
     none?: SaldosWhereInput
   }
 
+  export type OpinionesListRelationFilter = {
+    every?: OpinionesWhereInput
+    some?: OpinionesWhereInput
+    none?: OpinionesWhereInput
+  }
+
   export type SaldosOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type OpinionesOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -15418,6 +16891,52 @@ export namespace Prisma {
     id_favorito?: SortOrder
     id_usuario?: SortOrder
     id_publicacion?: SortOrder
+  }
+
+  export type VentasScalarRelationFilter = {
+    is?: VentasWhereInput
+    isNot?: VentasWhereInput
+  }
+
+  export type OpinionesCountOrderByAggregateInput = {
+    id_opinion?: SortOrder
+    calificacion?: SortOrder
+    fecha?: SortOrder
+    comentario?: SortOrder
+    id_usuario?: SortOrder
+    id_venta?: SortOrder
+  }
+
+  export type OpinionesAvgOrderByAggregateInput = {
+    id_opinion?: SortOrder
+    calificacion?: SortOrder
+    id_usuario?: SortOrder
+    id_venta?: SortOrder
+  }
+
+  export type OpinionesMaxOrderByAggregateInput = {
+    id_opinion?: SortOrder
+    calificacion?: SortOrder
+    fecha?: SortOrder
+    comentario?: SortOrder
+    id_usuario?: SortOrder
+    id_venta?: SortOrder
+  }
+
+  export type OpinionesMinOrderByAggregateInput = {
+    id_opinion?: SortOrder
+    calificacion?: SortOrder
+    fecha?: SortOrder
+    comentario?: SortOrder
+    id_usuario?: SortOrder
+    id_venta?: SortOrder
+  }
+
+  export type OpinionesSumOrderByAggregateInput = {
+    id_opinion?: SortOrder
+    calificacion?: SortOrder
+    id_usuario?: SortOrder
+    id_venta?: SortOrder
   }
 
   export type ProductosCreateNestedManyWithoutCategoriaInput = {
@@ -15783,6 +17302,13 @@ export namespace Prisma {
     connect?: FavoritosWhereUniqueInput | FavoritosWhereUniqueInput[]
   }
 
+  export type OpinionesCreateNestedManyWithoutUsuarioInput = {
+    create?: XOR<OpinionesCreateWithoutUsuarioInput, OpinionesUncheckedCreateWithoutUsuarioInput> | OpinionesCreateWithoutUsuarioInput[] | OpinionesUncheckedCreateWithoutUsuarioInput[]
+    connectOrCreate?: OpinionesCreateOrConnectWithoutUsuarioInput | OpinionesCreateOrConnectWithoutUsuarioInput[]
+    createMany?: OpinionesCreateManyUsuarioInputEnvelope
+    connect?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
+  }
+
   export type SaldosUncheckedCreateNestedManyWithoutUsuarioInput = {
     create?: XOR<SaldosCreateWithoutUsuarioInput, SaldosUncheckedCreateWithoutUsuarioInput> | SaldosCreateWithoutUsuarioInput[] | SaldosUncheckedCreateWithoutUsuarioInput[]
     connectOrCreate?: SaldosCreateOrConnectWithoutUsuarioInput | SaldosCreateOrConnectWithoutUsuarioInput[]
@@ -15802,6 +17328,13 @@ export namespace Prisma {
     connectOrCreate?: FavoritosCreateOrConnectWithoutUsuarioInput | FavoritosCreateOrConnectWithoutUsuarioInput[]
     createMany?: FavoritosCreateManyUsuarioInputEnvelope
     connect?: FavoritosWhereUniqueInput | FavoritosWhereUniqueInput[]
+  }
+
+  export type OpinionesUncheckedCreateNestedManyWithoutUsuarioInput = {
+    create?: XOR<OpinionesCreateWithoutUsuarioInput, OpinionesUncheckedCreateWithoutUsuarioInput> | OpinionesCreateWithoutUsuarioInput[] | OpinionesUncheckedCreateWithoutUsuarioInput[]
+    connectOrCreate?: OpinionesCreateOrConnectWithoutUsuarioInput | OpinionesCreateOrConnectWithoutUsuarioInput[]
+    createMany?: OpinionesCreateManyUsuarioInputEnvelope
+    connect?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
   }
 
   export type ClientesUpdateOneRequiredWithoutUsuarioNestedInput = {
@@ -15854,6 +17387,20 @@ export namespace Prisma {
     deleteMany?: FavoritosScalarWhereInput | FavoritosScalarWhereInput[]
   }
 
+  export type OpinionesUpdateManyWithoutUsuarioNestedInput = {
+    create?: XOR<OpinionesCreateWithoutUsuarioInput, OpinionesUncheckedCreateWithoutUsuarioInput> | OpinionesCreateWithoutUsuarioInput[] | OpinionesUncheckedCreateWithoutUsuarioInput[]
+    connectOrCreate?: OpinionesCreateOrConnectWithoutUsuarioInput | OpinionesCreateOrConnectWithoutUsuarioInput[]
+    upsert?: OpinionesUpsertWithWhereUniqueWithoutUsuarioInput | OpinionesUpsertWithWhereUniqueWithoutUsuarioInput[]
+    createMany?: OpinionesCreateManyUsuarioInputEnvelope
+    set?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
+    disconnect?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
+    delete?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
+    connect?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
+    update?: OpinionesUpdateWithWhereUniqueWithoutUsuarioInput | OpinionesUpdateWithWhereUniqueWithoutUsuarioInput[]
+    updateMany?: OpinionesUpdateManyWithWhereWithoutUsuarioInput | OpinionesUpdateManyWithWhereWithoutUsuarioInput[]
+    deleteMany?: OpinionesScalarWhereInput | OpinionesScalarWhereInput[]
+  }
+
   export type SaldosUncheckedUpdateManyWithoutUsuarioNestedInput = {
     create?: XOR<SaldosCreateWithoutUsuarioInput, SaldosUncheckedCreateWithoutUsuarioInput> | SaldosCreateWithoutUsuarioInput[] | SaldosUncheckedCreateWithoutUsuarioInput[]
     connectOrCreate?: SaldosCreateOrConnectWithoutUsuarioInput | SaldosCreateOrConnectWithoutUsuarioInput[]
@@ -15894,6 +17441,20 @@ export namespace Prisma {
     update?: FavoritosUpdateWithWhereUniqueWithoutUsuarioInput | FavoritosUpdateWithWhereUniqueWithoutUsuarioInput[]
     updateMany?: FavoritosUpdateManyWithWhereWithoutUsuarioInput | FavoritosUpdateManyWithWhereWithoutUsuarioInput[]
     deleteMany?: FavoritosScalarWhereInput | FavoritosScalarWhereInput[]
+  }
+
+  export type OpinionesUncheckedUpdateManyWithoutUsuarioNestedInput = {
+    create?: XOR<OpinionesCreateWithoutUsuarioInput, OpinionesUncheckedCreateWithoutUsuarioInput> | OpinionesCreateWithoutUsuarioInput[] | OpinionesUncheckedCreateWithoutUsuarioInput[]
+    connectOrCreate?: OpinionesCreateOrConnectWithoutUsuarioInput | OpinionesCreateOrConnectWithoutUsuarioInput[]
+    upsert?: OpinionesUpsertWithWhereUniqueWithoutUsuarioInput | OpinionesUpsertWithWhereUniqueWithoutUsuarioInput[]
+    createMany?: OpinionesCreateManyUsuarioInputEnvelope
+    set?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
+    disconnect?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
+    delete?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
+    connect?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
+    update?: OpinionesUpdateWithWhereUniqueWithoutUsuarioInput | OpinionesUpdateWithWhereUniqueWithoutUsuarioInput[]
+    updateMany?: OpinionesUpdateManyWithWhereWithoutUsuarioInput | OpinionesUpdateManyWithWhereWithoutUsuarioInput[]
+    deleteMany?: OpinionesScalarWhereInput | OpinionesScalarWhereInput[]
   }
 
   export type UsuariosCreateNestedManyWithoutClienteInput = {
@@ -15964,6 +17525,20 @@ export namespace Prisma {
     connect?: UsuariosWhereUniqueInput
   }
 
+  export type OpinionesCreateNestedManyWithoutVentaInput = {
+    create?: XOR<OpinionesCreateWithoutVentaInput, OpinionesUncheckedCreateWithoutVentaInput> | OpinionesCreateWithoutVentaInput[] | OpinionesUncheckedCreateWithoutVentaInput[]
+    connectOrCreate?: OpinionesCreateOrConnectWithoutVentaInput | OpinionesCreateOrConnectWithoutVentaInput[]
+    createMany?: OpinionesCreateManyVentaInputEnvelope
+    connect?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
+  }
+
+  export type OpinionesUncheckedCreateNestedManyWithoutVentaInput = {
+    create?: XOR<OpinionesCreateWithoutVentaInput, OpinionesUncheckedCreateWithoutVentaInput> | OpinionesCreateWithoutVentaInput[] | OpinionesUncheckedCreateWithoutVentaInput[]
+    connectOrCreate?: OpinionesCreateOrConnectWithoutVentaInput | OpinionesCreateOrConnectWithoutVentaInput[]
+    createMany?: OpinionesCreateManyVentaInputEnvelope
+    connect?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
+  }
+
   export type EnumEstadoEnvioFieldUpdateOperationsInput = {
     set?: $Enums.EstadoEnvio
   }
@@ -16000,6 +17575,34 @@ export namespace Prisma {
     update?: XOR<XOR<UsuariosUpdateToOneWithWhereWithoutComprasInput, UsuariosUpdateWithoutComprasInput>, UsuariosUncheckedUpdateWithoutComprasInput>
   }
 
+  export type OpinionesUpdateManyWithoutVentaNestedInput = {
+    create?: XOR<OpinionesCreateWithoutVentaInput, OpinionesUncheckedCreateWithoutVentaInput> | OpinionesCreateWithoutVentaInput[] | OpinionesUncheckedCreateWithoutVentaInput[]
+    connectOrCreate?: OpinionesCreateOrConnectWithoutVentaInput | OpinionesCreateOrConnectWithoutVentaInput[]
+    upsert?: OpinionesUpsertWithWhereUniqueWithoutVentaInput | OpinionesUpsertWithWhereUniqueWithoutVentaInput[]
+    createMany?: OpinionesCreateManyVentaInputEnvelope
+    set?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
+    disconnect?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
+    delete?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
+    connect?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
+    update?: OpinionesUpdateWithWhereUniqueWithoutVentaInput | OpinionesUpdateWithWhereUniqueWithoutVentaInput[]
+    updateMany?: OpinionesUpdateManyWithWhereWithoutVentaInput | OpinionesUpdateManyWithWhereWithoutVentaInput[]
+    deleteMany?: OpinionesScalarWhereInput | OpinionesScalarWhereInput[]
+  }
+
+  export type OpinionesUncheckedUpdateManyWithoutVentaNestedInput = {
+    create?: XOR<OpinionesCreateWithoutVentaInput, OpinionesUncheckedCreateWithoutVentaInput> | OpinionesCreateWithoutVentaInput[] | OpinionesUncheckedCreateWithoutVentaInput[]
+    connectOrCreate?: OpinionesCreateOrConnectWithoutVentaInput | OpinionesCreateOrConnectWithoutVentaInput[]
+    upsert?: OpinionesUpsertWithWhereUniqueWithoutVentaInput | OpinionesUpsertWithWhereUniqueWithoutVentaInput[]
+    createMany?: OpinionesCreateManyVentaInputEnvelope
+    set?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
+    disconnect?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
+    delete?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
+    connect?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
+    update?: OpinionesUpdateWithWhereUniqueWithoutVentaInput | OpinionesUpdateWithWhereUniqueWithoutVentaInput[]
+    updateMany?: OpinionesUpdateManyWithWhereWithoutVentaInput | OpinionesUpdateManyWithWhereWithoutVentaInput[]
+    deleteMany?: OpinionesScalarWhereInput | OpinionesScalarWhereInput[]
+  }
+
   export type PublicacionesCreateNestedOneWithoutFavoritosInput = {
     create?: XOR<PublicacionesCreateWithoutFavoritosInput, PublicacionesUncheckedCreateWithoutFavoritosInput>
     connectOrCreate?: PublicacionesCreateOrConnectWithoutFavoritosInput
@@ -16026,6 +17629,34 @@ export namespace Prisma {
     upsert?: UsuariosUpsertWithoutFavoritosInput
     connect?: UsuariosWhereUniqueInput
     update?: XOR<XOR<UsuariosUpdateToOneWithWhereWithoutFavoritosInput, UsuariosUpdateWithoutFavoritosInput>, UsuariosUncheckedUpdateWithoutFavoritosInput>
+  }
+
+  export type UsuariosCreateNestedOneWithoutOpinionesInput = {
+    create?: XOR<UsuariosCreateWithoutOpinionesInput, UsuariosUncheckedCreateWithoutOpinionesInput>
+    connectOrCreate?: UsuariosCreateOrConnectWithoutOpinionesInput
+    connect?: UsuariosWhereUniqueInput
+  }
+
+  export type VentasCreateNestedOneWithoutOpinionInput = {
+    create?: XOR<VentasCreateWithoutOpinionInput, VentasUncheckedCreateWithoutOpinionInput>
+    connectOrCreate?: VentasCreateOrConnectWithoutOpinionInput
+    connect?: VentasWhereUniqueInput
+  }
+
+  export type UsuariosUpdateOneRequiredWithoutOpinionesNestedInput = {
+    create?: XOR<UsuariosCreateWithoutOpinionesInput, UsuariosUncheckedCreateWithoutOpinionesInput>
+    connectOrCreate?: UsuariosCreateOrConnectWithoutOpinionesInput
+    upsert?: UsuariosUpsertWithoutOpinionesInput
+    connect?: UsuariosWhereUniqueInput
+    update?: XOR<XOR<UsuariosUpdateToOneWithWhereWithoutOpinionesInput, UsuariosUpdateWithoutOpinionesInput>, UsuariosUncheckedUpdateWithoutOpinionesInput>
+  }
+
+  export type VentasUpdateOneRequiredWithoutOpinionNestedInput = {
+    create?: XOR<VentasCreateWithoutOpinionInput, VentasUncheckedCreateWithoutOpinionInput>
+    connectOrCreate?: VentasCreateOrConnectWithoutOpinionInput
+    upsert?: VentasUpsertWithoutOpinionInput
+    connect?: VentasWhereUniqueInput
+    update?: XOR<XOR<VentasUpdateToOneWithWhereWithoutOpinionInput, VentasUpdateWithoutOpinionInput>, VentasUncheckedUpdateWithoutOpinionInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -16611,6 +18242,7 @@ export namespace Prisma {
     n_comprobante: string
     id_comentario?: number | null
     usuario: UsuariosCreateNestedOneWithoutComprasInput
+    opinion?: OpinionesCreateNestedManyWithoutVentaInput
   }
 
   export type VentasUncheckedCreateWithoutPublicacionInput = {
@@ -16625,6 +18257,7 @@ export namespace Prisma {
     n_comprobante: string
     id_comentario?: number | null
     id_usuario: number
+    opinion?: OpinionesUncheckedCreateNestedManyWithoutVentaInput
   }
 
   export type VentasCreateOrConnectWithoutPublicacionInput = {
@@ -16803,6 +18436,7 @@ export namespace Prisma {
     n_comprobante: string
     id_comentario?: number | null
     publicacion: PublicacionesCreateNestedOneWithoutVentasInput
+    opinion?: OpinionesCreateNestedManyWithoutVentaInput
   }
 
   export type VentasUncheckedCreateWithoutUsuarioInput = {
@@ -16817,6 +18451,7 @@ export namespace Prisma {
     n_comprobante: string
     id_comentario?: number | null
     id_publicacion: number
+    opinion?: OpinionesUncheckedCreateNestedManyWithoutVentaInput
   }
 
   export type VentasCreateOrConnectWithoutUsuarioInput = {
@@ -16845,6 +18480,31 @@ export namespace Prisma {
 
   export type FavoritosCreateManyUsuarioInputEnvelope = {
     data: FavoritosCreateManyUsuarioInput | FavoritosCreateManyUsuarioInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type OpinionesCreateWithoutUsuarioInput = {
+    calificacion: number
+    fecha?: Date | string
+    comentario: string
+    venta: VentasCreateNestedOneWithoutOpinionInput
+  }
+
+  export type OpinionesUncheckedCreateWithoutUsuarioInput = {
+    id_opinion?: number
+    calificacion: number
+    fecha?: Date | string
+    comentario: string
+    id_venta: number
+  }
+
+  export type OpinionesCreateOrConnectWithoutUsuarioInput = {
+    where: OpinionesWhereUniqueInput
+    create: XOR<OpinionesCreateWithoutUsuarioInput, OpinionesUncheckedCreateWithoutUsuarioInput>
+  }
+
+  export type OpinionesCreateManyUsuarioInputEnvelope = {
+    data: OpinionesCreateManyUsuarioInput | OpinionesCreateManyUsuarioInput[]
     skipDuplicates?: boolean
   }
 
@@ -16937,6 +18597,34 @@ export namespace Prisma {
     data: XOR<FavoritosUpdateManyMutationInput, FavoritosUncheckedUpdateManyWithoutUsuarioInput>
   }
 
+  export type OpinionesUpsertWithWhereUniqueWithoutUsuarioInput = {
+    where: OpinionesWhereUniqueInput
+    update: XOR<OpinionesUpdateWithoutUsuarioInput, OpinionesUncheckedUpdateWithoutUsuarioInput>
+    create: XOR<OpinionesCreateWithoutUsuarioInput, OpinionesUncheckedCreateWithoutUsuarioInput>
+  }
+
+  export type OpinionesUpdateWithWhereUniqueWithoutUsuarioInput = {
+    where: OpinionesWhereUniqueInput
+    data: XOR<OpinionesUpdateWithoutUsuarioInput, OpinionesUncheckedUpdateWithoutUsuarioInput>
+  }
+
+  export type OpinionesUpdateManyWithWhereWithoutUsuarioInput = {
+    where: OpinionesScalarWhereInput
+    data: XOR<OpinionesUpdateManyMutationInput, OpinionesUncheckedUpdateManyWithoutUsuarioInput>
+  }
+
+  export type OpinionesScalarWhereInput = {
+    AND?: OpinionesScalarWhereInput | OpinionesScalarWhereInput[]
+    OR?: OpinionesScalarWhereInput[]
+    NOT?: OpinionesScalarWhereInput | OpinionesScalarWhereInput[]
+    id_opinion?: IntFilter<"Opiniones"> | number
+    calificacion?: FloatFilter<"Opiniones"> | number
+    fecha?: DateTimeFilter<"Opiniones"> | Date | string
+    comentario?: StringFilter<"Opiniones"> | string
+    id_usuario?: IntFilter<"Opiniones"> | number
+    id_venta?: IntFilter<"Opiniones"> | number
+  }
+
   export type UsuariosCreateWithoutClienteInput = {
     usuario: string
     contraseña: string
@@ -16944,6 +18632,7 @@ export namespace Prisma {
     saldo?: SaldosCreateNestedManyWithoutUsuarioInput
     compras?: VentasCreateNestedManyWithoutUsuarioInput
     favoritos?: FavoritosCreateNestedManyWithoutUsuarioInput
+    opiniones?: OpinionesCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuariosUncheckedCreateWithoutClienteInput = {
@@ -16954,6 +18643,7 @@ export namespace Prisma {
     saldo?: SaldosUncheckedCreateNestedManyWithoutUsuarioInput
     compras?: VentasUncheckedCreateNestedManyWithoutUsuarioInput
     favoritos?: FavoritosUncheckedCreateNestedManyWithoutUsuarioInput
+    opiniones?: OpinionesUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuariosCreateOrConnectWithoutClienteInput = {
@@ -17000,6 +18690,7 @@ export namespace Prisma {
     cliente: ClientesCreateNestedOneWithoutUsuarioInput
     compras?: VentasCreateNestedManyWithoutUsuarioInput
     favoritos?: FavoritosCreateNestedManyWithoutUsuarioInput
+    opiniones?: OpinionesCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuariosUncheckedCreateWithoutSaldoInput = {
@@ -17010,6 +18701,7 @@ export namespace Prisma {
     id_cliente: number
     compras?: VentasUncheckedCreateNestedManyWithoutUsuarioInput
     favoritos?: FavoritosUncheckedCreateNestedManyWithoutUsuarioInput
+    opiniones?: OpinionesUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuariosCreateOrConnectWithoutSaldoInput = {
@@ -17035,6 +18727,7 @@ export namespace Prisma {
     cliente?: ClientesUpdateOneRequiredWithoutUsuarioNestedInput
     compras?: VentasUpdateManyWithoutUsuarioNestedInput
     favoritos?: FavoritosUpdateManyWithoutUsuarioNestedInput
+    opiniones?: OpinionesUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuariosUncheckedUpdateWithoutSaldoInput = {
@@ -17045,6 +18738,7 @@ export namespace Prisma {
     id_cliente?: IntFieldUpdateOperationsInput | number
     compras?: VentasUncheckedUpdateManyWithoutUsuarioNestedInput
     favoritos?: FavoritosUncheckedUpdateManyWithoutUsuarioNestedInput
+    opiniones?: OpinionesUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type PublicacionesCreateWithoutVentasInput = {
@@ -17080,6 +18774,7 @@ export namespace Prisma {
     cliente: ClientesCreateNestedOneWithoutUsuarioInput
     saldo?: SaldosCreateNestedManyWithoutUsuarioInput
     favoritos?: FavoritosCreateNestedManyWithoutUsuarioInput
+    opiniones?: OpinionesCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuariosUncheckedCreateWithoutComprasInput = {
@@ -17090,11 +18785,37 @@ export namespace Prisma {
     id_cliente: number
     saldo?: SaldosUncheckedCreateNestedManyWithoutUsuarioInput
     favoritos?: FavoritosUncheckedCreateNestedManyWithoutUsuarioInput
+    opiniones?: OpinionesUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuariosCreateOrConnectWithoutComprasInput = {
     where: UsuariosWhereUniqueInput
     create: XOR<UsuariosCreateWithoutComprasInput, UsuariosUncheckedCreateWithoutComprasInput>
+  }
+
+  export type OpinionesCreateWithoutVentaInput = {
+    calificacion: number
+    fecha?: Date | string
+    comentario: string
+    usuario: UsuariosCreateNestedOneWithoutOpinionesInput
+  }
+
+  export type OpinionesUncheckedCreateWithoutVentaInput = {
+    id_opinion?: number
+    calificacion: number
+    fecha?: Date | string
+    comentario: string
+    id_usuario: number
+  }
+
+  export type OpinionesCreateOrConnectWithoutVentaInput = {
+    where: OpinionesWhereUniqueInput
+    create: XOR<OpinionesCreateWithoutVentaInput, OpinionesUncheckedCreateWithoutVentaInput>
+  }
+
+  export type OpinionesCreateManyVentaInputEnvelope = {
+    data: OpinionesCreateManyVentaInput | OpinionesCreateManyVentaInput[]
+    skipDuplicates?: boolean
   }
 
   export type PublicacionesUpsertWithoutVentasInput = {
@@ -17147,6 +18868,7 @@ export namespace Prisma {
     cliente?: ClientesUpdateOneRequiredWithoutUsuarioNestedInput
     saldo?: SaldosUpdateManyWithoutUsuarioNestedInput
     favoritos?: FavoritosUpdateManyWithoutUsuarioNestedInput
+    opiniones?: OpinionesUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuariosUncheckedUpdateWithoutComprasInput = {
@@ -17157,6 +18879,23 @@ export namespace Prisma {
     id_cliente?: IntFieldUpdateOperationsInput | number
     saldo?: SaldosUncheckedUpdateManyWithoutUsuarioNestedInput
     favoritos?: FavoritosUncheckedUpdateManyWithoutUsuarioNestedInput
+    opiniones?: OpinionesUncheckedUpdateManyWithoutUsuarioNestedInput
+  }
+
+  export type OpinionesUpsertWithWhereUniqueWithoutVentaInput = {
+    where: OpinionesWhereUniqueInput
+    update: XOR<OpinionesUpdateWithoutVentaInput, OpinionesUncheckedUpdateWithoutVentaInput>
+    create: XOR<OpinionesCreateWithoutVentaInput, OpinionesUncheckedCreateWithoutVentaInput>
+  }
+
+  export type OpinionesUpdateWithWhereUniqueWithoutVentaInput = {
+    where: OpinionesWhereUniqueInput
+    data: XOR<OpinionesUpdateWithoutVentaInput, OpinionesUncheckedUpdateWithoutVentaInput>
+  }
+
+  export type OpinionesUpdateManyWithWhereWithoutVentaInput = {
+    where: OpinionesScalarWhereInput
+    data: XOR<OpinionesUpdateManyMutationInput, OpinionesUncheckedUpdateManyWithoutVentaInput>
   }
 
   export type PublicacionesCreateWithoutFavoritosInput = {
@@ -17192,6 +18931,7 @@ export namespace Prisma {
     cliente: ClientesCreateNestedOneWithoutUsuarioInput
     saldo?: SaldosCreateNestedManyWithoutUsuarioInput
     compras?: VentasCreateNestedManyWithoutUsuarioInput
+    opiniones?: OpinionesCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuariosUncheckedCreateWithoutFavoritosInput = {
@@ -17202,6 +18942,7 @@ export namespace Prisma {
     id_cliente: number
     saldo?: SaldosUncheckedCreateNestedManyWithoutUsuarioInput
     compras?: VentasUncheckedCreateNestedManyWithoutUsuarioInput
+    opiniones?: OpinionesUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuariosCreateOrConnectWithoutFavoritosInput = {
@@ -17259,6 +19000,7 @@ export namespace Prisma {
     cliente?: ClientesUpdateOneRequiredWithoutUsuarioNestedInput
     saldo?: SaldosUpdateManyWithoutUsuarioNestedInput
     compras?: VentasUpdateManyWithoutUsuarioNestedInput
+    opiniones?: OpinionesUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuariosUncheckedUpdateWithoutFavoritosInput = {
@@ -17269,6 +19011,139 @@ export namespace Prisma {
     id_cliente?: IntFieldUpdateOperationsInput | number
     saldo?: SaldosUncheckedUpdateManyWithoutUsuarioNestedInput
     compras?: VentasUncheckedUpdateManyWithoutUsuarioNestedInput
+    opiniones?: OpinionesUncheckedUpdateManyWithoutUsuarioNestedInput
+  }
+
+  export type UsuariosCreateWithoutOpinionesInput = {
+    usuario: string
+    contraseña: string
+    rol: string
+    cliente: ClientesCreateNestedOneWithoutUsuarioInput
+    saldo?: SaldosCreateNestedManyWithoutUsuarioInput
+    compras?: VentasCreateNestedManyWithoutUsuarioInput
+    favoritos?: FavoritosCreateNestedManyWithoutUsuarioInput
+  }
+
+  export type UsuariosUncheckedCreateWithoutOpinionesInput = {
+    id_usuario?: number
+    usuario: string
+    contraseña: string
+    rol: string
+    id_cliente: number
+    saldo?: SaldosUncheckedCreateNestedManyWithoutUsuarioInput
+    compras?: VentasUncheckedCreateNestedManyWithoutUsuarioInput
+    favoritos?: FavoritosUncheckedCreateNestedManyWithoutUsuarioInput
+  }
+
+  export type UsuariosCreateOrConnectWithoutOpinionesInput = {
+    where: UsuariosWhereUniqueInput
+    create: XOR<UsuariosCreateWithoutOpinionesInput, UsuariosUncheckedCreateWithoutOpinionesInput>
+  }
+
+  export type VentasCreateWithoutOpinionInput = {
+    cantidad: number
+    precio_total: number
+    fecha?: Date | string
+    talle: string
+    estado?: $Enums.EstadoEnvio
+    metodo_entrega: $Enums.MetodoEnvio
+    metodo_pago: $Enums.MetodoPago
+    n_comprobante: string
+    id_comentario?: number | null
+    publicacion: PublicacionesCreateNestedOneWithoutVentasInput
+    usuario: UsuariosCreateNestedOneWithoutComprasInput
+  }
+
+  export type VentasUncheckedCreateWithoutOpinionInput = {
+    id_venta?: number
+    cantidad: number
+    precio_total: number
+    fecha?: Date | string
+    talle: string
+    estado?: $Enums.EstadoEnvio
+    metodo_entrega: $Enums.MetodoEnvio
+    metodo_pago: $Enums.MetodoPago
+    n_comprobante: string
+    id_comentario?: number | null
+    id_publicacion: number
+    id_usuario: number
+  }
+
+  export type VentasCreateOrConnectWithoutOpinionInput = {
+    where: VentasWhereUniqueInput
+    create: XOR<VentasCreateWithoutOpinionInput, VentasUncheckedCreateWithoutOpinionInput>
+  }
+
+  export type UsuariosUpsertWithoutOpinionesInput = {
+    update: XOR<UsuariosUpdateWithoutOpinionesInput, UsuariosUncheckedUpdateWithoutOpinionesInput>
+    create: XOR<UsuariosCreateWithoutOpinionesInput, UsuariosUncheckedCreateWithoutOpinionesInput>
+    where?: UsuariosWhereInput
+  }
+
+  export type UsuariosUpdateToOneWithWhereWithoutOpinionesInput = {
+    where?: UsuariosWhereInput
+    data: XOR<UsuariosUpdateWithoutOpinionesInput, UsuariosUncheckedUpdateWithoutOpinionesInput>
+  }
+
+  export type UsuariosUpdateWithoutOpinionesInput = {
+    usuario?: StringFieldUpdateOperationsInput | string
+    contraseña?: StringFieldUpdateOperationsInput | string
+    rol?: StringFieldUpdateOperationsInput | string
+    cliente?: ClientesUpdateOneRequiredWithoutUsuarioNestedInput
+    saldo?: SaldosUpdateManyWithoutUsuarioNestedInput
+    compras?: VentasUpdateManyWithoutUsuarioNestedInput
+    favoritos?: FavoritosUpdateManyWithoutUsuarioNestedInput
+  }
+
+  export type UsuariosUncheckedUpdateWithoutOpinionesInput = {
+    id_usuario?: IntFieldUpdateOperationsInput | number
+    usuario?: StringFieldUpdateOperationsInput | string
+    contraseña?: StringFieldUpdateOperationsInput | string
+    rol?: StringFieldUpdateOperationsInput | string
+    id_cliente?: IntFieldUpdateOperationsInput | number
+    saldo?: SaldosUncheckedUpdateManyWithoutUsuarioNestedInput
+    compras?: VentasUncheckedUpdateManyWithoutUsuarioNestedInput
+    favoritos?: FavoritosUncheckedUpdateManyWithoutUsuarioNestedInput
+  }
+
+  export type VentasUpsertWithoutOpinionInput = {
+    update: XOR<VentasUpdateWithoutOpinionInput, VentasUncheckedUpdateWithoutOpinionInput>
+    create: XOR<VentasCreateWithoutOpinionInput, VentasUncheckedCreateWithoutOpinionInput>
+    where?: VentasWhereInput
+  }
+
+  export type VentasUpdateToOneWithWhereWithoutOpinionInput = {
+    where?: VentasWhereInput
+    data: XOR<VentasUpdateWithoutOpinionInput, VentasUncheckedUpdateWithoutOpinionInput>
+  }
+
+  export type VentasUpdateWithoutOpinionInput = {
+    cantidad?: IntFieldUpdateOperationsInput | number
+    precio_total?: FloatFieldUpdateOperationsInput | number
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    talle?: StringFieldUpdateOperationsInput | string
+    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
+    n_comprobante?: StringFieldUpdateOperationsInput | string
+    id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
+    publicacion?: PublicacionesUpdateOneRequiredWithoutVentasNestedInput
+    usuario?: UsuariosUpdateOneRequiredWithoutComprasNestedInput
+  }
+
+  export type VentasUncheckedUpdateWithoutOpinionInput = {
+    id_venta?: IntFieldUpdateOperationsInput | number
+    cantidad?: IntFieldUpdateOperationsInput | number
+    precio_total?: FloatFieldUpdateOperationsInput | number
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    talle?: StringFieldUpdateOperationsInput | string
+    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
+    n_comprobante?: StringFieldUpdateOperationsInput | string
+    id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
+    id_publicacion?: IntFieldUpdateOperationsInput | number
+    id_usuario?: IntFieldUpdateOperationsInput | number
   }
 
   export type ProductosCreateManyCategoriaInput = {
@@ -17425,6 +19300,7 @@ export namespace Prisma {
     n_comprobante?: StringFieldUpdateOperationsInput | string
     id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
     usuario?: UsuariosUpdateOneRequiredWithoutComprasNestedInput
+    opinion?: OpinionesUpdateManyWithoutVentaNestedInput
   }
 
   export type VentasUncheckedUpdateWithoutPublicacionInput = {
@@ -17439,6 +19315,7 @@ export namespace Prisma {
     n_comprobante?: StringFieldUpdateOperationsInput | string
     id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
     id_usuario?: IntFieldUpdateOperationsInput | number
+    opinion?: OpinionesUncheckedUpdateManyWithoutVentaNestedInput
   }
 
   export type VentasUncheckedUpdateManyWithoutPublicacionInput = {
@@ -17493,6 +19370,14 @@ export namespace Prisma {
     id_publicacion: number
   }
 
+  export type OpinionesCreateManyUsuarioInput = {
+    id_opinion?: number
+    calificacion: number
+    fecha?: Date | string
+    comentario: string
+    id_venta: number
+  }
+
   export type SaldosUpdateWithoutUsuarioInput = {
     saldo?: FloatFieldUpdateOperationsInput | number
   }
@@ -17518,6 +19403,7 @@ export namespace Prisma {
     n_comprobante?: StringFieldUpdateOperationsInput | string
     id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
     publicacion?: PublicacionesUpdateOneRequiredWithoutVentasNestedInput
+    opinion?: OpinionesUpdateManyWithoutVentaNestedInput
   }
 
   export type VentasUncheckedUpdateWithoutUsuarioInput = {
@@ -17532,6 +19418,7 @@ export namespace Prisma {
     n_comprobante?: StringFieldUpdateOperationsInput | string
     id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
     id_publicacion?: IntFieldUpdateOperationsInput | number
+    opinion?: OpinionesUncheckedUpdateManyWithoutVentaNestedInput
   }
 
   export type VentasUncheckedUpdateManyWithoutUsuarioInput = {
@@ -17562,6 +19449,29 @@ export namespace Prisma {
     id_publicacion?: IntFieldUpdateOperationsInput | number
   }
 
+  export type OpinionesUpdateWithoutUsuarioInput = {
+    calificacion?: FloatFieldUpdateOperationsInput | number
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    comentario?: StringFieldUpdateOperationsInput | string
+    venta?: VentasUpdateOneRequiredWithoutOpinionNestedInput
+  }
+
+  export type OpinionesUncheckedUpdateWithoutUsuarioInput = {
+    id_opinion?: IntFieldUpdateOperationsInput | number
+    calificacion?: FloatFieldUpdateOperationsInput | number
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    comentario?: StringFieldUpdateOperationsInput | string
+    id_venta?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type OpinionesUncheckedUpdateManyWithoutUsuarioInput = {
+    id_opinion?: IntFieldUpdateOperationsInput | number
+    calificacion?: FloatFieldUpdateOperationsInput | number
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    comentario?: StringFieldUpdateOperationsInput | string
+    id_venta?: IntFieldUpdateOperationsInput | number
+  }
+
   export type UsuariosCreateManyClienteInput = {
     id_usuario?: number
     usuario: string
@@ -17576,6 +19486,7 @@ export namespace Prisma {
     saldo?: SaldosUpdateManyWithoutUsuarioNestedInput
     compras?: VentasUpdateManyWithoutUsuarioNestedInput
     favoritos?: FavoritosUpdateManyWithoutUsuarioNestedInput
+    opiniones?: OpinionesUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuariosUncheckedUpdateWithoutClienteInput = {
@@ -17586,6 +19497,7 @@ export namespace Prisma {
     saldo?: SaldosUncheckedUpdateManyWithoutUsuarioNestedInput
     compras?: VentasUncheckedUpdateManyWithoutUsuarioNestedInput
     favoritos?: FavoritosUncheckedUpdateManyWithoutUsuarioNestedInput
+    opiniones?: OpinionesUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuariosUncheckedUpdateManyWithoutClienteInput = {
@@ -17593,6 +19505,37 @@ export namespace Prisma {
     usuario?: StringFieldUpdateOperationsInput | string
     contraseña?: StringFieldUpdateOperationsInput | string
     rol?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type OpinionesCreateManyVentaInput = {
+    id_opinion?: number
+    calificacion: number
+    fecha?: Date | string
+    comentario: string
+    id_usuario: number
+  }
+
+  export type OpinionesUpdateWithoutVentaInput = {
+    calificacion?: FloatFieldUpdateOperationsInput | number
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    comentario?: StringFieldUpdateOperationsInput | string
+    usuario?: UsuariosUpdateOneRequiredWithoutOpinionesNestedInput
+  }
+
+  export type OpinionesUncheckedUpdateWithoutVentaInput = {
+    id_opinion?: IntFieldUpdateOperationsInput | number
+    calificacion?: FloatFieldUpdateOperationsInput | number
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    comentario?: StringFieldUpdateOperationsInput | string
+    id_usuario?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type OpinionesUncheckedUpdateManyWithoutVentaInput = {
+    id_opinion?: IntFieldUpdateOperationsInput | number
+    calificacion?: FloatFieldUpdateOperationsInput | number
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    comentario?: StringFieldUpdateOperationsInput | string
+    id_usuario?: IntFieldUpdateOperationsInput | number
   }
 
 

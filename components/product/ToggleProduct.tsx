@@ -1,5 +1,5 @@
 import { XMarkIcon } from "@heroicons/react/24/solid"
-import { Product, PurchaseData, SuccessPurchaseData } from '@/src/types'
+import { Product, PurchaseData } from '@/src/types'
 import ProductInfo from './ProductInfo'
 import ProductComments from './ProductComments'
 import RelatedProducts from './RelatedProducts'
@@ -68,7 +68,7 @@ export default function ToggleProduct({ product, products, deleteParamsFunction 
                     </div>
                     <div className='lg:p-3'>
                         <ProductInfo product={product} />
-                        <ProductComments />
+                        <ProductComments  publicationId={product.id_publicacion}/>
                         <RelatedProducts products={products} />
                     </div>
                 </div>

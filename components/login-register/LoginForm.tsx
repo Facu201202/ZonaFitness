@@ -1,9 +1,9 @@
 import { EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline"
 import { useForm } from "react-hook-form"
-import Error from "../Error"
+import ErrorMessage from "../ErrorMessage"
 import { LoginUserForm } from "@/src/schema"
 import { toast } from "react-toastify"
-import { redirect } from "next/navigation"
+
 export default function LoginForm() {
   const { register, handleSubmit, formState: { errors }, setError } = useForm<LoginUserForm>()
   const loginUser = async (data: LoginUserForm) => {
@@ -24,7 +24,7 @@ export default function LoginForm() {
     }
 
     toast.success(response.message)
-    redirect("/")
+    window.location.href = "/"
   }
 
   return (
@@ -43,7 +43,7 @@ export default function LoginForm() {
             required: "El nombre de usuario es obligatorio"
           })} />
           {errors.usuario && (
-            <Error>{errors.usuario.message?.toString()}</Error>
+            <ErrorMessage>{errors.usuario.message?.toString()}</ErrorMessage>
           )}
         </div>
         <div className="flex flex-col gap-2 font-semibold">
@@ -52,7 +52,7 @@ export default function LoginForm() {
             required: "La contraseña es obligatoria"
           })} />
           {errors.contraseña && (
-            <Error>{errors.contraseña.message?.toString()}</Error>
+            <ErrorMessage>{errors.contraseña.message?.toString()}</ErrorMessage>
           )}
         </div>
         <button
@@ -61,7 +61,7 @@ export default function LoginForm() {
         </button>
 
         <input id="validateError" type="hidden"{...register("validateError")} />
-        {errors.validateError && (<Error>{errors.validateError.message?.toString()}</Error>)}
+        {errors.validateError && (<ErrorMessage>{errors.validateError.message?.toString()}</ErrorMessage>)}
       </form>
     </div>
   )
