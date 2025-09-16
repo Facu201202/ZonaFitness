@@ -8,10 +8,11 @@ export default function ReactQueryProvider({ children, userId, userName }: { chi
   const [queryClient] = useState(() => new QueryClient())
   const setUserId  = useUserStore((state) => state.setUserId)
   const setUserName  = useUserStore((state) => state.setUserName)
+  const userNameState  = useUserStore((state) => state.userName)
   useEffect(() => {
-    if (userId) setUserId(userId);
+    if (userId) setUserId(Number(userId));
     if (userName) setUserName(userName);
-  }, [userId, setUserId]);
+  }, [userId, userNameState]);
 
   return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
 }

@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { formatCurrency, translateCategory } from '@/src/utils'
 import { Categoria, PurchaseData } from '@/src/types'
 import { useEffect, useState } from 'react'
-import Error from '@/components/Error'
+import ErrorMessage from '@/components/ErrorMessage'
 import { useProductStore } from '@/src/stores/productStore'
 import { useUserStore } from '@/src/stores/userStore'
 import { UseMutateFunction } from '@tanstack/react-query'
@@ -108,7 +108,7 @@ export default function PurchaseSummary({ image, productName, category, price, p
                     </div>
                 )}
                 {error && (
-                    <Error>Seleecione un método de pago y de envio</Error>
+                    <ErrorMessage>Seleecione un método de pago y de envio</ErrorMessage>
                 )}
 
                 <button

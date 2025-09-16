@@ -1,7 +1,7 @@
 import { Dialog, DialogPanel, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient} from '@tanstack/react-query'
 import { Product } from '@/src/types'
 import ToggleProduct from './ToggleProduct'
 import { useProductStore } from "@/src/stores/productStore"
@@ -13,6 +13,7 @@ type ProductModalProps = {
 }
 
 export default function ProductModal({ productId, products }: ProductModalProps) {
+  const queryClient = useQueryClient()
   const searchParams = useSearchParams();
   const router = useRouter()
   const productExist = productId !== 0 ? true : false
@@ -33,6 +34,7 @@ export default function ProductModal({ productId, products }: ProductModalProps)
     params.delete("pago")
     params.delete("entrega")
     router.replace(`?${params.toString()}`, { scroll: false })
+    queryClient.removeQueries({queryKey: ["Producto", productId]})
     setTimeout(() => {
       setActiveModal("Product")
     }, 2000);

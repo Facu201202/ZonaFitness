@@ -204,6 +204,15 @@ exports.Prisma.FavoritosScalarFieldEnum = {
   id_publicacion: 'id_publicacion'
 };
 
+exports.Prisma.OpinionesScalarFieldEnum = {
+  id_opinion: 'id_opinion',
+  calificacion: 'calificacion',
+  fecha: 'fecha',
+  comentario: 'comentario',
+  id_usuario: 'id_usuario',
+  id_venta: 'id_venta'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -245,7 +254,8 @@ exports.Prisma.ModelName = {
   Clientes: 'Clientes',
   Saldos: 'Saldos',
   Ventas: 'Ventas',
-  Favoritos: 'Favoritos'
+  Favoritos: 'Favoritos',
+  Opiniones: 'Opiniones'
 };
 
 /**

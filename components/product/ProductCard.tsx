@@ -3,7 +3,7 @@ import Image from "next/image"
 import { useSearchParams , usePathname } from 'next/navigation'
 import Qualification from "../Qualification"
 import { formatCurrency, translateCategory } from "@/src/utils"
-import { Categoria, Product } from "@/src/types"
+import { Categoria } from "@/src/types"
 
 
 type ProductCardProps = {
