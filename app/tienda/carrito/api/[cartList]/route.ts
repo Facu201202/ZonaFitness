@@ -11,9 +11,9 @@ export async function GET(req: NextRequest, context: { params: Promise<{ cartLis
     const productCart: CartFullItem[] = []
 
     for(const itemCart of parsedCart){
-        const product: CartFullItem | null = await getProductForCart(itemCart.id_publicacion, itemCart.talle)
+        const product = await getProductForCart(itemCart.id_publicacion, itemCart.talle)
         if(product){
-            productCart.push(product)
+            productCart.push({...product, cantidadUsuario: itemCart.cantidad})
         }
     }
     

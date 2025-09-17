@@ -154,5 +154,10 @@ export type CartFullItem = {
             };
             cantidad: number;
         }[];
-    };
+        categoria: {
+            nombre: string
+        }
+    }
+    cantidadUsuario: number
+    ;
 }

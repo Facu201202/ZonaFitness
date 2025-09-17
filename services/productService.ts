@@ -217,6 +217,11 @@ export async function getProductForCart(idPublicaction: number, size: string) {
                                 }
                             }
                         }
+                    },
+                    categoria: {
+                        select: {
+                            nombre: true
+                        }
                     }
                 },
             }
