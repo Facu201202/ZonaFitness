@@ -4,7 +4,7 @@ import {jwtVerify} from "jose"
 export async function middleware(req: NextRequest) {
 
     const token = req.cookies.get("token")?.value
-    const authRoutes = ["/admin", "/perfil"]
+    const authRoutes = ["/admin", "/perfil", "/carrito"]
     const pathname = req.nextUrl.pathname
 
     if (!token && authRoutes.some(route => pathname.startsWith(route))) {

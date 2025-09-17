@@ -134,3 +134,25 @@ export type RelatedCommentsProduct = Omit<Opiniones, "id_usuario" | "id_venta"> 
         usuario: string;
     }
 }
+
+export type CartItem = {
+    id_publicacion: number;
+    cantidad: number;
+    talle: string;
+}
+
+export type CartFullItem = {
+    precio: number;
+    id_publicacion: number;
+    descuento: number;
+    producto: {
+        nombre: string;
+        foto: string;
+        stocks: {
+            talle: {
+                talle: string;
+            };
+            cantidad: number;
+        }[];
+    };
+}

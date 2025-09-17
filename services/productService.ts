@@ -3,7 +3,6 @@ import { prisma } from "@/src/lib/prisma"
 import { FiltersData, SaleData } from "@/src/types";
 import { createWhereFilter } from "@/src/utils";
 import { nanoid } from "nanoid"
-import { skip } from "node:test";
 
 export async function getProducts(id: number) {
     return await prisma.publicaciones.findMany({
@@ -117,7 +116,7 @@ export async function getProductComments(publicationId: number, page: number) {
             fecha: true,
             usuario: {
                 select: {
-                 usuario: true
+                    usuario: true
                 }
             }
         }
@@ -179,6 +178,49 @@ export async function createSale(saleData: SaleData, tx: PrismaClient | Prisma.T
                     }
                 }
             }
+        }
+    })
+}
+
+export async function getProductForCart(idPublicaction: number, size: string) {
+    return await prisma.publicaciones.findFirst({
+        where: {
+            id_publicacion: idPublicaction,
+            activa: true,
+            producto: {
+                stocks: {
+                    some: {
+                        talle: {
+                            talle: size
+                        }
+                    }
+                }
+            }
+        },
+        select: {
+            id_publicacion: true,
+            precio: true,
+            descuento: true,
+            producto: {
+                select: {
+                    nombre: true,
+                    foto: true,
+                    stocks: {
+                        where: {
+                            talle: { talle: size }
+                        },
+                        select: {
+                            cantidad: true,
+                            talle: {
+                                select: {
+                                    talle: true
+                                }
+                            }
+                        }
+                    }
+                },
+            }
+
         }
     })
 }
