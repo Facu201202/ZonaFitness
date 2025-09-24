@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import {jwtVerify} from "jose"
+import { jwtVerify } from "jose"
 
 export async function middleware(req: NextRequest) {
 
@@ -14,10 +14,14 @@ export async function middleware(req: NextRequest) {
     if (!token) return NextResponse.next()
     try {
         const secret = new TextEncoder().encode(process.env.JWT_SECRET)
-        const {payload} = await jwtVerify(token, secret) 
+        const { payload } = await jwtVerify(token, secret)
+        if (payload.rol !== "admin" && pathname.startsWith("/admin")) {
+            return NextResponse.redirect(new URL("/", req.url))
+        }
         const response = NextResponse.next()
         response.headers.set("x-user-id", payload.id_usuario as string)
         response.headers.set("x-user-name", payload.usuario as string)
+        response.headers.set("x-user-rol", payload.rol as string)
         return response
     } catch (error) {
         console.log(error)

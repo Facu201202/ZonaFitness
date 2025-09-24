@@ -18,6 +18,15 @@ export async function getProducts(id: number) {
             caracteristicas: true,
             descuento: true,
             precio: true,
+            ventas: {
+                select: {
+                    opinion: {
+                        select: {
+                            calificacion: true
+                        }
+                    }
+                }
+            },
             producto: {
                 select: {
                     id_producto: true,
@@ -71,6 +80,15 @@ export async function getSearchedProducts(filters: FiltersData) {
             caracteristicas: true,
             descuento: true,
             precio: true,
+            ventas: {
+                select: {
+                    opinion: {
+                        select: {
+                            calificacion: true
+                        }
+                    }
+                }
+            },
             producto: {
                 select: {
                     id_producto: true,

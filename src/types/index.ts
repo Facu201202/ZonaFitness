@@ -11,6 +11,11 @@ export type Product = Pick<Publicaciones, "id_publicacion" | "caracteristicas" |
         }>
     }
     favoritos?: Array<Favoritos>
+    ventas?: {
+        opinion: {
+            calificacion: number;
+        }[];
+    }[];
 }
 
 export type FiltersData = {

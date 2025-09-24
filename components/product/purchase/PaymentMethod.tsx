@@ -45,7 +45,7 @@ export default function PaymentMethod() {
     if (isError) return <p className="text-center font-bold">Error inesperado, intentelo de nuevo más tarde</p>
 
     if (data) return (
-        <div className='shadow border border-gray-300 rounded-2xl p-4'>
+        <div className='shadow border border-gray-300 rounded-2xl p-4 bg-white'>
             <div className="flex gap-2 items-center mb-3">
                 <CreditCardIcon className='w-5 h-5' />
                 <p className="font-medium text-lg">Método de Pago</p>

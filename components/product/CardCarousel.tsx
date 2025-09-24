@@ -41,7 +41,8 @@ export default function CardCarousel({ products, isProfile }: CardCarouselProps)
               name={publication.producto.nombre}
               category={publication.producto.categoria.nombre as Categoria}
               src={publication.producto.foto}
-              opinionsCant={24}
+              opinionsCant={publication.ventas ? publication.ventas.length : 0}
+              stars={publication.ventas}
             />
           </div>
         ))}

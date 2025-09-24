@@ -2,7 +2,6 @@ import { CartItem, Categoria, Product } from '@/src/types'
 import { translateCategory, formatFeatures, formatCurrency, sizes } from '@/src/utils'
 import { useProductStore } from '@/src/stores/productStore'
 import Image from 'next/image'
-import Link from 'next/link'
 import { useSearchParams, useRouter } from "next/navigation"
 import { useEffect, useState } from 'react'
 import { CreditCardIcon, ShoppingCartIcon, TruckIcon, ClockIcon, ArrowUturnLeftIcon } from "@heroicons/react/24/outline"
@@ -10,6 +9,7 @@ import Qualification from '../Qualification'
 import SizesButton from '../SizesButton'
 import { useUserStore } from '@/src/stores/userStore'
 import FavoriteButton from './FavoriteButton'
+import ReactStars from 'react-stars'
 
 type ProductInfoProps = {
     product: Product
@@ -28,10 +28,14 @@ export default function ProductInfo({ product }: ProductInfoProps) {
     const category = product.producto.categoria.nombre as keyof typeof sizes
     const currentSizes = params.get("ModalTalle")
 
+    const total = product.ventas ? product.ventas.reduce((acc, star) => { return acc + star.opinion[0].calificacion }, 0) : 0
+    const opinionCant = product.ventas ? product.ventas?.length : 0
+
     if (currentSizes && !sizes[category].includes(currentSizes)) {
         params.delete("ModalTalle")
         router.replace(`?${params.toString()}`)
     }
+
 
 
     useEffect(() => {
@@ -117,9 +121,16 @@ export default function ProductInfo({ product }: ProductInfoProps) {
                     <h2 className="text-3xl lg:text-4xl font-bold lg:w-4/5">{product.producto.nombre}</h2>
                     <FavoriteButton product={product} iscarrusel={false} />
                 </div>
-                <div className="flex gap-2">
-                    <Qualification stars={4} width='w-6' height='h-6' />
-                    <p className="lg:text-xl text-gray-600">(127)</p>
+                <div className="flex gap-2 items-center">
+                    <ReactStars
+                        count={5}
+                        value={opinionCant > 0 ? total / opinionCant : 0}
+                        size={25}
+                        half={true}
+                        color2={"#ffd700"}
+                        edit={false}
+                    />
+                    <p className="lg:text-xl text-gray-600">({opinionCant})</p>
                 </div>
                 <div>
                     <p className='font-bold text-3xl lg:text-4xl'>{formatCurrency(product.precio)}</p>

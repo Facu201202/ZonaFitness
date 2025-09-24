@@ -3,7 +3,6 @@ import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { useState } from "react"
 import { MagnifyingGlassIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
-import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 import UserButton from "./UserButton";
 import Image from "next/image";
 import LogoutButton from "./LogoutButton";
@@ -30,11 +29,6 @@ export default function Navbar({ isLogin }: { isLogin: boolean }) {
                 </div>
             </div>
             <div className="hidden lg:flex justify-start w-sm text-[#434346] items-center gap-4 px-2">
-                {isLogin && (
-                    <Link href={"/tienda/carrito"}>
-                        <ShoppingCartIcon className="w-6 h-6 hover:text-[#275DA2] hover:cursor-pointer" />
-                    </Link>
-                )}
                 <form className="relative" onSubmit={handleSubmit(searchProduct)}>
                     <MagnifyingGlassIcon className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 hover:cursor-pointer" onClick={handleSubmit(searchProduct)} />
                     <input
@@ -71,13 +65,7 @@ export default function Navbar({ isLogin }: { isLogin: boolean }) {
                             <div className="flex flex-col ">
                                 <p className="text-xl font-medium">{userName}</p>
                                 <Link href={"/tienda/perfil"} className="hover:text-[#275DA2] text-xs" onClick={() => setMenuOpen(false)}>Mi perfil</Link>
-                            </div>
-                            {isLogin && (
-                                <Link href={"/tienda/carrito"} className="ml-auto">
-                                    <ShoppingCartIcon className="w-6 h-6 hover:text-[#275DA2] hover:cursor-pointer" />
-                                </Link>
-                            )}
-
+                           </div>
                         </div>
                     }
                     <Link href={"/"} className="hover:text-[#275DA2]" onClick={() => setMenuOpen(false)}>Inicio</Link>

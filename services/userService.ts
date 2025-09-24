@@ -3,6 +3,7 @@ import { prisma } from "@/src/lib/prisma"
 import bcrypt from "bcrypt"
 import { ChangePasswordData, ClientData, OpinionData } from "@/src/types";
 import { Prisma, PrismaClient } from "@/src/generated/prisma";
+import { createBalance } from "./balanceService";
 
 export async function createAccount(userData: RegisterUser, client: RegisterClient) {
 
@@ -32,14 +33,23 @@ export async function createAccount(userData: RegisterUser, client: RegisterClie
         return { message: "No se pudo crear el cliente" }
     }
 
-    return prisma.usuarios.create({
+    const userCreated = await prisma.usuarios.create({
         data: {
             cliente: { connect: { id_cliente } },
             contraseña: user.contraseña,
             usuario: user.usuario!,
             rol: user.rol!,
-        },
+        }
     })
+
+    if (!userCreated.id_usuario) {
+        return { message: "No se pudo crear el usuario" }
+    }
+
+    await createBalance(userCreated.id_usuario, 200000)
+
+    return userCreated
+
 }
 
 async function validateNewUSer(username: RegisterUser["usuario"], email: RegisterClient["correo"], dni: RegisterClient["dni"]) {
@@ -335,7 +345,7 @@ export async function createUserComment(data: OpinionData) {
 
 export async function getUserComment(commentId: number) {
     return await prisma.opiniones.findFirst({
-        where: {id_opinion: commentId},
+        where: { id_opinion: commentId },
         select: {
             id_opinion: true,
             calificacion: true,
@@ -377,6 +387,6 @@ export async function getuserCommentList(userId: number) {
 
 export async function deleteUserComment(commentId: number) {
     return await prisma.opiniones.delete({
-        where: {id_opinion: commentId}
+        where: { id_opinion: commentId }
     })
 }
