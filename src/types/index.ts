@@ -166,3 +166,27 @@ export type CartFullItem = {
     cantidadUsuario: number
     ;
 }
+
+export type ProductAdmin = {
+    nombre: string;
+    precio: number;
+    foto: string;
+    categoria: {
+        nombre: string;
+    };
+    stocks: {
+        id_producto: number;
+        id_stock: number;
+        cantidad: number;
+        id_talle: number;
+    }[];
+    publicaciones: {
+        id_producto: number;
+        precio: number;
+        id_publicacion: number;
+        activa: boolean;
+        caracteristicas: string;
+        descuento: number;
+        fecha: Date;
+    }[];
+}

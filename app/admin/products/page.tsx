@@ -1,12 +1,13 @@
 "use client"
 import Table from "@/components/admin/products/Table"
 import Spinner from "@/components/Spinner"
+import { ProductAdmin } from "@/src/types"
 import { PlusIcon, ExclamationCircleIcon } from "@heroicons/react/24/outline"
 import { useQuery } from "@tanstack/react-query"
 
 export default function Page() {
 
-  const fetchProducts = async () => {
+  const fetchProducts = async (): Promise<ProductAdmin[]> => {
     const res = await fetch("/admin/products/api/getProducts")
     if (!res.ok) throw new Error("Error al mostrar los productos")
     return res.json()
@@ -41,8 +42,8 @@ export default function Page() {
             <ExclamationCircleIcon className="w-6 h-6" />
             <p><span className="font-semibold">Stock bajo:</span> Se considera stock bajo cuando hay 3 o menos unidades por talle</p>
           </div>
-          <div className="p-3 border border-gray-300 rounded flex gap-2 text-gray-800 items-center shadow">
-            <Table />
+          <div className="border border-gray-300 rounded text-gray-800 items-center shadow">
+            <Table products={data}/>
           </div>
         </div>
       )}
