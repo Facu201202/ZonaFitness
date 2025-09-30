@@ -64,7 +64,7 @@ export default function TableRow({ i, product }: TableRowProps) {
             </td>
             <td className="px-2 py-4">
                 <div className="flex gap-2">
-                    <button className="p-1 border rounded-lg border-gray-200 shadow hover:cursor-pointer hover:bg-gray-100">
+                    <button className="p-1 border rounded-lg border-gray-200 shadow hover:cursor-pointer hover:bg-gray-100" onClick={() => window.location.href = "/admin/products/editProduct"}>
                         <PencilSquareIcon className="w-5 h-5" />
                     </button>
                     <button className="p-1 border rounded-lg border-gray-200 shadow hover:cursor-pointer hover:bg-gray-100">
