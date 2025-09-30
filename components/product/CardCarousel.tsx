@@ -29,7 +29,6 @@ export default function CardCarousel({ products, isProfile }: CardCarouselProps)
     },
   })
 
-
   return (
     <div className="relative">
       <div ref={sliderRef} className="keen-slider">

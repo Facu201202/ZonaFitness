@@ -1,4 +1,4 @@
-import { Publicaciones, Productos, Stock, Sizes, Ventas, MetodoPago, MetodoEnvio, Favoritos, Clientes, Opiniones } from '../../src/generated/prisma'
+import { Publicaciones, Productos, Stock, Sizes, Ventas, MetodoPago, MetodoEnvio, Favoritos, Clientes, Opiniones, Categorias } from '../../src/generated/prisma'
 import { categoriesTranslate } from '../utils'
 
 export type Product = Pick<Publicaciones, "id_publicacion" | "caracteristicas" | "descuento" | "precio"> & {
@@ -168,6 +168,7 @@ export type CartFullItem = {
 }
 
 export type ProductAdmin = {
+    id_producto: number;
     nombre: string;
     precio: number;
     foto: string;
@@ -175,10 +176,11 @@ export type ProductAdmin = {
         nombre: string;
     };
     stocks: {
-        id_producto: number;
-        id_stock: number;
         cantidad: number;
         id_talle: number;
+        talle: {
+            talle: string;
+        };
     }[];
     publicaciones: {
         id_producto: number;
@@ -190,3 +192,21 @@ export type ProductAdmin = {
         fecha: Date;
     }[];
 }
+
+export type Category = Categorias
+
+export type Size = Sizes
+
+
+export type CreateProductFormData = {
+    name: string,
+    price: string,
+    categoryId: string,
+    gender: string,
+    color: string,
+    image: string,
+    validateError: string,
+    stock: Record<string, number>
+};
+
+

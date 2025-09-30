@@ -9,7 +9,7 @@ import Spinner from '../Spinner'
 
 type ProductModalProps = {
   productId: number,
-  products: Product[]
+  products?: Product[]
 }
 
 export default function ProductModal({ productId, products }: ProductModalProps) {

@@ -20,6 +20,7 @@ model Productos {
   precio        Float
   foto          String
   color         String
+  activa        Boolean         @default(true)
   genero        String
   id_categoria  Int
   categoria     Categorias      @relation(fields: [id_categoria], references: [id_categoria])
@@ -44,48 +45,48 @@ model Stock {
 }
 
 model Publicaciones {
-  id_publicacion  Int       @id @default(autoincrement())
+  id_publicacion  Int         @id @default(autoincrement())
   activa          Boolean
   caracteristicas String
   descuento       Int
   precio          Float
   id_producto     Int
-  producto        Productos @relation(fields: [id_producto], references: [id_producto])
-  fecha           DateTime  @default(now())
-  ventas Ventas[]
-  favoritos Favoritos[]
+  producto        Productos   @relation(fields: [id_producto], references: [id_producto])
+  fecha           DateTime    @default(now())
+  ventas          Ventas[]
+  favoritos       Favoritos[]
 }
 
 model Usuarios {
-  id_usuario  Int @id @default(autoincrement())
-  usuario String  @unique
-  contraseña  String
-  rol String
+  id_usuario  Int         @id @default(autoincrement())
+  usuario     String      @unique
+  contraseña String
+  rol         String
   id_cliente  Int
-  cliente Clientes  @relation(fields: [id_cliente], references: [id_cliente])
-  saldo Saldos[]
-  compras Ventas[]
-  favoritos Favoritos[]
-  opiniones Opiniones[]
+  cliente     Clientes    @relation(fields: [id_cliente], references: [id_cliente])
+  saldo       Saldos[]
+  compras     Ventas[]
+  favoritos   Favoritos[]
+  opiniones   Opiniones[]
 }
 
 model Clientes {
-  id_cliente  Int @id @default(autoincrement())
-  nombre  String
-  apellido  String
-  correo  String  @unique
-  dni Int @unique
-  ciudad  String
-  barrio  String
-  calle String
-  usuario Usuarios[]
+  id_cliente Int        @id @default(autoincrement())
+  nombre     String
+  apellido   String
+  correo     String     @unique
+  dni        Int        @unique
+  ciudad     String
+  barrio     String
+  calle      String
+  usuario    Usuarios[]
 }
 
 model Saldos {
-  id_saldo Int @id @default(autoincrement())
-  saldo Float
+  id_saldo   Int      @id @default(autoincrement())
+  saldo      Float
   id_usuario Int
-  usuario Usuarios @relation(fields: [id_usuario], references: [id_usuario])
+  usuario    Usuarios @relation(fields: [id_usuario], references: [id_usuario])
 }
 
 enum EstadoEnvio {
@@ -106,39 +107,40 @@ enum MetodoPago {
 }
 
 model Ventas {
-  id_venta Int @id @default(autoincrement())
-  cantidad Int
-  precio_total Float
-  fecha DateTime @default(now())
-  talle String
-  estado EstadoEnvio @default(PENDIENTE)
-  metodo_entrega MetodoEnvio 
-  metodo_pago MetodoPago
-  n_comprobante String @unique
-  id_comentario Int?
+  id_venta       Int           @id @default(autoincrement())
+  cantidad       Int
+  precio_total   Float
+  fecha          DateTime      @default(now())
+  talle          String
+  estado         EstadoEnvio   @default(PENDIENTE)
+  metodo_entrega MetodoEnvio
+  metodo_pago    MetodoPago
+  n_comprobante  String        @unique
+  id_comentario  Int?
   id_publicacion Int
-  id_usuario Int
-  publicacion Publicaciones @relation(fields: [id_publicacion], references: [id_publicacion])
-  usuario Usuarios @relation(fields: [id_usuario], references: [id_usuario])
-  opinion Opiniones[]
+  id_usuario     Int
+  publicacion    Publicaciones @relation(fields: [id_publicacion], references: [id_publicacion])
+  usuario        Usuarios      @relation(fields: [id_usuario], references: [id_usuario])
+  opinion        Opiniones[]
 }
 
 model Favoritos {
-  id_favorito Int @id @default(autoincrement())
-  id_usuario Int
+  id_favorito    Int           @id @default(autoincrement())
+  id_usuario     Int
   id_publicacion Int
-  publicacion Publicaciones @relation(fields: [id_publicacion], references: [id_publicacion])
-  usuario Usuarios @relation(fields: [id_usuario], references: [id_usuario])
+  publicacion    Publicaciones @relation(fields: [id_publicacion], references: [id_publicacion])
+  usuario        Usuarios      @relation(fields: [id_usuario], references: [id_usuario])
+
   @@unique([id_usuario, id_publicacion])
 }
 
 model Opiniones {
-  id_opinion Int @id @default(autoincrement())
+  id_opinion   Int      @id @default(autoincrement())
   calificacion Float
-  fecha DateTime @default(now())
-  comentario String
-  id_usuario Int
-  id_venta Int
-  usuario Usuarios @relation(fields: [id_usuario], references: [id_usuario])
-  venta Ventas @relation(fields: [id_venta], references: [id_venta])
+  fecha        DateTime @default(now())
+  comentario   String
+  id_usuario   Int
+  id_venta     Int
+  usuario      Usuarios @relation(fields: [id_usuario], references: [id_usuario])
+  venta        Ventas   @relation(fields: [id_venta], references: [id_venta])
 }

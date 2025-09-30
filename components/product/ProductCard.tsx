@@ -17,14 +17,18 @@ type ProductCardProps = {
         opinion: {
             calificacion: number;
         }[];
-    }[]
+    }[] | undefined
 }
 
 export default function ProductCard({ price, name, category, src, opinionsCant, id_publication, stars }: ProductCardProps) {
     const pathname = usePathname()
     const searchParams = useSearchParams();
     const fullUrl = pathname + '?' + searchParams.toString();
-    const total = stars ? stars.reduce((acc, star) => {return acc + star.opinion[0].calificacion}, 0)  : 0
+    let total = 0
+    if (stars) {
+        const isCalificated = stars.filter( star => star.opinion.length > 0 && star)
+        total = isCalificated.reduce((acc, star) => { return acc + star.opinion[0].calificacion }, 0)
+    }
 
     return (
         <div className="overflow-hidden rounded-2xl h-full">

@@ -16,7 +16,7 @@ import Spinner from "../Spinner"
 
 type ToggleProductProps = {
     product: Product,
-    products: Product[],
+    products?: Product[],
     deleteParamsFunction: () => void
 }
 
@@ -68,8 +68,10 @@ export default function ToggleProduct({ product, products, deleteParamsFunction 
                     </div>
                     <div className='lg:p-3'>
                         <ProductInfo product={product} />
-                        <ProductComments  publicationId={product.id_publicacion}/>
-                        <RelatedProducts products={products} />
+                        <ProductComments publicationId={product.id_publicacion} />
+                        {products && (
+                            <RelatedProducts products={products} />
+                        )}
                     </div>
                 </div>
             )}

@@ -27,9 +27,9 @@ export default function ProductInfo({ product }: ProductInfoProps) {
 
     const category = product.producto.categoria.nombre as keyof typeof sizes
     const currentSizes = params.get("ModalTalle")
-
-    const total = product.ventas ? product.ventas.reduce((acc, star) => { return acc + star.opinion[0].calificacion }, 0) : 0
-    const opinionCant = product.ventas ? product.ventas?.length : 0
+    const isCalificated = product.ventas && product.ventas.filter(star => star.opinion.length > 0 && star)
+    const total = (product.ventas && isCalificated && isCalificated?.length > 0) ? product.ventas.reduce((acc, star) => { return acc + star.opinion[0].calificacion }, 0) : 0
+    const opinionCant = isCalificated ? isCalificated.length : 0
 
     if (currentSizes && !sizes[category].includes(currentSizes)) {
         params.delete("ModalTalle")

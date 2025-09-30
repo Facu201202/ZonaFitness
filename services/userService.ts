@@ -207,7 +207,7 @@ export async function getUserBalance(id: number) {
 }
 
 export async function decrementBalance(amount: number, userId: number, balanceId: number, tx: PrismaClient | Prisma.TransactionClient) {
-    return await prisma.saldos.update({
+    return await tx.saldos.update({
         where: {
             id_usuario: userId,
             id_saldo: balanceId

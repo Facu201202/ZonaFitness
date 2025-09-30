@@ -7,6 +7,7 @@ import { Montserrat } from 'next/font/google'
 import ReactQueryProvider from "../providers/ReactQueryProvider";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import AdminNavbar from "@/components/admin/navbar/AdminNavbar";
+import { ToastContainer } from "react-toastify";
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -53,6 +54,7 @@ export default async function RootLayout({
           <ReactQueryDevtools initialIsOpen={false} />
         </ReactQueryProvider>
       </main>
+      <ToastContainer />
     </div>
   );
 }

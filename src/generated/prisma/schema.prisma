@@ -20,6 +20,7 @@ model Productos {
   precio        Float
   foto          String
   color         String
+  activa        Boolean         @default(true)
   genero        String
   id_categoria  Int
   categoria     Categorias      @relation(fields: [id_categoria], references: [id_categoria])
