@@ -2,13 +2,16 @@
 import ErrorMessage from "@/components/ErrorMessage";
 import { CreateProductFormData, ProductDataEdit } from "@/src/types"
 import { FieldError, useForm } from "react-hook-form"
-import ImageUpload from "./ImageUpload";
+import Image from "next/image";
+import { findUrlPath } from "@/src/utils";
+import ChangeImageButton from "./ChangeImageButton";
 
 export default function EditProductForm({ product }: { product: ProductDataEdit }) {
     console.log(product)
     const { register, handleSubmit, formState: { errors }, setError, setValue } = useForm<CreateProductFormData>()
     const stockErrors = errors.stock as Record<string, FieldError>;
-    const data = (d) => {
+    const data = (d: any) => {
+        console.log("imagen original:", product.foto)
         console.log(d)
     }
 
@@ -17,7 +20,7 @@ export default function EditProductForm({ product }: { product: ProductDataEdit 
             <form className="mx-auto max-w-3xl border border-gray-200 bg-white px-3 py-6 shadow flex flex-col gap-2" onSubmit={handleSubmit(data)}>
                 <div className="flex flex-col gap-2 font-semibold">
                     <label htmlFor="name">Nombre</label>
-                    <input type="text" id="name" className="border border-gray-300 p-2 rounded-lg" placeholder="Nombre del producto" value={product.nombre} {...register("name", {
+                    <input type="text" id="name" className="border border-gray-300 p-2 rounded-lg" placeholder="Nombre del producto" defaultValue={product.nombre} {...register("name", {
                         required: "El nombre del producto es obligatorio"
                     })} />
                     {errors.name && (
@@ -27,7 +30,7 @@ export default function EditProductForm({ product }: { product: ProductDataEdit 
                 <div className="flex flex-col gap-2 font-semibold">
                     <label htmlFor="price">Precio</label>
                     <input type="number" id="price" className="border border-gray-300 p-2 rounded-lg" placeholder={`20000 (sin puntos ni comas)`} maxLength={20}
-                        value={product.precio} {...register("price", {
+                        defaultValue={product.precio} {...register("price", {
                             required: "El precio es obligatorio",
                             min: {
                                 value: 1,
@@ -37,33 +40,7 @@ export default function EditProductForm({ product }: { product: ProductDataEdit 
                     {errors.price && (
                         <ErrorMessage>{errors.price.message?.toString()}</ErrorMessage>
                     )}
-                </div>{/**
-                 * 
-                 *                  <div className="space-y-2">
-                    <label
-                        className="text-slate-800"
-                        htmlFor="categoryId"
-                    >Categoría:</label>
-                    <select
-                        className="block w-full p-3 bg-slate-100"
-                        id="categoryId"
-                        {...register("categoryId", {
-                            required: "La categoria es obligatoria",
-                        }
-                        )}
-                    >
-                        <option value="">-- Seleccione --</option>
-                        {data.map(category => (
-                            <option key={category.id_categoria} value={category.id_categoria} >{category.nombre}</option>
-                        ))}
-
-                    </select>
-                    {errors.categoryId && (
-                        <ErrorMessage>{errors.categoryId.message?.toString()}</ErrorMessage>
-                    )}
                 </div>
-                 */}
-
                 <div className="space-y-2">
                     <label
                         className="text-slate-800"
@@ -72,7 +49,7 @@ export default function EditProductForm({ product }: { product: ProductDataEdit 
                     <select
                         className="block w-full p-3 bg-slate-100"
                         id="gender"
-                        value={product.genero}
+                        defaultValue={product.genero}
                         {...register("gender", {
                             required: "La categoria es obligatoria",
                         }
@@ -89,7 +66,7 @@ export default function EditProductForm({ product }: { product: ProductDataEdit 
                 </div>
                 <div className="flex flex-col gap-2 font-semibold">
                     <label htmlFor="color">Color</label>
-                    <input type="text" id="color" className="border border-gray-300 p-2 rounded-lg" placeholder="color del producto" value={product.color} {...register("color", {
+                    <input type="text" id="color" className="border border-gray-300 p-2 rounded-lg" placeholder="color del producto" defaultValue={product.color} {...register("color", {
                         required: "El color del producto es obligatorio"
                     })} />
                     {errors.color && (
@@ -105,7 +82,7 @@ export default function EditProductForm({ product }: { product: ProductDataEdit 
                                 id={`${size.id_talle.toString()}`}
                                 className="border border-gray-300 p-2 rounded-lg max-w-24"
                                 placeholder="20"
-                                value={size.cantidad}
+                                defaultValue={size.cantidad}
                                 {...register(`stock.${size.id_talle}_${size.talle.talle}`, {
                                     required: " ",
                                     min: {
@@ -121,8 +98,24 @@ export default function EditProductForm({ product }: { product: ProductDataEdit 
                         </div>
                     ))}
                 </div>
+                <div className="flex gap-2 w-full justify-between items-center">
+                    <div className="w-1/3">
+                    <p className="font-semibold mb-6">Imagen actual del Producto:</p>
+                        <div className='relative w-auto h-[200px] px-4 py-4' >
+                            <Image
+                                src={findUrlPath( product.foto, product.categoria.nombre)}
+                                fill
+                                alt='imangen del producto'
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                className="object-contain rounded"
+                            />
+                        </div>
+                    </div>
+                    <div className="flex-1">
+                        <ChangeImageButton errors={errors} register={register} setValue={setValue} originalImage={product.foto}/>
+                    </div>
 
-                <ImageUpload errors={errors} register={register} setValue={setValue} />
+                </div>
                 <button
                     className={`bg-[#2D5DA2] text-white px-4 py-2 w-full rounded text-center font-semibold hover:bg-[#2d52a2] hover:cursor-pointer`}
                 > Crear Producto

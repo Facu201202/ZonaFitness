@@ -6,14 +6,17 @@ import Image from "next/image"
 import ErrorMessage from "@/components/ErrorMessage"
 import { CreateProductFormData } from "@/src/types"
 
-type ImageUploadProps = {
+
+
+type ChangeImageButtonProps = {
     errors: FieldErrors<CreateProductFormData>,
     register: UseFormRegister<CreateProductFormData>,
     setValue: UseFormSetValue<CreateProductFormData>
-
+    originalImage: string
 }
 
-export default function ImageUpload({ errors, register, setValue }: ImageUploadProps) {
+
+export default function ChangeImageButton({ errors, register, setValue, originalImage }: ChangeImageButtonProps) {
     const [imageUrl, setImageUrl] = useState("")
     return (
         <CldUploadWidget
@@ -33,28 +36,24 @@ export default function ImageUpload({ errors, register, setValue }: ImageUploadP
         >
             {({ open }) => (
                 <>
-                    <div className="space-y-2">
-                        <div
-                            onClick={() => open()}
-                            className="relative cursor-pointer hover:opacity-70 transition p-10 border-neutral-300 flex flex-col justify-center items-center gap-4 text-neutral-600 bg-slate-100"
-                        >
-                            <PhotoIcon className="w-40 h-40" />
-                            <p className="text-lg font-semibold">Agregar Imagen</p>
-                            {imageUrl && (
-                                <div className="absolute inset-0 w-full h-full">
-                                    <Image
-                                        src={imageUrl}
-                                        style={{ objectFit: "contain" }}
-                                        fill
-                                        alt="Imagen del Producto"
-                                    />
-                                </div>
-                            )}
-                        </div>
-                    </div>
+                        {imageUrl ? (
+                            <div className="relative w-auto h-[200px] px-4 py-4">
+                                <Image
+                                    src={imageUrl}
+                                    style={{ objectFit: "contain" }}
+                                    fill
+                                    alt="Imagen del Producto"
+                                />
+                            </div>
+                        ): (
+                        <button onClick={() => open()} className='p-2 mx-auto bg-slate-300 text-slate-800 font-semibold flex gap-2 items-center rounded hover:cursor-pointer hover:bg-slate-400'>
+                            <PhotoIcon className="w-8 h-8" />
+                            Cambiar Imagen
+                        </button>
+                        )}
                     <input
                         type="hidden"
-                        value={imageUrl}
+                        defaultValue={imageUrl ? imageUrl : originalImage}
                         {...register(`image`, {
                             required: "La imagen es obligatoria"
                         })}
@@ -63,7 +62,10 @@ export default function ImageUpload({ errors, register, setValue }: ImageUploadP
                         <ErrorMessage>{errors.image.message?.toString()}</ErrorMessage>
                     )}
                 </>
-            )}
-        </CldUploadWidget>
+
+            )
+            }
+        </CldUploadWidget >
+
     )
 }
