@@ -3178,6 +3178,7 @@ export namespace Prisma {
     precio: number | null
     foto: string | null
     color: string | null
+    activa: boolean | null
     genero: string | null
     id_categoria: number | null
   }
@@ -3188,6 +3189,7 @@ export namespace Prisma {
     precio: number | null
     foto: string | null
     color: string | null
+    activa: boolean | null
     genero: string | null
     id_categoria: number | null
   }
@@ -3198,6 +3200,7 @@ export namespace Prisma {
     precio: number
     foto: number
     color: number
+    activa: number
     genero: number
     id_categoria: number
     _all: number
@@ -3222,6 +3225,7 @@ export namespace Prisma {
     precio?: true
     foto?: true
     color?: true
+    activa?: true
     genero?: true
     id_categoria?: true
   }
@@ -3232,6 +3236,7 @@ export namespace Prisma {
     precio?: true
     foto?: true
     color?: true
+    activa?: true
     genero?: true
     id_categoria?: true
   }
@@ -3242,6 +3247,7 @@ export namespace Prisma {
     precio?: true
     foto?: true
     color?: true
+    activa?: true
     genero?: true
     id_categoria?: true
     _all?: true
@@ -3339,6 +3345,7 @@ export namespace Prisma {
     precio: number
     foto: string
     color: string
+    activa: boolean
     genero: string
     id_categoria: number
     _count: ProductosCountAggregateOutputType | null
@@ -3368,6 +3375,7 @@ export namespace Prisma {
     precio?: boolean
     foto?: boolean
     color?: boolean
+    activa?: boolean
     genero?: boolean
     id_categoria?: boolean
     categoria?: boolean | CategoriasDefaultArgs<ExtArgs>
@@ -3382,6 +3390,7 @@ export namespace Prisma {
     precio?: boolean
     foto?: boolean
     color?: boolean
+    activa?: boolean
     genero?: boolean
     id_categoria?: boolean
     categoria?: boolean | CategoriasDefaultArgs<ExtArgs>
@@ -3393,6 +3402,7 @@ export namespace Prisma {
     precio?: boolean
     foto?: boolean
     color?: boolean
+    activa?: boolean
     genero?: boolean
     id_categoria?: boolean
     categoria?: boolean | CategoriasDefaultArgs<ExtArgs>
@@ -3404,11 +3414,12 @@ export namespace Prisma {
     precio?: boolean
     foto?: boolean
     color?: boolean
+    activa?: boolean
     genero?: boolean
     id_categoria?: boolean
   }
 
-  export type ProductosOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_producto" | "nombre" | "precio" | "foto" | "color" | "genero" | "id_categoria", ExtArgs["result"]["productos"]>
+  export type ProductosOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_producto" | "nombre" | "precio" | "foto" | "color" | "activa" | "genero" | "id_categoria", ExtArgs["result"]["productos"]>
   export type ProductosInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     categoria?: boolean | CategoriasDefaultArgs<ExtArgs>
     stocks?: boolean | Productos$stocksArgs<ExtArgs>
@@ -3435,6 +3446,7 @@ export namespace Prisma {
       precio: number
       foto: string
       color: string
+      activa: boolean
       genero: string
       id_categoria: number
     }, ExtArgs["result"]["productos"]>
@@ -3868,6 +3880,7 @@ export namespace Prisma {
     readonly precio: FieldRef<"Productos", 'Float'>
     readonly foto: FieldRef<"Productos", 'String'>
     readonly color: FieldRef<"Productos", 'String'>
+    readonly activa: FieldRef<"Productos", 'Boolean'>
     readonly genero: FieldRef<"Productos", 'String'>
     readonly id_categoria: FieldRef<"Productos", 'Int'>
   }
@@ -14604,6 +14617,7 @@ export namespace Prisma {
     precio: 'precio',
     foto: 'foto',
     color: 'color',
+    activa: 'activa',
     genero: 'genero',
     id_categoria: 'id_categoria'
   };
@@ -14904,6 +14918,7 @@ export namespace Prisma {
     precio?: FloatFilter<"Productos"> | number
     foto?: StringFilter<"Productos"> | string
     color?: StringFilter<"Productos"> | string
+    activa?: BoolFilter<"Productos"> | boolean
     genero?: StringFilter<"Productos"> | string
     id_categoria?: IntFilter<"Productos"> | number
     categoria?: XOR<CategoriasScalarRelationFilter, CategoriasWhereInput>
@@ -14917,6 +14932,7 @@ export namespace Prisma {
     precio?: SortOrder
     foto?: SortOrder
     color?: SortOrder
+    activa?: SortOrder
     genero?: SortOrder
     id_categoria?: SortOrder
     categoria?: CategoriasOrderByWithRelationInput
@@ -14933,6 +14949,7 @@ export namespace Prisma {
     precio?: FloatFilter<"Productos"> | number
     foto?: StringFilter<"Productos"> | string
     color?: StringFilter<"Productos"> | string
+    activa?: BoolFilter<"Productos"> | boolean
     genero?: StringFilter<"Productos"> | string
     id_categoria?: IntFilter<"Productos"> | number
     categoria?: XOR<CategoriasScalarRelationFilter, CategoriasWhereInput>
@@ -14946,6 +14963,7 @@ export namespace Prisma {
     precio?: SortOrder
     foto?: SortOrder
     color?: SortOrder
+    activa?: SortOrder
     genero?: SortOrder
     id_categoria?: SortOrder
     _count?: ProductosCountOrderByAggregateInput
@@ -14964,6 +14982,7 @@ export namespace Prisma {
     precio?: FloatWithAggregatesFilter<"Productos"> | number
     foto?: StringWithAggregatesFilter<"Productos"> | string
     color?: StringWithAggregatesFilter<"Productos"> | string
+    activa?: BoolWithAggregatesFilter<"Productos"> | boolean
     genero?: StringWithAggregatesFilter<"Productos"> | string
     id_categoria?: IntWithAggregatesFilter<"Productos"> | number
   }
@@ -15586,6 +15605,7 @@ export namespace Prisma {
     precio: number
     foto: string
     color: string
+    activa?: boolean
     genero: string
     categoria: CategoriasCreateNestedOneWithoutProductosInput
     stocks?: StockCreateNestedManyWithoutProductoInput
@@ -15598,6 +15618,7 @@ export namespace Prisma {
     precio: number
     foto: string
     color: string
+    activa?: boolean
     genero: string
     id_categoria: number
     stocks?: StockUncheckedCreateNestedManyWithoutProductoInput
@@ -15609,6 +15630,7 @@ export namespace Prisma {
     precio?: FloatFieldUpdateOperationsInput | number
     foto?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
+    activa?: BoolFieldUpdateOperationsInput | boolean
     genero?: StringFieldUpdateOperationsInput | string
     categoria?: CategoriasUpdateOneRequiredWithoutProductosNestedInput
     stocks?: StockUpdateManyWithoutProductoNestedInput
@@ -15621,6 +15643,7 @@ export namespace Prisma {
     precio?: FloatFieldUpdateOperationsInput | number
     foto?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
+    activa?: BoolFieldUpdateOperationsInput | boolean
     genero?: StringFieldUpdateOperationsInput | string
     id_categoria?: IntFieldUpdateOperationsInput | number
     stocks?: StockUncheckedUpdateManyWithoutProductoNestedInput
@@ -15633,6 +15656,7 @@ export namespace Prisma {
     precio: number
     foto: string
     color: string
+    activa?: boolean
     genero: string
     id_categoria: number
   }
@@ -15642,6 +15666,7 @@ export namespace Prisma {
     precio?: FloatFieldUpdateOperationsInput | number
     foto?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
+    activa?: BoolFieldUpdateOperationsInput | boolean
     genero?: StringFieldUpdateOperationsInput | string
   }
 
@@ -15651,6 +15676,7 @@ export namespace Prisma {
     precio?: FloatFieldUpdateOperationsInput | number
     foto?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
+    activa?: BoolFieldUpdateOperationsInput | boolean
     genero?: StringFieldUpdateOperationsInput | string
     id_categoria?: IntFieldUpdateOperationsInput | number
   }
@@ -16304,6 +16330,11 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type CategoriasScalarRelationFilter = {
     is?: CategoriasWhereInput
     isNot?: CategoriasWhereInput
@@ -16335,6 +16366,7 @@ export namespace Prisma {
     precio?: SortOrder
     foto?: SortOrder
     color?: SortOrder
+    activa?: SortOrder
     genero?: SortOrder
     id_categoria?: SortOrder
   }
@@ -16351,6 +16383,7 @@ export namespace Prisma {
     precio?: SortOrder
     foto?: SortOrder
     color?: SortOrder
+    activa?: SortOrder
     genero?: SortOrder
     id_categoria?: SortOrder
   }
@@ -16361,6 +16394,7 @@ export namespace Prisma {
     precio?: SortOrder
     foto?: SortOrder
     color?: SortOrder
+    activa?: SortOrder
     genero?: SortOrder
     id_categoria?: SortOrder
   }
@@ -16385,6 +16419,14 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type SizesCountOrderByAggregateInput = {
@@ -16456,11 +16498,6 @@ export namespace Prisma {
     cantidad?: SortOrder
     id_producto?: SortOrder
     id_talle?: SortOrder
-  }
-
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
@@ -16536,14 +16573,6 @@ export namespace Prisma {
     descuento?: SortOrder
     precio?: SortOrder
     id_producto?: SortOrder
-  }
-
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -17035,6 +17064,10 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
   export type CategoriasUpdateOneRequiredWithoutProductosNestedInput = {
     create?: XOR<CategoriasCreateWithoutProductosInput, CategoriasUncheckedCreateWithoutProductosInput>
     connectOrCreate?: CategoriasCreateOrConnectWithoutProductosInput
@@ -17201,10 +17234,6 @@ export namespace Prisma {
     connectOrCreate?: FavoritosCreateOrConnectWithoutPublicacionInput | FavoritosCreateOrConnectWithoutPublicacionInput[]
     createMany?: FavoritosCreateManyPublicacionInputEnvelope
     connect?: FavoritosWhereUniqueInput | FavoritosWhereUniqueInput[]
-  }
-
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -17728,6 +17757,11 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -17744,9 +17778,12 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -17758,14 +17795,6 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -17876,6 +17905,7 @@ export namespace Prisma {
     precio: number
     foto: string
     color: string
+    activa?: boolean
     genero: string
     stocks?: StockCreateNestedManyWithoutProductoInput
     publicaciones?: PublicacionesCreateNestedManyWithoutProductoInput
@@ -17887,6 +17917,7 @@ export namespace Prisma {
     precio: number
     foto: string
     color: string
+    activa?: boolean
     genero: string
     stocks?: StockUncheckedCreateNestedManyWithoutProductoInput
     publicaciones?: PublicacionesUncheckedCreateNestedManyWithoutProductoInput
@@ -17927,6 +17958,7 @@ export namespace Prisma {
     precio?: FloatFilter<"Productos"> | number
     foto?: StringFilter<"Productos"> | string
     color?: StringFilter<"Productos"> | string
+    activa?: BoolFilter<"Productos"> | boolean
     genero?: StringFilter<"Productos"> | string
     id_categoria?: IntFilter<"Productos"> | number
   }
@@ -18114,6 +18146,7 @@ export namespace Prisma {
     precio: number
     foto: string
     color: string
+    activa?: boolean
     genero: string
     categoria: CategoriasCreateNestedOneWithoutProductosInput
     publicaciones?: PublicacionesCreateNestedManyWithoutProductoInput
@@ -18125,6 +18158,7 @@ export namespace Prisma {
     precio: number
     foto: string
     color: string
+    activa?: boolean
     genero: string
     id_categoria: number
     publicaciones?: PublicacionesUncheckedCreateNestedManyWithoutProductoInput
@@ -18167,6 +18201,7 @@ export namespace Prisma {
     precio?: FloatFieldUpdateOperationsInput | number
     foto?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
+    activa?: BoolFieldUpdateOperationsInput | boolean
     genero?: StringFieldUpdateOperationsInput | string
     categoria?: CategoriasUpdateOneRequiredWithoutProductosNestedInput
     publicaciones?: PublicacionesUpdateManyWithoutProductoNestedInput
@@ -18178,6 +18213,7 @@ export namespace Prisma {
     precio?: FloatFieldUpdateOperationsInput | number
     foto?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
+    activa?: BoolFieldUpdateOperationsInput | boolean
     genero?: StringFieldUpdateOperationsInput | string
     id_categoria?: IntFieldUpdateOperationsInput | number
     publicaciones?: PublicacionesUncheckedUpdateManyWithoutProductoNestedInput
@@ -18210,6 +18246,7 @@ export namespace Prisma {
     precio: number
     foto: string
     color: string
+    activa?: boolean
     genero: string
     categoria: CategoriasCreateNestedOneWithoutProductosInput
     stocks?: StockCreateNestedManyWithoutProductoInput
@@ -18221,6 +18258,7 @@ export namespace Prisma {
     precio: number
     foto: string
     color: string
+    activa?: boolean
     genero: string
     id_categoria: number
     stocks?: StockUncheckedCreateNestedManyWithoutProductoInput
@@ -18305,6 +18343,7 @@ export namespace Prisma {
     precio?: FloatFieldUpdateOperationsInput | number
     foto?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
+    activa?: BoolFieldUpdateOperationsInput | boolean
     genero?: StringFieldUpdateOperationsInput | string
     categoria?: CategoriasUpdateOneRequiredWithoutProductosNestedInput
     stocks?: StockUpdateManyWithoutProductoNestedInput
@@ -18316,6 +18355,7 @@ export namespace Prisma {
     precio?: FloatFieldUpdateOperationsInput | number
     foto?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
+    activa?: BoolFieldUpdateOperationsInput | boolean
     genero?: StringFieldUpdateOperationsInput | string
     id_categoria?: IntFieldUpdateOperationsInput | number
     stocks?: StockUncheckedUpdateManyWithoutProductoNestedInput
@@ -19152,6 +19192,7 @@ export namespace Prisma {
     precio: number
     foto: string
     color: string
+    activa?: boolean
     genero: string
   }
 
@@ -19160,6 +19201,7 @@ export namespace Prisma {
     precio?: FloatFieldUpdateOperationsInput | number
     foto?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
+    activa?: BoolFieldUpdateOperationsInput | boolean
     genero?: StringFieldUpdateOperationsInput | string
     stocks?: StockUpdateManyWithoutProductoNestedInput
     publicaciones?: PublicacionesUpdateManyWithoutProductoNestedInput
@@ -19171,6 +19213,7 @@ export namespace Prisma {
     precio?: FloatFieldUpdateOperationsInput | number
     foto?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
+    activa?: BoolFieldUpdateOperationsInput | boolean
     genero?: StringFieldUpdateOperationsInput | string
     stocks?: StockUncheckedUpdateManyWithoutProductoNestedInput
     publicaciones?: PublicacionesUncheckedUpdateManyWithoutProductoNestedInput
@@ -19182,6 +19225,7 @@ export namespace Prisma {
     precio?: FloatFieldUpdateOperationsInput | number
     foto?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
+    activa?: BoolFieldUpdateOperationsInput | boolean
     genero?: StringFieldUpdateOperationsInput | string
   }
 

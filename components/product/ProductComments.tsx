@@ -12,7 +12,6 @@ export default function ProductComments({ publicationId }: { publicationId: numb
         const res = await fetch(`/tienda/inicio/api/comments/${publicationId}/${page}`)
         if (!res.ok) throw new Error('Error al traer comentarios')
         const response = await res.json()
-        console.log("response comments:", response)
         return response
     }
 

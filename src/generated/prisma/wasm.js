@@ -131,6 +131,7 @@ exports.Prisma.ProductosScalarFieldEnum = {
   precio: 'precio',
   foto: 'foto',
   color: 'color',
+  activa: 'activa',
   genero: 'genero',
   id_categoria: 'id_categoria'
 };

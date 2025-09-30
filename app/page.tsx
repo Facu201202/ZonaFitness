@@ -1,5 +1,9 @@
 import { redirect } from "next/navigation";
+import { headers } from "next/headers"
 
-export default function Home() {
-  redirect("/tienda/inicio")
+export default async function Home() {
+  const headerList = await headers()
+  const userRol = headerList.get("x-user-rol")
+  userRol === "usuario" &&  redirect("/tienda/inicio")
+  userRol === "admin" &&  redirect("/admin")
 }

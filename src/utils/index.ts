@@ -36,8 +36,9 @@ export function translateCategory(categoria: Categoria) {
 
 export const createQueryFilter = (searchParams: ReadonlyURLSearchParams) => {
     const skip = Number(searchParams.get("page")) || 1
+    const searchText = searchParams.get("searchProduct")
     const filters = {
-        search: searchParams.get("searchProduct") || "",
+        search: searchText ? searchText.replace(/%20/g, " ") : "",
         categories: searchParams.getAll("categoria"),
         sizes: searchParams.getAll("talle"),
         discount: searchParams.get("descuento") || false,
@@ -106,4 +107,47 @@ export const purchaseStateBgColor: Record<EstadoEnvio, [string, string]> = {
   [EstadoEnvio.EN_CAMINO]: ["bg-blue-100", "text-blue-700"],  
   [EstadoEnvio.ENTREGADO]: ["bg-indigo-100", "text-indigo-700"],   
   [EstadoEnvio.CANCELADO]: ["bg-red-100", "text-red-700"],    
+}
+
+
+export const queryFilterAdminProducts = (searchParams: ReadonlyURLSearchParams) => {
+    const skipPage = ((Number(searchParams.get("page")) || 1) - 1) * 10
+    const searchText = searchParams.get("searchProduct")
+    const category =  searchParams.get("category")
+    const filters = {
+        search: searchText ? searchText.replace(/%20/g, " ") : "",
+        skipPage: skipPage,
+        category: category ? category : ""
+    }
+
+    const queryString = new URLSearchParams({
+        search: filters.search,
+        skipPage: filters.skipPage.toString(),
+        category: filters.category
+    })
+    
+    return queryString
+}
+
+export const whereFilterAdminProducts = (filters: {search: string, skip: number}) => {
+    const where: Record<string, unknown> = {
+        producto: {
+            ...(filters.search && {
+                nombre: {
+                    contains: filters.search,
+                    mode: 'insensitive'
+                }
+            })
+        }
+    }
+    return where
+}
+
+export const findUrlPath = (imagePath: string, category?: string) => {
+    const cloudinaryBaseUrl = "https://res.cloudinary.com"
+    if(imagePath.startsWith(cloudinaryBaseUrl)){
+        return imagePath
+    } else {
+        return `/products/${translateCategory(category  as Categoria)}/` + imagePath
+    }
 }

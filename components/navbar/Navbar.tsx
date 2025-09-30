@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link"
-import {useForm} from "react-hook-form"
+import { useForm } from "react-hook-form"
 import { useState } from "react"
 import { MagnifyingGlassIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
 import UserButton from "./UserButton";
@@ -13,8 +13,8 @@ import { useUserStore } from "@/src/stores/userStore";
 export default function Navbar({ isLogin }: { isLogin: boolean }) {
     const [menuOpen, setMenuOpen] = useState(false);
     const userName = useUserStore(state => state.userName)
-    const {handleSubmit, register, reset} = useForm<{search: string}>()
-    const searchProduct = (data: {search: string}) => {
+    const { handleSubmit, register, reset } = useForm<{ search: string }>()
+    const searchProduct = (data: { search: string }) => {
         redirect(`/tienda/search?searchProduct=${data.search}`)
     }
     return (
@@ -30,7 +30,7 @@ export default function Navbar({ isLogin }: { isLogin: boolean }) {
             </div>
             <div className="hidden lg:flex justify-start w-sm text-[#434346] items-center gap-4 px-2">
                 <form className="relative" onSubmit={handleSubmit(searchProduct)}>
-                    <MagnifyingGlassIcon className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 hover:cursor-pointer" onClick={handleSubmit(searchProduct)}/>
+                    <MagnifyingGlassIcon className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 hover:cursor-pointer" onClick={handleSubmit(searchProduct)} />
                     <input
                         className="border border-gray-400 rounded-full px-3 py-1 focus:border-[#275DA2]"
                         placeholder="Buscar Productos..."
@@ -64,13 +64,12 @@ export default function Navbar({ isLogin }: { isLogin: boolean }) {
                             <Image src={"/user.png"} alt="" height={50} width={50} className="rounded-full" />
                             <div className="flex flex-col ">
                                 <p className="text-xl font-medium">{userName}</p>
-                                <Link href={""} className="hover:text-[#275DA2] text-xs" onClick={() => setMenuOpen(false)}>Mi perfil</Link>
-                            </div>
-
+                                <Link href={"/tienda/perfil"} className="hover:text-[#275DA2] text-xs" onClick={() => setMenuOpen(false)}>Mi perfil</Link>
+                           </div>
                         </div>
                     }
-                    <Link href={""} className="hover:text-[#275DA2]" onClick={() => setMenuOpen(false)}>Inicio</Link>
-                    <Link href={""} className="hover:text-[#275DA2]" onClick={() => setMenuOpen(false)}>Productos</Link>
+                    <Link href={"/"} className="hover:text-[#275DA2]" onClick={() => setMenuOpen(false)}>Inicio</Link>
+                    <Link href={"/tienda/search"} className="hover:text-[#275DA2]" onClick={() => setMenuOpen(false)}>Productos</Link>
                     <Link href={""} className="hover:text-[#275DA2]" onClick={() => setMenuOpen(false)}>Categorías</Link>
                     <Link href={""} className="hover:text-[#275DA2]" onClick={() => setMenuOpen(false)}>Ofertas</Link>
                     <div className="w-full relative">
@@ -83,7 +82,7 @@ export default function Navbar({ isLogin }: { isLogin: boolean }) {
                     </div>
 
                     {isLogin ? (
-                        <LogoutButton/>
+                        <LogoutButton />
                     ) : (<Link href={"/cuenta"} className="hover:text-[#275DA2]">Iniciar Sesion</Link>)}
                 </div>
             )}

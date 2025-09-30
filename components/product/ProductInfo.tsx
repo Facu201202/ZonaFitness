@@ -1,15 +1,15 @@
-import { Categoria, Product } from '@/src/types'
+import { CartItem, Categoria, Product } from '@/src/types'
 import { translateCategory, formatFeatures, formatCurrency, sizes } from '@/src/utils'
 import { useProductStore } from '@/src/stores/productStore'
 import Image from 'next/image'
-import Link from 'next/link'
-import { useSearchParams, useRouter, redirect } from "next/navigation"
+import { useSearchParams, useRouter } from "next/navigation"
 import { useEffect, useState } from 'react'
-import {CreditCardIcon, ShoppingCartIcon, TruckIcon, ClockIcon, ArrowUturnLeftIcon } from "@heroicons/react/24/outline"
+import { CreditCardIcon, ShoppingCartIcon, TruckIcon, ClockIcon, ArrowUturnLeftIcon } from "@heroicons/react/24/outline"
 import Qualification from '../Qualification'
 import SizesButton from '../SizesButton'
 import { useUserStore } from '@/src/stores/userStore'
 import FavoriteButton from './FavoriteButton'
+import ReactStars from 'react-stars'
 
 type ProductInfoProps = {
     product: Product
@@ -27,11 +27,15 @@ export default function ProductInfo({ product }: ProductInfoProps) {
 
     const category = product.producto.categoria.nombre as keyof typeof sizes
     const currentSizes = params.get("ModalTalle")
+    const isCalificated = product.ventas && product.ventas.filter(star => star.opinion.length > 0 && star)
+    const total = (product.ventas && isCalificated && isCalificated?.length > 0) ? product.ventas.reduce((acc, star) => { return acc + star.opinion[0].calificacion }, 0) : 0
+    const opinionCant = isCalificated ? isCalificated.length : 0
 
     if (currentSizes && !sizes[category].includes(currentSizes)) {
         params.delete("ModalTalle")
         router.replace(`?${params.toString()}`)
     }
+
 
 
     useEffect(() => {
@@ -56,7 +60,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
     }
 
     const handlePurchaseButton = () => {
-        if (!userId) redirect("/cuenta")
+        if (!userId) window.location.href = "/cuenta"
         if (!params.get("ModalTalle")) {
             setisSizeActive(true)
             return
@@ -64,6 +68,32 @@ export default function ProductInfo({ product }: ProductInfoProps) {
         setActiveModal("Purchase")
     }
 
+    const handleShoppingCartButton = () => {
+        if (!userId) window.location.href = "/cuenta"
+        const talle = params.get("ModalTalle")
+        if (!talle) {
+            setisSizeActive(true)
+            return
+        }
+        const localStorageCart = localStorage.getItem(`cart_${userId}`)
+        const itemInfo: CartItem = {
+            id_publicacion: product.id_publicacion,
+            cantidad: quantity,
+            talle: talle
+        }
+        const parsedlocalStorageCart: CartItem[] = localStorageCart ? JSON.parse(localStorageCart) : []
+        const index = parsedlocalStorageCart.findIndex(
+            (item) => item.id_publicacion === itemInfo.id_publicacion && item.talle === itemInfo.talle
+        )
+        if (index !== -1) {
+            parsedlocalStorageCart[index].cantidad += quantity
+            if (parsedlocalStorageCart[index].cantidad > 5) parsedlocalStorageCart[index].cantidad = 5
+        } else {
+            parsedlocalStorageCart.push(itemInfo)
+        }
+
+        localStorage.setItem(`cart_${userId}`, JSON.stringify(parsedlocalStorageCart))
+    }
 
     const feactures = formatFeatures(product.caracteristicas)
     return (
@@ -89,11 +119,18 @@ export default function ProductInfo({ product }: ProductInfoProps) {
             <div className='lg:w-1/2 flex flex-col gap-6'>
                 <div className='flex justify-between'>
                     <h2 className="text-3xl lg:text-4xl font-bold lg:w-4/5">{product.producto.nombre}</h2>
-                    <FavoriteButton product={product} iscarrusel={false}/>
+                    <FavoriteButton product={product} iscarrusel={false} />
                 </div>
-                <div className="flex gap-2">
-                    <Qualification stars={4} width='w-6' height='h-6' />
-                    <p className="lg:text-xl text-gray-600">(127)</p>
+                <div className="flex gap-2 items-center">
+                    <ReactStars
+                        count={5}
+                        value={opinionCant > 0 ? total / opinionCant : 0}
+                        size={25}
+                        half={true}
+                        color2={"#ffd700"}
+                        edit={false}
+                    />
+                    <p className="lg:text-xl text-gray-600">({opinionCant})</p>
                 </div>
                 <div>
                     <p className='font-bold text-3xl lg:text-4xl'>{formatCurrency(product.precio)}</p>
@@ -129,12 +166,11 @@ export default function ProductInfo({ product }: ProductInfoProps) {
                     ))}
                 </div>
                 <div className='flex flex-col gap-2'>
-                    <Link
-                        href={""}
-                        scroll={false}
-                        className=" bg-[#2D5DA2] text-white px-4 py-3 rounded text-center font-semibold hover:bg-[#2d52a2] flex justify-center items-center gap-3"
+                    <button
+                        onClick={() => handleShoppingCartButton()}
+                        className=" bg-[#2D5DA2] text-white px-4 py-3 rounded text-center font-semibold hover:bg-[#2d52a2] hover:cursor-pointer flex justify-center items-center gap-3"
                     >{<ShoppingCartIcon className='h-5 w-5' />}  Añadir al carrito
-                    </Link>
+                    </button>
                     <button
                         className=" border border-[#2D5DA2] text-[#2D5DA2] px-4 py-3 rounded text-center font-semibold hover:bg-[#2D5DA2] hover:text-white flex justify-center items-center gap-3"
                         onClick={() => handlePurchaseButton()}

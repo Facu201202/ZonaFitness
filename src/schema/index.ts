@@ -11,7 +11,7 @@ export const registerFormSchema = z.object({
         .max(10, "El nombre de usuario debe tener 6 a 10 caracteres"),
     correo: z.string().email("Formato de correo no válido"),
     ciudad: z.string()
-        .min(2,"La ciudad debe tener más de 2 caracteres")
+        .min(2, "La ciudad debe tener más de 2 caracteres")
         .max(15, "La ciudad debe tener menos de 15 caracteres"),
     barrio: z.string()
         .min(2, "El nombre del barrio debe tener más de 2 caracteres")
@@ -27,10 +27,10 @@ export const registerFormSchema = z.object({
         .min(8, "Se debe confirmar la contraseña")
 })
 
-export const registerUserSchema = registerFormSchema.pick({usuario: true, contraseña: true}).extend({rol: z.string()})
-export const registerClientSchema = registerFormSchema.omit({comfirmarContraseña: true, usuario: true, contraseña: true, })
-export const loginUserSchema = registerUserSchema.omit({rol: true})
-export const loginUserFormSchema = registerUserSchema.omit({rol: true}).extend({validateError: z.string()})
+export const registerUserSchema = registerFormSchema.pick({ usuario: true, contraseña: true }).extend({ rol: z.string() })
+export const registerClientSchema = registerFormSchema.omit({ comfirmarContraseña: true, usuario: true, contraseña: true, })
+export const loginUserSchema = registerUserSchema.omit({ rol: true })
+export const loginUserFormSchema = registerUserSchema.omit({ rol: true }).extend({ validateError: z.string() })
 
 export type RegisterForm = z.infer<typeof registerFormSchema>
 export type RegisterUser = z.infer<typeof registerUserSchema>
@@ -39,8 +39,8 @@ export type RegisterClient = z.infer<typeof registerClientSchema>
 export type LoginUser = z.infer<typeof loginUserSchema>
 export type LoginUserForm = z.infer<typeof loginUserFormSchema>
 
-export const editUserSchema = registerFormSchema.pick({usuario: true}).extend({id_usuario: z.number()})
-export const editClientSchema = registerFormSchema.omit({usuario: true, contraseña: true, comfirmarContraseña: true}).extend({id_cliente: z.number()})
+export const editUserSchema = registerFormSchema.pick({ usuario: true }).extend({ id_usuario: z.number() })
+export const editClientSchema = registerFormSchema.omit({ usuario: true, contraseña: true, comfirmarContraseña: true }).extend({ id_cliente: z.number() })
 
 export type EditUser = z.infer<typeof editUserSchema>
 export type EditClient = z.infer<typeof editClientSchema>

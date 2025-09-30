@@ -22,9 +22,9 @@ export default function DeliveryMethod() {
         router.replace(`?${params.toString()}`, { scroll: false })
     }
     return (
-        <div className='shadow border border-gray-300 rounded-2xl p-4'>
+        <div className='shadow border border-gray-300 rounded-2xl p-4 bg-white'>
             <div className="flex gap-2 items-center mb-3">
-                <TruckIcon className='w-5 h-5 hidden' />
+                <TruckIcon className='w-5 h-5' />
                 <p className="font-medium text-lg">Método de Entrega</p>
             </div>
             <form className="py-5 flex flex-col gap-4">

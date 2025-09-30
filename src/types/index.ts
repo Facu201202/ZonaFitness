@@ -1,4 +1,4 @@
-import { Publicaciones, Productos, Stock, Sizes, Ventas, MetodoPago, MetodoEnvio, Favoritos, Clientes, Opiniones } from '../../src/generated/prisma'
+import { Publicaciones, Productos, Stock, Sizes, Ventas, MetodoPago, MetodoEnvio, Favoritos, Clientes, Opiniones, Categorias } from '../../src/generated/prisma'
 import { categoriesTranslate } from '../utils'
 
 export type Product = Pick<Publicaciones, "id_publicacion" | "caracteristicas" | "descuento" | "precio"> & {
@@ -11,6 +11,11 @@ export type Product = Pick<Publicaciones, "id_publicacion" | "caracteristicas" |
         }>
     }
     favoritos?: Array<Favoritos>
+    ventas?: {
+        opinion: {
+            calificacion: number;
+        }[];
+    }[];
 }
 
 export type FiltersData = {
@@ -134,3 +139,74 @@ export type RelatedCommentsProduct = Omit<Opiniones, "id_usuario" | "id_venta"> 
         usuario: string;
     }
 }
+
+export type CartItem = {
+    id_publicacion: number;
+    cantidad: number;
+    talle: string;
+}
+
+export type CartFullItem = {
+    precio: number;
+    id_publicacion: number;
+    descuento: number;
+    producto: {
+        nombre: string;
+        foto: string;
+        stocks: {
+            talle: {
+                talle: string;
+            };
+            cantidad: number;
+        }[];
+        categoria: {
+            nombre: string
+        }
+    }
+    cantidadUsuario: number
+    ;
+}
+
+export type ProductAdmin = {
+    id_producto: number;
+    nombre: string;
+    precio: number;
+    foto: string;
+    categoria: {
+        nombre: string;
+    };
+    stocks: {
+        cantidad: number;
+        id_talle: number;
+        talle: {
+            talle: string;
+        };
+    }[];
+    publicaciones: {
+        id_producto: number;
+        precio: number;
+        id_publicacion: number;
+        activa: boolean;
+        caracteristicas: string;
+        descuento: number;
+        fecha: Date;
+    }[];
+}
+
+export type Category = Categorias
+
+export type Size = Sizes
+
+
+export type CreateProductFormData = {
+    name: string,
+    price: string,
+    categoryId: string,
+    gender: string,
+    color: string,
+    image: string,
+    validateError: string,
+    stock: Record<string, number>
+};
+
+

@@ -25,9 +25,7 @@ export default function SuccessPurchase() {
     }
 
     useLayoutEffect(() => {
-        console.log("hola desde el effect")
         if (isReceiptActive && receiptRef.current && isReceiptSuccess) {
-            console.log("si paso")
             setTimeout(() => {
                 createPDF()
             }, 1000);

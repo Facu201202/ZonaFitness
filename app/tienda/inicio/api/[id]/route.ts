@@ -19,6 +19,15 @@ export async function GET(
             caracteristicas: true,
             descuento: true,
             precio: true,
+            ventas: {
+                select: {
+                    opinion: {
+                        select: {
+                            calificacion: true
+                        }
+                    }
+                }
+            },
             producto: {
                 select: {
                     id_producto: true,
