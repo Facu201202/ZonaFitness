@@ -163,8 +163,3 @@ export default function NewProductForm() {
     )
 }
 
-
-/**
- * nombre, precio, foto, color, genero, idcategoria, talles
- * 
- */

@@ -209,4 +209,27 @@ export type CreateProductFormData = {
     stock: Record<string, number>
 };
 
+export type EditProductFormData = {
+    color: string;
+    validateError: string,
+    categoria: {
+        nombre: string;
+    };
+    stock: Record<string, number>,
+    nombre: string;
+    id_producto: string;
+    precio: number;
+    foto: string;
+    genero: string;
+}
 
+
+export type ProductDataEdit = Omit<EditProductFormData, "validateError"> & {
+    stocks: {
+        cantidad: number;
+        id_stock: number;
+        talle: {
+            talle: string;
+        };
+    }[];
+}
