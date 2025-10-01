@@ -19,8 +19,6 @@ export default function () {
         },
         enabled: productId ? true : false
     })
-
-    console.log(data)
     return (
         <div className='w-full bg-gray-200'>
             <div className="p-6 border-b border-gray-300 bg-white">

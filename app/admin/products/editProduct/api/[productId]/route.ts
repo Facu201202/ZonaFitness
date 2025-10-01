@@ -23,7 +23,7 @@ export async function GET(req: NextRequest, context: { params: Promise<{ product
             },
             stocks: {
                 select: {
-                    id_talle: true,
+                    id_stock: true,
                     cantidad: true,
                     talle: {
                         select:{
