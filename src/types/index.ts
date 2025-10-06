@@ -172,6 +172,7 @@ export type ProductAdmin = {
     nombre: string;
     precio: number;
     foto: string;
+    activa: boolean;
     categoria: {
         nombre: string;
     };

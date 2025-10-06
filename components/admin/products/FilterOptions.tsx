@@ -1,16 +1,27 @@
 import { FunnelIcon } from "@heroicons/react/24/outline"
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid"
-import { redirect, useSearchParams } from "next/navigation"
+import { redirect, useSearchParams, useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import FilterMenu from "./FilterMenu"
 
 export default function FilterOptions() {
     const searchParams = useSearchParams()
     const params = new URLSearchParams(searchParams.toString())
+    const router = useRouter()
     const searchedValue = params.get("searchProduct")
+    const lowStock = params.get("lowStock")
     const { handleSubmit, register, reset } = useForm<{ search: string }>()
     const searchProduct = (data: { search: string }) => {
         redirect(`/admin/products?searchProduct=${data.search}`)
+    }
+    const handleStockButton = () => {
+        if (lowStock) {
+            params.delete("lowStock")
+            router.push(`?${params.toString()}`)
+            return
+        }
+        params.append("lowStock", "true")
+        router.push(`?${params.toString()}`)
     }
     return (
         <>
@@ -33,7 +44,8 @@ export default function FilterOptions() {
                     </form>
                     <FilterMenu />
                     <button
-                        className="px-2 py-1 font-semibold text-sm border rounded-lg border-gray-200 shadow hover:cursor-pointer hover:bg-gray-100"
+                        onClick={() => handleStockButton()}
+                        className={`px-2 py-1 font-semibold text-sm border rounded-lg border-gray-200 shadow hover:cursor-pointer hover:bg-gray-100 ${lowStock && "bg-gray-300"}`}
                     >
                         Solo stock bajo
                     </button>

@@ -131,7 +131,7 @@ export default function EditProductForm({ product }: { product: ProductDataEdit 
                         </div>
                     ))}
                 </div>
-                <div className="flex gap-2 w-full justify-between items-center">
+                <div className="flex gap-2 w-full justify-between items-center ">
                     <div className="w-1/3">
                         <p className="font-semibold mb-6 text-center">Imagen actual del Producto</p>
                         <div className='relative w-auto h-[200px] px-4 py-4' >

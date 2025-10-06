@@ -9,8 +9,11 @@ export async function GET(req: NextRequest) {
     const filters = {
         search: searchParams.get("search") || "",
         skip: Number(searchParams.get("skipPage")) || 0,
-        category: searchParams.get("category")
+        category: searchParams.get("category"),
+        lowStock: searchParams.get("lowStock")
     }
+
+    console.log(filters)
 
     const [products, countProducts]: [ProductAdmin[], number] = await Promise.all([getProducts(filters), getSearchedProductsCount(filters)])
     return NextResponse.json({products, countProducts})

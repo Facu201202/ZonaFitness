@@ -10,6 +10,7 @@ export default function Table({ products }: TableProps) {
         <table className="w-full table-fixed text-base">
             <thead className="font-medium bg-gray-100">
                 <tr>
+                    <th className="px-2 py-4 w-[80px]">Estado</th>
                     <th className="px-2 py-4">Foto</th>
                     <th className="px-2 py-4 text-left w-1/4">Nombre</th>
                     <th className="px-2 py-4 text-left">Precio</th>
