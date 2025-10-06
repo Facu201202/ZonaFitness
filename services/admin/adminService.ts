@@ -1,7 +1,7 @@
 import { prisma } from "@/src/lib/prisma"
 import { whereFilterAdminProducts } from "@/src/utils"
 
-export async function getProducts(filters: { search: string, skip: number, category: string | null }) {
+export async function getProducts(filters: { search: string, skip: number, category: string | null, lowStock: string | null }) {
     const searchedWords = filters.search.split(" ").filter(Boolean)
     return await prisma.productos.findMany({
         take: 10,
@@ -17,6 +17,19 @@ export async function getProducts(filters: { search: string, skip: number, categ
                 ?
                 { categoria: { nombre: filters.category } }
                 : {}
+            ),
+            ...(filters.lowStock
+                ?
+                {
+                    stocks: {
+                        some: {
+                            cantidad: {
+                                lt: 5
+                            }
+                        }
+                    }
+                }
+                : {}
             )
         },
         select: {
@@ -24,6 +37,7 @@ export async function getProducts(filters: { search: string, skip: number, categ
             nombre: true,
             precio: true,
             foto: true,
+            activa: true,
             categoria: {
                 select: {
                     nombre: true
@@ -45,7 +59,7 @@ export async function getProducts(filters: { search: string, skip: number, categ
     })
 }
 
-export async function getSearchedProductsCount(filters: { search: string, skip: number, category: string | null }) {
+export async function getSearchedProductsCount(filters: { search: string, skip: number, category: string | null, lowStock: string | null }) {
     const searchedWords = filters.search.split(" ").filter(Boolean)
     return await prisma.productos.count({
         where: {
@@ -55,9 +69,23 @@ export async function getSearchedProductsCount(filters: { search: string, skip: 
                     mode: "insensitive"
                 }
             })),
+
             ...(filters.category
                 ?
                 { categoria: { nombre: filters.category } }
+                : {}
+            ),
+            ...(filters.lowStock
+                ?
+                {
+                    stocks: {
+                        some: {
+                            cantidad: {
+                                lt: 5
+                            }
+                        }
+                    }
+                }
                 : {}
             )
         },

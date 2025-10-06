@@ -1,5 +1,6 @@
 "use client"
 import AdminSpinner from "@/components/admin/AdminSpinner"
+import ChangeStateProductModal from "@/components/admin/products/ChangeStateProductModal"
 import FilterOptions from "@/components/admin/products/FilterOptions"
 import Table from "@/components/admin/products/Table"
 import Pagination from "@/components/Pagination"
@@ -14,6 +15,7 @@ import { useSearchParams } from "next/navigation"
 export default function Page() {
   const searchParams = useSearchParams()
   const productId = +searchParams.get('producto')!
+   const state = searchParams.get('state')
   const params = new URLSearchParams(searchParams.toString())
   const urlQueryFilter = queryFilterAdminProducts(searchParams)
 
@@ -53,7 +55,7 @@ export default function Page() {
         <div className="p-6 flex flex-col gap-4">
           <div className="p-3 border border-gray-300 rounded flex gap-2 text-gray-800 text-sm items-center shadow">
             <ExclamationCircleIcon className="w-6 h-6" />
-            <p><span className="font-semibold">Stock bajo:</span> Se considera stock bajo cuando menos de 5 unidades por talle</p>
+            <p><span className="font-semibold">Stock bajo:</span> Se considera stock bajo cuando hay menos de 5 unidades por talle</p>
           </div>
           <FilterOptions />
           <div className="border border-gray-300 rounded text-gray-800 items-center shadow">
@@ -65,6 +67,11 @@ export default function Page() {
       {
         (data && productId != null && data.products.length > 0) ? (
           <ProductModal productId={productId} />
+        ) : null
+      }
+      {
+        (data && state != null && data.products.length > 0) ? (
+          <ChangeStateProductModal state={state} />
         ) : null
       }
     </div>

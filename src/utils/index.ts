@@ -117,13 +117,15 @@ export const queryFilterAdminProducts = (searchParams: ReadonlyURLSearchParams) 
     const filters = {
         search: searchText ? searchText.replace(/%20/g, " ") : "",
         skipPage: skipPage,
-        category: category ? category : ""
+        category: category ? category : "",
+        lowStock: searchParams.get("lowStock") || ""
     }
 
     const queryString = new URLSearchParams({
         search: filters.search,
         skipPage: filters.skipPage.toString(),
-        category: filters.category
+        category: filters.category,
+        lowStock: filters.lowStock
     })
     
     return queryString
