@@ -12,6 +12,7 @@ export default function FilterMenu() {
     const [selected, setSelected] = useState(options[0]);
     const handleChange = (e: string) => {
         setSelected(e)
+        params.delete("page")
         params.delete("category")
         params.append("category", e)
         router.push(`?${params.toString()}`)

@@ -4,6 +4,6 @@ import { headers } from "next/headers"
 export default async function Home() {
   const headerList = await headers()
   const userRol = headerList.get("x-user-rol")
-  userRol === "usuario" &&  redirect("/tienda/inicio")
   userRol === "admin" &&  redirect("/admin")
+  userRol === "usuario" || userRol === null &&  redirect("/tienda/inicio")
 }
