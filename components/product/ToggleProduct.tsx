@@ -51,7 +51,7 @@ export default function ToggleProduct({ product, products, deleteParamsFunction 
         mutationKey: ["purchase", [currentPurchase.id_publicacion, currentPurchase.id_usuario]],
         mutationFn: (data: PurchaseData) => fetchPurchase(data),
         onError: () => {
-            setMutateState({ ...mutateState, error: true })
+            setMutateState({ ...mutateState, error: true, loading: false })
         },
         onSuccess: (data) => {
             setMutateState({ ...mutateState, success: true })
@@ -83,7 +83,7 @@ export default function ToggleProduct({ product, products, deleteParamsFunction 
                             <DeliveryMethod />
                             <PaymentMethod />
                         </div>
-                        <div>{<PurchaseSummary mutate={mutation.mutate} image={product.producto.foto} productName={product.producto.nombre} price={product.precio} category={product.producto.categoria.nombre} publicationId={product.id_publicacion} />}</div>
+                        <div>{<PurchaseSummary mutate={mutation.mutate} image={product.producto.foto} productName={product.producto.nombre} price={product.precio - ((product.descuento / 100) * product.precio)} category={product.producto.categoria.nombre} publicationId={product.id_publicacion} />}</div>
                     </div>
                 </div>
             )}

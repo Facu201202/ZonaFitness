@@ -7,7 +7,7 @@ import Table from "@/components/admin/publications/Table"
 import Pagination from "@/components/Pagination"
 import ProductModal from "@/components/product/ProductModal"
 import { PublicationAdmin } from "@/src/types"
-import {queryFilterAdminProducts } from "@/src/utils"
+import { queryFilterAdminProducts } from "@/src/utils"
 import { PlusIcon, ExclamationCircleIcon } from "@heroicons/react/24/outline"
 import { useQuery } from "@tanstack/react-query"
 import Link from "next/link"
@@ -72,6 +72,11 @@ export default function Page() {
         (data && state != null && data.products.length > 0) ? (
           <ChangeStateProductModal state={state} />
         ) : null*/
+      }
+      {
+        (data && productId != null && data.publications.length > 0) ? (
+          <ProductModal productId={productId} />
+        ) : null
       }
       {(feactures && data ? (
         <FeacturesModal />

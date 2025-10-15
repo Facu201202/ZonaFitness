@@ -95,7 +95,7 @@ export async function getSearchedProductsCount(filters: { search: string, skip: 
     })
 }
 
-export async function getPublications(filters: { search: string, skip: number, category: string | null }) {
+export async function getPublications(filters: { search: string, skip: number, category: string | null, RelatedPublications: string | null }) {
     const searchedWords = filters.search.split(" ").filter(Boolean)
     return await prisma.publicaciones.findMany({
         take: 10,
@@ -120,6 +120,7 @@ export async function getPublications(filters: { search: string, skip: number, c
                 }
                 : {}
             ),
+            ...(filters.RelatedPublications ? {id_producto: Number(filters.RelatedPublications)} : {})
         },
         select: {
             id_publicacion: true,
@@ -139,7 +140,7 @@ export async function getPublications(filters: { search: string, skip: number, c
     })
 }
 
-export async function getSearchedPublicationsCount(filters: { search: string, skip: number, category: string | null }) {
+export async function getSearchedPublicationsCount(filters: { search: string, skip: number, category: string | null, RelatedPublications: string | null }) {
     const searchedWords = filters.search.split(" ").filter(Boolean)
     return await prisma.publicaciones.count({
         where: {
@@ -163,6 +164,7 @@ export async function getSearchedPublicationsCount(filters: { search: string, sk
                 }
                 : {}
             ),
+            ...(filters.RelatedPublications ? {id_producto: Number(filters.RelatedPublications)} : {})
         },
     })
 }

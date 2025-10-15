@@ -15,6 +15,7 @@ export default function Table({ publications }: TableProps) {
                     <th className="px-2 py-4 text-left">Precio</th>
                     <th className="px-2 py-4 text-left">Descuento</th>
                     <th className="px-2 py-4 text-left">Características</th>
+                    <th className="px-2 py-4 text-left">Publicación</th>
                     <th className="px-2 py-4 text-left">Fecha de Alta</th>
                     <th className="px-2 py-4 text-left">Ventas</th>
                     <th className="px-2 py-4 text-left">Acciones</th>

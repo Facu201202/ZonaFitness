@@ -13,6 +13,7 @@ export default function GridProduct({ products }: GridProductProps) {
                     <ProductCard
                         id_publication={publication.id_publicacion}
                         price={publication.precio}
+                        discount={publication.descuento}
                         name={publication.producto.nombre}
                         category={publication.producto.categoria.nombre as Categoria}
                         src={publication.producto.foto}

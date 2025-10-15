@@ -64,6 +64,14 @@ export default function TableRow({ i, publications }: TableRowProps) {
                         Características
                     </button>
                 </td>
+                <td className="px-2 py-4">
+                    <button
+                        className={`px-2 py-1 font-semibold text-sm border rounded-lg border-gray-200 shadow hover:cursor-pointer hover:bg-gray-100`}
+                    onClick={() => { redirect(`${fullUrl}&producto=${publications.id_publicacion}`) }}
+                    >
+                        Ver publicación
+                    </button>
+                </td>
                 <td className="px-2 py-4">{new Date(publications.fecha).toLocaleDateString("es-AR")}</td>
                 <td className="px-2 py-4 font-bold flex gap-2 items-center">{<ArrowTrendingUpIcon className="w-5 h-5 text-green-600" />}{publications.ventas.length}</td>
                 <td className="px-2 py-4">
