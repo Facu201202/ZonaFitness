@@ -1,5 +1,5 @@
 import { CartItem, Categoria, Product } from '@/src/types'
-import { translateCategory, formatFeatures, formatCurrency, sizes } from '@/src/utils'
+import { translateCategory, formatFeatures, formatCurrency, sizes, findUrlPath } from '@/src/utils'
 import { useProductStore } from '@/src/stores/productStore'
 import Image from 'next/image'
 import { useSearchParams, useRouter } from "next/navigation"
@@ -101,7 +101,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
             <div className='lg:w-1/2 lg:px-8'>
                 <div className='relative w-auto h-[500px] lg:mb-12'>
                     <Image
-                        src={`/products/${translateCategory(product.producto.categoria.nombre as Categoria)}/` + product.producto.foto}
+                        src={findUrlPath(product.producto.foto, product.producto.categoria.nombre)}
                         fill
                         alt='imangen del producto'
                         sizes="(max-width: 768px) 100vw, 50vw"
@@ -133,7 +133,14 @@ export default function ProductInfo({ product }: ProductInfoProps) {
                     <p className="lg:text-xl text-gray-600">({opinionCant})</p>
                 </div>
                 <div>
-                    <p className='font-bold text-3xl lg:text-4xl'>{formatCurrency(product.precio)}</p>
+                    <p className='font-medium text-gray-500 text-lg line-through'>{formatCurrency(product.precio)}</p>
+                    <div className='flex gap-2'>
+                        <p className='font-bold text-3xl lg:text-4xl'>{formatCurrency(product.precio - ((product.descuento / 100) * product.precio))}</p>
+                        {product.descuento > 0 && (
+                            <p className='text-green-600 font-semibold text-xl'>{product.descuento}% OFF</p>
+                        )}
+                    </div>
+
                     <p className='text-gray-600 font-semibold text-sm lg:text-base'>Incluye impuestos. Envío calculado al finalizar la compra</p>
                 </div>
                 <div>

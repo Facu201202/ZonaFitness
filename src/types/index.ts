@@ -1,4 +1,4 @@
-import { Publicaciones, Productos, Stock, Sizes, Ventas, MetodoPago, MetodoEnvio, Favoritos, Clientes, Opiniones, Categorias } from '../../src/generated/prisma'
+import { Publicaciones, Productos, Stock, Sizes, Ventas, MetodoPago, MetodoEnvio, Favoritos, Clientes, Opiniones, Categorias, EstadoEnvio } from '../../src/generated/prisma'
 import { categoriesTranslate } from '../utils'
 
 export type Product = Pick<Publicaciones, "id_publicacion" | "caracteristicas" | "descuento" | "precio"> & {
@@ -233,4 +233,41 @@ export type ProductDataEdit = Omit<EditProductFormData, "validateError"> & {
             talle: string;
         };
     }[];
+}
+
+
+export type PublicationAdmin = {
+    producto: {
+        nombre: string;
+    };
+    id_publicacion: number;
+    activa: boolean;
+    caracteristicas: string;
+    descuento: number;
+    precio: number;
+    id_producto: number;
+    fecha: Date;
+    ventas: {
+        id_publicacion: number;
+        fecha: Date;
+        cantidad: number;
+        talle: string;
+        id_usuario: number;
+        id_venta: number;
+        precio_total: number;
+        estado: EstadoEnvio;
+        metodo_entrega: MetodoEnvio;
+        metodo_pago: MetodoPago;
+        n_comprobante: string;
+        id_comentario: number | null;
+    }[];
+}
+
+
+export type NewPublicationFormData = {
+    productId: number,
+    features: { key: string, value: string }[],
+    price: number,
+    discount: string,
+    validateError: string
 }

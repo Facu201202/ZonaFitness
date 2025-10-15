@@ -8,17 +8,18 @@ import { taxes, homeDeliveryPrice } from "@/src/utils"
 
 export async function POST(req: NextRequest) {
     const body: PurchaseData = await req.json()
+    console.log(body)
     const deliveryMethod = MetodoEnvio[body.entrega as MetodoEnvio]
     const paymentMethod = MetodoPago[body.pago as MetodoPago]
+
     try {
         const [user, publication] = await Promise.all([getUserData(body.id_usuario), getProduct(body.id_publicacion)])
-
 
         if (!user || !publication) {
             return NextResponse.json({ error: "Elemento no encontrado" }, { status: 404 })
         }
 
-        const total = (publication.precio * body.cantidad) + taxes + (deliveryMethod === "DOMICILIO" ? homeDeliveryPrice : 0)
+        const total = ((publication.precio - ((publication.descuento / 100) * publication.precio) ) * body.cantidad) + taxes + (deliveryMethod === "DOMICILIO" ? homeDeliveryPrice : 0)
 
         if (total !== body.precio_total) {
             return NextResponse.json({ error: "Montos no válidos" }, { status: 400 })

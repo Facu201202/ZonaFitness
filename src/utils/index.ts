@@ -23,6 +23,13 @@ export function formatFeatures(str: string) {
     return obj
 }
 
+export function featuresToString(features: { key: string, value: string }[]) {
+    const text = features
+        .map((f) => `${f.key}:${f.value}`)
+        .join("\n");
+    return text
+}
+
 export const categoriesTranslate = {
     Remeras: "t-shirts",
     Pantalones: "pants",
@@ -118,14 +125,16 @@ export const queryFilterAdminProducts = (searchParams: ReadonlyURLSearchParams) 
         search: searchText ? searchText.replace(/%20/g, " ") : "",
         skipPage: skipPage,
         category: category ? category : "",
-        lowStock: searchParams.get("lowStock") || ""
+        lowStock: searchParams.get("lowStock") || "",
+        relatedProduct: searchParams.get("related") || ""
     }
 
     const queryString = new URLSearchParams({
         search: filters.search,
         skipPage: filters.skipPage.toString(),
         category: filters.category,
-        lowStock: filters.lowStock
+        lowStock: filters.lowStock,
+        relatedProduct: filters.relatedProduct
     })
     
     return queryString

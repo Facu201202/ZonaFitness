@@ -12,7 +12,7 @@ import Pagination from "@/components/Pagination";
 
 export default function Page() {
     const searchParams = useSearchParams()
-    const productId = +searchParams.get('producto')!
+    const productId = searchParams.get('producto')
     const urlQueryFilter = createQueryFilter(searchParams)
     const params = new URLSearchParams(searchParams.toString())
 
@@ -29,7 +29,7 @@ export default function Page() {
         gcTime: 0,
     });
 
-    const totalPages = data && Math.ceil(data.countProducts / 9)
+    const totalPages = data ? Math.ceil(data.countProducts / 9) : 0
     const page = Number(searchParams.get("page")) || 1
 
     return (
@@ -48,7 +48,8 @@ export default function Page() {
 
                 </div>
                 {isLoading && <p className="text-center font-bold py-10">Cargando...</p>}
-                {(data && totalPages) &&
+                {(data && data.products.length === 0 && !isLoading) && <p className="text-center font-bold py-10">No hay productos disponibles</p>}
+                {(data && totalPages > 0) &&
                     <>
                         <GridProduct
                             products={data.products}
@@ -60,7 +61,7 @@ export default function Page() {
             </div>
             {
                 (data && productId != null) ? (
-                    <ProductModal productId={productId} products={data.products} />
+                    <ProductModal productId={Number(productId)} products={data.products} />
                 ) : null
             }
         </div>

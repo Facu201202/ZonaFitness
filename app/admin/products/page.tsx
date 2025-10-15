@@ -51,7 +51,7 @@ export default function Page() {
       {isLoading && <AdminSpinner />}
       {isError && <p className="text-center font-semibold text-gray-800 p-3">Error al traer los productos</p>}
       {(data && data?.products.length === 0) && <p className="text-center font-semibold text-gray-800 py-20">No se encontraron productos con los filtros aplicados</p>}
-      {(data && totalPages) &&
+      {(data && totalPages && data.products.length > 0) &&
         <div className="p-6 flex flex-col gap-4">
           <div className="p-3 border border-gray-300 rounded flex gap-2 text-gray-800 text-sm items-center shadow">
             <ExclamationCircleIcon className="w-6 h-6" />

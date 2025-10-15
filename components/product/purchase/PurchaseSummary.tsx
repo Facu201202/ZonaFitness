@@ -1,7 +1,7 @@
 import { useSearchParams } from 'next/navigation'
 import { ClockIcon } from "@heroicons/react/24/outline"
 import Image from 'next/image'
-import { formatCurrency, translateCategory } from '@/src/utils'
+import { findUrlPath, formatCurrency, translateCategory } from '@/src/utils'
 import { Categoria, PurchaseData } from '@/src/types'
 import { useEffect, useState } from 'react'
 import ErrorMessage from '@/components/ErrorMessage'
@@ -66,7 +66,7 @@ export default function PurchaseSummary({ image, productName, category, price, p
             <div className='border-b border-gray-300 py-5 flex flex-col sm:flex-row sm:justify-between gap-3'>
                 <div className='flex gap-3'>
                     <Image
-                        src={`/products/${translateCategory(category as Categoria)}/` + image}
+                        src={findUrlPath(image, category)}
                         width={50}
                         height={50}
                         style={{ width: "auto"}}
