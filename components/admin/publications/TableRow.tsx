@@ -78,7 +78,7 @@ export default function TableRow({ i, publications }: TableRowProps) {
                     <div className="flex gap-2">
                         <button
                             className="p-1 border rounded-lg border-gray-200 shadow hover:cursor-pointer hover:bg-gray-100"
-                            onClick={() => window.location.href = `/admin/products/editProduct?product=${publications.id_publicacion}`}
+                            onClick={() => window.location.href = `/admin/publications/editPublication?publication=${publications.id_publicacion}`}
                         >
                             <PencilSquareIcon className="w-5 h-5" />
                         </button>

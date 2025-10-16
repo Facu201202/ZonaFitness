@@ -18,11 +18,7 @@ export default function FeacturesForm({ register, errors, control }: FeacturesFo
     })
 
     const [feactures, setFeactures] = useState([{ key: "", value: "" }])
-    const handleChange = (index: number, field: 'key' | 'value', value: string) => {
-        const newFeactures = [...feactures]
-        newFeactures[index][field] = value
-        setFeactures(newFeactures)
-    }
+
     return (
         <div className='space-y-3 font-semibold'>
             <div className='flex justify-between items-center'>

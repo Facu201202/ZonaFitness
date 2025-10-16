@@ -271,3 +271,7 @@ export type NewPublicationFormData = {
     discount: string,
     validateError: string
 }
+
+export type EditPublicationFormData = NewPublicationFormData & {
+    publicationId: number
+}
