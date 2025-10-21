@@ -1,6 +1,7 @@
 import {SaleDataTable } from "@/src/types";
 import { formatCurrency } from "@/src/utils";
 import StateOptions from "./StateOptions";
+import { useState } from "react";
 
 type TableRowProps = {
     i: number
@@ -8,8 +9,9 @@ type TableRowProps = {
 }
 
 export default function TableRow({i, sale}: TableRowProps) {
+    const [isChanging, setIsChanging] = useState(false)
     return (
-        <tr key={i} className={`px-4 py-4 ${(i % 2 === 0) ? "bg-white" : "bg-gray-100"}`}>
+        <tr key={i} className={`px-4 py-4 ${(i % 2 === 0) ? "bg-white" : "bg-gray-100"} ${isChanging && "opacity-30 pointer-events-none select-none"}`}>
             <td className="px-2 py-4 font-medium">
                 <p>
                     {sale.usuario.cliente.nombre} {sale.usuario.cliente.apellido}
@@ -24,7 +26,7 @@ export default function TableRow({i, sale}: TableRowProps) {
                 <p>{sale.talle}</p>
             </td>
              <td className={`px-2 py-4 font-medium`}>
-                    <StateOptions state={sale.estado}/>
+                    <StateOptions state={sale.estado} setIsChanging={setIsChanging}/>
             </td>
             <td className="px-2 py-4">
                 <p>{new Date(sale.fecha).toLocaleDateString("es-AR")}</p>

@@ -2,17 +2,18 @@ import { EstadoEnvio } from '@/src/generated/prisma';
 import { purchaseStateBgColor } from '@/src/utils';
 import { Listbox } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
+import { useMutation } from '@tanstack/react-query';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 
 const options = Object.entries(EstadoEnvio) 
-console.log(options)
 
 type StateOptionsProps = {
-    state: EstadoEnvio
+    state: EstadoEnvio,
+    setIsChanging: Dispatch<SetStateAction<boolean>>
 }
 
-export default function StateOptions({state}: StateOptionsProps) {
+export default function StateOptions({state, setIsChanging}: StateOptionsProps) {
     const [bgColor, textColor] = purchaseStateBgColor[state]
     const searchParams = useSearchParams()
     const params = new URLSearchParams(searchParams.toString())
@@ -20,8 +21,29 @@ export default function StateOptions({state}: StateOptionsProps) {
 
     const [selected, setSelected] = useState(state);
 
+    const mutation = useMutation({
+        mutationKey: ["changeState", selected],
+        mutationFn: async(data: EstadoEnvio) => {
+            const res = await fetch("/admin/sales/api/changeState", {
+                method: "POST",
+                body: JSON.stringify({newState: data})
+            })
+        }
+    })
+
+    const handleChange = (e: EstadoEnvio) => {
+        setSelected(e)
+        setIsChanging(true)
+
+        setTimeout(() => {
+            mutation.mutate(e)
+            setIsChanging(false)
+        }, 3000)
+        
+    }
+
     return (
-        <Listbox value={selected} >
+        <Listbox value={selected} onChange={e => handleChange(e)}>
             <div className="relative w-32 text-xs">
                 <Listbox.Button 
                 className={`w-full ${bgColor} ${textColor} text-left rounded-lg border px-3 py-1  flex justify-between items-center hover:cursor-pointer`}>
