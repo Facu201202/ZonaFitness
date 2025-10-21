@@ -95,7 +95,7 @@ export async function getSearchedProductsCount(filters: { search: string, skip: 
     })
 }
 
-export async function getPublications(filters: { search: string, skip: number, category: string | null, RelatedPublications: string | null }) {
+export async function getPublications(filters: { search: string, skip: number, filter: string | null, RelatedPublications: string | null }) {
     const searchedWords = filters.search.split(" ").filter(Boolean)
     return await prisma.publicaciones.findMany({
         take: 10,
@@ -109,18 +109,13 @@ export async function getPublications(filters: { search: string, skip: number, c
                     }
                 }
             })),
-            ...(filters.category
-                ?
-                {
-                    producto: {
-                        categoria: {
-                            nombre: filters.category
-                        }
-                    }
-                }
-                : {}
-            ),
-            ...(filters.RelatedPublications ? {id_producto: Number(filters.RelatedPublications)} : {})
+            ...(filters.RelatedPublications ? { id_producto: Number(filters.RelatedPublications) } : {})
+        },
+        orderBy: {
+            ...(filters.filter ?
+                filters.filter === "ventas" ? { ventas: { _count: "desc" } }
+                    : { [filters.filter]: "desc" }
+                : {})
         },
         select: {
             id_publicacion: true,
@@ -140,7 +135,7 @@ export async function getPublications(filters: { search: string, skip: number, c
     })
 }
 
-export async function getSearchedPublicationsCount(filters: { search: string, skip: number, category: string | null, RelatedPublications: string | null }) {
+export async function getSearchedPublicationsCount(filters: { search: string, skip: number, filter: string | null, RelatedPublications: string | null }) {
     const searchedWords = filters.search.split(" ").filter(Boolean)
     return await prisma.publicaciones.count({
         where: {
@@ -152,19 +147,7 @@ export async function getSearchedPublicationsCount(filters: { search: string, sk
                     }
                 }
             })),
-
-            ...(filters.category
-                ?
-                {
-                    producto: {
-                        categoria: {
-                            nombre: filters.category
-                        }
-                    }
-                }
-                : {}
-            ),
-            ...(filters.RelatedPublications ? {id_producto: Number(filters.RelatedPublications)} : {})
+            ...(filters.RelatedPublications ? { id_producto: Number(filters.RelatedPublications) } : {})
         },
     })
 }
@@ -192,4 +175,74 @@ export async function getProductsToLink(search: string) {
             }
         }
     })
+}
+
+export async function getSales() {
+    return await prisma.ventas.findMany({
+        where: {
+            usuario: {
+                rol: "usuario"
+            }
+        },
+        select: {
+            id_venta: true,
+            fecha: true,
+            precio_total: true,
+            cantidad: true,
+            talle: true,
+            estado: true,
+            n_comprobante: true,
+            metodo_entrega: true,
+            metodo_pago: true,
+            usuario: {
+                select: {
+                    id_usuario: true,
+                    cliente: {
+                        select: {
+                            nombre: true,
+                            apellido: true
+                        }
+                    }
+                }
+            },
+            publicacion: {
+                select: {
+                    id_publicacion: true,
+                    producto: {
+                        select: {
+                            nombre: true
+                        }
+                    }
+                }
+            }
+        }
+    })
+}
+
+export async function getSalesInformation() {
+
+    const [sales, products] = await Promise.all([prisma.ventas.aggregate({
+        _sum: {
+            precio_total: true
+        },
+        _count: {
+            id_venta: true
+        }
+    }), prisma.productos.aggregate({
+        _sum: {
+            precio: true
+        }
+    })])
+
+
+
+    return {
+        sales: {
+            salesCount: sales._count.id_venta,
+            salesTotalPrice: sales._sum.precio_total || 0,
+        },
+        products: {
+            productsTotalPrice: products._sum.precio || 0
+        }
+    }
 }

@@ -1,14 +1,14 @@
 "use client"
 import AdminSpinner from "@/components/admin/AdminSpinner"
-import ChangeStateProductModal from "@/components/admin/products/ChangeStateProductModal"
+import ChangeStatePublicationModal from "@/components/admin/publications/ChangeStatePublicationModal"
 import FeacturesModal from "@/components/admin/publications/FeacturesModal"
 import FilterOptions from "@/components/admin/publications/FilterOptions"
 import Table from "@/components/admin/publications/Table"
 import Pagination from "@/components/Pagination"
 import ProductModal from "@/components/product/ProductModal"
 import { PublicationAdmin } from "@/src/types"
-import { queryFilterAdminProducts } from "@/src/utils"
-import { PlusIcon, ExclamationCircleIcon } from "@heroicons/react/24/outline"
+import { queryFilterAdminPublications } from "@/src/utils"
+import { PlusIcon} from "@heroicons/react/24/outline"
 import { useQuery } from "@tanstack/react-query"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
@@ -20,7 +20,7 @@ export default function Page() {
   const feactures = searchParams.get("feactures")
 
   const params = new URLSearchParams(searchParams.toString())
-  const urlQueryFilter = queryFilterAdminProducts(searchParams)
+  const urlQueryFilter = queryFilterAdminPublications(searchParams)
 
 
   const fetchProducts = async (): Promise<{ publications: PublicationAdmin[], countPublications: number }> => {
@@ -63,15 +63,10 @@ export default function Page() {
           <Pagination params={params} totalPages={totalPages} page={page} />
         </div>
       }
-      {/*
-        (data && productId != null && data.products.length > 0) ? (
-          <ProductModal productId={productId} />
-        ) : null*/
-      }
-      {/*
-        (data && state != null && data.products.length > 0) ? (
-          <ChangeStateProductModal state={state} />
-        ) : null*/
+      {
+        (data && state != null && data.publications.length > 0) ? (
+          <ChangeStatePublicationModal state={state} />
+        ) : null
       }
       {
         (data && productId != null && data.publications.length > 0) ? (

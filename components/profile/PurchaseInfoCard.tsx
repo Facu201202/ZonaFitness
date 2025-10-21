@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { StarIcon, ChatBubbleBottomCenterTextIcon } from "@heroicons/react/24/outline"
 import { Categoria, UserPurchase } from "@/src/types"
-import { formatCurrency, purchaseStateBgColor, translateCategory } from "@/src/utils"
+import { findUrlPath, formatCurrency, purchaseStateBgColor, translateCategory } from "@/src/utils"
 import { EstadoEnvio } from "@/src/generated/prisma"
 import { useSearchParams, useRouter } from 'next/navigation'
 
@@ -42,7 +42,7 @@ export default function PurchaseInfoCard({ userPurchase }: PurchaseInfoCardProps
                 <div className="flex gap-2 items-center">
                     <div className="relative w-30 h-30">
                         <Image
-                            src={`/products/${translateCategory(userPurchase.publicacion.producto.categoria.nombre as Categoria)}/` + userPurchase.publicacion.producto.foto}
+                            src={ findUrlPath(userPurchase.publicacion.producto.foto, userPurchase.publicacion.producto.categoria.nombre)}
                             alt={userPurchase.publicacion.producto.nombre}
                             className="object-contain mx-auto"
                             fill

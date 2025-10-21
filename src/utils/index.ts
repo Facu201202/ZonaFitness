@@ -88,7 +88,8 @@ export const createWhereFilter = (filters: FiltersData) => {
                 }
             })
         },
-        precio: { lte: filters.price }
+        precio: { lte: filters.price },
+        activa: true
     }
     return where
 }
@@ -133,6 +134,29 @@ export const queryFilterAdminProducts = (searchParams: ReadonlyURLSearchParams) 
         search: filters.search,
         skipPage: filters.skipPage.toString(),
         category: filters.category,
+        lowStock: filters.lowStock,
+        relatedProduct: filters.relatedProduct
+    })
+    
+    return queryString
+}
+
+export const queryFilterAdminPublications = (searchParams: ReadonlyURLSearchParams) => {
+    const skipPage = ((Number(searchParams.get("page")) || 1) - 1) * 10
+    const searchText = searchParams.get("searchProduct")
+    const filter =  searchParams.get("filter")
+    const filters = {
+        search: searchText ? searchText.replace(/%20/g, " ") : "",
+        skipPage: skipPage,
+        filter: filter ? filter : "",
+        lowStock: searchParams.get("lowStock") || "",
+        relatedProduct: searchParams.get("related") || ""
+    }
+
+    const queryString = new URLSearchParams({
+        search: filters.search,
+        skipPage: filters.skipPage.toString(),
+        filter: filters.filter,
         lowStock: filters.lowStock,
         relatedProduct: filters.relatedProduct
     })

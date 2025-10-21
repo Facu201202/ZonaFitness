@@ -9,8 +9,9 @@ export default function FilterOptions() {
     const params = new URLSearchParams(searchParams.toString())
     const router = useRouter()
     const searchedValue = params.get("searchProduct")
+    const filter = params.get("category")
     const lowStock = params.get("lowStock")
-    const { handleSubmit, register, reset } = useForm<{ search: string }>()
+    const { handleSubmit, register } = useForm<{ search: string }>()
     const searchProduct = (data: { search: string }) => {
         redirect(`/admin/products?searchProduct=${data.search}`)
     }
@@ -23,12 +24,28 @@ export default function FilterOptions() {
         params.append("lowStock", "true")
         router.push(`?${params.toString()}`)
     }
+
+    const handleDeleteFilter = () => {
+        params.delete("category")
+        router.push(`?${params.toString()}`)
+    }
+
     return (
         <>
             <div className="p-3 border border-gray-300 rounded text-gray-800 shadow">
                 <div className="flex gap-2 font-semibold items-center w-full mb-3">
                     <FunnelIcon className="w-5 h-5" />
                     <p className="text-lg">Filtros</p>
+                    {filter && (
+                        <div className="text-xs">
+                            <div className="bg-gray-200 px-2 py-1 rounded shadow flex gap-2 items-center">
+                                <p >
+                                    {filter}
+                                </p>
+                                <p onClick={() => handleDeleteFilter()} className="hover:cursor-pointer">x</p>
+                            </div>
+                        </div>
+                    )}
                 </div>
                 <div className="flex gap-2">
                     <form className="relative flex-1" onSubmit={handleSubmit(searchProduct)}>

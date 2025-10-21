@@ -1,0 +1,136 @@
+"use client"
+import ErrorMessage from "@/components/ErrorMessage"
+import { EditPublicationFormData, NewPublicationFormData } from "@/src/types"
+import { useMutation } from "@tanstack/react-query"
+import { useEffect, useState } from "react"
+import { useForm } from "react-hook-form"
+import { toast } from "react-toastify"
+import { useAdminStore } from "@/src/stores/adminStore"
+import FeacturesForm from "./FeacturesForm"
+import { formatCurrency, formatFeatures } from "@/src/utils"
+
+
+type EditPublicationFormProps = {
+    publication: any
+}
+
+export default function EditPublicationForm({ publication }: EditPublicationFormProps) {
+    const parsedFeatures = Object.entries(formatFeatures(publication.caracteristicas))
+    const setproductLinkPublication = useAdminStore(state => state.setproductLinkPublication)
+    const productLinkPublication = useAdminStore(state => state.productLinkPublication)
+    useEffect(() => {
+        setproductLinkPublication({ name: publication.producto.nombre, category: publication.producto.categoria.nombre, id_product: publication.id_producto, precio: publication.precio })
+    }, [setproductLinkPublication])
+    const { register, handleSubmit, control, formState: { errors } } = useForm<NewPublicationFormData>({
+        defaultValues: {
+            productId: publication.id_producto,
+            features: parsedFeatures.map(feature => (
+                { key: feature[0], value: feature[1] }
+            ))
+        }
+    })
+    const [MutateLoading, setMutateLoading] = useState(false)
+
+    const editPublication = async (data: EditPublicationFormData) => {
+        setMutateLoading(true)
+        toast.info("Actualizando...")
+        const res = await fetch("/admin/publications/editPublication/api/updatePublication", {
+            method: "POST",
+            body: JSON.stringify(data)
+        })
+        if (!res.ok) throw new Error("Error al actualizar la publicación")
+        setMutateLoading(false)
+        return res.json()
+    }
+
+    const mutation = useMutation({
+        mutationKey: ["EditPublication"],
+        mutationFn: (data: EditPublicationFormData) => editPublication(data),
+        onError: () => {
+            toast.error("Error al actualizar la publicación")
+            setTimeout(() => {
+                window.location.href = "/admin/publications"
+            }, 2500);
+        },
+        onSuccess: () => {
+            toast.success("Publicación actualizada correctamente")
+            setTimeout(() => {
+                window.location.href = "/admin/publications"
+            }, 2500);
+        }
+    })
+
+    const info = (data: NewPublicationFormData) => {
+        const editData: EditPublicationFormData = {
+            ...data,
+            publicationId: publication.id_publicacion
+        }
+        mutation.mutate(editData)
+    }
+
+    return (
+        <div className='py-10'>
+            <form className="mx-auto max-w-3xl border border-gray-200 bg-white px-3 py-6 shadow flex flex-col gap-2 space-y-3" onSubmit={handleSubmit(info)}>
+                {productLinkPublication && (
+                    <div className="flex flex-col gap-2 font-semibold">
+                        <label htmlFor="price">Producto Relacionado</label>
+                        <div className="flex justify-between border border-gray-300 p-3 shadow rounded-lg">
+                            <p>{productLinkPublication.name}</p>
+                            <p className="px-2 py-1 text-white text-xs font-semibold bg-gray-500 w-fit rounded">{productLinkPublication.category}</p>
+                        </div>
+
+                    </div>
+                )}
+                <FeacturesForm register={register} errors={errors} control={control} />
+                <div className="flex gap-3">
+                    <div className="flex flex-col gap-2 font-semibold w-80">
+                         <label htmlFor="price">Precio</label>
+                        <input defaultValue={publication.precio} type="number" id="price" className={`border border-gray-300 p-2 rounded-lg`} placeholder={`Ej: 20000 (sin puntos ni comas)`} maxLength={20} {...register("price", {
+                            required: "El precio es obligatorio",
+                            min: {
+                                value: 1,
+                                message: "El precio debe ser mayor a 0"
+                            }
+                        })} />
+                        {errors.price && (
+                            <ErrorMessage>{errors.price.message?.toString()}</ErrorMessage>
+                        )}
+                    </div>
+                    <div className="flex flex-col gap-2 font-semibold w-80">
+                        <label htmlFor="discount">Descuento (%)</label>
+                        <input defaultValue={publication.descuento} min={0} max={99} type="number" id="discount" className="border border-gray-300 p-2 rounded-lg" placeholder={`Ej: 30 (sin puntos ni comas)`} maxLength={3} {...register("discount", {
+                            required: "El descuento es obligatorio",
+                            min: {
+                                value: 0,
+                                message: "El descuento debe ser mayor a 0"
+                            },
+                            max: {
+                                value: 99,
+                                message: "El descuento debe ser menor a 100"
+                            }
+                        })} />
+                        {errors.discount && (
+                            <ErrorMessage>{errors.discount.message?.toString()}</ErrorMessage>
+                        )}
+                    </div>
+                </div>
+
+                <div className="border border-yellow-500 bg-yellow-50 rounded-xl p-2 text-sm lg:text-base text-center text-yellow-700 font-semibold">
+                    <p>⚠️Cambiar la Información actualizará la publicación de la tienda.
+                        Por favor mantega la consistencia de datos. Si desea cambiar el producto asociado,
+                        se recomienda crear una nueva publicación.
+                    </p>
+                </div>
+                <button
+                    disabled={MutateLoading}
+                    className={`bg-[#2D5DA2] text-white px-4 py-2 w-full rounded text-center font-semibold hover:bg-[#2d52a2] hover:cursor-pointer ${MutateLoading && "pointer-events-none bg-[#243761]"}`}
+                > Actualizar Publicación
+                </button>
+
+                <input id="validateError" type="hidden"{...register("validateError")} />
+                {errors.validateError && (<ErrorMessage>{errors.validateError.message?.toString()}</ErrorMessage>)}
+            </form>
+        </div>
+    )
+}
+

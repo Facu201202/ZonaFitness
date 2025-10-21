@@ -68,7 +68,7 @@ export default function NewPublicationForm() {
     return (
         <div className='py-10'>
             <form className="mx-auto max-w-3xl border border-gray-200 bg-white px-3 py-6 shadow flex flex-col gap-2 space-y-3" onSubmit={handleSubmit(info)}>
-                <SearchRelatedProduct setValue={setValue} register={register} errors={errors}/>
+                <SearchRelatedProduct setValue={setValue} register={register} errors={errors} />
                 {productLinkPublication && (
                     <div className="flex flex-col gap-2 font-semibold">
                         <label htmlFor="price">Producto Relacionado</label>
@@ -132,6 +132,11 @@ export default function NewPublicationForm() {
                             )}
                         </div>
                     </div>
+                </div>
+                <div className="border border-yellow-500 bg-yellow-50 rounded-xl p-2 text-sm lg:text-base text-center text-yellow-700 font-semibold">
+                    <p>⚠️Una vez creada la publicación, no será posible modificar el producto relacionado.<br></br>
+                        Por favor, verifique los datos antes de continuar.
+                    </p>
                 </div>
                 <button
                     disabled={MutateLoading}
