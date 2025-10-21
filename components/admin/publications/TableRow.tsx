@@ -19,9 +19,9 @@ export default function TableRow({ i, publications }: TableRowProps) {
     const fullUrl = pathname + '?' + searchParams.toString();
     const feacturesParsed = formatFeatures(publications.caracteristicas)
 
-    const handleStateProductModal = (active: boolean) => {
+    const handleStatePublicationModal = (active: boolean) => {
         const params = new URLSearchParams(searchParams.toString())
-        active ? params.set("state", `${publications.id_producto}_${active}`) : params.set("state", `${publications.id_producto}_${active}`)
+        active ? params.set("state", `${publications.id_publicacion}_${active}`) : params.set("state", `${publications.id_publicacion}_${active}`)
         router.push(`?${params.toString()}`, { scroll: false })
     }
 
@@ -86,7 +86,7 @@ export default function TableRow({ i, publications }: TableRowProps) {
                             <button
                                 title="Desactivar Producto"
                                 className="p-1 border rounded-lg border-gray-200 shadow text-orange-400 hover:text-white hover:cursor-pointer hover:bg-orange-500 "
-                                onClick={() => handleStateProductModal(true)}
+                                onClick={() => handleStatePublicationModal(true)}
                             >
                                 <PowerIcon className="w-5 h-5 " />
                             </button>
@@ -94,7 +94,7 @@ export default function TableRow({ i, publications }: TableRowProps) {
                             <button
                                 title="Activar Producto"
                                 className="p-1 border rounded-lg border-gray-200 shadow hover:cursor-pointer hover:bg-emerald-600 text-emerald-500 hover:text-white"
-                                onClick={() => handleStateProductModal(false)}
+                                onClick={() => handleStatePublicationModal(false)}
                             >
                                 <PowerIcon className="w-5 h-5" />
                             </button>

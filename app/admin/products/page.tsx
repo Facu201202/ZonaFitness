@@ -65,11 +65,6 @@ export default function Page() {
         </div>
       }
       {
-        (data && productId != null && data.products.length > 0) ? (
-          <ProductModal productId={productId} />
-        ) : null
-      }
-      {
         (data && state != null && data.products.length > 0) ? (
           <ChangeStateProductModal state={state} />
         ) : null

@@ -27,11 +27,12 @@ export default function () {
                     <h2 className="text-2xl font-bold text-gray-800">Editar Publicación</h2>
                     <p className="text-gray-800">Realice los cambios necesarios y confirmelos</p>
                 </div>
+
             </div>
             {isLoading && <AdminSpinner />}
             {isError && <p className="text-center font-semibold text-gray-800 p-3">Error al traer la publicación</p>}
-            {data && <EditPublicationForm publication={data}/>}
-            
+            {data && <EditPublicationForm publication={data} />}
+
         </div>
     )
 }

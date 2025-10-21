@@ -2,33 +2,42 @@ import { FunnelIcon } from "@heroicons/react/24/outline"
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid"
 import { redirect, useSearchParams, useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
-import FilterMenu from "../products/FilterMenu"
+import FilterMenu from "./FilterMenu"
+
 
 export default function FilterOptions() {
     const searchParams = useSearchParams()
     const params = new URLSearchParams(searchParams.toString())
     const router = useRouter()
     const searchedValue = params.get("searchProduct")
-    const lowStock = params.get("lowStock")
-    const { handleSubmit, register, reset } = useForm<{ search: string }>()
+    const filter = params.get("filter")
+    const { handleSubmit, register } = useForm<{ search: string }>()
     const searchProduct = (data: { search: string }) => {
         redirect(`/admin/publications?searchProduct=${data.search}`)
     }
-    const handleStockButton = () => {
-        if (lowStock) {
-            params.delete("lowStock")
-            router.push(`?${params.toString()}`)
-            return
-        }
-        params.append("lowStock", "true")
+
+    const handleDeleteFilter = () => {
+        params.delete("filter")
         router.push(`?${params.toString()}`)
     }
+
     return (
         <>
             <div className="p-3 border border-gray-300 rounded text-gray-800 shadow">
                 <div className="flex gap-2 font-semibold items-center w-full mb-3">
                     <FunnelIcon className="w-5 h-5" />
                     <p className="text-lg">Filtros</p>
+                    {filter && (
+                        <div className="text-xs">
+                            <div className="bg-gray-200 px-2 py-1 rounded shadow flex gap-2 items-center">
+                                <p >
+                                    {filter}
+                                </p>
+                                <p onClick={() => handleDeleteFilter()} className="hover:cursor-pointer">x</p>
+                            </div>
+                        </div>
+                    )}
+
                 </div>
                 <div className="flex gap-2">
                     <form className="relative flex-1" onSubmit={handleSubmit(searchProduct)}>
@@ -43,12 +52,6 @@ export default function FilterOptions() {
                         />
                     </form>
                     <FilterMenu />
-                    <button
-                        onClick={() => handleStockButton()}
-                        className={`px-2 py-1 font-semibold text-sm border rounded-lg border-gray-200 shadow hover:cursor-pointer hover:bg-gray-100 ${lowStock && "bg-gray-300"}`}
-                    >
-                        Solo stock bajo
-                    </button>
                 </div>
             </div>
             {searchedValue && (

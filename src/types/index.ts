@@ -275,3 +275,38 @@ export type NewPublicationFormData = {
 export type EditPublicationFormData = NewPublicationFormData & {
     publicationId: number
 }
+
+export type SaleDataTable = {
+    fecha: Date;
+    cantidad: number;
+    talle: string;
+    id_venta: number;
+    precio_total: number;
+    estado: EstadoEnvio;
+    metodo_entrega: MetodoEnvio;
+    metodo_pago: "DINERO_EN_CUENTA";
+    n_comprobante: string;
+    publicacion: {
+        id_publicacion: number;
+        producto: {
+            nombre: string;
+        };
+    };
+    usuario: {
+        id_usuario: number;
+        cliente: {
+            nombre: string;
+            apellido: string;
+        };
+    };
+}
+
+export type SalesBalance = {
+    sales: {
+        salesCount: number;
+        salesTotalPrice: number;
+    };
+    products: {
+        productsTotalPrice: number;
+    };
+}
