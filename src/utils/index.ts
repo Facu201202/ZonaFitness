@@ -164,6 +164,8 @@ export const queryFilterAdminPublications = (searchParams: ReadonlyURLSearchPara
     return queryString
 }
 
+
+
 export const whereFilterAdminProducts = (filters: {search: string, skip: number}) => {
     const where: Record<string, unknown> = {
         producto: {
@@ -185,4 +187,20 @@ export const findUrlPath = (imagePath: string, category?: string) => {
     } else {
         return `/products/${translateCategory(category  as Categoria)}/` + imagePath
     }
+}
+
+export const queryFilterAdminSales = (searchParams: ReadonlyURLSearchParams) => {
+    const skipPage = ((Number(searchParams.get("page")) || 1) - 1) * 10
+    const searchText = searchParams.get("searchSales")
+    const filters = {
+        search: searchText ? searchText.replace(/%20/g, " ") : "",
+        skipPage: skipPage
+    }
+
+    const queryString = new URLSearchParams({
+        search: filters.search,
+        skipPage: filters.skipPage.toString()
+    })
+    
+    return queryString
 }

@@ -179,11 +179,6 @@ export async function getProductsToLink(search: string) {
 
 export async function getSales() {
     return await prisma.ventas.findMany({
-        where: {
-            usuario: {
-                rol: "usuario"
-            }
-        },
         select: {
             id_venta: true,
             fecha: true,

@@ -9,6 +9,7 @@ type TableRowProps = {
 }
 
 export default function TableRow({i, sale}: TableRowProps) {
+    console.log(sale)
     const [isChanging, setIsChanging] = useState(false)
     return (
         <tr key={i} className={`px-4 py-4 ${(i % 2 === 0) ? "bg-white" : "bg-gray-100"} ${isChanging && "opacity-30 pointer-events-none select-none"}`}>
@@ -26,7 +27,7 @@ export default function TableRow({i, sale}: TableRowProps) {
                 <p>{sale.talle}</p>
             </td>
              <td className={`px-2 py-4 font-medium`}>
-                    <StateOptions state={sale.estado} setIsChanging={setIsChanging}/>
+                    <StateOptions  state={sale.estado} saleId={sale.id_venta} setIsChanging={setIsChanging}/>
             </td>
             <td className="px-2 py-4">
                 <p>{new Date(sale.fecha).toLocaleDateString("es-AR")}</p>

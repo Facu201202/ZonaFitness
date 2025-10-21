@@ -8,7 +8,7 @@ import Table from "@/components/admin/sales/Table"
 import Pagination from "@/components/Pagination"
 import ProductModal from "@/components/product/ProductModal"
 import { PublicationAdmin, SaleDataTable } from "@/src/types"
-import { queryFilterAdminPublications } from "@/src/utils"
+import { queryFilterAdminPublications, queryFilterAdminSales } from "@/src/utils"
 import { PlusIcon } from "@heroicons/react/24/outline"
 import { useQuery } from "@tanstack/react-query"
 import Link from "next/link"
@@ -21,7 +21,7 @@ export default function Page() {
   const feactures = searchParams.get("feactures")
 
   const params = new URLSearchParams(searchParams.toString())
-  const urlQueryFilter = queryFilterAdminPublications(searchParams)
+  const urlQueryFilter = queryFilterAdminSales(searchParams)
 
 
   const fetchSales = async (): Promise<{ sales: SaleDataTable[], salesCount: number }> => {
