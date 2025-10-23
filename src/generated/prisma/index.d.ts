@@ -1853,13 +1853,15 @@ export namespace Prisma {
    */
 
   export type ProductosCountOutputType = {
-    stocks: number
     publicaciones: number
+    stocks: number
+    Ventas: number
   }
 
   export type ProductosCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    stocks?: boolean | ProductosCountOutputTypeCountStocksArgs
     publicaciones?: boolean | ProductosCountOutputTypeCountPublicacionesArgs
+    stocks?: boolean | ProductosCountOutputTypeCountStocksArgs
+    Ventas?: boolean | ProductosCountOutputTypeCountVentasArgs
   }
 
   // Custom InputTypes
@@ -1876,6 +1878,13 @@ export namespace Prisma {
   /**
    * ProductosCountOutputType without action
    */
+  export type ProductosCountOutputTypeCountPublicacionesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PublicacionesWhereInput
+  }
+
+  /**
+   * ProductosCountOutputType without action
+   */
   export type ProductosCountOutputTypeCountStocksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: StockWhereInput
   }
@@ -1883,8 +1892,8 @@ export namespace Prisma {
   /**
    * ProductosCountOutputType without action
    */
-  export type ProductosCountOutputTypeCountPublicacionesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PublicacionesWhereInput
+  export type ProductosCountOutputTypeCountVentasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VentasWhereInput
   }
 
 
@@ -1924,13 +1933,13 @@ export namespace Prisma {
    */
 
   export type PublicacionesCountOutputType = {
-    ventas: number
     favoritos: number
+    ventas: number
   }
 
   export type PublicacionesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    ventas?: boolean | PublicacionesCountOutputTypeCountVentasArgs
     favoritos?: boolean | PublicacionesCountOutputTypeCountFavoritosArgs
+    ventas?: boolean | PublicacionesCountOutputTypeCountVentasArgs
   }
 
   // Custom InputTypes
@@ -1947,15 +1956,15 @@ export namespace Prisma {
   /**
    * PublicacionesCountOutputType without action
    */
-  export type PublicacionesCountOutputTypeCountVentasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: VentasWhereInput
+  export type PublicacionesCountOutputTypeCountFavoritosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FavoritosWhereInput
   }
 
   /**
    * PublicacionesCountOutputType without action
    */
-  export type PublicacionesCountOutputTypeCountFavoritosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: FavoritosWhereInput
+  export type PublicacionesCountOutputTypeCountVentasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VentasWhereInput
   }
 
 
@@ -1964,17 +1973,17 @@ export namespace Prisma {
    */
 
   export type UsuariosCountOutputType = {
-    saldo: number
-    compras: number
     favoritos: number
     opiniones: number
+    saldo: number
+    compras: number
   }
 
   export type UsuariosCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    saldo?: boolean | UsuariosCountOutputTypeCountSaldoArgs
-    compras?: boolean | UsuariosCountOutputTypeCountComprasArgs
     favoritos?: boolean | UsuariosCountOutputTypeCountFavoritosArgs
     opiniones?: boolean | UsuariosCountOutputTypeCountOpinionesArgs
+    saldo?: boolean | UsuariosCountOutputTypeCountSaldoArgs
+    compras?: boolean | UsuariosCountOutputTypeCountComprasArgs
   }
 
   // Custom InputTypes
@@ -1991,20 +2000,6 @@ export namespace Prisma {
   /**
    * UsuariosCountOutputType without action
    */
-  export type UsuariosCountOutputTypeCountSaldoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SaldosWhereInput
-  }
-
-  /**
-   * UsuariosCountOutputType without action
-   */
-  export type UsuariosCountOutputTypeCountComprasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: VentasWhereInput
-  }
-
-  /**
-   * UsuariosCountOutputType without action
-   */
   export type UsuariosCountOutputTypeCountFavoritosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FavoritosWhereInput
   }
@@ -2014,6 +2009,20 @@ export namespace Prisma {
    */
   export type UsuariosCountOutputTypeCountOpinionesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: OpinionesWhereInput
+  }
+
+  /**
+   * UsuariosCountOutputType without action
+   */
+  export type UsuariosCountOutputTypeCountSaldoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SaldosWhereInput
+  }
+
+  /**
+   * UsuariosCountOutputType without action
+   */
+  export type UsuariosCountOutputTypeCountComprasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VentasWhereInput
   }
 
 
@@ -3178,9 +3187,9 @@ export namespace Prisma {
     precio: number | null
     foto: string | null
     color: string | null
-    activa: boolean | null
     genero: string | null
     id_categoria: number | null
+    activa: boolean | null
   }
 
   export type ProductosMaxAggregateOutputType = {
@@ -3189,9 +3198,9 @@ export namespace Prisma {
     precio: number | null
     foto: string | null
     color: string | null
-    activa: boolean | null
     genero: string | null
     id_categoria: number | null
+    activa: boolean | null
   }
 
   export type ProductosCountAggregateOutputType = {
@@ -3200,9 +3209,9 @@ export namespace Prisma {
     precio: number
     foto: number
     color: number
-    activa: number
     genero: number
     id_categoria: number
+    activa: number
     _all: number
   }
 
@@ -3225,9 +3234,9 @@ export namespace Prisma {
     precio?: true
     foto?: true
     color?: true
-    activa?: true
     genero?: true
     id_categoria?: true
+    activa?: true
   }
 
   export type ProductosMaxAggregateInputType = {
@@ -3236,9 +3245,9 @@ export namespace Prisma {
     precio?: true
     foto?: true
     color?: true
-    activa?: true
     genero?: true
     id_categoria?: true
+    activa?: true
   }
 
   export type ProductosCountAggregateInputType = {
@@ -3247,9 +3256,9 @@ export namespace Prisma {
     precio?: true
     foto?: true
     color?: true
-    activa?: true
     genero?: true
     id_categoria?: true
+    activa?: true
     _all?: true
   }
 
@@ -3345,9 +3354,9 @@ export namespace Prisma {
     precio: number
     foto: string
     color: string
-    activa: boolean
     genero: string
     id_categoria: number
+    activa: boolean
     _count: ProductosCountAggregateOutputType | null
     _avg: ProductosAvgAggregateOutputType | null
     _sum: ProductosSumAggregateOutputType | null
@@ -3375,12 +3384,13 @@ export namespace Prisma {
     precio?: boolean
     foto?: boolean
     color?: boolean
-    activa?: boolean
     genero?: boolean
     id_categoria?: boolean
+    activa?: boolean
     categoria?: boolean | CategoriasDefaultArgs<ExtArgs>
-    stocks?: boolean | Productos$stocksArgs<ExtArgs>
     publicaciones?: boolean | Productos$publicacionesArgs<ExtArgs>
+    stocks?: boolean | Productos$stocksArgs<ExtArgs>
+    Ventas?: boolean | Productos$VentasArgs<ExtArgs>
     _count?: boolean | ProductosCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["productos"]>
 
@@ -3390,9 +3400,9 @@ export namespace Prisma {
     precio?: boolean
     foto?: boolean
     color?: boolean
-    activa?: boolean
     genero?: boolean
     id_categoria?: boolean
+    activa?: boolean
     categoria?: boolean | CategoriasDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["productos"]>
 
@@ -3402,9 +3412,9 @@ export namespace Prisma {
     precio?: boolean
     foto?: boolean
     color?: boolean
-    activa?: boolean
     genero?: boolean
     id_categoria?: boolean
+    activa?: boolean
     categoria?: boolean | CategoriasDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["productos"]>
 
@@ -3414,16 +3424,17 @@ export namespace Prisma {
     precio?: boolean
     foto?: boolean
     color?: boolean
-    activa?: boolean
     genero?: boolean
     id_categoria?: boolean
+    activa?: boolean
   }
 
-  export type ProductosOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_producto" | "nombre" | "precio" | "foto" | "color" | "activa" | "genero" | "id_categoria", ExtArgs["result"]["productos"]>
+  export type ProductosOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_producto" | "nombre" | "precio" | "foto" | "color" | "genero" | "id_categoria" | "activa", ExtArgs["result"]["productos"]>
   export type ProductosInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     categoria?: boolean | CategoriasDefaultArgs<ExtArgs>
-    stocks?: boolean | Productos$stocksArgs<ExtArgs>
     publicaciones?: boolean | Productos$publicacionesArgs<ExtArgs>
+    stocks?: boolean | Productos$stocksArgs<ExtArgs>
+    Ventas?: boolean | Productos$VentasArgs<ExtArgs>
     _count?: boolean | ProductosCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProductosIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3437,8 +3448,9 @@ export namespace Prisma {
     name: "Productos"
     objects: {
       categoria: Prisma.$CategoriasPayload<ExtArgs>
-      stocks: Prisma.$StockPayload<ExtArgs>[]
       publicaciones: Prisma.$PublicacionesPayload<ExtArgs>[]
+      stocks: Prisma.$StockPayload<ExtArgs>[]
+      Ventas: Prisma.$VentasPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id_producto: number
@@ -3446,9 +3458,9 @@ export namespace Prisma {
       precio: number
       foto: string
       color: string
-      activa: boolean
       genero: string
       id_categoria: number
+      activa: boolean
     }, ExtArgs["result"]["productos"]>
     composites: {}
   }
@@ -3844,8 +3856,9 @@ export namespace Prisma {
   export interface Prisma__ProductosClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     categoria<T extends CategoriasDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CategoriasDefaultArgs<ExtArgs>>): Prisma__CategoriasClient<$Result.GetResult<Prisma.$CategoriasPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    stocks<T extends Productos$stocksArgs<ExtArgs> = {}>(args?: Subset<T, Productos$stocksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     publicaciones<T extends Productos$publicacionesArgs<ExtArgs> = {}>(args?: Subset<T, Productos$publicacionesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PublicacionesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    stocks<T extends Productos$stocksArgs<ExtArgs> = {}>(args?: Subset<T, Productos$stocksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Ventas<T extends Productos$VentasArgs<ExtArgs> = {}>(args?: Subset<T, Productos$VentasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VentasPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3880,9 +3893,9 @@ export namespace Prisma {
     readonly precio: FieldRef<"Productos", 'Float'>
     readonly foto: FieldRef<"Productos", 'String'>
     readonly color: FieldRef<"Productos", 'String'>
-    readonly activa: FieldRef<"Productos", 'Boolean'>
     readonly genero: FieldRef<"Productos", 'String'>
     readonly id_categoria: FieldRef<"Productos", 'Int'>
+    readonly activa: FieldRef<"Productos", 'Boolean'>
   }
     
 
@@ -4279,6 +4292,30 @@ export namespace Prisma {
   }
 
   /**
+   * Productos.publicaciones
+   */
+  export type Productos$publicacionesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Publicaciones
+     */
+    select?: PublicacionesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Publicaciones
+     */
+    omit?: PublicacionesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PublicacionesInclude<ExtArgs> | null
+    where?: PublicacionesWhereInput
+    orderBy?: PublicacionesOrderByWithRelationInput | PublicacionesOrderByWithRelationInput[]
+    cursor?: PublicacionesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PublicacionesScalarFieldEnum | PublicacionesScalarFieldEnum[]
+  }
+
+  /**
    * Productos.stocks
    */
   export type Productos$stocksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4303,27 +4340,27 @@ export namespace Prisma {
   }
 
   /**
-   * Productos.publicaciones
+   * Productos.Ventas
    */
-  export type Productos$publicacionesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Productos$VentasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Publicaciones
+     * Select specific fields to fetch from the Ventas
      */
-    select?: PublicacionesSelect<ExtArgs> | null
+    select?: VentasSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Publicaciones
+     * Omit specific fields from the Ventas
      */
-    omit?: PublicacionesOmit<ExtArgs> | null
+    omit?: VentasOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PublicacionesInclude<ExtArgs> | null
-    where?: PublicacionesWhereInput
-    orderBy?: PublicacionesOrderByWithRelationInput | PublicacionesOrderByWithRelationInput[]
-    cursor?: PublicacionesWhereUniqueInput
+    include?: VentasInclude<ExtArgs> | null
+    where?: VentasWhereInput
+    orderBy?: VentasOrderByWithRelationInput | VentasOrderByWithRelationInput[]
+    cursor?: VentasWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: PublicacionesScalarFieldEnum | PublicacionesScalarFieldEnum[]
+    distinct?: VentasScalarFieldEnum | VentasScalarFieldEnum[]
   }
 
   /**
@@ -6748,9 +6785,9 @@ export namespace Prisma {
     precio?: boolean
     id_producto?: boolean
     fecha?: boolean
+    favoritos?: boolean | Publicaciones$favoritosArgs<ExtArgs>
     producto?: boolean | ProductosDefaultArgs<ExtArgs>
     ventas?: boolean | Publicaciones$ventasArgs<ExtArgs>
-    favoritos?: boolean | Publicaciones$favoritosArgs<ExtArgs>
     _count?: boolean | PublicacionesCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["publicaciones"]>
 
@@ -6788,9 +6825,9 @@ export namespace Prisma {
 
   export type PublicacionesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_publicacion" | "activa" | "caracteristicas" | "descuento" | "precio" | "id_producto" | "fecha", ExtArgs["result"]["publicaciones"]>
   export type PublicacionesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    favoritos?: boolean | Publicaciones$favoritosArgs<ExtArgs>
     producto?: boolean | ProductosDefaultArgs<ExtArgs>
     ventas?: boolean | Publicaciones$ventasArgs<ExtArgs>
-    favoritos?: boolean | Publicaciones$favoritosArgs<ExtArgs>
     _count?: boolean | PublicacionesCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type PublicacionesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6803,9 +6840,9 @@ export namespace Prisma {
   export type $PublicacionesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Publicaciones"
     objects: {
+      favoritos: Prisma.$FavoritosPayload<ExtArgs>[]
       producto: Prisma.$ProductosPayload<ExtArgs>
       ventas: Prisma.$VentasPayload<ExtArgs>[]
-      favoritos: Prisma.$FavoritosPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id_publicacion: number
@@ -7209,9 +7246,9 @@ export namespace Prisma {
    */
   export interface Prisma__PublicacionesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    favoritos<T extends Publicaciones$favoritosArgs<ExtArgs> = {}>(args?: Subset<T, Publicaciones$favoritosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavoritosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     producto<T extends ProductosDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductosDefaultArgs<ExtArgs>>): Prisma__ProductosClient<$Result.GetResult<Prisma.$ProductosPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     ventas<T extends Publicaciones$ventasArgs<ExtArgs> = {}>(args?: Subset<T, Publicaciones$ventasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VentasPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    favoritos<T extends Publicaciones$favoritosArgs<ExtArgs> = {}>(args?: Subset<T, Publicaciones$favoritosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavoritosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7644,30 +7681,6 @@ export namespace Prisma {
   }
 
   /**
-   * Publicaciones.ventas
-   */
-  export type Publicaciones$ventasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Ventas
-     */
-    select?: VentasSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Ventas
-     */
-    omit?: VentasOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VentasInclude<ExtArgs> | null
-    where?: VentasWhereInput
-    orderBy?: VentasOrderByWithRelationInput | VentasOrderByWithRelationInput[]
-    cursor?: VentasWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: VentasScalarFieldEnum | VentasScalarFieldEnum[]
-  }
-
-  /**
    * Publicaciones.favoritos
    */
   export type Publicaciones$favoritosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7689,6 +7702,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: FavoritosScalarFieldEnum | FavoritosScalarFieldEnum[]
+  }
+
+  /**
+   * Publicaciones.ventas
+   */
+  export type Publicaciones$ventasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Ventas
+     */
+    select?: VentasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Ventas
+     */
+    omit?: VentasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VentasInclude<ExtArgs> | null
+    where?: VentasWhereInput
+    orderBy?: VentasOrderByWithRelationInput | VentasOrderByWithRelationInput[]
+    cursor?: VentasWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: VentasScalarFieldEnum | VentasScalarFieldEnum[]
   }
 
   /**
@@ -7736,24 +7773,24 @@ export namespace Prisma {
     id_usuario: number | null
     usuario: string | null
     contraseña: string | null
-    rol: string | null
     id_cliente: number | null
+    rol: string | null
   }
 
   export type UsuariosMaxAggregateOutputType = {
     id_usuario: number | null
     usuario: string | null
     contraseña: string | null
-    rol: string | null
     id_cliente: number | null
+    rol: string | null
   }
 
   export type UsuariosCountAggregateOutputType = {
     id_usuario: number
     usuario: number
     contraseña: number
-    rol: number
     id_cliente: number
+    rol: number
     _all: number
   }
 
@@ -7772,24 +7809,24 @@ export namespace Prisma {
     id_usuario?: true
     usuario?: true
     contraseña?: true
-    rol?: true
     id_cliente?: true
+    rol?: true
   }
 
   export type UsuariosMaxAggregateInputType = {
     id_usuario?: true
     usuario?: true
     contraseña?: true
-    rol?: true
     id_cliente?: true
+    rol?: true
   }
 
   export type UsuariosCountAggregateInputType = {
     id_usuario?: true
     usuario?: true
     contraseña?: true
-    rol?: true
     id_cliente?: true
+    rol?: true
     _all?: true
   }
 
@@ -7883,8 +7920,8 @@ export namespace Prisma {
     id_usuario: number
     usuario: string
     contraseña: string
-    rol: string
     id_cliente: number
+    rol: string
     _count: UsuariosCountAggregateOutputType | null
     _avg: UsuariosAvgAggregateOutputType | null
     _sum: UsuariosSumAggregateOutputType | null
@@ -7910,13 +7947,13 @@ export namespace Prisma {
     id_usuario?: boolean
     usuario?: boolean
     contraseña?: boolean
-    rol?: boolean
     id_cliente?: boolean
-    cliente?: boolean | ClientesDefaultArgs<ExtArgs>
-    saldo?: boolean | Usuarios$saldoArgs<ExtArgs>
-    compras?: boolean | Usuarios$comprasArgs<ExtArgs>
+    rol?: boolean
     favoritos?: boolean | Usuarios$favoritosArgs<ExtArgs>
     opiniones?: boolean | Usuarios$opinionesArgs<ExtArgs>
+    saldo?: boolean | Usuarios$saldoArgs<ExtArgs>
+    cliente?: boolean | ClientesDefaultArgs<ExtArgs>
+    compras?: boolean | Usuarios$comprasArgs<ExtArgs>
     _count?: boolean | UsuariosCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["usuarios"]>
 
@@ -7924,8 +7961,8 @@ export namespace Prisma {
     id_usuario?: boolean
     usuario?: boolean
     contraseña?: boolean
-    rol?: boolean
     id_cliente?: boolean
+    rol?: boolean
     cliente?: boolean | ClientesDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["usuarios"]>
 
@@ -7933,8 +7970,8 @@ export namespace Prisma {
     id_usuario?: boolean
     usuario?: boolean
     contraseña?: boolean
-    rol?: boolean
     id_cliente?: boolean
+    rol?: boolean
     cliente?: boolean | ClientesDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["usuarios"]>
 
@@ -7942,17 +7979,17 @@ export namespace Prisma {
     id_usuario?: boolean
     usuario?: boolean
     contraseña?: boolean
-    rol?: boolean
     id_cliente?: boolean
+    rol?: boolean
   }
 
-  export type UsuariosOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_usuario" | "usuario" | "contraseña" | "rol" | "id_cliente", ExtArgs["result"]["usuarios"]>
+  export type UsuariosOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_usuario" | "usuario" | "contraseña" | "id_cliente" | "rol", ExtArgs["result"]["usuarios"]>
   export type UsuariosInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    cliente?: boolean | ClientesDefaultArgs<ExtArgs>
-    saldo?: boolean | Usuarios$saldoArgs<ExtArgs>
-    compras?: boolean | Usuarios$comprasArgs<ExtArgs>
     favoritos?: boolean | Usuarios$favoritosArgs<ExtArgs>
     opiniones?: boolean | Usuarios$opinionesArgs<ExtArgs>
+    saldo?: boolean | Usuarios$saldoArgs<ExtArgs>
+    cliente?: boolean | ClientesDefaultArgs<ExtArgs>
+    compras?: boolean | Usuarios$comprasArgs<ExtArgs>
     _count?: boolean | UsuariosCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UsuariosIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7965,18 +8002,18 @@ export namespace Prisma {
   export type $UsuariosPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Usuarios"
     objects: {
-      cliente: Prisma.$ClientesPayload<ExtArgs>
-      saldo: Prisma.$SaldosPayload<ExtArgs>[]
-      compras: Prisma.$VentasPayload<ExtArgs>[]
       favoritos: Prisma.$FavoritosPayload<ExtArgs>[]
       opiniones: Prisma.$OpinionesPayload<ExtArgs>[]
+      saldo: Prisma.$SaldosPayload<ExtArgs>[]
+      cliente: Prisma.$ClientesPayload<ExtArgs>
+      compras: Prisma.$VentasPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id_usuario: number
       usuario: string
       contraseña: string
-      rol: string
       id_cliente: number
+      rol: string
     }, ExtArgs["result"]["usuarios"]>
     composites: {}
   }
@@ -8371,11 +8408,11 @@ export namespace Prisma {
    */
   export interface Prisma__UsuariosClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    cliente<T extends ClientesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClientesDefaultArgs<ExtArgs>>): Prisma__ClientesClient<$Result.GetResult<Prisma.$ClientesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    saldo<T extends Usuarios$saldoArgs<ExtArgs> = {}>(args?: Subset<T, Usuarios$saldoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SaldosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    compras<T extends Usuarios$comprasArgs<ExtArgs> = {}>(args?: Subset<T, Usuarios$comprasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VentasPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     favoritos<T extends Usuarios$favoritosArgs<ExtArgs> = {}>(args?: Subset<T, Usuarios$favoritosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavoritosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     opiniones<T extends Usuarios$opinionesArgs<ExtArgs> = {}>(args?: Subset<T, Usuarios$opinionesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OpinionesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    saldo<T extends Usuarios$saldoArgs<ExtArgs> = {}>(args?: Subset<T, Usuarios$saldoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SaldosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    cliente<T extends ClientesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClientesDefaultArgs<ExtArgs>>): Prisma__ClientesClient<$Result.GetResult<Prisma.$ClientesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    compras<T extends Usuarios$comprasArgs<ExtArgs> = {}>(args?: Subset<T, Usuarios$comprasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VentasPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8408,8 +8445,8 @@ export namespace Prisma {
     readonly id_usuario: FieldRef<"Usuarios", 'Int'>
     readonly usuario: FieldRef<"Usuarios", 'String'>
     readonly contraseña: FieldRef<"Usuarios", 'String'>
-    readonly rol: FieldRef<"Usuarios", 'String'>
     readonly id_cliente: FieldRef<"Usuarios", 'Int'>
+    readonly rol: FieldRef<"Usuarios", 'String'>
   }
     
 
@@ -8806,54 +8843,6 @@ export namespace Prisma {
   }
 
   /**
-   * Usuarios.saldo
-   */
-  export type Usuarios$saldoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Saldos
-     */
-    select?: SaldosSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Saldos
-     */
-    omit?: SaldosOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SaldosInclude<ExtArgs> | null
-    where?: SaldosWhereInput
-    orderBy?: SaldosOrderByWithRelationInput | SaldosOrderByWithRelationInput[]
-    cursor?: SaldosWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: SaldosScalarFieldEnum | SaldosScalarFieldEnum[]
-  }
-
-  /**
-   * Usuarios.compras
-   */
-  export type Usuarios$comprasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Ventas
-     */
-    select?: VentasSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Ventas
-     */
-    omit?: VentasOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VentasInclude<ExtArgs> | null
-    where?: VentasWhereInput
-    orderBy?: VentasOrderByWithRelationInput | VentasOrderByWithRelationInput[]
-    cursor?: VentasWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: VentasScalarFieldEnum | VentasScalarFieldEnum[]
-  }
-
-  /**
    * Usuarios.favoritos
    */
   export type Usuarios$favoritosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8899,6 +8888,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: OpinionesScalarFieldEnum | OpinionesScalarFieldEnum[]
+  }
+
+  /**
+   * Usuarios.saldo
+   */
+  export type Usuarios$saldoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Saldos
+     */
+    select?: SaldosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Saldos
+     */
+    omit?: SaldosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SaldosInclude<ExtArgs> | null
+    where?: SaldosWhereInput
+    orderBy?: SaldosOrderByWithRelationInput | SaldosOrderByWithRelationInput[]
+    cursor?: SaldosWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SaldosScalarFieldEnum | SaldosScalarFieldEnum[]
+  }
+
+  /**
+   * Usuarios.compras
+   */
+  export type Usuarios$comprasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Ventas
+     */
+    select?: VentasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Ventas
+     */
+    omit?: VentasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VentasInclude<ExtArgs> | null
+    where?: VentasWhereInput
+    orderBy?: VentasOrderByWithRelationInput | VentasOrderByWithRelationInput[]
+    cursor?: VentasWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: VentasScalarFieldEnum | VentasScalarFieldEnum[]
   }
 
   /**
@@ -11155,130 +11192,150 @@ export namespace Prisma {
 
   export type VentasAvgAggregateOutputType = {
     id_venta: number | null
-    cantidad: number | null
     precio_total: number | null
+    precio_unitario: number | null
     id_comentario: number | null
     id_publicacion: number | null
     id_usuario: number | null
+    cantidad: number | null
+    id_producto: number | null
   }
 
   export type VentasSumAggregateOutputType = {
     id_venta: number | null
-    cantidad: number | null
     precio_total: number | null
+    precio_unitario: number | null
     id_comentario: number | null
     id_publicacion: number | null
     id_usuario: number | null
+    cantidad: number | null
+    id_producto: number | null
   }
 
   export type VentasMinAggregateOutputType = {
     id_venta: number | null
-    cantidad: number | null
     precio_total: number | null
+    precio_unitario: number | null
     fecha: Date | null
     talle: string | null
-    estado: $Enums.EstadoEnvio | null
-    metodo_entrega: $Enums.MetodoEnvio | null
-    metodo_pago: $Enums.MetodoPago | null
-    n_comprobante: string | null
     id_comentario: number | null
     id_publicacion: number | null
     id_usuario: number | null
+    n_comprobante: string | null
+    cantidad: number | null
+    estado: $Enums.EstadoEnvio | null
+    metodo_entrega: $Enums.MetodoEnvio | null
+    metodo_pago: $Enums.MetodoPago | null
+    id_producto: number | null
   }
 
   export type VentasMaxAggregateOutputType = {
     id_venta: number | null
-    cantidad: number | null
     precio_total: number | null
+    precio_unitario: number | null
     fecha: Date | null
     talle: string | null
-    estado: $Enums.EstadoEnvio | null
-    metodo_entrega: $Enums.MetodoEnvio | null
-    metodo_pago: $Enums.MetodoPago | null
-    n_comprobante: string | null
     id_comentario: number | null
     id_publicacion: number | null
     id_usuario: number | null
+    n_comprobante: string | null
+    cantidad: number | null
+    estado: $Enums.EstadoEnvio | null
+    metodo_entrega: $Enums.MetodoEnvio | null
+    metodo_pago: $Enums.MetodoPago | null
+    id_producto: number | null
   }
 
   export type VentasCountAggregateOutputType = {
     id_venta: number
-    cantidad: number
     precio_total: number
+    precio_unitario: number
     fecha: number
     talle: number
-    estado: number
-    metodo_entrega: number
-    metodo_pago: number
-    n_comprobante: number
     id_comentario: number
     id_publicacion: number
     id_usuario: number
+    n_comprobante: number
+    cantidad: number
+    estado: number
+    metodo_entrega: number
+    metodo_pago: number
+    id_producto: number
     _all: number
   }
 
 
   export type VentasAvgAggregateInputType = {
     id_venta?: true
-    cantidad?: true
     precio_total?: true
+    precio_unitario?: true
     id_comentario?: true
     id_publicacion?: true
     id_usuario?: true
+    cantidad?: true
+    id_producto?: true
   }
 
   export type VentasSumAggregateInputType = {
     id_venta?: true
-    cantidad?: true
     precio_total?: true
+    precio_unitario?: true
     id_comentario?: true
     id_publicacion?: true
     id_usuario?: true
+    cantidad?: true
+    id_producto?: true
   }
 
   export type VentasMinAggregateInputType = {
     id_venta?: true
-    cantidad?: true
     precio_total?: true
+    precio_unitario?: true
     fecha?: true
     talle?: true
-    estado?: true
-    metodo_entrega?: true
-    metodo_pago?: true
-    n_comprobante?: true
     id_comentario?: true
     id_publicacion?: true
     id_usuario?: true
+    n_comprobante?: true
+    cantidad?: true
+    estado?: true
+    metodo_entrega?: true
+    metodo_pago?: true
+    id_producto?: true
   }
 
   export type VentasMaxAggregateInputType = {
     id_venta?: true
-    cantidad?: true
     precio_total?: true
+    precio_unitario?: true
     fecha?: true
     talle?: true
-    estado?: true
-    metodo_entrega?: true
-    metodo_pago?: true
-    n_comprobante?: true
     id_comentario?: true
     id_publicacion?: true
     id_usuario?: true
+    n_comprobante?: true
+    cantidad?: true
+    estado?: true
+    metodo_entrega?: true
+    metodo_pago?: true
+    id_producto?: true
   }
 
   export type VentasCountAggregateInputType = {
     id_venta?: true
-    cantidad?: true
     precio_total?: true
+    precio_unitario?: true
     fecha?: true
     talle?: true
-    estado?: true
-    metodo_entrega?: true
-    metodo_pago?: true
-    n_comprobante?: true
     id_comentario?: true
     id_publicacion?: true
     id_usuario?: true
+    n_comprobante?: true
+    cantidad?: true
+    estado?: true
+    metodo_entrega?: true
+    metodo_pago?: true
+    id_producto?: true
     _all?: true
   }
 
@@ -11370,17 +11427,19 @@ export namespace Prisma {
 
   export type VentasGroupByOutputType = {
     id_venta: number
-    cantidad: number
     precio_total: number
+    precio_unitario: number
     fecha: Date
     talle: string
-    estado: $Enums.EstadoEnvio
-    metodo_entrega: $Enums.MetodoEnvio
-    metodo_pago: $Enums.MetodoPago
-    n_comprobante: string
     id_comentario: number | null
     id_publicacion: number
     id_usuario: number
+    n_comprobante: string
+    cantidad: number
+    estado: $Enums.EstadoEnvio
+    metodo_entrega: $Enums.MetodoEnvio
+    metodo_pago: $Enums.MetodoPago
+    id_producto: number
     _count: VentasCountAggregateOutputType | null
     _avg: VentasAvgAggregateOutputType | null
     _sum: VentasSumAggregateOutputType | null
@@ -11404,108 +11463,125 @@ export namespace Prisma {
 
   export type VentasSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id_venta?: boolean
-    cantidad?: boolean
     precio_total?: boolean
+    precio_unitario?: boolean
     fecha?: boolean
     talle?: boolean
-    estado?: boolean
-    metodo_entrega?: boolean
-    metodo_pago?: boolean
-    n_comprobante?: boolean
     id_comentario?: boolean
     id_publicacion?: boolean
     id_usuario?: boolean
+    n_comprobante?: boolean
+    cantidad?: boolean
+    estado?: boolean
+    metodo_entrega?: boolean
+    metodo_pago?: boolean
+    id_producto?: boolean
+    opinion?: boolean | Ventas$opinionArgs<ExtArgs>
     publicacion?: boolean | PublicacionesDefaultArgs<ExtArgs>
     usuario?: boolean | UsuariosDefaultArgs<ExtArgs>
-    opinion?: boolean | Ventas$opinionArgs<ExtArgs>
+    producto?: boolean | ProductosDefaultArgs<ExtArgs>
     _count?: boolean | VentasCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ventas"]>
 
   export type VentasSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id_venta?: boolean
-    cantidad?: boolean
     precio_total?: boolean
+    precio_unitario?: boolean
     fecha?: boolean
     talle?: boolean
-    estado?: boolean
-    metodo_entrega?: boolean
-    metodo_pago?: boolean
-    n_comprobante?: boolean
     id_comentario?: boolean
     id_publicacion?: boolean
     id_usuario?: boolean
+    n_comprobante?: boolean
+    cantidad?: boolean
+    estado?: boolean
+    metodo_entrega?: boolean
+    metodo_pago?: boolean
+    id_producto?: boolean
     publicacion?: boolean | PublicacionesDefaultArgs<ExtArgs>
     usuario?: boolean | UsuariosDefaultArgs<ExtArgs>
+    producto?: boolean | ProductosDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ventas"]>
 
   export type VentasSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id_venta?: boolean
-    cantidad?: boolean
     precio_total?: boolean
+    precio_unitario?: boolean
     fecha?: boolean
     talle?: boolean
-    estado?: boolean
-    metodo_entrega?: boolean
-    metodo_pago?: boolean
-    n_comprobante?: boolean
     id_comentario?: boolean
     id_publicacion?: boolean
     id_usuario?: boolean
+    n_comprobante?: boolean
+    cantidad?: boolean
+    estado?: boolean
+    metodo_entrega?: boolean
+    metodo_pago?: boolean
+    id_producto?: boolean
     publicacion?: boolean | PublicacionesDefaultArgs<ExtArgs>
     usuario?: boolean | UsuariosDefaultArgs<ExtArgs>
+    producto?: boolean | ProductosDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ventas"]>
 
   export type VentasSelectScalar = {
     id_venta?: boolean
-    cantidad?: boolean
     precio_total?: boolean
+    precio_unitario?: boolean
     fecha?: boolean
     talle?: boolean
-    estado?: boolean
-    metodo_entrega?: boolean
-    metodo_pago?: boolean
-    n_comprobante?: boolean
     id_comentario?: boolean
     id_publicacion?: boolean
     id_usuario?: boolean
+    n_comprobante?: boolean
+    cantidad?: boolean
+    estado?: boolean
+    metodo_entrega?: boolean
+    metodo_pago?: boolean
+    id_producto?: boolean
   }
 
-  export type VentasOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_venta" | "cantidad" | "precio_total" | "fecha" | "talle" | "estado" | "metodo_entrega" | "metodo_pago" | "n_comprobante" | "id_comentario" | "id_publicacion" | "id_usuario", ExtArgs["result"]["ventas"]>
+  export type VentasOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_venta" | "precio_total" | "precio_unitario" | "fecha" | "talle" | "id_comentario" | "id_publicacion" | "id_usuario" | "n_comprobante" | "cantidad" | "estado" | "metodo_entrega" | "metodo_pago" | "id_producto", ExtArgs["result"]["ventas"]>
   export type VentasInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    opinion?: boolean | Ventas$opinionArgs<ExtArgs>
     publicacion?: boolean | PublicacionesDefaultArgs<ExtArgs>
     usuario?: boolean | UsuariosDefaultArgs<ExtArgs>
-    opinion?: boolean | Ventas$opinionArgs<ExtArgs>
+    producto?: boolean | ProductosDefaultArgs<ExtArgs>
     _count?: boolean | VentasCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type VentasIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     publicacion?: boolean | PublicacionesDefaultArgs<ExtArgs>
     usuario?: boolean | UsuariosDefaultArgs<ExtArgs>
+    producto?: boolean | ProductosDefaultArgs<ExtArgs>
   }
   export type VentasIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     publicacion?: boolean | PublicacionesDefaultArgs<ExtArgs>
     usuario?: boolean | UsuariosDefaultArgs<ExtArgs>
+    producto?: boolean | ProductosDefaultArgs<ExtArgs>
   }
 
   export type $VentasPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Ventas"
     objects: {
+      opinion: Prisma.$OpinionesPayload<ExtArgs>[]
       publicacion: Prisma.$PublicacionesPayload<ExtArgs>
       usuario: Prisma.$UsuariosPayload<ExtArgs>
-      opinion: Prisma.$OpinionesPayload<ExtArgs>[]
+      producto: Prisma.$ProductosPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id_venta: number
-      cantidad: number
       precio_total: number
+      precio_unitario: number
       fecha: Date
       talle: string
-      estado: $Enums.EstadoEnvio
-      metodo_entrega: $Enums.MetodoEnvio
-      metodo_pago: $Enums.MetodoPago
-      n_comprobante: string
       id_comentario: number | null
       id_publicacion: number
       id_usuario: number
+      n_comprobante: string
+      cantidad: number
+      estado: $Enums.EstadoEnvio
+      metodo_entrega: $Enums.MetodoEnvio
+      metodo_pago: $Enums.MetodoPago
+      id_producto: number
     }, ExtArgs["result"]["ventas"]>
     composites: {}
   }
@@ -11900,9 +11976,10 @@ export namespace Prisma {
    */
   export interface Prisma__VentasClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    opinion<T extends Ventas$opinionArgs<ExtArgs> = {}>(args?: Subset<T, Ventas$opinionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OpinionesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     publicacion<T extends PublicacionesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PublicacionesDefaultArgs<ExtArgs>>): Prisma__PublicacionesClient<$Result.GetResult<Prisma.$PublicacionesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     usuario<T extends UsuariosDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsuariosDefaultArgs<ExtArgs>>): Prisma__UsuariosClient<$Result.GetResult<Prisma.$UsuariosPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    opinion<T extends Ventas$opinionArgs<ExtArgs> = {}>(args?: Subset<T, Ventas$opinionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OpinionesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    producto<T extends ProductosDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductosDefaultArgs<ExtArgs>>): Prisma__ProductosClient<$Result.GetResult<Prisma.$ProductosPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -11933,17 +12010,19 @@ export namespace Prisma {
    */
   interface VentasFieldRefs {
     readonly id_venta: FieldRef<"Ventas", 'Int'>
-    readonly cantidad: FieldRef<"Ventas", 'Int'>
     readonly precio_total: FieldRef<"Ventas", 'Float'>
+    readonly precio_unitario: FieldRef<"Ventas", 'Float'>
     readonly fecha: FieldRef<"Ventas", 'DateTime'>
     readonly talle: FieldRef<"Ventas", 'String'>
-    readonly estado: FieldRef<"Ventas", 'EstadoEnvio'>
-    readonly metodo_entrega: FieldRef<"Ventas", 'MetodoEnvio'>
-    readonly metodo_pago: FieldRef<"Ventas", 'MetodoPago'>
-    readonly n_comprobante: FieldRef<"Ventas", 'String'>
     readonly id_comentario: FieldRef<"Ventas", 'Int'>
     readonly id_publicacion: FieldRef<"Ventas", 'Int'>
     readonly id_usuario: FieldRef<"Ventas", 'Int'>
+    readonly n_comprobante: FieldRef<"Ventas", 'String'>
+    readonly cantidad: FieldRef<"Ventas", 'Int'>
+    readonly estado: FieldRef<"Ventas", 'EstadoEnvio'>
+    readonly metodo_entrega: FieldRef<"Ventas", 'MetodoEnvio'>
+    readonly metodo_pago: FieldRef<"Ventas", 'MetodoPago'>
+    readonly id_producto: FieldRef<"Ventas", 'Int'>
   }
     
 
@@ -14617,9 +14696,9 @@ export namespace Prisma {
     precio: 'precio',
     foto: 'foto',
     color: 'color',
-    activa: 'activa',
     genero: 'genero',
-    id_categoria: 'id_categoria'
+    id_categoria: 'id_categoria',
+    activa: 'activa'
   };
 
   export type ProductosScalarFieldEnum = (typeof ProductosScalarFieldEnum)[keyof typeof ProductosScalarFieldEnum]
@@ -14661,8 +14740,8 @@ export namespace Prisma {
     id_usuario: 'id_usuario',
     usuario: 'usuario',
     contraseña: 'contraseña',
-    rol: 'rol',
-    id_cliente: 'id_cliente'
+    id_cliente: 'id_cliente',
+    rol: 'rol'
   };
 
   export type UsuariosScalarFieldEnum = (typeof UsuariosScalarFieldEnum)[keyof typeof UsuariosScalarFieldEnum]
@@ -14693,17 +14772,19 @@ export namespace Prisma {
 
   export const VentasScalarFieldEnum: {
     id_venta: 'id_venta',
-    cantidad: 'cantidad',
     precio_total: 'precio_total',
+    precio_unitario: 'precio_unitario',
     fecha: 'fecha',
     talle: 'talle',
+    id_comentario: 'id_comentario',
+    id_publicacion: 'id_publicacion',
+    id_usuario: 'id_usuario',
+    n_comprobante: 'n_comprobante',
+    cantidad: 'cantidad',
     estado: 'estado',
     metodo_entrega: 'metodo_entrega',
     metodo_pago: 'metodo_pago',
-    n_comprobante: 'n_comprobante',
-    id_comentario: 'id_comentario',
-    id_publicacion: 'id_publicacion',
-    id_usuario: 'id_usuario'
+    id_producto: 'id_producto'
   };
 
   export type VentasScalarFieldEnum = (typeof VentasScalarFieldEnum)[keyof typeof VentasScalarFieldEnum]
@@ -14918,12 +14999,13 @@ export namespace Prisma {
     precio?: FloatFilter<"Productos"> | number
     foto?: StringFilter<"Productos"> | string
     color?: StringFilter<"Productos"> | string
-    activa?: BoolFilter<"Productos"> | boolean
     genero?: StringFilter<"Productos"> | string
     id_categoria?: IntFilter<"Productos"> | number
+    activa?: BoolFilter<"Productos"> | boolean
     categoria?: XOR<CategoriasScalarRelationFilter, CategoriasWhereInput>
-    stocks?: StockListRelationFilter
     publicaciones?: PublicacionesListRelationFilter
+    stocks?: StockListRelationFilter
+    Ventas?: VentasListRelationFilter
   }
 
   export type ProductosOrderByWithRelationInput = {
@@ -14932,12 +15014,13 @@ export namespace Prisma {
     precio?: SortOrder
     foto?: SortOrder
     color?: SortOrder
-    activa?: SortOrder
     genero?: SortOrder
     id_categoria?: SortOrder
+    activa?: SortOrder
     categoria?: CategoriasOrderByWithRelationInput
-    stocks?: StockOrderByRelationAggregateInput
     publicaciones?: PublicacionesOrderByRelationAggregateInput
+    stocks?: StockOrderByRelationAggregateInput
+    Ventas?: VentasOrderByRelationAggregateInput
   }
 
   export type ProductosWhereUniqueInput = Prisma.AtLeast<{
@@ -14949,12 +15032,13 @@ export namespace Prisma {
     precio?: FloatFilter<"Productos"> | number
     foto?: StringFilter<"Productos"> | string
     color?: StringFilter<"Productos"> | string
-    activa?: BoolFilter<"Productos"> | boolean
     genero?: StringFilter<"Productos"> | string
     id_categoria?: IntFilter<"Productos"> | number
+    activa?: BoolFilter<"Productos"> | boolean
     categoria?: XOR<CategoriasScalarRelationFilter, CategoriasWhereInput>
-    stocks?: StockListRelationFilter
     publicaciones?: PublicacionesListRelationFilter
+    stocks?: StockListRelationFilter
+    Ventas?: VentasListRelationFilter
   }, "id_producto">
 
   export type ProductosOrderByWithAggregationInput = {
@@ -14963,9 +15047,9 @@ export namespace Prisma {
     precio?: SortOrder
     foto?: SortOrder
     color?: SortOrder
-    activa?: SortOrder
     genero?: SortOrder
     id_categoria?: SortOrder
+    activa?: SortOrder
     _count?: ProductosCountOrderByAggregateInput
     _avg?: ProductosAvgOrderByAggregateInput
     _max?: ProductosMaxOrderByAggregateInput
@@ -14982,9 +15066,9 @@ export namespace Prisma {
     precio?: FloatWithAggregatesFilter<"Productos"> | number
     foto?: StringWithAggregatesFilter<"Productos"> | string
     color?: StringWithAggregatesFilter<"Productos"> | string
-    activa?: BoolWithAggregatesFilter<"Productos"> | boolean
     genero?: StringWithAggregatesFilter<"Productos"> | string
     id_categoria?: IntWithAggregatesFilter<"Productos"> | number
+    activa?: BoolWithAggregatesFilter<"Productos"> | boolean
   }
 
   export type SizesWhereInput = {
@@ -15100,9 +15184,9 @@ export namespace Prisma {
     precio?: FloatFilter<"Publicaciones"> | number
     id_producto?: IntFilter<"Publicaciones"> | number
     fecha?: DateTimeFilter<"Publicaciones"> | Date | string
+    favoritos?: FavoritosListRelationFilter
     producto?: XOR<ProductosScalarRelationFilter, ProductosWhereInput>
     ventas?: VentasListRelationFilter
-    favoritos?: FavoritosListRelationFilter
   }
 
   export type PublicacionesOrderByWithRelationInput = {
@@ -15113,9 +15197,9 @@ export namespace Prisma {
     precio?: SortOrder
     id_producto?: SortOrder
     fecha?: SortOrder
+    favoritos?: FavoritosOrderByRelationAggregateInput
     producto?: ProductosOrderByWithRelationInput
     ventas?: VentasOrderByRelationAggregateInput
-    favoritos?: FavoritosOrderByRelationAggregateInput
   }
 
   export type PublicacionesWhereUniqueInput = Prisma.AtLeast<{
@@ -15129,9 +15213,9 @@ export namespace Prisma {
     precio?: FloatFilter<"Publicaciones"> | number
     id_producto?: IntFilter<"Publicaciones"> | number
     fecha?: DateTimeFilter<"Publicaciones"> | Date | string
+    favoritos?: FavoritosListRelationFilter
     producto?: XOR<ProductosScalarRelationFilter, ProductosWhereInput>
     ventas?: VentasListRelationFilter
-    favoritos?: FavoritosListRelationFilter
   }, "id_publicacion">
 
   export type PublicacionesOrderByWithAggregationInput = {
@@ -15169,26 +15253,26 @@ export namespace Prisma {
     id_usuario?: IntFilter<"Usuarios"> | number
     usuario?: StringFilter<"Usuarios"> | string
     contraseña?: StringFilter<"Usuarios"> | string
-    rol?: StringFilter<"Usuarios"> | string
     id_cliente?: IntFilter<"Usuarios"> | number
-    cliente?: XOR<ClientesScalarRelationFilter, ClientesWhereInput>
-    saldo?: SaldosListRelationFilter
-    compras?: VentasListRelationFilter
+    rol?: StringFilter<"Usuarios"> | string
     favoritos?: FavoritosListRelationFilter
     opiniones?: OpinionesListRelationFilter
+    saldo?: SaldosListRelationFilter
+    cliente?: XOR<ClientesScalarRelationFilter, ClientesWhereInput>
+    compras?: VentasListRelationFilter
   }
 
   export type UsuariosOrderByWithRelationInput = {
     id_usuario?: SortOrder
     usuario?: SortOrder
     contraseña?: SortOrder
-    rol?: SortOrder
     id_cliente?: SortOrder
-    cliente?: ClientesOrderByWithRelationInput
-    saldo?: SaldosOrderByRelationAggregateInput
-    compras?: VentasOrderByRelationAggregateInput
+    rol?: SortOrder
     favoritos?: FavoritosOrderByRelationAggregateInput
     opiniones?: OpinionesOrderByRelationAggregateInput
+    saldo?: SaldosOrderByRelationAggregateInput
+    cliente?: ClientesOrderByWithRelationInput
+    compras?: VentasOrderByRelationAggregateInput
   }
 
   export type UsuariosWhereUniqueInput = Prisma.AtLeast<{
@@ -15198,21 +15282,21 @@ export namespace Prisma {
     OR?: UsuariosWhereInput[]
     NOT?: UsuariosWhereInput | UsuariosWhereInput[]
     contraseña?: StringFilter<"Usuarios"> | string
-    rol?: StringFilter<"Usuarios"> | string
     id_cliente?: IntFilter<"Usuarios"> | number
-    cliente?: XOR<ClientesScalarRelationFilter, ClientesWhereInput>
-    saldo?: SaldosListRelationFilter
-    compras?: VentasListRelationFilter
+    rol?: StringFilter<"Usuarios"> | string
     favoritos?: FavoritosListRelationFilter
     opiniones?: OpinionesListRelationFilter
+    saldo?: SaldosListRelationFilter
+    cliente?: XOR<ClientesScalarRelationFilter, ClientesWhereInput>
+    compras?: VentasListRelationFilter
   }, "id_usuario" | "usuario">
 
   export type UsuariosOrderByWithAggregationInput = {
     id_usuario?: SortOrder
     usuario?: SortOrder
     contraseña?: SortOrder
-    rol?: SortOrder
     id_cliente?: SortOrder
+    rol?: SortOrder
     _count?: UsuariosCountOrderByAggregateInput
     _avg?: UsuariosAvgOrderByAggregateInput
     _max?: UsuariosMaxOrderByAggregateInput
@@ -15227,8 +15311,8 @@ export namespace Prisma {
     id_usuario?: IntWithAggregatesFilter<"Usuarios"> | number
     usuario?: StringWithAggregatesFilter<"Usuarios"> | string
     contraseña?: StringWithAggregatesFilter<"Usuarios"> | string
-    rol?: StringWithAggregatesFilter<"Usuarios"> | string
     id_cliente?: IntWithAggregatesFilter<"Usuarios"> | number
+    rol?: StringWithAggregatesFilter<"Usuarios"> | string
   }
 
   export type ClientesWhereInput = {
@@ -15355,38 +15439,44 @@ export namespace Prisma {
     OR?: VentasWhereInput[]
     NOT?: VentasWhereInput | VentasWhereInput[]
     id_venta?: IntFilter<"Ventas"> | number
-    cantidad?: IntFilter<"Ventas"> | number
     precio_total?: FloatFilter<"Ventas"> | number
+    precio_unitario?: FloatFilter<"Ventas"> | number
     fecha?: DateTimeFilter<"Ventas"> | Date | string
     talle?: StringFilter<"Ventas"> | string
-    estado?: EnumEstadoEnvioFilter<"Ventas"> | $Enums.EstadoEnvio
-    metodo_entrega?: EnumMetodoEnvioFilter<"Ventas"> | $Enums.MetodoEnvio
-    metodo_pago?: EnumMetodoPagoFilter<"Ventas"> | $Enums.MetodoPago
-    n_comprobante?: StringFilter<"Ventas"> | string
     id_comentario?: IntNullableFilter<"Ventas"> | number | null
     id_publicacion?: IntFilter<"Ventas"> | number
     id_usuario?: IntFilter<"Ventas"> | number
+    n_comprobante?: StringFilter<"Ventas"> | string
+    cantidad?: IntFilter<"Ventas"> | number
+    estado?: EnumEstadoEnvioFilter<"Ventas"> | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFilter<"Ventas"> | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFilter<"Ventas"> | $Enums.MetodoPago
+    id_producto?: IntFilter<"Ventas"> | number
+    opinion?: OpinionesListRelationFilter
     publicacion?: XOR<PublicacionesScalarRelationFilter, PublicacionesWhereInput>
     usuario?: XOR<UsuariosScalarRelationFilter, UsuariosWhereInput>
-    opinion?: OpinionesListRelationFilter
+    producto?: XOR<ProductosScalarRelationFilter, ProductosWhereInput>
   }
 
   export type VentasOrderByWithRelationInput = {
     id_venta?: SortOrder
-    cantidad?: SortOrder
     precio_total?: SortOrder
+    precio_unitario?: SortOrder
     fecha?: SortOrder
     talle?: SortOrder
-    estado?: SortOrder
-    metodo_entrega?: SortOrder
-    metodo_pago?: SortOrder
-    n_comprobante?: SortOrder
     id_comentario?: SortOrderInput | SortOrder
     id_publicacion?: SortOrder
     id_usuario?: SortOrder
+    n_comprobante?: SortOrder
+    cantidad?: SortOrder
+    estado?: SortOrder
+    metodo_entrega?: SortOrder
+    metodo_pago?: SortOrder
+    id_producto?: SortOrder
+    opinion?: OpinionesOrderByRelationAggregateInput
     publicacion?: PublicacionesOrderByWithRelationInput
     usuario?: UsuariosOrderByWithRelationInput
-    opinion?: OpinionesOrderByRelationAggregateInput
+    producto?: ProductosOrderByWithRelationInput
   }
 
   export type VentasWhereUniqueInput = Prisma.AtLeast<{
@@ -15395,34 +15485,39 @@ export namespace Prisma {
     AND?: VentasWhereInput | VentasWhereInput[]
     OR?: VentasWhereInput[]
     NOT?: VentasWhereInput | VentasWhereInput[]
-    cantidad?: IntFilter<"Ventas"> | number
     precio_total?: FloatFilter<"Ventas"> | number
+    precio_unitario?: FloatFilter<"Ventas"> | number
     fecha?: DateTimeFilter<"Ventas"> | Date | string
     talle?: StringFilter<"Ventas"> | string
-    estado?: EnumEstadoEnvioFilter<"Ventas"> | $Enums.EstadoEnvio
-    metodo_entrega?: EnumMetodoEnvioFilter<"Ventas"> | $Enums.MetodoEnvio
-    metodo_pago?: EnumMetodoPagoFilter<"Ventas"> | $Enums.MetodoPago
     id_comentario?: IntNullableFilter<"Ventas"> | number | null
     id_publicacion?: IntFilter<"Ventas"> | number
     id_usuario?: IntFilter<"Ventas"> | number
+    cantidad?: IntFilter<"Ventas"> | number
+    estado?: EnumEstadoEnvioFilter<"Ventas"> | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFilter<"Ventas"> | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFilter<"Ventas"> | $Enums.MetodoPago
+    id_producto?: IntFilter<"Ventas"> | number
+    opinion?: OpinionesListRelationFilter
     publicacion?: XOR<PublicacionesScalarRelationFilter, PublicacionesWhereInput>
     usuario?: XOR<UsuariosScalarRelationFilter, UsuariosWhereInput>
-    opinion?: OpinionesListRelationFilter
+    producto?: XOR<ProductosScalarRelationFilter, ProductosWhereInput>
   }, "id_venta" | "n_comprobante">
 
   export type VentasOrderByWithAggregationInput = {
     id_venta?: SortOrder
-    cantidad?: SortOrder
     precio_total?: SortOrder
+    precio_unitario?: SortOrder
     fecha?: SortOrder
     talle?: SortOrder
-    estado?: SortOrder
-    metodo_entrega?: SortOrder
-    metodo_pago?: SortOrder
-    n_comprobante?: SortOrder
     id_comentario?: SortOrderInput | SortOrder
     id_publicacion?: SortOrder
     id_usuario?: SortOrder
+    n_comprobante?: SortOrder
+    cantidad?: SortOrder
+    estado?: SortOrder
+    metodo_entrega?: SortOrder
+    metodo_pago?: SortOrder
+    id_producto?: SortOrder
     _count?: VentasCountOrderByAggregateInput
     _avg?: VentasAvgOrderByAggregateInput
     _max?: VentasMaxOrderByAggregateInput
@@ -15435,17 +15530,19 @@ export namespace Prisma {
     OR?: VentasScalarWhereWithAggregatesInput[]
     NOT?: VentasScalarWhereWithAggregatesInput | VentasScalarWhereWithAggregatesInput[]
     id_venta?: IntWithAggregatesFilter<"Ventas"> | number
-    cantidad?: IntWithAggregatesFilter<"Ventas"> | number
     precio_total?: FloatWithAggregatesFilter<"Ventas"> | number
+    precio_unitario?: FloatWithAggregatesFilter<"Ventas"> | number
     fecha?: DateTimeWithAggregatesFilter<"Ventas"> | Date | string
     talle?: StringWithAggregatesFilter<"Ventas"> | string
-    estado?: EnumEstadoEnvioWithAggregatesFilter<"Ventas"> | $Enums.EstadoEnvio
-    metodo_entrega?: EnumMetodoEnvioWithAggregatesFilter<"Ventas"> | $Enums.MetodoEnvio
-    metodo_pago?: EnumMetodoPagoWithAggregatesFilter<"Ventas"> | $Enums.MetodoPago
-    n_comprobante?: StringWithAggregatesFilter<"Ventas"> | string
     id_comentario?: IntNullableWithAggregatesFilter<"Ventas"> | number | null
     id_publicacion?: IntWithAggregatesFilter<"Ventas"> | number
     id_usuario?: IntWithAggregatesFilter<"Ventas"> | number
+    n_comprobante?: StringWithAggregatesFilter<"Ventas"> | string
+    cantidad?: IntWithAggregatesFilter<"Ventas"> | number
+    estado?: EnumEstadoEnvioWithAggregatesFilter<"Ventas"> | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioWithAggregatesFilter<"Ventas"> | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoWithAggregatesFilter<"Ventas"> | $Enums.MetodoPago
+    id_producto?: IntWithAggregatesFilter<"Ventas"> | number
   }
 
   export type FavoritosWhereInput = {
@@ -15605,11 +15702,12 @@ export namespace Prisma {
     precio: number
     foto: string
     color: string
-    activa?: boolean
     genero: string
+    activa?: boolean
     categoria: CategoriasCreateNestedOneWithoutProductosInput
-    stocks?: StockCreateNestedManyWithoutProductoInput
     publicaciones?: PublicacionesCreateNestedManyWithoutProductoInput
+    stocks?: StockCreateNestedManyWithoutProductoInput
+    Ventas?: VentasCreateNestedManyWithoutProductoInput
   }
 
   export type ProductosUncheckedCreateInput = {
@@ -15618,11 +15716,12 @@ export namespace Prisma {
     precio: number
     foto: string
     color: string
-    activa?: boolean
     genero: string
     id_categoria: number
-    stocks?: StockUncheckedCreateNestedManyWithoutProductoInput
+    activa?: boolean
     publicaciones?: PublicacionesUncheckedCreateNestedManyWithoutProductoInput
+    stocks?: StockUncheckedCreateNestedManyWithoutProductoInput
+    Ventas?: VentasUncheckedCreateNestedManyWithoutProductoInput
   }
 
   export type ProductosUpdateInput = {
@@ -15630,11 +15729,12 @@ export namespace Prisma {
     precio?: FloatFieldUpdateOperationsInput | number
     foto?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
-    activa?: BoolFieldUpdateOperationsInput | boolean
     genero?: StringFieldUpdateOperationsInput | string
+    activa?: BoolFieldUpdateOperationsInput | boolean
     categoria?: CategoriasUpdateOneRequiredWithoutProductosNestedInput
-    stocks?: StockUpdateManyWithoutProductoNestedInput
     publicaciones?: PublicacionesUpdateManyWithoutProductoNestedInput
+    stocks?: StockUpdateManyWithoutProductoNestedInput
+    Ventas?: VentasUpdateManyWithoutProductoNestedInput
   }
 
   export type ProductosUncheckedUpdateInput = {
@@ -15643,11 +15743,12 @@ export namespace Prisma {
     precio?: FloatFieldUpdateOperationsInput | number
     foto?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
-    activa?: BoolFieldUpdateOperationsInput | boolean
     genero?: StringFieldUpdateOperationsInput | string
     id_categoria?: IntFieldUpdateOperationsInput | number
-    stocks?: StockUncheckedUpdateManyWithoutProductoNestedInput
+    activa?: BoolFieldUpdateOperationsInput | boolean
     publicaciones?: PublicacionesUncheckedUpdateManyWithoutProductoNestedInput
+    stocks?: StockUncheckedUpdateManyWithoutProductoNestedInput
+    Ventas?: VentasUncheckedUpdateManyWithoutProductoNestedInput
   }
 
   export type ProductosCreateManyInput = {
@@ -15656,9 +15757,9 @@ export namespace Prisma {
     precio: number
     foto: string
     color: string
-    activa?: boolean
     genero: string
     id_categoria: number
+    activa?: boolean
   }
 
   export type ProductosUpdateManyMutationInput = {
@@ -15666,8 +15767,8 @@ export namespace Prisma {
     precio?: FloatFieldUpdateOperationsInput | number
     foto?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
-    activa?: BoolFieldUpdateOperationsInput | boolean
     genero?: StringFieldUpdateOperationsInput | string
+    activa?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ProductosUncheckedUpdateManyInput = {
@@ -15676,9 +15777,9 @@ export namespace Prisma {
     precio?: FloatFieldUpdateOperationsInput | number
     foto?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
-    activa?: BoolFieldUpdateOperationsInput | boolean
     genero?: StringFieldUpdateOperationsInput | string
     id_categoria?: IntFieldUpdateOperationsInput | number
+    activa?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type SizesCreateInput = {
@@ -15774,9 +15875,9 @@ export namespace Prisma {
     descuento: number
     precio: number
     fecha?: Date | string
+    favoritos?: FavoritosCreateNestedManyWithoutPublicacionInput
     producto: ProductosCreateNestedOneWithoutPublicacionesInput
     ventas?: VentasCreateNestedManyWithoutPublicacionInput
-    favoritos?: FavoritosCreateNestedManyWithoutPublicacionInput
   }
 
   export type PublicacionesUncheckedCreateInput = {
@@ -15787,8 +15888,8 @@ export namespace Prisma {
     precio: number
     id_producto: number
     fecha?: Date | string
-    ventas?: VentasUncheckedCreateNestedManyWithoutPublicacionInput
     favoritos?: FavoritosUncheckedCreateNestedManyWithoutPublicacionInput
+    ventas?: VentasUncheckedCreateNestedManyWithoutPublicacionInput
   }
 
   export type PublicacionesUpdateInput = {
@@ -15797,9 +15898,9 @@ export namespace Prisma {
     descuento?: IntFieldUpdateOperationsInput | number
     precio?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    favoritos?: FavoritosUpdateManyWithoutPublicacionNestedInput
     producto?: ProductosUpdateOneRequiredWithoutPublicacionesNestedInput
     ventas?: VentasUpdateManyWithoutPublicacionNestedInput
-    favoritos?: FavoritosUpdateManyWithoutPublicacionNestedInput
   }
 
   export type PublicacionesUncheckedUpdateInput = {
@@ -15810,8 +15911,8 @@ export namespace Prisma {
     precio?: FloatFieldUpdateOperationsInput | number
     id_producto?: IntFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
-    ventas?: VentasUncheckedUpdateManyWithoutPublicacionNestedInput
     favoritos?: FavoritosUncheckedUpdateManyWithoutPublicacionNestedInput
+    ventas?: VentasUncheckedUpdateManyWithoutPublicacionNestedInput
   }
 
   export type PublicacionesCreateManyInput = {
@@ -15846,54 +15947,54 @@ export namespace Prisma {
     usuario: string
     contraseña: string
     rol: string
-    cliente: ClientesCreateNestedOneWithoutUsuarioInput
-    saldo?: SaldosCreateNestedManyWithoutUsuarioInput
-    compras?: VentasCreateNestedManyWithoutUsuarioInput
     favoritos?: FavoritosCreateNestedManyWithoutUsuarioInput
     opiniones?: OpinionesCreateNestedManyWithoutUsuarioInput
+    saldo?: SaldosCreateNestedManyWithoutUsuarioInput
+    cliente: ClientesCreateNestedOneWithoutUsuarioInput
+    compras?: VentasCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuariosUncheckedCreateInput = {
     id_usuario?: number
     usuario: string
     contraseña: string
-    rol: string
     id_cliente: number
-    saldo?: SaldosUncheckedCreateNestedManyWithoutUsuarioInput
-    compras?: VentasUncheckedCreateNestedManyWithoutUsuarioInput
+    rol: string
     favoritos?: FavoritosUncheckedCreateNestedManyWithoutUsuarioInput
     opiniones?: OpinionesUncheckedCreateNestedManyWithoutUsuarioInput
+    saldo?: SaldosUncheckedCreateNestedManyWithoutUsuarioInput
+    compras?: VentasUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuariosUpdateInput = {
     usuario?: StringFieldUpdateOperationsInput | string
     contraseña?: StringFieldUpdateOperationsInput | string
     rol?: StringFieldUpdateOperationsInput | string
-    cliente?: ClientesUpdateOneRequiredWithoutUsuarioNestedInput
-    saldo?: SaldosUpdateManyWithoutUsuarioNestedInput
-    compras?: VentasUpdateManyWithoutUsuarioNestedInput
     favoritos?: FavoritosUpdateManyWithoutUsuarioNestedInput
     opiniones?: OpinionesUpdateManyWithoutUsuarioNestedInput
+    saldo?: SaldosUpdateManyWithoutUsuarioNestedInput
+    cliente?: ClientesUpdateOneRequiredWithoutUsuarioNestedInput
+    compras?: VentasUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuariosUncheckedUpdateInput = {
     id_usuario?: IntFieldUpdateOperationsInput | number
     usuario?: StringFieldUpdateOperationsInput | string
     contraseña?: StringFieldUpdateOperationsInput | string
-    rol?: StringFieldUpdateOperationsInput | string
     id_cliente?: IntFieldUpdateOperationsInput | number
-    saldo?: SaldosUncheckedUpdateManyWithoutUsuarioNestedInput
-    compras?: VentasUncheckedUpdateManyWithoutUsuarioNestedInput
+    rol?: StringFieldUpdateOperationsInput | string
     favoritos?: FavoritosUncheckedUpdateManyWithoutUsuarioNestedInput
     opiniones?: OpinionesUncheckedUpdateManyWithoutUsuarioNestedInput
+    saldo?: SaldosUncheckedUpdateManyWithoutUsuarioNestedInput
+    compras?: VentasUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuariosCreateManyInput = {
     id_usuario?: number
     usuario: string
     contraseña: string
-    rol: string
     id_cliente: number
+    rol: string
   }
 
   export type UsuariosUpdateManyMutationInput = {
@@ -15906,8 +16007,8 @@ export namespace Prisma {
     id_usuario?: IntFieldUpdateOperationsInput | number
     usuario?: StringFieldUpdateOperationsInput | string
     contraseña?: StringFieldUpdateOperationsInput | string
-    rol?: StringFieldUpdateOperationsInput | string
     id_cliente?: IntFieldUpdateOperationsInput | number
+    rol?: StringFieldUpdateOperationsInput | string
   }
 
   export type ClientesCreateInput = {
@@ -16027,107 +16128,120 @@ export namespace Prisma {
   }
 
   export type VentasCreateInput = {
-    cantidad: number
     precio_total: number
+    precio_unitario: number
     fecha?: Date | string
     talle: string
+    id_comentario?: number | null
+    n_comprobante: string
+    cantidad: number
     estado?: $Enums.EstadoEnvio
     metodo_entrega: $Enums.MetodoEnvio
     metodo_pago: $Enums.MetodoPago
-    n_comprobante: string
-    id_comentario?: number | null
+    opinion?: OpinionesCreateNestedManyWithoutVentaInput
     publicacion: PublicacionesCreateNestedOneWithoutVentasInput
     usuario: UsuariosCreateNestedOneWithoutComprasInput
-    opinion?: OpinionesCreateNestedManyWithoutVentaInput
+    producto: ProductosCreateNestedOneWithoutVentasInput
   }
 
   export type VentasUncheckedCreateInput = {
     id_venta?: number
-    cantidad: number
     precio_total: number
+    precio_unitario: number
     fecha?: Date | string
     talle: string
-    estado?: $Enums.EstadoEnvio
-    metodo_entrega: $Enums.MetodoEnvio
-    metodo_pago: $Enums.MetodoPago
-    n_comprobante: string
     id_comentario?: number | null
     id_publicacion: number
     id_usuario: number
+    n_comprobante: string
+    cantidad: number
+    estado?: $Enums.EstadoEnvio
+    metodo_entrega: $Enums.MetodoEnvio
+    metodo_pago: $Enums.MetodoPago
+    id_producto: number
     opinion?: OpinionesUncheckedCreateNestedManyWithoutVentaInput
   }
 
   export type VentasUpdateInput = {
-    cantidad?: IntFieldUpdateOperationsInput | number
     precio_total?: FloatFieldUpdateOperationsInput | number
+    precio_unitario?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
+    id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
+    n_comprobante?: StringFieldUpdateOperationsInput | string
+    cantidad?: IntFieldUpdateOperationsInput | number
     estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
     metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
     metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
-    n_comprobante?: StringFieldUpdateOperationsInput | string
-    id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
+    opinion?: OpinionesUpdateManyWithoutVentaNestedInput
     publicacion?: PublicacionesUpdateOneRequiredWithoutVentasNestedInput
     usuario?: UsuariosUpdateOneRequiredWithoutComprasNestedInput
-    opinion?: OpinionesUpdateManyWithoutVentaNestedInput
+    producto?: ProductosUpdateOneRequiredWithoutVentasNestedInput
   }
 
   export type VentasUncheckedUpdateInput = {
     id_venta?: IntFieldUpdateOperationsInput | number
-    cantidad?: IntFieldUpdateOperationsInput | number
     precio_total?: FloatFieldUpdateOperationsInput | number
+    precio_unitario?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
-    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
-    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
-    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
-    n_comprobante?: StringFieldUpdateOperationsInput | string
     id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
     id_publicacion?: IntFieldUpdateOperationsInput | number
     id_usuario?: IntFieldUpdateOperationsInput | number
+    n_comprobante?: StringFieldUpdateOperationsInput | string
+    cantidad?: IntFieldUpdateOperationsInput | number
+    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
+    id_producto?: IntFieldUpdateOperationsInput | number
     opinion?: OpinionesUncheckedUpdateManyWithoutVentaNestedInput
   }
 
   export type VentasCreateManyInput = {
     id_venta?: number
-    cantidad: number
     precio_total: number
+    precio_unitario: number
     fecha?: Date | string
     talle: string
-    estado?: $Enums.EstadoEnvio
-    metodo_entrega: $Enums.MetodoEnvio
-    metodo_pago: $Enums.MetodoPago
-    n_comprobante: string
     id_comentario?: number | null
     id_publicacion: number
     id_usuario: number
+    n_comprobante: string
+    cantidad: number
+    estado?: $Enums.EstadoEnvio
+    metodo_entrega: $Enums.MetodoEnvio
+    metodo_pago: $Enums.MetodoPago
+    id_producto: number
   }
 
   export type VentasUpdateManyMutationInput = {
-    cantidad?: IntFieldUpdateOperationsInput | number
     precio_total?: FloatFieldUpdateOperationsInput | number
+    precio_unitario?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
+    id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
+    n_comprobante?: StringFieldUpdateOperationsInput | string
+    cantidad?: IntFieldUpdateOperationsInput | number
     estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
     metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
     metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
-    n_comprobante?: StringFieldUpdateOperationsInput | string
-    id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type VentasUncheckedUpdateManyInput = {
     id_venta?: IntFieldUpdateOperationsInput | number
-    cantidad?: IntFieldUpdateOperationsInput | number
     precio_total?: FloatFieldUpdateOperationsInput | number
+    precio_unitario?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
-    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
-    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
-    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
-    n_comprobante?: StringFieldUpdateOperationsInput | string
     id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
     id_publicacion?: IntFieldUpdateOperationsInput | number
     id_usuario?: IntFieldUpdateOperationsInput | number
+    n_comprobante?: StringFieldUpdateOperationsInput | string
+    cantidad?: IntFieldUpdateOperationsInput | number
+    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
+    id_producto?: IntFieldUpdateOperationsInput | number
   }
 
   export type FavoritosCreateInput = {
@@ -16340,23 +16454,33 @@ export namespace Prisma {
     isNot?: CategoriasWhereInput
   }
 
-  export type StockListRelationFilter = {
-    every?: StockWhereInput
-    some?: StockWhereInput
-    none?: StockWhereInput
-  }
-
   export type PublicacionesListRelationFilter = {
     every?: PublicacionesWhereInput
     some?: PublicacionesWhereInput
     none?: PublicacionesWhereInput
   }
 
+  export type StockListRelationFilter = {
+    every?: StockWhereInput
+    some?: StockWhereInput
+    none?: StockWhereInput
+  }
+
+  export type VentasListRelationFilter = {
+    every?: VentasWhereInput
+    some?: VentasWhereInput
+    none?: VentasWhereInput
+  }
+
+  export type PublicacionesOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type StockOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type PublicacionesOrderByRelationAggregateInput = {
+  export type VentasOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -16366,9 +16490,9 @@ export namespace Prisma {
     precio?: SortOrder
     foto?: SortOrder
     color?: SortOrder
-    activa?: SortOrder
     genero?: SortOrder
     id_categoria?: SortOrder
+    activa?: SortOrder
   }
 
   export type ProductosAvgOrderByAggregateInput = {
@@ -16383,9 +16507,9 @@ export namespace Prisma {
     precio?: SortOrder
     foto?: SortOrder
     color?: SortOrder
-    activa?: SortOrder
     genero?: SortOrder
     id_categoria?: SortOrder
+    activa?: SortOrder
   }
 
   export type ProductosMinOrderByAggregateInput = {
@@ -16394,9 +16518,9 @@ export namespace Prisma {
     precio?: SortOrder
     foto?: SortOrder
     color?: SortOrder
-    activa?: SortOrder
     genero?: SortOrder
     id_categoria?: SortOrder
+    activa?: SortOrder
   }
 
   export type ProductosSumOrderByAggregateInput = {
@@ -16511,20 +16635,10 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type VentasListRelationFilter = {
-    every?: VentasWhereInput
-    some?: VentasWhereInput
-    none?: VentasWhereInput
-  }
-
   export type FavoritosListRelationFilter = {
     every?: FavoritosWhereInput
     some?: FavoritosWhereInput
     none?: FavoritosWhereInput
-  }
-
-  export type VentasOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type FavoritosOrderByRelationAggregateInput = {
@@ -16589,9 +16703,10 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type ClientesScalarRelationFilter = {
-    is?: ClientesWhereInput
-    isNot?: ClientesWhereInput
+  export type OpinionesListRelationFilter = {
+    every?: OpinionesWhereInput
+    some?: OpinionesWhereInput
+    none?: OpinionesWhereInput
   }
 
   export type SaldosListRelationFilter = {
@@ -16600,17 +16715,16 @@ export namespace Prisma {
     none?: SaldosWhereInput
   }
 
-  export type OpinionesListRelationFilter = {
-    every?: OpinionesWhereInput
-    some?: OpinionesWhereInput
-    none?: OpinionesWhereInput
-  }
-
-  export type SaldosOrderByRelationAggregateInput = {
-    _count?: SortOrder
+  export type ClientesScalarRelationFilter = {
+    is?: ClientesWhereInput
+    isNot?: ClientesWhereInput
   }
 
   export type OpinionesOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SaldosOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -16618,8 +16732,8 @@ export namespace Prisma {
     id_usuario?: SortOrder
     usuario?: SortOrder
     contraseña?: SortOrder
-    rol?: SortOrder
     id_cliente?: SortOrder
+    rol?: SortOrder
   }
 
   export type UsuariosAvgOrderByAggregateInput = {
@@ -16631,16 +16745,16 @@ export namespace Prisma {
     id_usuario?: SortOrder
     usuario?: SortOrder
     contraseña?: SortOrder
-    rol?: SortOrder
     id_cliente?: SortOrder
+    rol?: SortOrder
   }
 
   export type UsuariosMinOrderByAggregateInput = {
     id_usuario?: SortOrder
     usuario?: SortOrder
     contraseña?: SortOrder
-    rol?: SortOrder
     id_cliente?: SortOrder
+    rol?: SortOrder
   }
 
   export type UsuariosSumOrderByAggregateInput = {
@@ -16736,6 +16850,17 @@ export namespace Prisma {
     id_usuario?: SortOrder
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type EnumEstadoEnvioFilter<$PrismaModel = never> = {
     equals?: $Enums.EstadoEnvio | EnumEstadoEnvioFieldRefInput<$PrismaModel>
     in?: $Enums.EstadoEnvio[] | ListEnumEstadoEnvioFieldRefInput<$PrismaModel>
@@ -16757,17 +16882,6 @@ export namespace Prisma {
     not?: NestedEnumMetodoPagoFilter<$PrismaModel> | $Enums.MetodoPago
   }
 
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
   export type PublicacionesScalarRelationFilter = {
     is?: PublicacionesWhereInput
     isNot?: PublicacionesWhereInput
@@ -16780,65 +16894,91 @@ export namespace Prisma {
 
   export type VentasCountOrderByAggregateInput = {
     id_venta?: SortOrder
-    cantidad?: SortOrder
     precio_total?: SortOrder
+    precio_unitario?: SortOrder
     fecha?: SortOrder
     talle?: SortOrder
-    estado?: SortOrder
-    metodo_entrega?: SortOrder
-    metodo_pago?: SortOrder
-    n_comprobante?: SortOrder
     id_comentario?: SortOrder
     id_publicacion?: SortOrder
     id_usuario?: SortOrder
+    n_comprobante?: SortOrder
+    cantidad?: SortOrder
+    estado?: SortOrder
+    metodo_entrega?: SortOrder
+    metodo_pago?: SortOrder
+    id_producto?: SortOrder
   }
 
   export type VentasAvgOrderByAggregateInput = {
     id_venta?: SortOrder
-    cantidad?: SortOrder
     precio_total?: SortOrder
+    precio_unitario?: SortOrder
     id_comentario?: SortOrder
     id_publicacion?: SortOrder
     id_usuario?: SortOrder
+    cantidad?: SortOrder
+    id_producto?: SortOrder
   }
 
   export type VentasMaxOrderByAggregateInput = {
     id_venta?: SortOrder
-    cantidad?: SortOrder
     precio_total?: SortOrder
+    precio_unitario?: SortOrder
     fecha?: SortOrder
     talle?: SortOrder
-    estado?: SortOrder
-    metodo_entrega?: SortOrder
-    metodo_pago?: SortOrder
-    n_comprobante?: SortOrder
     id_comentario?: SortOrder
     id_publicacion?: SortOrder
     id_usuario?: SortOrder
+    n_comprobante?: SortOrder
+    cantidad?: SortOrder
+    estado?: SortOrder
+    metodo_entrega?: SortOrder
+    metodo_pago?: SortOrder
+    id_producto?: SortOrder
   }
 
   export type VentasMinOrderByAggregateInput = {
     id_venta?: SortOrder
-    cantidad?: SortOrder
     precio_total?: SortOrder
+    precio_unitario?: SortOrder
     fecha?: SortOrder
     talle?: SortOrder
-    estado?: SortOrder
-    metodo_entrega?: SortOrder
-    metodo_pago?: SortOrder
-    n_comprobante?: SortOrder
     id_comentario?: SortOrder
     id_publicacion?: SortOrder
     id_usuario?: SortOrder
+    n_comprobante?: SortOrder
+    cantidad?: SortOrder
+    estado?: SortOrder
+    metodo_entrega?: SortOrder
+    metodo_pago?: SortOrder
+    id_producto?: SortOrder
   }
 
   export type VentasSumOrderByAggregateInput = {
     id_venta?: SortOrder
-    cantidad?: SortOrder
     precio_total?: SortOrder
+    precio_unitario?: SortOrder
     id_comentario?: SortOrder
     id_publicacion?: SortOrder
     id_usuario?: SortOrder
+    cantidad?: SortOrder
+    id_producto?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type EnumEstadoEnvioWithAggregatesFilter<$PrismaModel = never> = {
@@ -16869,22 +17009,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumMetodoPagoFilter<$PrismaModel>
     _max?: NestedEnumMetodoPagoFilter<$PrismaModel>
-  }
-
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type FavoritosId_usuarioId_publicacionCompoundUniqueInput = {
@@ -17028,6 +17152,13 @@ export namespace Prisma {
     connect?: CategoriasWhereUniqueInput
   }
 
+  export type PublicacionesCreateNestedManyWithoutProductoInput = {
+    create?: XOR<PublicacionesCreateWithoutProductoInput, PublicacionesUncheckedCreateWithoutProductoInput> | PublicacionesCreateWithoutProductoInput[] | PublicacionesUncheckedCreateWithoutProductoInput[]
+    connectOrCreate?: PublicacionesCreateOrConnectWithoutProductoInput | PublicacionesCreateOrConnectWithoutProductoInput[]
+    createMany?: PublicacionesCreateManyProductoInputEnvelope
+    connect?: PublicacionesWhereUniqueInput | PublicacionesWhereUniqueInput[]
+  }
+
   export type StockCreateNestedManyWithoutProductoInput = {
     create?: XOR<StockCreateWithoutProductoInput, StockUncheckedCreateWithoutProductoInput> | StockCreateWithoutProductoInput[] | StockUncheckedCreateWithoutProductoInput[]
     connectOrCreate?: StockCreateOrConnectWithoutProductoInput | StockCreateOrConnectWithoutProductoInput[]
@@ -17035,7 +17166,14 @@ export namespace Prisma {
     connect?: StockWhereUniqueInput | StockWhereUniqueInput[]
   }
 
-  export type PublicacionesCreateNestedManyWithoutProductoInput = {
+  export type VentasCreateNestedManyWithoutProductoInput = {
+    create?: XOR<VentasCreateWithoutProductoInput, VentasUncheckedCreateWithoutProductoInput> | VentasCreateWithoutProductoInput[] | VentasUncheckedCreateWithoutProductoInput[]
+    connectOrCreate?: VentasCreateOrConnectWithoutProductoInput | VentasCreateOrConnectWithoutProductoInput[]
+    createMany?: VentasCreateManyProductoInputEnvelope
+    connect?: VentasWhereUniqueInput | VentasWhereUniqueInput[]
+  }
+
+  export type PublicacionesUncheckedCreateNestedManyWithoutProductoInput = {
     create?: XOR<PublicacionesCreateWithoutProductoInput, PublicacionesUncheckedCreateWithoutProductoInput> | PublicacionesCreateWithoutProductoInput[] | PublicacionesUncheckedCreateWithoutProductoInput[]
     connectOrCreate?: PublicacionesCreateOrConnectWithoutProductoInput | PublicacionesCreateOrConnectWithoutProductoInput[]
     createMany?: PublicacionesCreateManyProductoInputEnvelope
@@ -17049,11 +17187,11 @@ export namespace Prisma {
     connect?: StockWhereUniqueInput | StockWhereUniqueInput[]
   }
 
-  export type PublicacionesUncheckedCreateNestedManyWithoutProductoInput = {
-    create?: XOR<PublicacionesCreateWithoutProductoInput, PublicacionesUncheckedCreateWithoutProductoInput> | PublicacionesCreateWithoutProductoInput[] | PublicacionesUncheckedCreateWithoutProductoInput[]
-    connectOrCreate?: PublicacionesCreateOrConnectWithoutProductoInput | PublicacionesCreateOrConnectWithoutProductoInput[]
-    createMany?: PublicacionesCreateManyProductoInputEnvelope
-    connect?: PublicacionesWhereUniqueInput | PublicacionesWhereUniqueInput[]
+  export type VentasUncheckedCreateNestedManyWithoutProductoInput = {
+    create?: XOR<VentasCreateWithoutProductoInput, VentasUncheckedCreateWithoutProductoInput> | VentasCreateWithoutProductoInput[] | VentasUncheckedCreateWithoutProductoInput[]
+    connectOrCreate?: VentasCreateOrConnectWithoutProductoInput | VentasCreateOrConnectWithoutProductoInput[]
+    createMany?: VentasCreateManyProductoInputEnvelope
+    connect?: VentasWhereUniqueInput | VentasWhereUniqueInput[]
   }
 
   export type FloatFieldUpdateOperationsInput = {
@@ -17076,6 +17214,20 @@ export namespace Prisma {
     update?: XOR<XOR<CategoriasUpdateToOneWithWhereWithoutProductosInput, CategoriasUpdateWithoutProductosInput>, CategoriasUncheckedUpdateWithoutProductosInput>
   }
 
+  export type PublicacionesUpdateManyWithoutProductoNestedInput = {
+    create?: XOR<PublicacionesCreateWithoutProductoInput, PublicacionesUncheckedCreateWithoutProductoInput> | PublicacionesCreateWithoutProductoInput[] | PublicacionesUncheckedCreateWithoutProductoInput[]
+    connectOrCreate?: PublicacionesCreateOrConnectWithoutProductoInput | PublicacionesCreateOrConnectWithoutProductoInput[]
+    upsert?: PublicacionesUpsertWithWhereUniqueWithoutProductoInput | PublicacionesUpsertWithWhereUniqueWithoutProductoInput[]
+    createMany?: PublicacionesCreateManyProductoInputEnvelope
+    set?: PublicacionesWhereUniqueInput | PublicacionesWhereUniqueInput[]
+    disconnect?: PublicacionesWhereUniqueInput | PublicacionesWhereUniqueInput[]
+    delete?: PublicacionesWhereUniqueInput | PublicacionesWhereUniqueInput[]
+    connect?: PublicacionesWhereUniqueInput | PublicacionesWhereUniqueInput[]
+    update?: PublicacionesUpdateWithWhereUniqueWithoutProductoInput | PublicacionesUpdateWithWhereUniqueWithoutProductoInput[]
+    updateMany?: PublicacionesUpdateManyWithWhereWithoutProductoInput | PublicacionesUpdateManyWithWhereWithoutProductoInput[]
+    deleteMany?: PublicacionesScalarWhereInput | PublicacionesScalarWhereInput[]
+  }
+
   export type StockUpdateManyWithoutProductoNestedInput = {
     create?: XOR<StockCreateWithoutProductoInput, StockUncheckedCreateWithoutProductoInput> | StockCreateWithoutProductoInput[] | StockUncheckedCreateWithoutProductoInput[]
     connectOrCreate?: StockCreateOrConnectWithoutProductoInput | StockCreateOrConnectWithoutProductoInput[]
@@ -17090,7 +17242,21 @@ export namespace Prisma {
     deleteMany?: StockScalarWhereInput | StockScalarWhereInput[]
   }
 
-  export type PublicacionesUpdateManyWithoutProductoNestedInput = {
+  export type VentasUpdateManyWithoutProductoNestedInput = {
+    create?: XOR<VentasCreateWithoutProductoInput, VentasUncheckedCreateWithoutProductoInput> | VentasCreateWithoutProductoInput[] | VentasUncheckedCreateWithoutProductoInput[]
+    connectOrCreate?: VentasCreateOrConnectWithoutProductoInput | VentasCreateOrConnectWithoutProductoInput[]
+    upsert?: VentasUpsertWithWhereUniqueWithoutProductoInput | VentasUpsertWithWhereUniqueWithoutProductoInput[]
+    createMany?: VentasCreateManyProductoInputEnvelope
+    set?: VentasWhereUniqueInput | VentasWhereUniqueInput[]
+    disconnect?: VentasWhereUniqueInput | VentasWhereUniqueInput[]
+    delete?: VentasWhereUniqueInput | VentasWhereUniqueInput[]
+    connect?: VentasWhereUniqueInput | VentasWhereUniqueInput[]
+    update?: VentasUpdateWithWhereUniqueWithoutProductoInput | VentasUpdateWithWhereUniqueWithoutProductoInput[]
+    updateMany?: VentasUpdateManyWithWhereWithoutProductoInput | VentasUpdateManyWithWhereWithoutProductoInput[]
+    deleteMany?: VentasScalarWhereInput | VentasScalarWhereInput[]
+  }
+
+  export type PublicacionesUncheckedUpdateManyWithoutProductoNestedInput = {
     create?: XOR<PublicacionesCreateWithoutProductoInput, PublicacionesUncheckedCreateWithoutProductoInput> | PublicacionesCreateWithoutProductoInput[] | PublicacionesUncheckedCreateWithoutProductoInput[]
     connectOrCreate?: PublicacionesCreateOrConnectWithoutProductoInput | PublicacionesCreateOrConnectWithoutProductoInput[]
     upsert?: PublicacionesUpsertWithWhereUniqueWithoutProductoInput | PublicacionesUpsertWithWhereUniqueWithoutProductoInput[]
@@ -17118,18 +17284,18 @@ export namespace Prisma {
     deleteMany?: StockScalarWhereInput | StockScalarWhereInput[]
   }
 
-  export type PublicacionesUncheckedUpdateManyWithoutProductoNestedInput = {
-    create?: XOR<PublicacionesCreateWithoutProductoInput, PublicacionesUncheckedCreateWithoutProductoInput> | PublicacionesCreateWithoutProductoInput[] | PublicacionesUncheckedCreateWithoutProductoInput[]
-    connectOrCreate?: PublicacionesCreateOrConnectWithoutProductoInput | PublicacionesCreateOrConnectWithoutProductoInput[]
-    upsert?: PublicacionesUpsertWithWhereUniqueWithoutProductoInput | PublicacionesUpsertWithWhereUniqueWithoutProductoInput[]
-    createMany?: PublicacionesCreateManyProductoInputEnvelope
-    set?: PublicacionesWhereUniqueInput | PublicacionesWhereUniqueInput[]
-    disconnect?: PublicacionesWhereUniqueInput | PublicacionesWhereUniqueInput[]
-    delete?: PublicacionesWhereUniqueInput | PublicacionesWhereUniqueInput[]
-    connect?: PublicacionesWhereUniqueInput | PublicacionesWhereUniqueInput[]
-    update?: PublicacionesUpdateWithWhereUniqueWithoutProductoInput | PublicacionesUpdateWithWhereUniqueWithoutProductoInput[]
-    updateMany?: PublicacionesUpdateManyWithWhereWithoutProductoInput | PublicacionesUpdateManyWithWhereWithoutProductoInput[]
-    deleteMany?: PublicacionesScalarWhereInput | PublicacionesScalarWhereInput[]
+  export type VentasUncheckedUpdateManyWithoutProductoNestedInput = {
+    create?: XOR<VentasCreateWithoutProductoInput, VentasUncheckedCreateWithoutProductoInput> | VentasCreateWithoutProductoInput[] | VentasUncheckedCreateWithoutProductoInput[]
+    connectOrCreate?: VentasCreateOrConnectWithoutProductoInput | VentasCreateOrConnectWithoutProductoInput[]
+    upsert?: VentasUpsertWithWhereUniqueWithoutProductoInput | VentasUpsertWithWhereUniqueWithoutProductoInput[]
+    createMany?: VentasCreateManyProductoInputEnvelope
+    set?: VentasWhereUniqueInput | VentasWhereUniqueInput[]
+    disconnect?: VentasWhereUniqueInput | VentasWhereUniqueInput[]
+    delete?: VentasWhereUniqueInput | VentasWhereUniqueInput[]
+    connect?: VentasWhereUniqueInput | VentasWhereUniqueInput[]
+    update?: VentasUpdateWithWhereUniqueWithoutProductoInput | VentasUpdateWithWhereUniqueWithoutProductoInput[]
+    updateMany?: VentasUpdateManyWithWhereWithoutProductoInput | VentasUpdateManyWithWhereWithoutProductoInput[]
+    deleteMany?: VentasScalarWhereInput | VentasScalarWhereInput[]
   }
 
   export type StockCreateNestedManyWithoutTalleInput = {
@@ -17202,6 +17368,13 @@ export namespace Prisma {
     update?: XOR<XOR<SizesUpdateToOneWithWhereWithoutStocksInput, SizesUpdateWithoutStocksInput>, SizesUncheckedUpdateWithoutStocksInput>
   }
 
+  export type FavoritosCreateNestedManyWithoutPublicacionInput = {
+    create?: XOR<FavoritosCreateWithoutPublicacionInput, FavoritosUncheckedCreateWithoutPublicacionInput> | FavoritosCreateWithoutPublicacionInput[] | FavoritosUncheckedCreateWithoutPublicacionInput[]
+    connectOrCreate?: FavoritosCreateOrConnectWithoutPublicacionInput | FavoritosCreateOrConnectWithoutPublicacionInput[]
+    createMany?: FavoritosCreateManyPublicacionInputEnvelope
+    connect?: FavoritosWhereUniqueInput | FavoritosWhereUniqueInput[]
+  }
+
   export type ProductosCreateNestedOneWithoutPublicacionesInput = {
     create?: XOR<ProductosCreateWithoutPublicacionesInput, ProductosUncheckedCreateWithoutPublicacionesInput>
     connectOrCreate?: ProductosCreateOrConnectWithoutPublicacionesInput
@@ -17215,7 +17388,7 @@ export namespace Prisma {
     connect?: VentasWhereUniqueInput | VentasWhereUniqueInput[]
   }
 
-  export type FavoritosCreateNestedManyWithoutPublicacionInput = {
+  export type FavoritosUncheckedCreateNestedManyWithoutPublicacionInput = {
     create?: XOR<FavoritosCreateWithoutPublicacionInput, FavoritosUncheckedCreateWithoutPublicacionInput> | FavoritosCreateWithoutPublicacionInput[] | FavoritosUncheckedCreateWithoutPublicacionInput[]
     connectOrCreate?: FavoritosCreateOrConnectWithoutPublicacionInput | FavoritosCreateOrConnectWithoutPublicacionInput[]
     createMany?: FavoritosCreateManyPublicacionInputEnvelope
@@ -17229,37 +17402,8 @@ export namespace Prisma {
     connect?: VentasWhereUniqueInput | VentasWhereUniqueInput[]
   }
 
-  export type FavoritosUncheckedCreateNestedManyWithoutPublicacionInput = {
-    create?: XOR<FavoritosCreateWithoutPublicacionInput, FavoritosUncheckedCreateWithoutPublicacionInput> | FavoritosCreateWithoutPublicacionInput[] | FavoritosUncheckedCreateWithoutPublicacionInput[]
-    connectOrCreate?: FavoritosCreateOrConnectWithoutPublicacionInput | FavoritosCreateOrConnectWithoutPublicacionInput[]
-    createMany?: FavoritosCreateManyPublicacionInputEnvelope
-    connect?: FavoritosWhereUniqueInput | FavoritosWhereUniqueInput[]
-  }
-
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
-  }
-
-  export type ProductosUpdateOneRequiredWithoutPublicacionesNestedInput = {
-    create?: XOR<ProductosCreateWithoutPublicacionesInput, ProductosUncheckedCreateWithoutPublicacionesInput>
-    connectOrCreate?: ProductosCreateOrConnectWithoutPublicacionesInput
-    upsert?: ProductosUpsertWithoutPublicacionesInput
-    connect?: ProductosWhereUniqueInput
-    update?: XOR<XOR<ProductosUpdateToOneWithWhereWithoutPublicacionesInput, ProductosUpdateWithoutPublicacionesInput>, ProductosUncheckedUpdateWithoutPublicacionesInput>
-  }
-
-  export type VentasUpdateManyWithoutPublicacionNestedInput = {
-    create?: XOR<VentasCreateWithoutPublicacionInput, VentasUncheckedCreateWithoutPublicacionInput> | VentasCreateWithoutPublicacionInput[] | VentasUncheckedCreateWithoutPublicacionInput[]
-    connectOrCreate?: VentasCreateOrConnectWithoutPublicacionInput | VentasCreateOrConnectWithoutPublicacionInput[]
-    upsert?: VentasUpsertWithWhereUniqueWithoutPublicacionInput | VentasUpsertWithWhereUniqueWithoutPublicacionInput[]
-    createMany?: VentasCreateManyPublicacionInputEnvelope
-    set?: VentasWhereUniqueInput | VentasWhereUniqueInput[]
-    disconnect?: VentasWhereUniqueInput | VentasWhereUniqueInput[]
-    delete?: VentasWhereUniqueInput | VentasWhereUniqueInput[]
-    connect?: VentasWhereUniqueInput | VentasWhereUniqueInput[]
-    update?: VentasUpdateWithWhereUniqueWithoutPublicacionInput | VentasUpdateWithWhereUniqueWithoutPublicacionInput[]
-    updateMany?: VentasUpdateManyWithWhereWithoutPublicacionInput | VentasUpdateManyWithWhereWithoutPublicacionInput[]
-    deleteMany?: VentasScalarWhereInput | VentasScalarWhereInput[]
   }
 
   export type FavoritosUpdateManyWithoutPublicacionNestedInput = {
@@ -17276,7 +17420,15 @@ export namespace Prisma {
     deleteMany?: FavoritosScalarWhereInput | FavoritosScalarWhereInput[]
   }
 
-  export type VentasUncheckedUpdateManyWithoutPublicacionNestedInput = {
+  export type ProductosUpdateOneRequiredWithoutPublicacionesNestedInput = {
+    create?: XOR<ProductosCreateWithoutPublicacionesInput, ProductosUncheckedCreateWithoutPublicacionesInput>
+    connectOrCreate?: ProductosCreateOrConnectWithoutPublicacionesInput
+    upsert?: ProductosUpsertWithoutPublicacionesInput
+    connect?: ProductosWhereUniqueInput
+    update?: XOR<XOR<ProductosUpdateToOneWithWhereWithoutPublicacionesInput, ProductosUpdateWithoutPublicacionesInput>, ProductosUncheckedUpdateWithoutPublicacionesInput>
+  }
+
+  export type VentasUpdateManyWithoutPublicacionNestedInput = {
     create?: XOR<VentasCreateWithoutPublicacionInput, VentasUncheckedCreateWithoutPublicacionInput> | VentasCreateWithoutPublicacionInput[] | VentasUncheckedCreateWithoutPublicacionInput[]
     connectOrCreate?: VentasCreateOrConnectWithoutPublicacionInput | VentasCreateOrConnectWithoutPublicacionInput[]
     upsert?: VentasUpsertWithWhereUniqueWithoutPublicacionInput | VentasUpsertWithWhereUniqueWithoutPublicacionInput[]
@@ -17304,24 +17456,18 @@ export namespace Prisma {
     deleteMany?: FavoritosScalarWhereInput | FavoritosScalarWhereInput[]
   }
 
-  export type ClientesCreateNestedOneWithoutUsuarioInput = {
-    create?: XOR<ClientesCreateWithoutUsuarioInput, ClientesUncheckedCreateWithoutUsuarioInput>
-    connectOrCreate?: ClientesCreateOrConnectWithoutUsuarioInput
-    connect?: ClientesWhereUniqueInput
-  }
-
-  export type SaldosCreateNestedManyWithoutUsuarioInput = {
-    create?: XOR<SaldosCreateWithoutUsuarioInput, SaldosUncheckedCreateWithoutUsuarioInput> | SaldosCreateWithoutUsuarioInput[] | SaldosUncheckedCreateWithoutUsuarioInput[]
-    connectOrCreate?: SaldosCreateOrConnectWithoutUsuarioInput | SaldosCreateOrConnectWithoutUsuarioInput[]
-    createMany?: SaldosCreateManyUsuarioInputEnvelope
-    connect?: SaldosWhereUniqueInput | SaldosWhereUniqueInput[]
-  }
-
-  export type VentasCreateNestedManyWithoutUsuarioInput = {
-    create?: XOR<VentasCreateWithoutUsuarioInput, VentasUncheckedCreateWithoutUsuarioInput> | VentasCreateWithoutUsuarioInput[] | VentasUncheckedCreateWithoutUsuarioInput[]
-    connectOrCreate?: VentasCreateOrConnectWithoutUsuarioInput | VentasCreateOrConnectWithoutUsuarioInput[]
-    createMany?: VentasCreateManyUsuarioInputEnvelope
+  export type VentasUncheckedUpdateManyWithoutPublicacionNestedInput = {
+    create?: XOR<VentasCreateWithoutPublicacionInput, VentasUncheckedCreateWithoutPublicacionInput> | VentasCreateWithoutPublicacionInput[] | VentasUncheckedCreateWithoutPublicacionInput[]
+    connectOrCreate?: VentasCreateOrConnectWithoutPublicacionInput | VentasCreateOrConnectWithoutPublicacionInput[]
+    upsert?: VentasUpsertWithWhereUniqueWithoutPublicacionInput | VentasUpsertWithWhereUniqueWithoutPublicacionInput[]
+    createMany?: VentasCreateManyPublicacionInputEnvelope
+    set?: VentasWhereUniqueInput | VentasWhereUniqueInput[]
+    disconnect?: VentasWhereUniqueInput | VentasWhereUniqueInput[]
+    delete?: VentasWhereUniqueInput | VentasWhereUniqueInput[]
     connect?: VentasWhereUniqueInput | VentasWhereUniqueInput[]
+    update?: VentasUpdateWithWhereUniqueWithoutPublicacionInput | VentasUpdateWithWhereUniqueWithoutPublicacionInput[]
+    updateMany?: VentasUpdateManyWithWhereWithoutPublicacionInput | VentasUpdateManyWithWhereWithoutPublicacionInput[]
+    deleteMany?: VentasScalarWhereInput | VentasScalarWhereInput[]
   }
 
   export type FavoritosCreateNestedManyWithoutUsuarioInput = {
@@ -17338,14 +17484,20 @@ export namespace Prisma {
     connect?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
   }
 
-  export type SaldosUncheckedCreateNestedManyWithoutUsuarioInput = {
+  export type SaldosCreateNestedManyWithoutUsuarioInput = {
     create?: XOR<SaldosCreateWithoutUsuarioInput, SaldosUncheckedCreateWithoutUsuarioInput> | SaldosCreateWithoutUsuarioInput[] | SaldosUncheckedCreateWithoutUsuarioInput[]
     connectOrCreate?: SaldosCreateOrConnectWithoutUsuarioInput | SaldosCreateOrConnectWithoutUsuarioInput[]
     createMany?: SaldosCreateManyUsuarioInputEnvelope
     connect?: SaldosWhereUniqueInput | SaldosWhereUniqueInput[]
   }
 
-  export type VentasUncheckedCreateNestedManyWithoutUsuarioInput = {
+  export type ClientesCreateNestedOneWithoutUsuarioInput = {
+    create?: XOR<ClientesCreateWithoutUsuarioInput, ClientesUncheckedCreateWithoutUsuarioInput>
+    connectOrCreate?: ClientesCreateOrConnectWithoutUsuarioInput
+    connect?: ClientesWhereUniqueInput
+  }
+
+  export type VentasCreateNestedManyWithoutUsuarioInput = {
     create?: XOR<VentasCreateWithoutUsuarioInput, VentasUncheckedCreateWithoutUsuarioInput> | VentasCreateWithoutUsuarioInput[] | VentasUncheckedCreateWithoutUsuarioInput[]
     connectOrCreate?: VentasCreateOrConnectWithoutUsuarioInput | VentasCreateOrConnectWithoutUsuarioInput[]
     createMany?: VentasCreateManyUsuarioInputEnvelope
@@ -17366,40 +17518,18 @@ export namespace Prisma {
     connect?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
   }
 
-  export type ClientesUpdateOneRequiredWithoutUsuarioNestedInput = {
-    create?: XOR<ClientesCreateWithoutUsuarioInput, ClientesUncheckedCreateWithoutUsuarioInput>
-    connectOrCreate?: ClientesCreateOrConnectWithoutUsuarioInput
-    upsert?: ClientesUpsertWithoutUsuarioInput
-    connect?: ClientesWhereUniqueInput
-    update?: XOR<XOR<ClientesUpdateToOneWithWhereWithoutUsuarioInput, ClientesUpdateWithoutUsuarioInput>, ClientesUncheckedUpdateWithoutUsuarioInput>
-  }
-
-  export type SaldosUpdateManyWithoutUsuarioNestedInput = {
+  export type SaldosUncheckedCreateNestedManyWithoutUsuarioInput = {
     create?: XOR<SaldosCreateWithoutUsuarioInput, SaldosUncheckedCreateWithoutUsuarioInput> | SaldosCreateWithoutUsuarioInput[] | SaldosUncheckedCreateWithoutUsuarioInput[]
     connectOrCreate?: SaldosCreateOrConnectWithoutUsuarioInput | SaldosCreateOrConnectWithoutUsuarioInput[]
-    upsert?: SaldosUpsertWithWhereUniqueWithoutUsuarioInput | SaldosUpsertWithWhereUniqueWithoutUsuarioInput[]
     createMany?: SaldosCreateManyUsuarioInputEnvelope
-    set?: SaldosWhereUniqueInput | SaldosWhereUniqueInput[]
-    disconnect?: SaldosWhereUniqueInput | SaldosWhereUniqueInput[]
-    delete?: SaldosWhereUniqueInput | SaldosWhereUniqueInput[]
     connect?: SaldosWhereUniqueInput | SaldosWhereUniqueInput[]
-    update?: SaldosUpdateWithWhereUniqueWithoutUsuarioInput | SaldosUpdateWithWhereUniqueWithoutUsuarioInput[]
-    updateMany?: SaldosUpdateManyWithWhereWithoutUsuarioInput | SaldosUpdateManyWithWhereWithoutUsuarioInput[]
-    deleteMany?: SaldosScalarWhereInput | SaldosScalarWhereInput[]
   }
 
-  export type VentasUpdateManyWithoutUsuarioNestedInput = {
+  export type VentasUncheckedCreateNestedManyWithoutUsuarioInput = {
     create?: XOR<VentasCreateWithoutUsuarioInput, VentasUncheckedCreateWithoutUsuarioInput> | VentasCreateWithoutUsuarioInput[] | VentasUncheckedCreateWithoutUsuarioInput[]
     connectOrCreate?: VentasCreateOrConnectWithoutUsuarioInput | VentasCreateOrConnectWithoutUsuarioInput[]
-    upsert?: VentasUpsertWithWhereUniqueWithoutUsuarioInput | VentasUpsertWithWhereUniqueWithoutUsuarioInput[]
     createMany?: VentasCreateManyUsuarioInputEnvelope
-    set?: VentasWhereUniqueInput | VentasWhereUniqueInput[]
-    disconnect?: VentasWhereUniqueInput | VentasWhereUniqueInput[]
-    delete?: VentasWhereUniqueInput | VentasWhereUniqueInput[]
     connect?: VentasWhereUniqueInput | VentasWhereUniqueInput[]
-    update?: VentasUpdateWithWhereUniqueWithoutUsuarioInput | VentasUpdateWithWhereUniqueWithoutUsuarioInput[]
-    updateMany?: VentasUpdateManyWithWhereWithoutUsuarioInput | VentasUpdateManyWithWhereWithoutUsuarioInput[]
-    deleteMany?: VentasScalarWhereInput | VentasScalarWhereInput[]
   }
 
   export type FavoritosUpdateManyWithoutUsuarioNestedInput = {
@@ -17430,7 +17560,7 @@ export namespace Prisma {
     deleteMany?: OpinionesScalarWhereInput | OpinionesScalarWhereInput[]
   }
 
-  export type SaldosUncheckedUpdateManyWithoutUsuarioNestedInput = {
+  export type SaldosUpdateManyWithoutUsuarioNestedInput = {
     create?: XOR<SaldosCreateWithoutUsuarioInput, SaldosUncheckedCreateWithoutUsuarioInput> | SaldosCreateWithoutUsuarioInput[] | SaldosUncheckedCreateWithoutUsuarioInput[]
     connectOrCreate?: SaldosCreateOrConnectWithoutUsuarioInput | SaldosCreateOrConnectWithoutUsuarioInput[]
     upsert?: SaldosUpsertWithWhereUniqueWithoutUsuarioInput | SaldosUpsertWithWhereUniqueWithoutUsuarioInput[]
@@ -17444,7 +17574,15 @@ export namespace Prisma {
     deleteMany?: SaldosScalarWhereInput | SaldosScalarWhereInput[]
   }
 
-  export type VentasUncheckedUpdateManyWithoutUsuarioNestedInput = {
+  export type ClientesUpdateOneRequiredWithoutUsuarioNestedInput = {
+    create?: XOR<ClientesCreateWithoutUsuarioInput, ClientesUncheckedCreateWithoutUsuarioInput>
+    connectOrCreate?: ClientesCreateOrConnectWithoutUsuarioInput
+    upsert?: ClientesUpsertWithoutUsuarioInput
+    connect?: ClientesWhereUniqueInput
+    update?: XOR<XOR<ClientesUpdateToOneWithWhereWithoutUsuarioInput, ClientesUpdateWithoutUsuarioInput>, ClientesUncheckedUpdateWithoutUsuarioInput>
+  }
+
+  export type VentasUpdateManyWithoutUsuarioNestedInput = {
     create?: XOR<VentasCreateWithoutUsuarioInput, VentasUncheckedCreateWithoutUsuarioInput> | VentasCreateWithoutUsuarioInput[] | VentasUncheckedCreateWithoutUsuarioInput[]
     connectOrCreate?: VentasCreateOrConnectWithoutUsuarioInput | VentasCreateOrConnectWithoutUsuarioInput[]
     upsert?: VentasUpsertWithWhereUniqueWithoutUsuarioInput | VentasUpsertWithWhereUniqueWithoutUsuarioInput[]
@@ -17484,6 +17622,34 @@ export namespace Prisma {
     update?: OpinionesUpdateWithWhereUniqueWithoutUsuarioInput | OpinionesUpdateWithWhereUniqueWithoutUsuarioInput[]
     updateMany?: OpinionesUpdateManyWithWhereWithoutUsuarioInput | OpinionesUpdateManyWithWhereWithoutUsuarioInput[]
     deleteMany?: OpinionesScalarWhereInput | OpinionesScalarWhereInput[]
+  }
+
+  export type SaldosUncheckedUpdateManyWithoutUsuarioNestedInput = {
+    create?: XOR<SaldosCreateWithoutUsuarioInput, SaldosUncheckedCreateWithoutUsuarioInput> | SaldosCreateWithoutUsuarioInput[] | SaldosUncheckedCreateWithoutUsuarioInput[]
+    connectOrCreate?: SaldosCreateOrConnectWithoutUsuarioInput | SaldosCreateOrConnectWithoutUsuarioInput[]
+    upsert?: SaldosUpsertWithWhereUniqueWithoutUsuarioInput | SaldosUpsertWithWhereUniqueWithoutUsuarioInput[]
+    createMany?: SaldosCreateManyUsuarioInputEnvelope
+    set?: SaldosWhereUniqueInput | SaldosWhereUniqueInput[]
+    disconnect?: SaldosWhereUniqueInput | SaldosWhereUniqueInput[]
+    delete?: SaldosWhereUniqueInput | SaldosWhereUniqueInput[]
+    connect?: SaldosWhereUniqueInput | SaldosWhereUniqueInput[]
+    update?: SaldosUpdateWithWhereUniqueWithoutUsuarioInput | SaldosUpdateWithWhereUniqueWithoutUsuarioInput[]
+    updateMany?: SaldosUpdateManyWithWhereWithoutUsuarioInput | SaldosUpdateManyWithWhereWithoutUsuarioInput[]
+    deleteMany?: SaldosScalarWhereInput | SaldosScalarWhereInput[]
+  }
+
+  export type VentasUncheckedUpdateManyWithoutUsuarioNestedInput = {
+    create?: XOR<VentasCreateWithoutUsuarioInput, VentasUncheckedCreateWithoutUsuarioInput> | VentasCreateWithoutUsuarioInput[] | VentasUncheckedCreateWithoutUsuarioInput[]
+    connectOrCreate?: VentasCreateOrConnectWithoutUsuarioInput | VentasCreateOrConnectWithoutUsuarioInput[]
+    upsert?: VentasUpsertWithWhereUniqueWithoutUsuarioInput | VentasUpsertWithWhereUniqueWithoutUsuarioInput[]
+    createMany?: VentasCreateManyUsuarioInputEnvelope
+    set?: VentasWhereUniqueInput | VentasWhereUniqueInput[]
+    disconnect?: VentasWhereUniqueInput | VentasWhereUniqueInput[]
+    delete?: VentasWhereUniqueInput | VentasWhereUniqueInput[]
+    connect?: VentasWhereUniqueInput | VentasWhereUniqueInput[]
+    update?: VentasUpdateWithWhereUniqueWithoutUsuarioInput | VentasUpdateWithWhereUniqueWithoutUsuarioInput[]
+    updateMany?: VentasUpdateManyWithWhereWithoutUsuarioInput | VentasUpdateManyWithWhereWithoutUsuarioInput[]
+    deleteMany?: VentasScalarWhereInput | VentasScalarWhereInput[]
   }
 
   export type UsuariosCreateNestedManyWithoutClienteInput = {
@@ -17542,6 +17708,13 @@ export namespace Prisma {
     update?: XOR<XOR<UsuariosUpdateToOneWithWhereWithoutSaldoInput, UsuariosUpdateWithoutSaldoInput>, UsuariosUncheckedUpdateWithoutSaldoInput>
   }
 
+  export type OpinionesCreateNestedManyWithoutVentaInput = {
+    create?: XOR<OpinionesCreateWithoutVentaInput, OpinionesUncheckedCreateWithoutVentaInput> | OpinionesCreateWithoutVentaInput[] | OpinionesUncheckedCreateWithoutVentaInput[]
+    connectOrCreate?: OpinionesCreateOrConnectWithoutVentaInput | OpinionesCreateOrConnectWithoutVentaInput[]
+    createMany?: OpinionesCreateManyVentaInputEnvelope
+    connect?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
+  }
+
   export type PublicacionesCreateNestedOneWithoutVentasInput = {
     create?: XOR<PublicacionesCreateWithoutVentasInput, PublicacionesUncheckedCreateWithoutVentasInput>
     connectOrCreate?: PublicacionesCreateOrConnectWithoutVentasInput
@@ -17554,11 +17727,10 @@ export namespace Prisma {
     connect?: UsuariosWhereUniqueInput
   }
 
-  export type OpinionesCreateNestedManyWithoutVentaInput = {
-    create?: XOR<OpinionesCreateWithoutVentaInput, OpinionesUncheckedCreateWithoutVentaInput> | OpinionesCreateWithoutVentaInput[] | OpinionesUncheckedCreateWithoutVentaInput[]
-    connectOrCreate?: OpinionesCreateOrConnectWithoutVentaInput | OpinionesCreateOrConnectWithoutVentaInput[]
-    createMany?: OpinionesCreateManyVentaInputEnvelope
-    connect?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
+  export type ProductosCreateNestedOneWithoutVentasInput = {
+    create?: XOR<ProductosCreateWithoutVentasInput, ProductosUncheckedCreateWithoutVentasInput>
+    connectOrCreate?: ProductosCreateOrConnectWithoutVentasInput
+    connect?: ProductosWhereUniqueInput
   }
 
   export type OpinionesUncheckedCreateNestedManyWithoutVentaInput = {
@@ -17566,6 +17738,14 @@ export namespace Prisma {
     connectOrCreate?: OpinionesCreateOrConnectWithoutVentaInput | OpinionesCreateOrConnectWithoutVentaInput[]
     createMany?: OpinionesCreateManyVentaInputEnvelope
     connect?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type EnumEstadoEnvioFieldUpdateOperationsInput = {
@@ -17580,12 +17760,18 @@ export namespace Prisma {
     set?: $Enums.MetodoPago
   }
 
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
+  export type OpinionesUpdateManyWithoutVentaNestedInput = {
+    create?: XOR<OpinionesCreateWithoutVentaInput, OpinionesUncheckedCreateWithoutVentaInput> | OpinionesCreateWithoutVentaInput[] | OpinionesUncheckedCreateWithoutVentaInput[]
+    connectOrCreate?: OpinionesCreateOrConnectWithoutVentaInput | OpinionesCreateOrConnectWithoutVentaInput[]
+    upsert?: OpinionesUpsertWithWhereUniqueWithoutVentaInput | OpinionesUpsertWithWhereUniqueWithoutVentaInput[]
+    createMany?: OpinionesCreateManyVentaInputEnvelope
+    set?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
+    disconnect?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
+    delete?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
+    connect?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
+    update?: OpinionesUpdateWithWhereUniqueWithoutVentaInput | OpinionesUpdateWithWhereUniqueWithoutVentaInput[]
+    updateMany?: OpinionesUpdateManyWithWhereWithoutVentaInput | OpinionesUpdateManyWithWhereWithoutVentaInput[]
+    deleteMany?: OpinionesScalarWhereInput | OpinionesScalarWhereInput[]
   }
 
   export type PublicacionesUpdateOneRequiredWithoutVentasNestedInput = {
@@ -17604,18 +17790,12 @@ export namespace Prisma {
     update?: XOR<XOR<UsuariosUpdateToOneWithWhereWithoutComprasInput, UsuariosUpdateWithoutComprasInput>, UsuariosUncheckedUpdateWithoutComprasInput>
   }
 
-  export type OpinionesUpdateManyWithoutVentaNestedInput = {
-    create?: XOR<OpinionesCreateWithoutVentaInput, OpinionesUncheckedCreateWithoutVentaInput> | OpinionesCreateWithoutVentaInput[] | OpinionesUncheckedCreateWithoutVentaInput[]
-    connectOrCreate?: OpinionesCreateOrConnectWithoutVentaInput | OpinionesCreateOrConnectWithoutVentaInput[]
-    upsert?: OpinionesUpsertWithWhereUniqueWithoutVentaInput | OpinionesUpsertWithWhereUniqueWithoutVentaInput[]
-    createMany?: OpinionesCreateManyVentaInputEnvelope
-    set?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
-    disconnect?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
-    delete?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
-    connect?: OpinionesWhereUniqueInput | OpinionesWhereUniqueInput[]
-    update?: OpinionesUpdateWithWhereUniqueWithoutVentaInput | OpinionesUpdateWithWhereUniqueWithoutVentaInput[]
-    updateMany?: OpinionesUpdateManyWithWhereWithoutVentaInput | OpinionesUpdateManyWithWhereWithoutVentaInput[]
-    deleteMany?: OpinionesScalarWhereInput | OpinionesScalarWhereInput[]
+  export type ProductosUpdateOneRequiredWithoutVentasNestedInput = {
+    create?: XOR<ProductosCreateWithoutVentasInput, ProductosUncheckedCreateWithoutVentasInput>
+    connectOrCreate?: ProductosCreateOrConnectWithoutVentasInput
+    upsert?: ProductosUpsertWithoutVentasInput
+    connect?: ProductosWhereUniqueInput
+    update?: XOR<XOR<ProductosUpdateToOneWithWhereWithoutVentasInput, ProductosUpdateWithoutVentasInput>, ProductosUncheckedUpdateWithoutVentasInput>
   }
 
   export type OpinionesUncheckedUpdateManyWithoutVentaNestedInput = {
@@ -17811,6 +17991,17 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type NestedEnumEstadoEnvioFilter<$PrismaModel = never> = {
     equals?: $Enums.EstadoEnvio | EnumEstadoEnvioFieldRefInput<$PrismaModel>
     in?: $Enums.EstadoEnvio[] | ListEnumEstadoEnvioFieldRefInput<$PrismaModel>
@@ -17832,7 +18023,7 @@ export namespace Prisma {
     not?: NestedEnumMetodoPagoFilter<$PrismaModel> | $Enums.MetodoPago
   }
 
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -17840,7 +18031,23 @@ export namespace Prisma {
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedEnumEstadoEnvioWithAggregatesFilter<$PrismaModel = never> = {
@@ -17873,42 +18080,16 @@ export namespace Prisma {
     _max?: NestedEnumMetodoPagoFilter<$PrismaModel>
   }
 
-  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
-  export type NestedFloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-  }
-
   export type ProductosCreateWithoutCategoriaInput = {
     nombre: string
     precio: number
     foto: string
     color: string
-    activa?: boolean
     genero: string
-    stocks?: StockCreateNestedManyWithoutProductoInput
+    activa?: boolean
     publicaciones?: PublicacionesCreateNestedManyWithoutProductoInput
+    stocks?: StockCreateNestedManyWithoutProductoInput
+    Ventas?: VentasCreateNestedManyWithoutProductoInput
   }
 
   export type ProductosUncheckedCreateWithoutCategoriaInput = {
@@ -17917,10 +18098,11 @@ export namespace Prisma {
     precio: number
     foto: string
     color: string
-    activa?: boolean
     genero: string
-    stocks?: StockUncheckedCreateNestedManyWithoutProductoInput
+    activa?: boolean
     publicaciones?: PublicacionesUncheckedCreateNestedManyWithoutProductoInput
+    stocks?: StockUncheckedCreateNestedManyWithoutProductoInput
+    Ventas?: VentasUncheckedCreateNestedManyWithoutProductoInput
   }
 
   export type ProductosCreateOrConnectWithoutCategoriaInput = {
@@ -17958,9 +18140,9 @@ export namespace Prisma {
     precio?: FloatFilter<"Productos"> | number
     foto?: StringFilter<"Productos"> | string
     color?: StringFilter<"Productos"> | string
-    activa?: BoolFilter<"Productos"> | boolean
     genero?: StringFilter<"Productos"> | string
     id_categoria?: IntFilter<"Productos"> | number
+    activa?: BoolFilter<"Productos"> | boolean
   }
 
   export type CategoriasCreateWithoutProductosInput = {
@@ -17975,6 +18157,37 @@ export namespace Prisma {
   export type CategoriasCreateOrConnectWithoutProductosInput = {
     where: CategoriasWhereUniqueInput
     create: XOR<CategoriasCreateWithoutProductosInput, CategoriasUncheckedCreateWithoutProductosInput>
+  }
+
+  export type PublicacionesCreateWithoutProductoInput = {
+    activa: boolean
+    caracteristicas: string
+    descuento: number
+    precio: number
+    fecha?: Date | string
+    favoritos?: FavoritosCreateNestedManyWithoutPublicacionInput
+    ventas?: VentasCreateNestedManyWithoutPublicacionInput
+  }
+
+  export type PublicacionesUncheckedCreateWithoutProductoInput = {
+    id_publicacion?: number
+    activa: boolean
+    caracteristicas: string
+    descuento: number
+    precio: number
+    fecha?: Date | string
+    favoritos?: FavoritosUncheckedCreateNestedManyWithoutPublicacionInput
+    ventas?: VentasUncheckedCreateNestedManyWithoutPublicacionInput
+  }
+
+  export type PublicacionesCreateOrConnectWithoutProductoInput = {
+    where: PublicacionesWhereUniqueInput
+    create: XOR<PublicacionesCreateWithoutProductoInput, PublicacionesUncheckedCreateWithoutProductoInput>
+  }
+
+  export type PublicacionesCreateManyProductoInputEnvelope = {
+    data: PublicacionesCreateManyProductoInput | PublicacionesCreateManyProductoInput[]
+    skipDuplicates?: boolean
   }
 
   export type StockCreateWithoutProductoInput = {
@@ -17998,34 +18211,46 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type PublicacionesCreateWithoutProductoInput = {
-    activa: boolean
-    caracteristicas: string
-    descuento: number
-    precio: number
+  export type VentasCreateWithoutProductoInput = {
+    precio_total: number
+    precio_unitario: number
     fecha?: Date | string
-    ventas?: VentasCreateNestedManyWithoutPublicacionInput
-    favoritos?: FavoritosCreateNestedManyWithoutPublicacionInput
+    talle: string
+    id_comentario?: number | null
+    n_comprobante: string
+    cantidad: number
+    estado?: $Enums.EstadoEnvio
+    metodo_entrega: $Enums.MetodoEnvio
+    metodo_pago: $Enums.MetodoPago
+    opinion?: OpinionesCreateNestedManyWithoutVentaInput
+    publicacion: PublicacionesCreateNestedOneWithoutVentasInput
+    usuario: UsuariosCreateNestedOneWithoutComprasInput
   }
 
-  export type PublicacionesUncheckedCreateWithoutProductoInput = {
-    id_publicacion?: number
-    activa: boolean
-    caracteristicas: string
-    descuento: number
-    precio: number
+  export type VentasUncheckedCreateWithoutProductoInput = {
+    id_venta?: number
+    precio_total: number
+    precio_unitario: number
     fecha?: Date | string
-    ventas?: VentasUncheckedCreateNestedManyWithoutPublicacionInput
-    favoritos?: FavoritosUncheckedCreateNestedManyWithoutPublicacionInput
+    talle: string
+    id_comentario?: number | null
+    id_publicacion: number
+    id_usuario: number
+    n_comprobante: string
+    cantidad: number
+    estado?: $Enums.EstadoEnvio
+    metodo_entrega: $Enums.MetodoEnvio
+    metodo_pago: $Enums.MetodoPago
+    opinion?: OpinionesUncheckedCreateNestedManyWithoutVentaInput
   }
 
-  export type PublicacionesCreateOrConnectWithoutProductoInput = {
-    where: PublicacionesWhereUniqueInput
-    create: XOR<PublicacionesCreateWithoutProductoInput, PublicacionesUncheckedCreateWithoutProductoInput>
+  export type VentasCreateOrConnectWithoutProductoInput = {
+    where: VentasWhereUniqueInput
+    create: XOR<VentasCreateWithoutProductoInput, VentasUncheckedCreateWithoutProductoInput>
   }
 
-  export type PublicacionesCreateManyProductoInputEnvelope = {
-    data: PublicacionesCreateManyProductoInput | PublicacionesCreateManyProductoInput[]
+  export type VentasCreateManyProductoInputEnvelope = {
+    data: VentasCreateManyProductoInput | VentasCreateManyProductoInput[]
     skipDuplicates?: boolean
   }
 
@@ -18047,32 +18272,6 @@ export namespace Prisma {
   export type CategoriasUncheckedUpdateWithoutProductosInput = {
     id_categoria?: IntFieldUpdateOperationsInput | number
     nombre?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type StockUpsertWithWhereUniqueWithoutProductoInput = {
-    where: StockWhereUniqueInput
-    update: XOR<StockUpdateWithoutProductoInput, StockUncheckedUpdateWithoutProductoInput>
-    create: XOR<StockCreateWithoutProductoInput, StockUncheckedCreateWithoutProductoInput>
-  }
-
-  export type StockUpdateWithWhereUniqueWithoutProductoInput = {
-    where: StockWhereUniqueInput
-    data: XOR<StockUpdateWithoutProductoInput, StockUncheckedUpdateWithoutProductoInput>
-  }
-
-  export type StockUpdateManyWithWhereWithoutProductoInput = {
-    where: StockScalarWhereInput
-    data: XOR<StockUpdateManyMutationInput, StockUncheckedUpdateManyWithoutProductoInput>
-  }
-
-  export type StockScalarWhereInput = {
-    AND?: StockScalarWhereInput | StockScalarWhereInput[]
-    OR?: StockScalarWhereInput[]
-    NOT?: StockScalarWhereInput | StockScalarWhereInput[]
-    id_stock?: IntFilter<"Stock"> | number
-    cantidad?: IntFilter<"Stock"> | number
-    id_producto?: IntFilter<"Stock"> | number
-    id_talle?: IntFilter<"Stock"> | number
   }
 
   export type PublicacionesUpsertWithWhereUniqueWithoutProductoInput = {
@@ -18102,6 +18301,68 @@ export namespace Prisma {
     precio?: FloatFilter<"Publicaciones"> | number
     id_producto?: IntFilter<"Publicaciones"> | number
     fecha?: DateTimeFilter<"Publicaciones"> | Date | string
+  }
+
+  export type StockUpsertWithWhereUniqueWithoutProductoInput = {
+    where: StockWhereUniqueInput
+    update: XOR<StockUpdateWithoutProductoInput, StockUncheckedUpdateWithoutProductoInput>
+    create: XOR<StockCreateWithoutProductoInput, StockUncheckedCreateWithoutProductoInput>
+  }
+
+  export type StockUpdateWithWhereUniqueWithoutProductoInput = {
+    where: StockWhereUniqueInput
+    data: XOR<StockUpdateWithoutProductoInput, StockUncheckedUpdateWithoutProductoInput>
+  }
+
+  export type StockUpdateManyWithWhereWithoutProductoInput = {
+    where: StockScalarWhereInput
+    data: XOR<StockUpdateManyMutationInput, StockUncheckedUpdateManyWithoutProductoInput>
+  }
+
+  export type StockScalarWhereInput = {
+    AND?: StockScalarWhereInput | StockScalarWhereInput[]
+    OR?: StockScalarWhereInput[]
+    NOT?: StockScalarWhereInput | StockScalarWhereInput[]
+    id_stock?: IntFilter<"Stock"> | number
+    cantidad?: IntFilter<"Stock"> | number
+    id_producto?: IntFilter<"Stock"> | number
+    id_talle?: IntFilter<"Stock"> | number
+  }
+
+  export type VentasUpsertWithWhereUniqueWithoutProductoInput = {
+    where: VentasWhereUniqueInput
+    update: XOR<VentasUpdateWithoutProductoInput, VentasUncheckedUpdateWithoutProductoInput>
+    create: XOR<VentasCreateWithoutProductoInput, VentasUncheckedCreateWithoutProductoInput>
+  }
+
+  export type VentasUpdateWithWhereUniqueWithoutProductoInput = {
+    where: VentasWhereUniqueInput
+    data: XOR<VentasUpdateWithoutProductoInput, VentasUncheckedUpdateWithoutProductoInput>
+  }
+
+  export type VentasUpdateManyWithWhereWithoutProductoInput = {
+    where: VentasScalarWhereInput
+    data: XOR<VentasUpdateManyMutationInput, VentasUncheckedUpdateManyWithoutProductoInput>
+  }
+
+  export type VentasScalarWhereInput = {
+    AND?: VentasScalarWhereInput | VentasScalarWhereInput[]
+    OR?: VentasScalarWhereInput[]
+    NOT?: VentasScalarWhereInput | VentasScalarWhereInput[]
+    id_venta?: IntFilter<"Ventas"> | number
+    precio_total?: FloatFilter<"Ventas"> | number
+    precio_unitario?: FloatFilter<"Ventas"> | number
+    fecha?: DateTimeFilter<"Ventas"> | Date | string
+    talle?: StringFilter<"Ventas"> | string
+    id_comentario?: IntNullableFilter<"Ventas"> | number | null
+    id_publicacion?: IntFilter<"Ventas"> | number
+    id_usuario?: IntFilter<"Ventas"> | number
+    n_comprobante?: StringFilter<"Ventas"> | string
+    cantidad?: IntFilter<"Ventas"> | number
+    estado?: EnumEstadoEnvioFilter<"Ventas"> | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFilter<"Ventas"> | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFilter<"Ventas"> | $Enums.MetodoPago
+    id_producto?: IntFilter<"Ventas"> | number
   }
 
   export type StockCreateWithoutTalleInput = {
@@ -18146,10 +18407,11 @@ export namespace Prisma {
     precio: number
     foto: string
     color: string
-    activa?: boolean
     genero: string
+    activa?: boolean
     categoria: CategoriasCreateNestedOneWithoutProductosInput
     publicaciones?: PublicacionesCreateNestedManyWithoutProductoInput
+    Ventas?: VentasCreateNestedManyWithoutProductoInput
   }
 
   export type ProductosUncheckedCreateWithoutStocksInput = {
@@ -18158,10 +18420,11 @@ export namespace Prisma {
     precio: number
     foto: string
     color: string
-    activa?: boolean
     genero: string
     id_categoria: number
+    activa?: boolean
     publicaciones?: PublicacionesUncheckedCreateNestedManyWithoutProductoInput
+    Ventas?: VentasUncheckedCreateNestedManyWithoutProductoInput
   }
 
   export type ProductosCreateOrConnectWithoutStocksInput = {
@@ -18201,10 +18464,11 @@ export namespace Prisma {
     precio?: FloatFieldUpdateOperationsInput | number
     foto?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
-    activa?: BoolFieldUpdateOperationsInput | boolean
     genero?: StringFieldUpdateOperationsInput | string
+    activa?: BoolFieldUpdateOperationsInput | boolean
     categoria?: CategoriasUpdateOneRequiredWithoutProductosNestedInput
     publicaciones?: PublicacionesUpdateManyWithoutProductoNestedInput
+    Ventas?: VentasUpdateManyWithoutProductoNestedInput
   }
 
   export type ProductosUncheckedUpdateWithoutStocksInput = {
@@ -18213,10 +18477,11 @@ export namespace Prisma {
     precio?: FloatFieldUpdateOperationsInput | number
     foto?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
-    activa?: BoolFieldUpdateOperationsInput | boolean
     genero?: StringFieldUpdateOperationsInput | string
     id_categoria?: IntFieldUpdateOperationsInput | number
+    activa?: BoolFieldUpdateOperationsInput | boolean
     publicaciones?: PublicacionesUncheckedUpdateManyWithoutProductoNestedInput
+    Ventas?: VentasUncheckedUpdateManyWithoutProductoNestedInput
   }
 
   export type SizesUpsertWithoutStocksInput = {
@@ -18241,73 +18506,6 @@ export namespace Prisma {
     categoria_talle?: StringFieldUpdateOperationsInput | string
   }
 
-  export type ProductosCreateWithoutPublicacionesInput = {
-    nombre: string
-    precio: number
-    foto: string
-    color: string
-    activa?: boolean
-    genero: string
-    categoria: CategoriasCreateNestedOneWithoutProductosInput
-    stocks?: StockCreateNestedManyWithoutProductoInput
-  }
-
-  export type ProductosUncheckedCreateWithoutPublicacionesInput = {
-    id_producto?: number
-    nombre: string
-    precio: number
-    foto: string
-    color: string
-    activa?: boolean
-    genero: string
-    id_categoria: number
-    stocks?: StockUncheckedCreateNestedManyWithoutProductoInput
-  }
-
-  export type ProductosCreateOrConnectWithoutPublicacionesInput = {
-    where: ProductosWhereUniqueInput
-    create: XOR<ProductosCreateWithoutPublicacionesInput, ProductosUncheckedCreateWithoutPublicacionesInput>
-  }
-
-  export type VentasCreateWithoutPublicacionInput = {
-    cantidad: number
-    precio_total: number
-    fecha?: Date | string
-    talle: string
-    estado?: $Enums.EstadoEnvio
-    metodo_entrega: $Enums.MetodoEnvio
-    metodo_pago: $Enums.MetodoPago
-    n_comprobante: string
-    id_comentario?: number | null
-    usuario: UsuariosCreateNestedOneWithoutComprasInput
-    opinion?: OpinionesCreateNestedManyWithoutVentaInput
-  }
-
-  export type VentasUncheckedCreateWithoutPublicacionInput = {
-    id_venta?: number
-    cantidad: number
-    precio_total: number
-    fecha?: Date | string
-    talle: string
-    estado?: $Enums.EstadoEnvio
-    metodo_entrega: $Enums.MetodoEnvio
-    metodo_pago: $Enums.MetodoPago
-    n_comprobante: string
-    id_comentario?: number | null
-    id_usuario: number
-    opinion?: OpinionesUncheckedCreateNestedManyWithoutVentaInput
-  }
-
-  export type VentasCreateOrConnectWithoutPublicacionInput = {
-    where: VentasWhereUniqueInput
-    create: XOR<VentasCreateWithoutPublicacionInput, VentasUncheckedCreateWithoutPublicacionInput>
-  }
-
-  export type VentasCreateManyPublicacionInputEnvelope = {
-    data: VentasCreateManyPublicacionInput | VentasCreateManyPublicacionInput[]
-    skipDuplicates?: boolean
-  }
-
   export type FavoritosCreateWithoutPublicacionInput = {
     usuario: UsuariosCreateNestedOneWithoutFavoritosInput
   }
@@ -18327,72 +18525,77 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type ProductosUpsertWithoutPublicacionesInput = {
-    update: XOR<ProductosUpdateWithoutPublicacionesInput, ProductosUncheckedUpdateWithoutPublicacionesInput>
+  export type ProductosCreateWithoutPublicacionesInput = {
+    nombre: string
+    precio: number
+    foto: string
+    color: string
+    genero: string
+    activa?: boolean
+    categoria: CategoriasCreateNestedOneWithoutProductosInput
+    stocks?: StockCreateNestedManyWithoutProductoInput
+    Ventas?: VentasCreateNestedManyWithoutProductoInput
+  }
+
+  export type ProductosUncheckedCreateWithoutPublicacionesInput = {
+    id_producto?: number
+    nombre: string
+    precio: number
+    foto: string
+    color: string
+    genero: string
+    id_categoria: number
+    activa?: boolean
+    stocks?: StockUncheckedCreateNestedManyWithoutProductoInput
+    Ventas?: VentasUncheckedCreateNestedManyWithoutProductoInput
+  }
+
+  export type ProductosCreateOrConnectWithoutPublicacionesInput = {
+    where: ProductosWhereUniqueInput
     create: XOR<ProductosCreateWithoutPublicacionesInput, ProductosUncheckedCreateWithoutPublicacionesInput>
-    where?: ProductosWhereInput
   }
 
-  export type ProductosUpdateToOneWithWhereWithoutPublicacionesInput = {
-    where?: ProductosWhereInput
-    data: XOR<ProductosUpdateWithoutPublicacionesInput, ProductosUncheckedUpdateWithoutPublicacionesInput>
+  export type VentasCreateWithoutPublicacionInput = {
+    precio_total: number
+    precio_unitario: number
+    fecha?: Date | string
+    talle: string
+    id_comentario?: number | null
+    n_comprobante: string
+    cantidad: number
+    estado?: $Enums.EstadoEnvio
+    metodo_entrega: $Enums.MetodoEnvio
+    metodo_pago: $Enums.MetodoPago
+    opinion?: OpinionesCreateNestedManyWithoutVentaInput
+    usuario: UsuariosCreateNestedOneWithoutComprasInput
+    producto: ProductosCreateNestedOneWithoutVentasInput
   }
 
-  export type ProductosUpdateWithoutPublicacionesInput = {
-    nombre?: StringFieldUpdateOperationsInput | string
-    precio?: FloatFieldUpdateOperationsInput | number
-    foto?: StringFieldUpdateOperationsInput | string
-    color?: StringFieldUpdateOperationsInput | string
-    activa?: BoolFieldUpdateOperationsInput | boolean
-    genero?: StringFieldUpdateOperationsInput | string
-    categoria?: CategoriasUpdateOneRequiredWithoutProductosNestedInput
-    stocks?: StockUpdateManyWithoutProductoNestedInput
+  export type VentasUncheckedCreateWithoutPublicacionInput = {
+    id_venta?: number
+    precio_total: number
+    precio_unitario: number
+    fecha?: Date | string
+    talle: string
+    id_comentario?: number | null
+    id_usuario: number
+    n_comprobante: string
+    cantidad: number
+    estado?: $Enums.EstadoEnvio
+    metodo_entrega: $Enums.MetodoEnvio
+    metodo_pago: $Enums.MetodoPago
+    id_producto: number
+    opinion?: OpinionesUncheckedCreateNestedManyWithoutVentaInput
   }
 
-  export type ProductosUncheckedUpdateWithoutPublicacionesInput = {
-    id_producto?: IntFieldUpdateOperationsInput | number
-    nombre?: StringFieldUpdateOperationsInput | string
-    precio?: FloatFieldUpdateOperationsInput | number
-    foto?: StringFieldUpdateOperationsInput | string
-    color?: StringFieldUpdateOperationsInput | string
-    activa?: BoolFieldUpdateOperationsInput | boolean
-    genero?: StringFieldUpdateOperationsInput | string
-    id_categoria?: IntFieldUpdateOperationsInput | number
-    stocks?: StockUncheckedUpdateManyWithoutProductoNestedInput
-  }
-
-  export type VentasUpsertWithWhereUniqueWithoutPublicacionInput = {
+  export type VentasCreateOrConnectWithoutPublicacionInput = {
     where: VentasWhereUniqueInput
-    update: XOR<VentasUpdateWithoutPublicacionInput, VentasUncheckedUpdateWithoutPublicacionInput>
     create: XOR<VentasCreateWithoutPublicacionInput, VentasUncheckedCreateWithoutPublicacionInput>
   }
 
-  export type VentasUpdateWithWhereUniqueWithoutPublicacionInput = {
-    where: VentasWhereUniqueInput
-    data: XOR<VentasUpdateWithoutPublicacionInput, VentasUncheckedUpdateWithoutPublicacionInput>
-  }
-
-  export type VentasUpdateManyWithWhereWithoutPublicacionInput = {
-    where: VentasScalarWhereInput
-    data: XOR<VentasUpdateManyMutationInput, VentasUncheckedUpdateManyWithoutPublicacionInput>
-  }
-
-  export type VentasScalarWhereInput = {
-    AND?: VentasScalarWhereInput | VentasScalarWhereInput[]
-    OR?: VentasScalarWhereInput[]
-    NOT?: VentasScalarWhereInput | VentasScalarWhereInput[]
-    id_venta?: IntFilter<"Ventas"> | number
-    cantidad?: IntFilter<"Ventas"> | number
-    precio_total?: FloatFilter<"Ventas"> | number
-    fecha?: DateTimeFilter<"Ventas"> | Date | string
-    talle?: StringFilter<"Ventas"> | string
-    estado?: EnumEstadoEnvioFilter<"Ventas"> | $Enums.EstadoEnvio
-    metodo_entrega?: EnumMetodoEnvioFilter<"Ventas"> | $Enums.MetodoEnvio
-    metodo_pago?: EnumMetodoPagoFilter<"Ventas"> | $Enums.MetodoPago
-    n_comprobante?: StringFilter<"Ventas"> | string
-    id_comentario?: IntNullableFilter<"Ventas"> | number | null
-    id_publicacion?: IntFilter<"Ventas"> | number
-    id_usuario?: IntFilter<"Ventas"> | number
+  export type VentasCreateManyPublicacionInputEnvelope = {
+    data: VentasCreateManyPublicacionInput | VentasCreateManyPublicacionInput[]
+    skipDuplicates?: boolean
   }
 
   export type FavoritosUpsertWithWhereUniqueWithoutPublicacionInput = {
@@ -18420,88 +18623,56 @@ export namespace Prisma {
     id_publicacion?: IntFilter<"Favoritos"> | number
   }
 
-  export type ClientesCreateWithoutUsuarioInput = {
-    nombre: string
-    apellido: string
-    correo: string
-    dni: number
-    ciudad: string
-    barrio: string
-    calle: string
+  export type ProductosUpsertWithoutPublicacionesInput = {
+    update: XOR<ProductosUpdateWithoutPublicacionesInput, ProductosUncheckedUpdateWithoutPublicacionesInput>
+    create: XOR<ProductosCreateWithoutPublicacionesInput, ProductosUncheckedCreateWithoutPublicacionesInput>
+    where?: ProductosWhereInput
   }
 
-  export type ClientesUncheckedCreateWithoutUsuarioInput = {
-    id_cliente?: number
-    nombre: string
-    apellido: string
-    correo: string
-    dni: number
-    ciudad: string
-    barrio: string
-    calle: string
+  export type ProductosUpdateToOneWithWhereWithoutPublicacionesInput = {
+    where?: ProductosWhereInput
+    data: XOR<ProductosUpdateWithoutPublicacionesInput, ProductosUncheckedUpdateWithoutPublicacionesInput>
   }
 
-  export type ClientesCreateOrConnectWithoutUsuarioInput = {
-    where: ClientesWhereUniqueInput
-    create: XOR<ClientesCreateWithoutUsuarioInput, ClientesUncheckedCreateWithoutUsuarioInput>
+  export type ProductosUpdateWithoutPublicacionesInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    precio?: FloatFieldUpdateOperationsInput | number
+    foto?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    genero?: StringFieldUpdateOperationsInput | string
+    activa?: BoolFieldUpdateOperationsInput | boolean
+    categoria?: CategoriasUpdateOneRequiredWithoutProductosNestedInput
+    stocks?: StockUpdateManyWithoutProductoNestedInput
+    Ventas?: VentasUpdateManyWithoutProductoNestedInput
   }
 
-  export type SaldosCreateWithoutUsuarioInput = {
-    saldo: number
+  export type ProductosUncheckedUpdateWithoutPublicacionesInput = {
+    id_producto?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    precio?: FloatFieldUpdateOperationsInput | number
+    foto?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    genero?: StringFieldUpdateOperationsInput | string
+    id_categoria?: IntFieldUpdateOperationsInput | number
+    activa?: BoolFieldUpdateOperationsInput | boolean
+    stocks?: StockUncheckedUpdateManyWithoutProductoNestedInput
+    Ventas?: VentasUncheckedUpdateManyWithoutProductoNestedInput
   }
 
-  export type SaldosUncheckedCreateWithoutUsuarioInput = {
-    id_saldo?: number
-    saldo: number
-  }
-
-  export type SaldosCreateOrConnectWithoutUsuarioInput = {
-    where: SaldosWhereUniqueInput
-    create: XOR<SaldosCreateWithoutUsuarioInput, SaldosUncheckedCreateWithoutUsuarioInput>
-  }
-
-  export type SaldosCreateManyUsuarioInputEnvelope = {
-    data: SaldosCreateManyUsuarioInput | SaldosCreateManyUsuarioInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type VentasCreateWithoutUsuarioInput = {
-    cantidad: number
-    precio_total: number
-    fecha?: Date | string
-    talle: string
-    estado?: $Enums.EstadoEnvio
-    metodo_entrega: $Enums.MetodoEnvio
-    metodo_pago: $Enums.MetodoPago
-    n_comprobante: string
-    id_comentario?: number | null
-    publicacion: PublicacionesCreateNestedOneWithoutVentasInput
-    opinion?: OpinionesCreateNestedManyWithoutVentaInput
-  }
-
-  export type VentasUncheckedCreateWithoutUsuarioInput = {
-    id_venta?: number
-    cantidad: number
-    precio_total: number
-    fecha?: Date | string
-    talle: string
-    estado?: $Enums.EstadoEnvio
-    metodo_entrega: $Enums.MetodoEnvio
-    metodo_pago: $Enums.MetodoPago
-    n_comprobante: string
-    id_comentario?: number | null
-    id_publicacion: number
-    opinion?: OpinionesUncheckedCreateNestedManyWithoutVentaInput
-  }
-
-  export type VentasCreateOrConnectWithoutUsuarioInput = {
+  export type VentasUpsertWithWhereUniqueWithoutPublicacionInput = {
     where: VentasWhereUniqueInput
-    create: XOR<VentasCreateWithoutUsuarioInput, VentasUncheckedCreateWithoutUsuarioInput>
+    update: XOR<VentasUpdateWithoutPublicacionInput, VentasUncheckedUpdateWithoutPublicacionInput>
+    create: XOR<VentasCreateWithoutPublicacionInput, VentasUncheckedCreateWithoutPublicacionInput>
   }
 
-  export type VentasCreateManyUsuarioInputEnvelope = {
-    data: VentasCreateManyUsuarioInput | VentasCreateManyUsuarioInput[]
-    skipDuplicates?: boolean
+  export type VentasUpdateWithWhereUniqueWithoutPublicacionInput = {
+    where: VentasWhereUniqueInput
+    data: XOR<VentasUpdateWithoutPublicacionInput, VentasUncheckedUpdateWithoutPublicacionInput>
+  }
+
+  export type VentasUpdateManyWithWhereWithoutPublicacionInput = {
+    where: VentasScalarWhereInput
+    data: XOR<VentasUpdateManyMutationInput, VentasUncheckedUpdateManyWithoutPublicacionInput>
   }
 
   export type FavoritosCreateWithoutUsuarioInput = {
@@ -18548,77 +18719,92 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type ClientesUpsertWithoutUsuarioInput = {
-    update: XOR<ClientesUpdateWithoutUsuarioInput, ClientesUncheckedUpdateWithoutUsuarioInput>
-    create: XOR<ClientesCreateWithoutUsuarioInput, ClientesUncheckedCreateWithoutUsuarioInput>
-    where?: ClientesWhereInput
+  export type SaldosCreateWithoutUsuarioInput = {
+    saldo: number
   }
 
-  export type ClientesUpdateToOneWithWhereWithoutUsuarioInput = {
-    where?: ClientesWhereInput
-    data: XOR<ClientesUpdateWithoutUsuarioInput, ClientesUncheckedUpdateWithoutUsuarioInput>
+  export type SaldosUncheckedCreateWithoutUsuarioInput = {
+    id_saldo?: number
+    saldo: number
   }
 
-  export type ClientesUpdateWithoutUsuarioInput = {
-    nombre?: StringFieldUpdateOperationsInput | string
-    apellido?: StringFieldUpdateOperationsInput | string
-    correo?: StringFieldUpdateOperationsInput | string
-    dni?: IntFieldUpdateOperationsInput | number
-    ciudad?: StringFieldUpdateOperationsInput | string
-    barrio?: StringFieldUpdateOperationsInput | string
-    calle?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type ClientesUncheckedUpdateWithoutUsuarioInput = {
-    id_cliente?: IntFieldUpdateOperationsInput | number
-    nombre?: StringFieldUpdateOperationsInput | string
-    apellido?: StringFieldUpdateOperationsInput | string
-    correo?: StringFieldUpdateOperationsInput | string
-    dni?: IntFieldUpdateOperationsInput | number
-    ciudad?: StringFieldUpdateOperationsInput | string
-    barrio?: StringFieldUpdateOperationsInput | string
-    calle?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type SaldosUpsertWithWhereUniqueWithoutUsuarioInput = {
+  export type SaldosCreateOrConnectWithoutUsuarioInput = {
     where: SaldosWhereUniqueInput
-    update: XOR<SaldosUpdateWithoutUsuarioInput, SaldosUncheckedUpdateWithoutUsuarioInput>
     create: XOR<SaldosCreateWithoutUsuarioInput, SaldosUncheckedCreateWithoutUsuarioInput>
   }
 
-  export type SaldosUpdateWithWhereUniqueWithoutUsuarioInput = {
-    where: SaldosWhereUniqueInput
-    data: XOR<SaldosUpdateWithoutUsuarioInput, SaldosUncheckedUpdateWithoutUsuarioInput>
+  export type SaldosCreateManyUsuarioInputEnvelope = {
+    data: SaldosCreateManyUsuarioInput | SaldosCreateManyUsuarioInput[]
+    skipDuplicates?: boolean
   }
 
-  export type SaldosUpdateManyWithWhereWithoutUsuarioInput = {
-    where: SaldosScalarWhereInput
-    data: XOR<SaldosUpdateManyMutationInput, SaldosUncheckedUpdateManyWithoutUsuarioInput>
+  export type ClientesCreateWithoutUsuarioInput = {
+    nombre: string
+    apellido: string
+    correo: string
+    dni: number
+    ciudad: string
+    barrio: string
+    calle: string
   }
 
-  export type SaldosScalarWhereInput = {
-    AND?: SaldosScalarWhereInput | SaldosScalarWhereInput[]
-    OR?: SaldosScalarWhereInput[]
-    NOT?: SaldosScalarWhereInput | SaldosScalarWhereInput[]
-    id_saldo?: IntFilter<"Saldos"> | number
-    saldo?: FloatFilter<"Saldos"> | number
-    id_usuario?: IntFilter<"Saldos"> | number
+  export type ClientesUncheckedCreateWithoutUsuarioInput = {
+    id_cliente?: number
+    nombre: string
+    apellido: string
+    correo: string
+    dni: number
+    ciudad: string
+    barrio: string
+    calle: string
   }
 
-  export type VentasUpsertWithWhereUniqueWithoutUsuarioInput = {
+  export type ClientesCreateOrConnectWithoutUsuarioInput = {
+    where: ClientesWhereUniqueInput
+    create: XOR<ClientesCreateWithoutUsuarioInput, ClientesUncheckedCreateWithoutUsuarioInput>
+  }
+
+  export type VentasCreateWithoutUsuarioInput = {
+    precio_total: number
+    precio_unitario: number
+    fecha?: Date | string
+    talle: string
+    id_comentario?: number | null
+    n_comprobante: string
+    cantidad: number
+    estado?: $Enums.EstadoEnvio
+    metodo_entrega: $Enums.MetodoEnvio
+    metodo_pago: $Enums.MetodoPago
+    opinion?: OpinionesCreateNestedManyWithoutVentaInput
+    publicacion: PublicacionesCreateNestedOneWithoutVentasInput
+    producto: ProductosCreateNestedOneWithoutVentasInput
+  }
+
+  export type VentasUncheckedCreateWithoutUsuarioInput = {
+    id_venta?: number
+    precio_total: number
+    precio_unitario: number
+    fecha?: Date | string
+    talle: string
+    id_comentario?: number | null
+    id_publicacion: number
+    n_comprobante: string
+    cantidad: number
+    estado?: $Enums.EstadoEnvio
+    metodo_entrega: $Enums.MetodoEnvio
+    metodo_pago: $Enums.MetodoPago
+    id_producto: number
+    opinion?: OpinionesUncheckedCreateNestedManyWithoutVentaInput
+  }
+
+  export type VentasCreateOrConnectWithoutUsuarioInput = {
     where: VentasWhereUniqueInput
-    update: XOR<VentasUpdateWithoutUsuarioInput, VentasUncheckedUpdateWithoutUsuarioInput>
     create: XOR<VentasCreateWithoutUsuarioInput, VentasUncheckedCreateWithoutUsuarioInput>
   }
 
-  export type VentasUpdateWithWhereUniqueWithoutUsuarioInput = {
-    where: VentasWhereUniqueInput
-    data: XOR<VentasUpdateWithoutUsuarioInput, VentasUncheckedUpdateWithoutUsuarioInput>
-  }
-
-  export type VentasUpdateManyWithWhereWithoutUsuarioInput = {
-    where: VentasScalarWhereInput
-    data: XOR<VentasUpdateManyMutationInput, VentasUncheckedUpdateManyWithoutUsuarioInput>
+  export type VentasCreateManyUsuarioInputEnvelope = {
+    data: VentasCreateManyUsuarioInput | VentasCreateManyUsuarioInput[]
+    skipDuplicates?: boolean
   }
 
   export type FavoritosUpsertWithWhereUniqueWithoutUsuarioInput = {
@@ -18665,14 +18851,87 @@ export namespace Prisma {
     id_venta?: IntFilter<"Opiniones"> | number
   }
 
+  export type SaldosUpsertWithWhereUniqueWithoutUsuarioInput = {
+    where: SaldosWhereUniqueInput
+    update: XOR<SaldosUpdateWithoutUsuarioInput, SaldosUncheckedUpdateWithoutUsuarioInput>
+    create: XOR<SaldosCreateWithoutUsuarioInput, SaldosUncheckedCreateWithoutUsuarioInput>
+  }
+
+  export type SaldosUpdateWithWhereUniqueWithoutUsuarioInput = {
+    where: SaldosWhereUniqueInput
+    data: XOR<SaldosUpdateWithoutUsuarioInput, SaldosUncheckedUpdateWithoutUsuarioInput>
+  }
+
+  export type SaldosUpdateManyWithWhereWithoutUsuarioInput = {
+    where: SaldosScalarWhereInput
+    data: XOR<SaldosUpdateManyMutationInput, SaldosUncheckedUpdateManyWithoutUsuarioInput>
+  }
+
+  export type SaldosScalarWhereInput = {
+    AND?: SaldosScalarWhereInput | SaldosScalarWhereInput[]
+    OR?: SaldosScalarWhereInput[]
+    NOT?: SaldosScalarWhereInput | SaldosScalarWhereInput[]
+    id_saldo?: IntFilter<"Saldos"> | number
+    saldo?: FloatFilter<"Saldos"> | number
+    id_usuario?: IntFilter<"Saldos"> | number
+  }
+
+  export type ClientesUpsertWithoutUsuarioInput = {
+    update: XOR<ClientesUpdateWithoutUsuarioInput, ClientesUncheckedUpdateWithoutUsuarioInput>
+    create: XOR<ClientesCreateWithoutUsuarioInput, ClientesUncheckedCreateWithoutUsuarioInput>
+    where?: ClientesWhereInput
+  }
+
+  export type ClientesUpdateToOneWithWhereWithoutUsuarioInput = {
+    where?: ClientesWhereInput
+    data: XOR<ClientesUpdateWithoutUsuarioInput, ClientesUncheckedUpdateWithoutUsuarioInput>
+  }
+
+  export type ClientesUpdateWithoutUsuarioInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    apellido?: StringFieldUpdateOperationsInput | string
+    correo?: StringFieldUpdateOperationsInput | string
+    dni?: IntFieldUpdateOperationsInput | number
+    ciudad?: StringFieldUpdateOperationsInput | string
+    barrio?: StringFieldUpdateOperationsInput | string
+    calle?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ClientesUncheckedUpdateWithoutUsuarioInput = {
+    id_cliente?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    apellido?: StringFieldUpdateOperationsInput | string
+    correo?: StringFieldUpdateOperationsInput | string
+    dni?: IntFieldUpdateOperationsInput | number
+    ciudad?: StringFieldUpdateOperationsInput | string
+    barrio?: StringFieldUpdateOperationsInput | string
+    calle?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type VentasUpsertWithWhereUniqueWithoutUsuarioInput = {
+    where: VentasWhereUniqueInput
+    update: XOR<VentasUpdateWithoutUsuarioInput, VentasUncheckedUpdateWithoutUsuarioInput>
+    create: XOR<VentasCreateWithoutUsuarioInput, VentasUncheckedCreateWithoutUsuarioInput>
+  }
+
+  export type VentasUpdateWithWhereUniqueWithoutUsuarioInput = {
+    where: VentasWhereUniqueInput
+    data: XOR<VentasUpdateWithoutUsuarioInput, VentasUncheckedUpdateWithoutUsuarioInput>
+  }
+
+  export type VentasUpdateManyWithWhereWithoutUsuarioInput = {
+    where: VentasScalarWhereInput
+    data: XOR<VentasUpdateManyMutationInput, VentasUncheckedUpdateManyWithoutUsuarioInput>
+  }
+
   export type UsuariosCreateWithoutClienteInput = {
     usuario: string
     contraseña: string
     rol: string
-    saldo?: SaldosCreateNestedManyWithoutUsuarioInput
-    compras?: VentasCreateNestedManyWithoutUsuarioInput
     favoritos?: FavoritosCreateNestedManyWithoutUsuarioInput
     opiniones?: OpinionesCreateNestedManyWithoutUsuarioInput
+    saldo?: SaldosCreateNestedManyWithoutUsuarioInput
+    compras?: VentasCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuariosUncheckedCreateWithoutClienteInput = {
@@ -18680,10 +18939,10 @@ export namespace Prisma {
     usuario: string
     contraseña: string
     rol: string
-    saldo?: SaldosUncheckedCreateNestedManyWithoutUsuarioInput
-    compras?: VentasUncheckedCreateNestedManyWithoutUsuarioInput
     favoritos?: FavoritosUncheckedCreateNestedManyWithoutUsuarioInput
     opiniones?: OpinionesUncheckedCreateNestedManyWithoutUsuarioInput
+    saldo?: SaldosUncheckedCreateNestedManyWithoutUsuarioInput
+    compras?: VentasUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuariosCreateOrConnectWithoutClienteInput = {
@@ -18719,29 +18978,29 @@ export namespace Prisma {
     id_usuario?: IntFilter<"Usuarios"> | number
     usuario?: StringFilter<"Usuarios"> | string
     contraseña?: StringFilter<"Usuarios"> | string
-    rol?: StringFilter<"Usuarios"> | string
     id_cliente?: IntFilter<"Usuarios"> | number
+    rol?: StringFilter<"Usuarios"> | string
   }
 
   export type UsuariosCreateWithoutSaldoInput = {
     usuario: string
     contraseña: string
     rol: string
-    cliente: ClientesCreateNestedOneWithoutUsuarioInput
-    compras?: VentasCreateNestedManyWithoutUsuarioInput
     favoritos?: FavoritosCreateNestedManyWithoutUsuarioInput
     opiniones?: OpinionesCreateNestedManyWithoutUsuarioInput
+    cliente: ClientesCreateNestedOneWithoutUsuarioInput
+    compras?: VentasCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuariosUncheckedCreateWithoutSaldoInput = {
     id_usuario?: number
     usuario: string
     contraseña: string
-    rol: string
     id_cliente: number
-    compras?: VentasUncheckedCreateNestedManyWithoutUsuarioInput
+    rol: string
     favoritos?: FavoritosUncheckedCreateNestedManyWithoutUsuarioInput
     opiniones?: OpinionesUncheckedCreateNestedManyWithoutUsuarioInput
+    compras?: VentasUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuariosCreateOrConnectWithoutSaldoInput = {
@@ -18764,73 +19023,21 @@ export namespace Prisma {
     usuario?: StringFieldUpdateOperationsInput | string
     contraseña?: StringFieldUpdateOperationsInput | string
     rol?: StringFieldUpdateOperationsInput | string
-    cliente?: ClientesUpdateOneRequiredWithoutUsuarioNestedInput
-    compras?: VentasUpdateManyWithoutUsuarioNestedInput
     favoritos?: FavoritosUpdateManyWithoutUsuarioNestedInput
     opiniones?: OpinionesUpdateManyWithoutUsuarioNestedInput
+    cliente?: ClientesUpdateOneRequiredWithoutUsuarioNestedInput
+    compras?: VentasUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuariosUncheckedUpdateWithoutSaldoInput = {
     id_usuario?: IntFieldUpdateOperationsInput | number
     usuario?: StringFieldUpdateOperationsInput | string
     contraseña?: StringFieldUpdateOperationsInput | string
-    rol?: StringFieldUpdateOperationsInput | string
     id_cliente?: IntFieldUpdateOperationsInput | number
-    compras?: VentasUncheckedUpdateManyWithoutUsuarioNestedInput
+    rol?: StringFieldUpdateOperationsInput | string
     favoritos?: FavoritosUncheckedUpdateManyWithoutUsuarioNestedInput
     opiniones?: OpinionesUncheckedUpdateManyWithoutUsuarioNestedInput
-  }
-
-  export type PublicacionesCreateWithoutVentasInput = {
-    activa: boolean
-    caracteristicas: string
-    descuento: number
-    precio: number
-    fecha?: Date | string
-    producto: ProductosCreateNestedOneWithoutPublicacionesInput
-    favoritos?: FavoritosCreateNestedManyWithoutPublicacionInput
-  }
-
-  export type PublicacionesUncheckedCreateWithoutVentasInput = {
-    id_publicacion?: number
-    activa: boolean
-    caracteristicas: string
-    descuento: number
-    precio: number
-    id_producto: number
-    fecha?: Date | string
-    favoritos?: FavoritosUncheckedCreateNestedManyWithoutPublicacionInput
-  }
-
-  export type PublicacionesCreateOrConnectWithoutVentasInput = {
-    where: PublicacionesWhereUniqueInput
-    create: XOR<PublicacionesCreateWithoutVentasInput, PublicacionesUncheckedCreateWithoutVentasInput>
-  }
-
-  export type UsuariosCreateWithoutComprasInput = {
-    usuario: string
-    contraseña: string
-    rol: string
-    cliente: ClientesCreateNestedOneWithoutUsuarioInput
-    saldo?: SaldosCreateNestedManyWithoutUsuarioInput
-    favoritos?: FavoritosCreateNestedManyWithoutUsuarioInput
-    opiniones?: OpinionesCreateNestedManyWithoutUsuarioInput
-  }
-
-  export type UsuariosUncheckedCreateWithoutComprasInput = {
-    id_usuario?: number
-    usuario: string
-    contraseña: string
-    rol: string
-    id_cliente: number
-    saldo?: SaldosUncheckedCreateNestedManyWithoutUsuarioInput
-    favoritos?: FavoritosUncheckedCreateNestedManyWithoutUsuarioInput
-    opiniones?: OpinionesUncheckedCreateNestedManyWithoutUsuarioInput
-  }
-
-  export type UsuariosCreateOrConnectWithoutComprasInput = {
-    where: UsuariosWhereUniqueInput
-    create: XOR<UsuariosCreateWithoutComprasInput, UsuariosUncheckedCreateWithoutComprasInput>
+    compras?: VentasUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type OpinionesCreateWithoutVentaInput = {
@@ -18858,6 +19065,104 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type PublicacionesCreateWithoutVentasInput = {
+    activa: boolean
+    caracteristicas: string
+    descuento: number
+    precio: number
+    fecha?: Date | string
+    favoritos?: FavoritosCreateNestedManyWithoutPublicacionInput
+    producto: ProductosCreateNestedOneWithoutPublicacionesInput
+  }
+
+  export type PublicacionesUncheckedCreateWithoutVentasInput = {
+    id_publicacion?: number
+    activa: boolean
+    caracteristicas: string
+    descuento: number
+    precio: number
+    id_producto: number
+    fecha?: Date | string
+    favoritos?: FavoritosUncheckedCreateNestedManyWithoutPublicacionInput
+  }
+
+  export type PublicacionesCreateOrConnectWithoutVentasInput = {
+    where: PublicacionesWhereUniqueInput
+    create: XOR<PublicacionesCreateWithoutVentasInput, PublicacionesUncheckedCreateWithoutVentasInput>
+  }
+
+  export type UsuariosCreateWithoutComprasInput = {
+    usuario: string
+    contraseña: string
+    rol: string
+    favoritos?: FavoritosCreateNestedManyWithoutUsuarioInput
+    opiniones?: OpinionesCreateNestedManyWithoutUsuarioInput
+    saldo?: SaldosCreateNestedManyWithoutUsuarioInput
+    cliente: ClientesCreateNestedOneWithoutUsuarioInput
+  }
+
+  export type UsuariosUncheckedCreateWithoutComprasInput = {
+    id_usuario?: number
+    usuario: string
+    contraseña: string
+    id_cliente: number
+    rol: string
+    favoritos?: FavoritosUncheckedCreateNestedManyWithoutUsuarioInput
+    opiniones?: OpinionesUncheckedCreateNestedManyWithoutUsuarioInput
+    saldo?: SaldosUncheckedCreateNestedManyWithoutUsuarioInput
+  }
+
+  export type UsuariosCreateOrConnectWithoutComprasInput = {
+    where: UsuariosWhereUniqueInput
+    create: XOR<UsuariosCreateWithoutComprasInput, UsuariosUncheckedCreateWithoutComprasInput>
+  }
+
+  export type ProductosCreateWithoutVentasInput = {
+    nombre: string
+    precio: number
+    foto: string
+    color: string
+    genero: string
+    activa?: boolean
+    categoria: CategoriasCreateNestedOneWithoutProductosInput
+    publicaciones?: PublicacionesCreateNestedManyWithoutProductoInput
+    stocks?: StockCreateNestedManyWithoutProductoInput
+  }
+
+  export type ProductosUncheckedCreateWithoutVentasInput = {
+    id_producto?: number
+    nombre: string
+    precio: number
+    foto: string
+    color: string
+    genero: string
+    id_categoria: number
+    activa?: boolean
+    publicaciones?: PublicacionesUncheckedCreateNestedManyWithoutProductoInput
+    stocks?: StockUncheckedCreateNestedManyWithoutProductoInput
+  }
+
+  export type ProductosCreateOrConnectWithoutVentasInput = {
+    where: ProductosWhereUniqueInput
+    create: XOR<ProductosCreateWithoutVentasInput, ProductosUncheckedCreateWithoutVentasInput>
+  }
+
+  export type OpinionesUpsertWithWhereUniqueWithoutVentaInput = {
+    where: OpinionesWhereUniqueInput
+    update: XOR<OpinionesUpdateWithoutVentaInput, OpinionesUncheckedUpdateWithoutVentaInput>
+    create: XOR<OpinionesCreateWithoutVentaInput, OpinionesUncheckedCreateWithoutVentaInput>
+  }
+
+  export type OpinionesUpdateWithWhereUniqueWithoutVentaInput = {
+    where: OpinionesWhereUniqueInput
+    data: XOR<OpinionesUpdateWithoutVentaInput, OpinionesUncheckedUpdateWithoutVentaInput>
+  }
+
+  export type OpinionesUpdateManyWithWhereWithoutVentaInput = {
+    where: OpinionesScalarWhereInput
+    data: XOR<OpinionesUpdateManyMutationInput, OpinionesUncheckedUpdateManyWithoutVentaInput>
+  }
+
   export type PublicacionesUpsertWithoutVentasInput = {
     update: XOR<PublicacionesUpdateWithoutVentasInput, PublicacionesUncheckedUpdateWithoutVentasInput>
     create: XOR<PublicacionesCreateWithoutVentasInput, PublicacionesUncheckedCreateWithoutVentasInput>
@@ -18875,8 +19180,8 @@ export namespace Prisma {
     descuento?: IntFieldUpdateOperationsInput | number
     precio?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
-    producto?: ProductosUpdateOneRequiredWithoutPublicacionesNestedInput
     favoritos?: FavoritosUpdateManyWithoutPublicacionNestedInput
+    producto?: ProductosUpdateOneRequiredWithoutPublicacionesNestedInput
   }
 
   export type PublicacionesUncheckedUpdateWithoutVentasInput = {
@@ -18905,37 +19210,57 @@ export namespace Prisma {
     usuario?: StringFieldUpdateOperationsInput | string
     contraseña?: StringFieldUpdateOperationsInput | string
     rol?: StringFieldUpdateOperationsInput | string
-    cliente?: ClientesUpdateOneRequiredWithoutUsuarioNestedInput
-    saldo?: SaldosUpdateManyWithoutUsuarioNestedInput
     favoritos?: FavoritosUpdateManyWithoutUsuarioNestedInput
     opiniones?: OpinionesUpdateManyWithoutUsuarioNestedInput
+    saldo?: SaldosUpdateManyWithoutUsuarioNestedInput
+    cliente?: ClientesUpdateOneRequiredWithoutUsuarioNestedInput
   }
 
   export type UsuariosUncheckedUpdateWithoutComprasInput = {
     id_usuario?: IntFieldUpdateOperationsInput | number
     usuario?: StringFieldUpdateOperationsInput | string
     contraseña?: StringFieldUpdateOperationsInput | string
-    rol?: StringFieldUpdateOperationsInput | string
     id_cliente?: IntFieldUpdateOperationsInput | number
-    saldo?: SaldosUncheckedUpdateManyWithoutUsuarioNestedInput
+    rol?: StringFieldUpdateOperationsInput | string
     favoritos?: FavoritosUncheckedUpdateManyWithoutUsuarioNestedInput
     opiniones?: OpinionesUncheckedUpdateManyWithoutUsuarioNestedInput
+    saldo?: SaldosUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
-  export type OpinionesUpsertWithWhereUniqueWithoutVentaInput = {
-    where: OpinionesWhereUniqueInput
-    update: XOR<OpinionesUpdateWithoutVentaInput, OpinionesUncheckedUpdateWithoutVentaInput>
-    create: XOR<OpinionesCreateWithoutVentaInput, OpinionesUncheckedCreateWithoutVentaInput>
+  export type ProductosUpsertWithoutVentasInput = {
+    update: XOR<ProductosUpdateWithoutVentasInput, ProductosUncheckedUpdateWithoutVentasInput>
+    create: XOR<ProductosCreateWithoutVentasInput, ProductosUncheckedCreateWithoutVentasInput>
+    where?: ProductosWhereInput
   }
 
-  export type OpinionesUpdateWithWhereUniqueWithoutVentaInput = {
-    where: OpinionesWhereUniqueInput
-    data: XOR<OpinionesUpdateWithoutVentaInput, OpinionesUncheckedUpdateWithoutVentaInput>
+  export type ProductosUpdateToOneWithWhereWithoutVentasInput = {
+    where?: ProductosWhereInput
+    data: XOR<ProductosUpdateWithoutVentasInput, ProductosUncheckedUpdateWithoutVentasInput>
   }
 
-  export type OpinionesUpdateManyWithWhereWithoutVentaInput = {
-    where: OpinionesScalarWhereInput
-    data: XOR<OpinionesUpdateManyMutationInput, OpinionesUncheckedUpdateManyWithoutVentaInput>
+  export type ProductosUpdateWithoutVentasInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    precio?: FloatFieldUpdateOperationsInput | number
+    foto?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    genero?: StringFieldUpdateOperationsInput | string
+    activa?: BoolFieldUpdateOperationsInput | boolean
+    categoria?: CategoriasUpdateOneRequiredWithoutProductosNestedInput
+    publicaciones?: PublicacionesUpdateManyWithoutProductoNestedInput
+    stocks?: StockUpdateManyWithoutProductoNestedInput
+  }
+
+  export type ProductosUncheckedUpdateWithoutVentasInput = {
+    id_producto?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    precio?: FloatFieldUpdateOperationsInput | number
+    foto?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    genero?: StringFieldUpdateOperationsInput | string
+    id_categoria?: IntFieldUpdateOperationsInput | number
+    activa?: BoolFieldUpdateOperationsInput | boolean
+    publicaciones?: PublicacionesUncheckedUpdateManyWithoutProductoNestedInput
+    stocks?: StockUncheckedUpdateManyWithoutProductoNestedInput
   }
 
   export type PublicacionesCreateWithoutFavoritosInput = {
@@ -18968,21 +19293,21 @@ export namespace Prisma {
     usuario: string
     contraseña: string
     rol: string
-    cliente: ClientesCreateNestedOneWithoutUsuarioInput
-    saldo?: SaldosCreateNestedManyWithoutUsuarioInput
-    compras?: VentasCreateNestedManyWithoutUsuarioInput
     opiniones?: OpinionesCreateNestedManyWithoutUsuarioInput
+    saldo?: SaldosCreateNestedManyWithoutUsuarioInput
+    cliente: ClientesCreateNestedOneWithoutUsuarioInput
+    compras?: VentasCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuariosUncheckedCreateWithoutFavoritosInput = {
     id_usuario?: number
     usuario: string
     contraseña: string
-    rol: string
     id_cliente: number
+    rol: string
+    opiniones?: OpinionesUncheckedCreateNestedManyWithoutUsuarioInput
     saldo?: SaldosUncheckedCreateNestedManyWithoutUsuarioInput
     compras?: VentasUncheckedCreateNestedManyWithoutUsuarioInput
-    opiniones?: OpinionesUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuariosCreateOrConnectWithoutFavoritosInput = {
@@ -19037,42 +19362,42 @@ export namespace Prisma {
     usuario?: StringFieldUpdateOperationsInput | string
     contraseña?: StringFieldUpdateOperationsInput | string
     rol?: StringFieldUpdateOperationsInput | string
-    cliente?: ClientesUpdateOneRequiredWithoutUsuarioNestedInput
-    saldo?: SaldosUpdateManyWithoutUsuarioNestedInput
-    compras?: VentasUpdateManyWithoutUsuarioNestedInput
     opiniones?: OpinionesUpdateManyWithoutUsuarioNestedInput
+    saldo?: SaldosUpdateManyWithoutUsuarioNestedInput
+    cliente?: ClientesUpdateOneRequiredWithoutUsuarioNestedInput
+    compras?: VentasUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuariosUncheckedUpdateWithoutFavoritosInput = {
     id_usuario?: IntFieldUpdateOperationsInput | number
     usuario?: StringFieldUpdateOperationsInput | string
     contraseña?: StringFieldUpdateOperationsInput | string
-    rol?: StringFieldUpdateOperationsInput | string
     id_cliente?: IntFieldUpdateOperationsInput | number
+    rol?: StringFieldUpdateOperationsInput | string
+    opiniones?: OpinionesUncheckedUpdateManyWithoutUsuarioNestedInput
     saldo?: SaldosUncheckedUpdateManyWithoutUsuarioNestedInput
     compras?: VentasUncheckedUpdateManyWithoutUsuarioNestedInput
-    opiniones?: OpinionesUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuariosCreateWithoutOpinionesInput = {
     usuario: string
     contraseña: string
     rol: string
-    cliente: ClientesCreateNestedOneWithoutUsuarioInput
-    saldo?: SaldosCreateNestedManyWithoutUsuarioInput
-    compras?: VentasCreateNestedManyWithoutUsuarioInput
     favoritos?: FavoritosCreateNestedManyWithoutUsuarioInput
+    saldo?: SaldosCreateNestedManyWithoutUsuarioInput
+    cliente: ClientesCreateNestedOneWithoutUsuarioInput
+    compras?: VentasCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuariosUncheckedCreateWithoutOpinionesInput = {
     id_usuario?: number
     usuario: string
     contraseña: string
-    rol: string
     id_cliente: number
+    rol: string
+    favoritos?: FavoritosUncheckedCreateNestedManyWithoutUsuarioInput
     saldo?: SaldosUncheckedCreateNestedManyWithoutUsuarioInput
     compras?: VentasUncheckedCreateNestedManyWithoutUsuarioInput
-    favoritos?: FavoritosUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuariosCreateOrConnectWithoutOpinionesInput = {
@@ -19081,32 +19406,36 @@ export namespace Prisma {
   }
 
   export type VentasCreateWithoutOpinionInput = {
-    cantidad: number
     precio_total: number
+    precio_unitario: number
     fecha?: Date | string
     talle: string
+    id_comentario?: number | null
+    n_comprobante: string
+    cantidad: number
     estado?: $Enums.EstadoEnvio
     metodo_entrega: $Enums.MetodoEnvio
     metodo_pago: $Enums.MetodoPago
-    n_comprobante: string
-    id_comentario?: number | null
     publicacion: PublicacionesCreateNestedOneWithoutVentasInput
     usuario: UsuariosCreateNestedOneWithoutComprasInput
+    producto: ProductosCreateNestedOneWithoutVentasInput
   }
 
   export type VentasUncheckedCreateWithoutOpinionInput = {
     id_venta?: number
-    cantidad: number
     precio_total: number
+    precio_unitario: number
     fecha?: Date | string
     talle: string
-    estado?: $Enums.EstadoEnvio
-    metodo_entrega: $Enums.MetodoEnvio
-    metodo_pago: $Enums.MetodoPago
-    n_comprobante: string
     id_comentario?: number | null
     id_publicacion: number
     id_usuario: number
+    n_comprobante: string
+    cantidad: number
+    estado?: $Enums.EstadoEnvio
+    metodo_entrega: $Enums.MetodoEnvio
+    metodo_pago: $Enums.MetodoPago
+    id_producto: number
   }
 
   export type VentasCreateOrConnectWithoutOpinionInput = {
@@ -19129,21 +19458,21 @@ export namespace Prisma {
     usuario?: StringFieldUpdateOperationsInput | string
     contraseña?: StringFieldUpdateOperationsInput | string
     rol?: StringFieldUpdateOperationsInput | string
-    cliente?: ClientesUpdateOneRequiredWithoutUsuarioNestedInput
-    saldo?: SaldosUpdateManyWithoutUsuarioNestedInput
-    compras?: VentasUpdateManyWithoutUsuarioNestedInput
     favoritos?: FavoritosUpdateManyWithoutUsuarioNestedInput
+    saldo?: SaldosUpdateManyWithoutUsuarioNestedInput
+    cliente?: ClientesUpdateOneRequiredWithoutUsuarioNestedInput
+    compras?: VentasUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuariosUncheckedUpdateWithoutOpinionesInput = {
     id_usuario?: IntFieldUpdateOperationsInput | number
     usuario?: StringFieldUpdateOperationsInput | string
     contraseña?: StringFieldUpdateOperationsInput | string
-    rol?: StringFieldUpdateOperationsInput | string
     id_cliente?: IntFieldUpdateOperationsInput | number
+    rol?: StringFieldUpdateOperationsInput | string
+    favoritos?: FavoritosUncheckedUpdateManyWithoutUsuarioNestedInput
     saldo?: SaldosUncheckedUpdateManyWithoutUsuarioNestedInput
     compras?: VentasUncheckedUpdateManyWithoutUsuarioNestedInput
-    favoritos?: FavoritosUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type VentasUpsertWithoutOpinionInput = {
@@ -19158,32 +19487,36 @@ export namespace Prisma {
   }
 
   export type VentasUpdateWithoutOpinionInput = {
-    cantidad?: IntFieldUpdateOperationsInput | number
     precio_total?: FloatFieldUpdateOperationsInput | number
+    precio_unitario?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
+    id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
+    n_comprobante?: StringFieldUpdateOperationsInput | string
+    cantidad?: IntFieldUpdateOperationsInput | number
     estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
     metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
     metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
-    n_comprobante?: StringFieldUpdateOperationsInput | string
-    id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
     publicacion?: PublicacionesUpdateOneRequiredWithoutVentasNestedInput
     usuario?: UsuariosUpdateOneRequiredWithoutComprasNestedInput
+    producto?: ProductosUpdateOneRequiredWithoutVentasNestedInput
   }
 
   export type VentasUncheckedUpdateWithoutOpinionInput = {
     id_venta?: IntFieldUpdateOperationsInput | number
-    cantidad?: IntFieldUpdateOperationsInput | number
     precio_total?: FloatFieldUpdateOperationsInput | number
+    precio_unitario?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     talle?: StringFieldUpdateOperationsInput | string
-    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
-    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
-    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
-    n_comprobante?: StringFieldUpdateOperationsInput | string
     id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
     id_publicacion?: IntFieldUpdateOperationsInput | number
     id_usuario?: IntFieldUpdateOperationsInput | number
+    n_comprobante?: StringFieldUpdateOperationsInput | string
+    cantidad?: IntFieldUpdateOperationsInput | number
+    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
+    id_producto?: IntFieldUpdateOperationsInput | number
   }
 
   export type ProductosCreateManyCategoriaInput = {
@@ -19192,8 +19525,8 @@ export namespace Prisma {
     precio: number
     foto: string
     color: string
-    activa?: boolean
     genero: string
+    activa?: boolean
   }
 
   export type ProductosUpdateWithoutCategoriaInput = {
@@ -19201,10 +19534,11 @@ export namespace Prisma {
     precio?: FloatFieldUpdateOperationsInput | number
     foto?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
-    activa?: BoolFieldUpdateOperationsInput | boolean
     genero?: StringFieldUpdateOperationsInput | string
-    stocks?: StockUpdateManyWithoutProductoNestedInput
+    activa?: BoolFieldUpdateOperationsInput | boolean
     publicaciones?: PublicacionesUpdateManyWithoutProductoNestedInput
+    stocks?: StockUpdateManyWithoutProductoNestedInput
+    Ventas?: VentasUpdateManyWithoutProductoNestedInput
   }
 
   export type ProductosUncheckedUpdateWithoutCategoriaInput = {
@@ -19213,10 +19547,11 @@ export namespace Prisma {
     precio?: FloatFieldUpdateOperationsInput | number
     foto?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
-    activa?: BoolFieldUpdateOperationsInput | boolean
     genero?: StringFieldUpdateOperationsInput | string
-    stocks?: StockUncheckedUpdateManyWithoutProductoNestedInput
+    activa?: BoolFieldUpdateOperationsInput | boolean
     publicaciones?: PublicacionesUncheckedUpdateManyWithoutProductoNestedInput
+    stocks?: StockUncheckedUpdateManyWithoutProductoNestedInput
+    Ventas?: VentasUncheckedUpdateManyWithoutProductoNestedInput
   }
 
   export type ProductosUncheckedUpdateManyWithoutCategoriaInput = {
@@ -19225,14 +19560,8 @@ export namespace Prisma {
     precio?: FloatFieldUpdateOperationsInput | number
     foto?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
-    activa?: BoolFieldUpdateOperationsInput | boolean
     genero?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type StockCreateManyProductoInput = {
-    id_stock?: number
-    cantidad: number
-    id_talle: number
+    activa?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PublicacionesCreateManyProductoInput = {
@@ -19242,6 +19571,58 @@ export namespace Prisma {
     descuento: number
     precio: number
     fecha?: Date | string
+  }
+
+  export type StockCreateManyProductoInput = {
+    id_stock?: number
+    cantidad: number
+    id_talle: number
+  }
+
+  export type VentasCreateManyProductoInput = {
+    id_venta?: number
+    precio_total: number
+    precio_unitario: number
+    fecha?: Date | string
+    talle: string
+    id_comentario?: number | null
+    id_publicacion: number
+    id_usuario: number
+    n_comprobante: string
+    cantidad: number
+    estado?: $Enums.EstadoEnvio
+    metodo_entrega: $Enums.MetodoEnvio
+    metodo_pago: $Enums.MetodoPago
+  }
+
+  export type PublicacionesUpdateWithoutProductoInput = {
+    activa?: BoolFieldUpdateOperationsInput | boolean
+    caracteristicas?: StringFieldUpdateOperationsInput | string
+    descuento?: IntFieldUpdateOperationsInput | number
+    precio?: FloatFieldUpdateOperationsInput | number
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    favoritos?: FavoritosUpdateManyWithoutPublicacionNestedInput
+    ventas?: VentasUpdateManyWithoutPublicacionNestedInput
+  }
+
+  export type PublicacionesUncheckedUpdateWithoutProductoInput = {
+    id_publicacion?: IntFieldUpdateOperationsInput | number
+    activa?: BoolFieldUpdateOperationsInput | boolean
+    caracteristicas?: StringFieldUpdateOperationsInput | string
+    descuento?: IntFieldUpdateOperationsInput | number
+    precio?: FloatFieldUpdateOperationsInput | number
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    favoritos?: FavoritosUncheckedUpdateManyWithoutPublicacionNestedInput
+    ventas?: VentasUncheckedUpdateManyWithoutPublicacionNestedInput
+  }
+
+  export type PublicacionesUncheckedUpdateManyWithoutProductoInput = {
+    id_publicacion?: IntFieldUpdateOperationsInput | number
+    activa?: BoolFieldUpdateOperationsInput | boolean
+    caracteristicas?: StringFieldUpdateOperationsInput | string
+    descuento?: IntFieldUpdateOperationsInput | number
+    precio?: FloatFieldUpdateOperationsInput | number
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StockUpdateWithoutProductoInput = {
@@ -19261,34 +19642,53 @@ export namespace Prisma {
     id_talle?: IntFieldUpdateOperationsInput | number
   }
 
-  export type PublicacionesUpdateWithoutProductoInput = {
-    activa?: BoolFieldUpdateOperationsInput | boolean
-    caracteristicas?: StringFieldUpdateOperationsInput | string
-    descuento?: IntFieldUpdateOperationsInput | number
-    precio?: FloatFieldUpdateOperationsInput | number
+  export type VentasUpdateWithoutProductoInput = {
+    precio_total?: FloatFieldUpdateOperationsInput | number
+    precio_unitario?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
-    ventas?: VentasUpdateManyWithoutPublicacionNestedInput
-    favoritos?: FavoritosUpdateManyWithoutPublicacionNestedInput
+    talle?: StringFieldUpdateOperationsInput | string
+    id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
+    n_comprobante?: StringFieldUpdateOperationsInput | string
+    cantidad?: IntFieldUpdateOperationsInput | number
+    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
+    opinion?: OpinionesUpdateManyWithoutVentaNestedInput
+    publicacion?: PublicacionesUpdateOneRequiredWithoutVentasNestedInput
+    usuario?: UsuariosUpdateOneRequiredWithoutComprasNestedInput
   }
 
-  export type PublicacionesUncheckedUpdateWithoutProductoInput = {
-    id_publicacion?: IntFieldUpdateOperationsInput | number
-    activa?: BoolFieldUpdateOperationsInput | boolean
-    caracteristicas?: StringFieldUpdateOperationsInput | string
-    descuento?: IntFieldUpdateOperationsInput | number
-    precio?: FloatFieldUpdateOperationsInput | number
+  export type VentasUncheckedUpdateWithoutProductoInput = {
+    id_venta?: IntFieldUpdateOperationsInput | number
+    precio_total?: FloatFieldUpdateOperationsInput | number
+    precio_unitario?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
-    ventas?: VentasUncheckedUpdateManyWithoutPublicacionNestedInput
-    favoritos?: FavoritosUncheckedUpdateManyWithoutPublicacionNestedInput
+    talle?: StringFieldUpdateOperationsInput | string
+    id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
+    id_publicacion?: IntFieldUpdateOperationsInput | number
+    id_usuario?: IntFieldUpdateOperationsInput | number
+    n_comprobante?: StringFieldUpdateOperationsInput | string
+    cantidad?: IntFieldUpdateOperationsInput | number
+    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
+    opinion?: OpinionesUncheckedUpdateManyWithoutVentaNestedInput
   }
 
-  export type PublicacionesUncheckedUpdateManyWithoutProductoInput = {
-    id_publicacion?: IntFieldUpdateOperationsInput | number
-    activa?: BoolFieldUpdateOperationsInput | boolean
-    caracteristicas?: StringFieldUpdateOperationsInput | string
-    descuento?: IntFieldUpdateOperationsInput | number
-    precio?: FloatFieldUpdateOperationsInput | number
+  export type VentasUncheckedUpdateManyWithoutProductoInput = {
+    id_venta?: IntFieldUpdateOperationsInput | number
+    precio_total?: FloatFieldUpdateOperationsInput | number
+    precio_unitario?: FloatFieldUpdateOperationsInput | number
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    talle?: StringFieldUpdateOperationsInput | string
+    id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
+    id_publicacion?: IntFieldUpdateOperationsInput | number
+    id_usuario?: IntFieldUpdateOperationsInput | number
+    n_comprobante?: StringFieldUpdateOperationsInput | string
+    cantidad?: IntFieldUpdateOperationsInput | number
+    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
   }
 
   export type StockCreateManyTalleInput = {
@@ -19314,66 +19714,25 @@ export namespace Prisma {
     id_producto?: IntFieldUpdateOperationsInput | number
   }
 
-  export type VentasCreateManyPublicacionInput = {
-    id_venta?: number
-    cantidad: number
-    precio_total: number
-    fecha?: Date | string
-    talle: string
-    estado?: $Enums.EstadoEnvio
-    metodo_entrega: $Enums.MetodoEnvio
-    metodo_pago: $Enums.MetodoPago
-    n_comprobante: string
-    id_comentario?: number | null
-    id_usuario: number
-  }
-
   export type FavoritosCreateManyPublicacionInput = {
     id_favorito?: number
     id_usuario: number
   }
 
-  export type VentasUpdateWithoutPublicacionInput = {
-    cantidad?: IntFieldUpdateOperationsInput | number
-    precio_total?: FloatFieldUpdateOperationsInput | number
-    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
-    talle?: StringFieldUpdateOperationsInput | string
-    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
-    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
-    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
-    n_comprobante?: StringFieldUpdateOperationsInput | string
-    id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
-    usuario?: UsuariosUpdateOneRequiredWithoutComprasNestedInput
-    opinion?: OpinionesUpdateManyWithoutVentaNestedInput
-  }
-
-  export type VentasUncheckedUpdateWithoutPublicacionInput = {
-    id_venta?: IntFieldUpdateOperationsInput | number
-    cantidad?: IntFieldUpdateOperationsInput | number
-    precio_total?: FloatFieldUpdateOperationsInput | number
-    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
-    talle?: StringFieldUpdateOperationsInput | string
-    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
-    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
-    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
-    n_comprobante?: StringFieldUpdateOperationsInput | string
-    id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
-    id_usuario?: IntFieldUpdateOperationsInput | number
-    opinion?: OpinionesUncheckedUpdateManyWithoutVentaNestedInput
-  }
-
-  export type VentasUncheckedUpdateManyWithoutPublicacionInput = {
-    id_venta?: IntFieldUpdateOperationsInput | number
-    cantidad?: IntFieldUpdateOperationsInput | number
-    precio_total?: FloatFieldUpdateOperationsInput | number
-    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
-    talle?: StringFieldUpdateOperationsInput | string
-    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
-    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
-    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
-    n_comprobante?: StringFieldUpdateOperationsInput | string
-    id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
-    id_usuario?: IntFieldUpdateOperationsInput | number
+  export type VentasCreateManyPublicacionInput = {
+    id_venta?: number
+    precio_total: number
+    precio_unitario: number
+    fecha?: Date | string
+    talle: string
+    id_comentario?: number | null
+    id_usuario: number
+    n_comprobante: string
+    cantidad: number
+    estado?: $Enums.EstadoEnvio
+    metodo_entrega: $Enums.MetodoEnvio
+    metodo_pago: $Enums.MetodoPago
+    id_producto: number
   }
 
   export type FavoritosUpdateWithoutPublicacionInput = {
@@ -19390,23 +19749,53 @@ export namespace Prisma {
     id_usuario?: IntFieldUpdateOperationsInput | number
   }
 
-  export type SaldosCreateManyUsuarioInput = {
-    id_saldo?: number
-    saldo: number
+  export type VentasUpdateWithoutPublicacionInput = {
+    precio_total?: FloatFieldUpdateOperationsInput | number
+    precio_unitario?: FloatFieldUpdateOperationsInput | number
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    talle?: StringFieldUpdateOperationsInput | string
+    id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
+    n_comprobante?: StringFieldUpdateOperationsInput | string
+    cantidad?: IntFieldUpdateOperationsInput | number
+    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
+    opinion?: OpinionesUpdateManyWithoutVentaNestedInput
+    usuario?: UsuariosUpdateOneRequiredWithoutComprasNestedInput
+    producto?: ProductosUpdateOneRequiredWithoutVentasNestedInput
   }
 
-  export type VentasCreateManyUsuarioInput = {
-    id_venta?: number
-    cantidad: number
-    precio_total: number
-    fecha?: Date | string
-    talle: string
-    estado?: $Enums.EstadoEnvio
-    metodo_entrega: $Enums.MetodoEnvio
-    metodo_pago: $Enums.MetodoPago
-    n_comprobante: string
-    id_comentario?: number | null
-    id_publicacion: number
+  export type VentasUncheckedUpdateWithoutPublicacionInput = {
+    id_venta?: IntFieldUpdateOperationsInput | number
+    precio_total?: FloatFieldUpdateOperationsInput | number
+    precio_unitario?: FloatFieldUpdateOperationsInput | number
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    talle?: StringFieldUpdateOperationsInput | string
+    id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
+    id_usuario?: IntFieldUpdateOperationsInput | number
+    n_comprobante?: StringFieldUpdateOperationsInput | string
+    cantidad?: IntFieldUpdateOperationsInput | number
+    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
+    id_producto?: IntFieldUpdateOperationsInput | number
+    opinion?: OpinionesUncheckedUpdateManyWithoutVentaNestedInput
+  }
+
+  export type VentasUncheckedUpdateManyWithoutPublicacionInput = {
+    id_venta?: IntFieldUpdateOperationsInput | number
+    precio_total?: FloatFieldUpdateOperationsInput | number
+    precio_unitario?: FloatFieldUpdateOperationsInput | number
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    talle?: StringFieldUpdateOperationsInput | string
+    id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
+    id_usuario?: IntFieldUpdateOperationsInput | number
+    n_comprobante?: StringFieldUpdateOperationsInput | string
+    cantidad?: IntFieldUpdateOperationsInput | number
+    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
+    id_producto?: IntFieldUpdateOperationsInput | number
   }
 
   export type FavoritosCreateManyUsuarioInput = {
@@ -19422,61 +19811,25 @@ export namespace Prisma {
     id_venta: number
   }
 
-  export type SaldosUpdateWithoutUsuarioInput = {
-    saldo?: FloatFieldUpdateOperationsInput | number
+  export type SaldosCreateManyUsuarioInput = {
+    id_saldo?: number
+    saldo: number
   }
 
-  export type SaldosUncheckedUpdateWithoutUsuarioInput = {
-    id_saldo?: IntFieldUpdateOperationsInput | number
-    saldo?: FloatFieldUpdateOperationsInput | number
-  }
-
-  export type SaldosUncheckedUpdateManyWithoutUsuarioInput = {
-    id_saldo?: IntFieldUpdateOperationsInput | number
-    saldo?: FloatFieldUpdateOperationsInput | number
-  }
-
-  export type VentasUpdateWithoutUsuarioInput = {
-    cantidad?: IntFieldUpdateOperationsInput | number
-    precio_total?: FloatFieldUpdateOperationsInput | number
-    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
-    talle?: StringFieldUpdateOperationsInput | string
-    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
-    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
-    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
-    n_comprobante?: StringFieldUpdateOperationsInput | string
-    id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
-    publicacion?: PublicacionesUpdateOneRequiredWithoutVentasNestedInput
-    opinion?: OpinionesUpdateManyWithoutVentaNestedInput
-  }
-
-  export type VentasUncheckedUpdateWithoutUsuarioInput = {
-    id_venta?: IntFieldUpdateOperationsInput | number
-    cantidad?: IntFieldUpdateOperationsInput | number
-    precio_total?: FloatFieldUpdateOperationsInput | number
-    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
-    talle?: StringFieldUpdateOperationsInput | string
-    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
-    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
-    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
-    n_comprobante?: StringFieldUpdateOperationsInput | string
-    id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
-    id_publicacion?: IntFieldUpdateOperationsInput | number
-    opinion?: OpinionesUncheckedUpdateManyWithoutVentaNestedInput
-  }
-
-  export type VentasUncheckedUpdateManyWithoutUsuarioInput = {
-    id_venta?: IntFieldUpdateOperationsInput | number
-    cantidad?: IntFieldUpdateOperationsInput | number
-    precio_total?: FloatFieldUpdateOperationsInput | number
-    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
-    talle?: StringFieldUpdateOperationsInput | string
-    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
-    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
-    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
-    n_comprobante?: StringFieldUpdateOperationsInput | string
-    id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
-    id_publicacion?: IntFieldUpdateOperationsInput | number
+  export type VentasCreateManyUsuarioInput = {
+    id_venta?: number
+    precio_total: number
+    precio_unitario: number
+    fecha?: Date | string
+    talle: string
+    id_comentario?: number | null
+    id_publicacion: number
+    n_comprobante: string
+    cantidad: number
+    estado?: $Enums.EstadoEnvio
+    metodo_entrega: $Enums.MetodoEnvio
+    metodo_pago: $Enums.MetodoPago
+    id_producto: number
   }
 
   export type FavoritosUpdateWithoutUsuarioInput = {
@@ -19516,6 +19869,69 @@ export namespace Prisma {
     id_venta?: IntFieldUpdateOperationsInput | number
   }
 
+  export type SaldosUpdateWithoutUsuarioInput = {
+    saldo?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type SaldosUncheckedUpdateWithoutUsuarioInput = {
+    id_saldo?: IntFieldUpdateOperationsInput | number
+    saldo?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type SaldosUncheckedUpdateManyWithoutUsuarioInput = {
+    id_saldo?: IntFieldUpdateOperationsInput | number
+    saldo?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type VentasUpdateWithoutUsuarioInput = {
+    precio_total?: FloatFieldUpdateOperationsInput | number
+    precio_unitario?: FloatFieldUpdateOperationsInput | number
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    talle?: StringFieldUpdateOperationsInput | string
+    id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
+    n_comprobante?: StringFieldUpdateOperationsInput | string
+    cantidad?: IntFieldUpdateOperationsInput | number
+    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
+    opinion?: OpinionesUpdateManyWithoutVentaNestedInput
+    publicacion?: PublicacionesUpdateOneRequiredWithoutVentasNestedInput
+    producto?: ProductosUpdateOneRequiredWithoutVentasNestedInput
+  }
+
+  export type VentasUncheckedUpdateWithoutUsuarioInput = {
+    id_venta?: IntFieldUpdateOperationsInput | number
+    precio_total?: FloatFieldUpdateOperationsInput | number
+    precio_unitario?: FloatFieldUpdateOperationsInput | number
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    talle?: StringFieldUpdateOperationsInput | string
+    id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
+    id_publicacion?: IntFieldUpdateOperationsInput | number
+    n_comprobante?: StringFieldUpdateOperationsInput | string
+    cantidad?: IntFieldUpdateOperationsInput | number
+    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
+    id_producto?: IntFieldUpdateOperationsInput | number
+    opinion?: OpinionesUncheckedUpdateManyWithoutVentaNestedInput
+  }
+
+  export type VentasUncheckedUpdateManyWithoutUsuarioInput = {
+    id_venta?: IntFieldUpdateOperationsInput | number
+    precio_total?: FloatFieldUpdateOperationsInput | number
+    precio_unitario?: FloatFieldUpdateOperationsInput | number
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    talle?: StringFieldUpdateOperationsInput | string
+    id_comentario?: NullableIntFieldUpdateOperationsInput | number | null
+    id_publicacion?: IntFieldUpdateOperationsInput | number
+    n_comprobante?: StringFieldUpdateOperationsInput | string
+    cantidad?: IntFieldUpdateOperationsInput | number
+    estado?: EnumEstadoEnvioFieldUpdateOperationsInput | $Enums.EstadoEnvio
+    metodo_entrega?: EnumMetodoEnvioFieldUpdateOperationsInput | $Enums.MetodoEnvio
+    metodo_pago?: EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
+    id_producto?: IntFieldUpdateOperationsInput | number
+  }
+
   export type UsuariosCreateManyClienteInput = {
     id_usuario?: number
     usuario: string
@@ -19527,10 +19943,10 @@ export namespace Prisma {
     usuario?: StringFieldUpdateOperationsInput | string
     contraseña?: StringFieldUpdateOperationsInput | string
     rol?: StringFieldUpdateOperationsInput | string
-    saldo?: SaldosUpdateManyWithoutUsuarioNestedInput
-    compras?: VentasUpdateManyWithoutUsuarioNestedInput
     favoritos?: FavoritosUpdateManyWithoutUsuarioNestedInput
     opiniones?: OpinionesUpdateManyWithoutUsuarioNestedInput
+    saldo?: SaldosUpdateManyWithoutUsuarioNestedInput
+    compras?: VentasUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuariosUncheckedUpdateWithoutClienteInput = {
@@ -19538,10 +19954,10 @@ export namespace Prisma {
     usuario?: StringFieldUpdateOperationsInput | string
     contraseña?: StringFieldUpdateOperationsInput | string
     rol?: StringFieldUpdateOperationsInput | string
-    saldo?: SaldosUncheckedUpdateManyWithoutUsuarioNestedInput
-    compras?: VentasUncheckedUpdateManyWithoutUsuarioNestedInput
     favoritos?: FavoritosUncheckedUpdateManyWithoutUsuarioNestedInput
     opiniones?: OpinionesUncheckedUpdateManyWithoutUsuarioNestedInput
+    saldo?: SaldosUncheckedUpdateManyWithoutUsuarioNestedInput
+    compras?: VentasUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuariosUncheckedUpdateManyWithoutClienteInput = {

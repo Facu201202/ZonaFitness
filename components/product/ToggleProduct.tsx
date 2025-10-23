@@ -83,7 +83,7 @@ export default function ToggleProduct({ product, products, deleteParamsFunction 
                             <DeliveryMethod />
                             <PaymentMethod />
                         </div>
-                        <div>{<PurchaseSummary mutate={mutation.mutate} image={product.producto.foto} productName={product.producto.nombre} price={product.precio - ((product.descuento / 100) * product.precio)} category={product.producto.categoria.nombre} publicationId={product.id_publicacion} />}</div>
+                        <div>{<PurchaseSummary mutate={mutation.mutate} image={product.producto.foto} productName={product.producto.nombre} price={product.precio - ((product.descuento / 100) * product.precio)} category={product.producto.categoria.nombre} publicationId={product.id_publicacion} productId={product.producto.id_producto} />}</div>
                     </div>
                 </div>
             )}

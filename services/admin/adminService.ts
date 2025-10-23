@@ -177,17 +177,55 @@ export async function getProductsToLink(search: string) {
     })
 }
 
-export async function getSales() {
+export async function getSales(filters: { search: string; skip: number; filter: string}) {
+    const searchedWords = filters.search.split(" ").filter(Boolean)
     return await prisma.ventas.findMany({
+        take: 10,
+        skip: filters.skip,
         where: {
-            usuario: {
-                rol: "usuario"
-            }
+            AND: searchedWords.map(word => ({
+                OR: [
+                    {
+                        usuario: {
+                            cliente: {
+                                nombre: {
+                                    contains: word,
+                                    mode: "insensitive"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        usuario: {
+                            cliente: {
+                                apellido: {
+                                    contains: word,
+                                    mode: "insensitive"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        n_comprobante: {
+                            contains: word,
+                            mode: "insensitive"
+                        }
+                    }
+                ]
+
+            })),
+        },
+        orderBy: {
+            ...(filters.filter ? {
+                [filters.filter.toLowerCase()]: "desc"
+            }: {})
         },
         select: {
             id_venta: true,
             fecha: true,
             precio_total: true,
+            precio_unitario: true,
+            id_producto: true,
             cantidad: true,
             talle: true,
             estado: true,
@@ -228,11 +266,17 @@ export async function getSalesInformation() {
         _count: {
             id_venta: true
         }
-    }), prisma.productos.aggregate({
-        _sum: {
-            precio: true
-        }
-    })])
+    }),
+    prisma.$queryRaw<{ total: number }[]>`
+  SELECT SUM(p.precio * s_total.total_stock) AS total
+  FROM "Productos" p
+  JOIN (
+    SELECT "id_producto", SUM(cantidad) AS total_stock
+    FROM "Stock"
+    GROUP BY "id_producto"
+  ) s_total ON p."id_producto" = s_total."id_producto"
+  WHERE p.activa = true;
+`])
 
 
 
@@ -242,7 +286,47 @@ export async function getSalesInformation() {
             salesTotalPrice: sales._sum.precio_total || 0,
         },
         products: {
-            productsTotalPrice: products._sum.precio || 0
+            productsTotalPrice: products[0].total || 0
         }
     }
+}
+
+export async function getSalesCount(filters: { search: string, skip: number }) {
+    const searchedWords = filters.search.split(" ").filter(Boolean)
+    return await prisma.ventas.count({
+        where: {
+            AND: searchedWords.map(word => ({
+                OR: [
+                    {
+                        usuario: {
+                            cliente: {
+                                nombre: {
+                                    contains: word,
+                                    mode: "insensitive"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        usuario: {
+                            cliente: {
+                                apellido: {
+                                    contains: word,
+                                    mode: "insensitive"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        n_comprobante: {
+                            contains: word,
+                            mode: "insensitive"
+                        }
+                    }
+                ]
+
+            })),
+        },
+    },
+    )
 }

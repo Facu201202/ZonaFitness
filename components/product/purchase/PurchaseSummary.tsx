@@ -15,10 +15,11 @@ type PurchaseSummaryProps = {
     category: string,
     price: number,
     publicationId: number,
+    productId: number,
     mutate: UseMutateFunction<any, Error, PurchaseData, unknown>
 }
 
-export default function PurchaseSummary({ image, productName, category, price, publicationId, mutate }: PurchaseSummaryProps) {
+export default function PurchaseSummary({ image, productName, category, price, publicationId, productId, mutate }: PurchaseSummaryProps) {
     const [error, setError] = useState(false)
     const searchParams = useSearchParams()
     const params = new URLSearchParams(searchParams.toString())
@@ -43,13 +44,15 @@ export default function PurchaseSummary({ image, productName, category, price, p
         }
       
         const purchaseData: PurchaseData = {
+            precio_unitario: price,
             cantidad: quantity,
             precio_total: total,
             talle: size!,
             id_publicacion: publicationId,
             id_usuario: +userId!,
             entrega: deliveryMethod,
-            pago: paymentMethod
+            pago: paymentMethod,
+            id_producto: productId
         }
 
         setCurrentPurchase(purchaseData)

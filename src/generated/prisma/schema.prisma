@@ -20,12 +20,13 @@ model Productos {
   precio        Float
   foto          String
   color         String
-  activa        Boolean         @default(true)
   genero        String
   id_categoria  Int
+  activa        Boolean         @default(true)
   categoria     Categorias      @relation(fields: [id_categoria], references: [id_categoria])
-  stocks        Stock[]
   publicaciones Publicaciones[]
+  stocks        Stock[]
+  Ventas        Ventas[]
 }
 
 model Sizes {
@@ -39,8 +40,8 @@ model Stock {
   id_stock    Int       @id @default(autoincrement())
   cantidad    Int
   id_producto Int
-  producto    Productos @relation(fields: [id_producto], references: [id_producto])
   id_talle    Int
+  producto    Productos @relation(fields: [id_producto], references: [id_producto])
   talle       Sizes     @relation(fields: [id_talle], references: [id_talle])
 }
 
@@ -51,23 +52,23 @@ model Publicaciones {
   descuento       Int
   precio          Float
   id_producto     Int
-  producto        Productos   @relation(fields: [id_producto], references: [id_producto])
   fecha           DateTime    @default(now())
-  ventas          Ventas[]
   favoritos       Favoritos[]
+  producto        Productos   @relation(fields: [id_producto], references: [id_producto])
+  ventas          Ventas[]
 }
 
 model Usuarios {
   id_usuario  Int         @id @default(autoincrement())
   usuario     String      @unique
   contraseña String
-  rol         String
   id_cliente  Int
-  cliente     Clientes    @relation(fields: [id_cliente], references: [id_cliente])
-  saldo       Saldos[]
-  compras     Ventas[]
+  rol         String
   favoritos   Favoritos[]
   opiniones   Opiniones[]
+  saldo       Saldos[]
+  cliente     Clientes    @relation(fields: [id_cliente], references: [id_cliente])
+  compras     Ventas[]
 }
 
 model Clientes {
@@ -89,39 +90,25 @@ model Saldos {
   usuario    Usuarios @relation(fields: [id_usuario], references: [id_usuario])
 }
 
-enum EstadoEnvio {
-  PENDIENTE
-  APROBADO
-  EN_CAMINO
-  ENTREGADO
-  CANCELADO
-}
-
-enum MetodoEnvio {
-  SUCURSAL
-  DOMICILIO
-}
-
-enum MetodoPago {
-  DINERO_EN_CUENTA
-}
-
 model Ventas {
-  id_venta       Int           @id @default(autoincrement())
-  cantidad       Int
-  precio_total   Float
-  fecha          DateTime      @default(now())
-  talle          String
-  estado         EstadoEnvio   @default(PENDIENTE)
-  metodo_entrega MetodoEnvio
-  metodo_pago    MetodoPago
-  n_comprobante  String        @unique
-  id_comentario  Int?
-  id_publicacion Int
-  id_usuario     Int
-  publicacion    Publicaciones @relation(fields: [id_publicacion], references: [id_publicacion])
-  usuario        Usuarios      @relation(fields: [id_usuario], references: [id_usuario])
-  opinion        Opiniones[]
+  id_venta        Int           @id @default(autoincrement())
+  precio_total    Float
+  precio_unitario Float
+  fecha           DateTime      @default(now())
+  talle           String
+  id_comentario   Int?
+  id_publicacion  Int
+  id_usuario      Int
+  n_comprobante   String        @unique
+  cantidad        Int
+  estado          EstadoEnvio   @default(PENDIENTE)
+  metodo_entrega  MetodoEnvio
+  metodo_pago     MetodoPago
+  id_producto     Int
+  opinion         Opiniones[]
+  publicacion     Publicaciones @relation(fields: [id_publicacion], references: [id_publicacion])
+  usuario         Usuarios      @relation(fields: [id_usuario], references: [id_usuario])
+  producto        Productos     @relation(fields: [id_producto], references: [id_producto])
 }
 
 model Favoritos {
@@ -143,4 +130,21 @@ model Opiniones {
   id_venta     Int
   usuario      Usuarios @relation(fields: [id_usuario], references: [id_usuario])
   venta        Ventas   @relation(fields: [id_venta], references: [id_venta])
+}
+
+enum EstadoEnvio {
+  PENDIENTE
+  APROBADO
+  EN_CAMINO
+  ENTREGADO
+  CANCELADO
+}
+
+enum MetodoEnvio {
+  SUCURSAL
+  DOMICILIO
+}
+
+enum MetodoPago {
+  DINERO_EN_CUENTA
 }

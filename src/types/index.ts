@@ -68,12 +68,12 @@ export type ChangePasswordData = ChangePasswordForm & {
     id_usuario: number
 }
 
-export type PurchaseData = Pick<Ventas, "cantidad" | "precio_total" | "talle" | "id_publicacion" | "id_usuario"> & {
+export type PurchaseData = Pick<Ventas, "cantidad" | "precio_total" | "talle" | "id_publicacion" | "id_usuario" | "precio_unitario" | "id_producto"> & {
     entrega: string,
     pago: string
 }
 
-export type SaleData = Pick<Ventas, "cantidad" | "precio_total" | "talle" | "id_publicacion" | "id_usuario" | "metodo_entrega" | "metodo_pago">
+export type SaleData = Pick<Ventas, "cantidad" | "precio_total" | "talle" | "id_publicacion" | "id_usuario" | "metodo_entrega" | "metodo_pago" | "precio_unitario" | "id_producto">
 
 export type PaymentMethods = keyof typeof MetodoPago
 export type DeliveryMethods = keyof typeof MetodoEnvio
@@ -282,6 +282,8 @@ export type SaleDataTable = {
     talle: string;
     id_venta: number;
     precio_total: number;
+    precio_unitario: number;
+    id_producto: number;
     estado: EstadoEnvio;
     metodo_entrega: MetodoEnvio;
     metodo_pago: "DINERO_EN_CUENTA";
