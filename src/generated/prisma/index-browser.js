@@ -131,9 +131,9 @@ exports.Prisma.ProductosScalarFieldEnum = {
   precio: 'precio',
   foto: 'foto',
   color: 'color',
-  activa: 'activa',
   genero: 'genero',
-  id_categoria: 'id_categoria'
+  id_categoria: 'id_categoria',
+  activa: 'activa'
 };
 
 exports.Prisma.SizesScalarFieldEnum = {
@@ -163,8 +163,8 @@ exports.Prisma.UsuariosScalarFieldEnum = {
   id_usuario: 'id_usuario',
   usuario: 'usuario',
   contraseña: 'contraseña',
-  rol: 'rol',
-  id_cliente: 'id_cliente'
+  id_cliente: 'id_cliente',
+  rol: 'rol'
 };
 
 exports.Prisma.ClientesScalarFieldEnum = {
@@ -186,17 +186,19 @@ exports.Prisma.SaldosScalarFieldEnum = {
 
 exports.Prisma.VentasScalarFieldEnum = {
   id_venta: 'id_venta',
-  cantidad: 'cantidad',
   precio_total: 'precio_total',
+  precio_unitario: 'precio_unitario',
   fecha: 'fecha',
   talle: 'talle',
+  id_comentario: 'id_comentario',
+  id_publicacion: 'id_publicacion',
+  id_usuario: 'id_usuario',
+  n_comprobante: 'n_comprobante',
+  cantidad: 'cantidad',
   estado: 'estado',
   metodo_entrega: 'metodo_entrega',
   metodo_pago: 'metodo_pago',
-  n_comprobante: 'n_comprobante',
-  id_comentario: 'id_comentario',
-  id_publicacion: 'id_publicacion',
-  id_usuario: 'id_usuario'
+  id_producto: 'id_producto'
 };
 
 exports.Prisma.FavoritosScalarFieldEnum = {

@@ -192,14 +192,17 @@ export const findUrlPath = (imagePath: string, category?: string) => {
 export const queryFilterAdminSales = (searchParams: ReadonlyURLSearchParams) => {
     const skipPage = ((Number(searchParams.get("page")) || 1) - 1) * 10
     const searchText = searchParams.get("searchSales")
+    const filter = searchParams.get("filter")
     const filters = {
         search: searchText ? searchText.replace(/%20/g, " ") : "",
-        skipPage: skipPage
+        skipPage: skipPage,
+        filter: filter ? filter : ""
     }
 
     const queryString = new URLSearchParams({
         search: filters.search,
-        skipPage: filters.skipPage.toString()
+        skipPage: filters.skipPage.toString(),
+        filter: filters.filter
     })
     
     return queryString

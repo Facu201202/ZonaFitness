@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { headers } from "next/headers"
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
-import Footer from "@/components/footer/Footer";
 import { Montserrat } from 'next/font/google'
 import ReactQueryProvider from "../providers/ReactQueryProvider";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -47,8 +46,9 @@ export default async function RootLayout({
     <div
       className={`${montserrat.variable} font-sans antialiased min-h-screen flex flex-col`}
     >
+
       <main className="min-h-screen flex">
-        <AdminNavbar/>
+        <AdminNavbar />
         <ReactQueryProvider userId={userId} userName={userName}>
           {children}
           <ReactQueryDevtools initialIsOpen={false} />

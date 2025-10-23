@@ -68,7 +68,6 @@ export default function TableRow({ i, product }: TableRowProps) {
                     disabled={product.publicaciones.length === 0}
                     className={`px-2 py-1 font-semibold text-sm border rounded-lg border-gray-200 shadow hover:cursor-pointer hover:bg-gray-100 ${product.publicaciones.length === 0 && "pointer-events-none opacity-70"}`}
                     onClick={() => window.open(`/admin/publications?related=${product.id_producto}`, '_blank')}
-                    /*onClick={() => { redirect(`${fullUrl}&producto=${product.publicaciones[0].id_publicacion}`) }}*/
                 >
                     Ver publicaciones
                 </button>

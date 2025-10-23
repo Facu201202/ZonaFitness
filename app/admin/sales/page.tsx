@@ -1,28 +1,20 @@
 "use client"
 import AdminSpinner from "@/components/admin/AdminSpinner"
-import ChangeStatePublicationModal from "@/components/admin/publications/ChangeStatePublicationModal"
-import FeacturesModal from "@/components/admin/publications/FeacturesModal"
-import FilterOptions from "@/components/admin/publications/FilterOptions"
+import FilterOptions from "@/components/admin/sales/FilterOptions"
+import ReceiptModal from "@/components/admin/sales/ReceiptModal"
 import SalesBanner from "@/components/admin/sales/SalesBanner"
 import Table from "@/components/admin/sales/Table"
 import Pagination from "@/components/Pagination"
-import ProductModal from "@/components/product/ProductModal"
-import { PublicationAdmin, SaleDataTable } from "@/src/types"
-import { queryFilterAdminPublications, queryFilterAdminSales } from "@/src/utils"
-import { PlusIcon } from "@heroicons/react/24/outline"
+import { SaleDataTable } from "@/src/types"
+import { queryFilterAdminSales } from "@/src/utils"
 import { useQuery } from "@tanstack/react-query"
-import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 
 export default function Page() {
   const searchParams = useSearchParams()
-  const productId = +searchParams.get('producto')!
-  const state = searchParams.get('state')
-  const feactures = searchParams.get("feactures")
-
+  const receipt = +searchParams.get('receipt')!
   const params = new URLSearchParams(searchParams.toString())
   const urlQueryFilter = queryFilterAdminSales(searchParams)
-
 
   const fetchSales = async (): Promise<{ sales: SaleDataTable[], salesCount: number }> => {
     const res = await fetch(`/admin/sales/api/getSales?${urlQueryFilter.toString()}`)
@@ -54,27 +46,18 @@ export default function Page() {
       {(data && data?.sales.length === 0) && <p className="text-center font-semibold text-gray-800 py-20">No se encontraron ventas con los filtros aplicados</p>}
       {(data && totalPages && data.sales.length > 0) &&
         <div className="p-6 flex flex-col gap-4">
-          <FilterOptions />{ }
+          <FilterOptions />
           <div className="border border-gray-300 rounded text-gray-800 items-center shadow">
             <Table sales={data.sales} />
           </div>
-          {/*<Pagination params={params} totalPages={totalPages} page={page} />*/}
+          {<Pagination params={params} totalPages={totalPages} page={page} />}
         </div>
       }
       {
-        (data && state != null && data.sales.length > 0) ? (
-          <ChangeStatePublicationModal state={state} />
+        (data && receipt != null && !Number.isNaN(receipt) && data.sales.length > 0) ? (
+          <ReceiptModal sale={data.sales[receipt]}/>
         ) : null
       }
-      {
-        (data && productId != null && data.sales.length > 0) ? (
-          <ProductModal productId={productId} />
-        ) : null
-      }
-      {(feactures && data ? (
-        <FeacturesModal />
-      ) : null
-      )}
     </div>
   )
 }

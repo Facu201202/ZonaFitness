@@ -38,6 +38,8 @@ export async function POST(req: NextRequest) {
         }
 
         const saleData: SaleData = {
+            precio_unitario: body.precio_unitario,
+            id_producto: body.id_producto,
             cantidad: body.cantidad,
             precio_total: total,
             talle: body.talle,

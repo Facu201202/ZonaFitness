@@ -2,6 +2,7 @@ import { FunnelIcon } from "@heroicons/react/24/outline"
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid"
 import { redirect, useSearchParams, useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
+import FilterMenu from "./FilterMenu"
 
 
 export default function FilterOptions() {
@@ -43,13 +44,14 @@ export default function FilterOptions() {
                         <MagnifyingGlassIcon className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 hover:cursor-pointer" onClick={handleSubmit(searchProduct)} />
                         <input
                             className="border border-gray-300 rounded-lg px-3 py-1 focus:border-[#275DA2] w-full"
-                            placeholder="Buscar Productos..."
+                            placeholder="Buscar venta por usuario o N° de comprobante"
                             defaultValue={""}
                             type="text"
                             id="search"
                             {...register("search")}
                         />
                     </form>
+                    <FilterMenu/>
                 </div>
             </div>
             {searchedValue && (

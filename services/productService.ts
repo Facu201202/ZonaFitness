@@ -175,12 +175,14 @@ export async function createSale(saleData: SaleData, tx: PrismaClient | Prisma.T
         data: {
             cantidad: saleData.cantidad,
             precio_total: saleData.precio_total,
+            precio_unitario: saleData.precio_unitario,
             talle: saleData.talle,
             id_publicacion: saleData.id_publicacion,
             id_usuario: saleData.id_usuario,
             n_comprobante: "VEN-" + nanoid(8),
             metodo_entrega: saleData.metodo_entrega,
-            metodo_pago: saleData.metodo_pago
+            metodo_pago: saleData.metodo_pago,
+            id_producto: saleData.id_producto
         },
         select: {
             id_venta: true,
