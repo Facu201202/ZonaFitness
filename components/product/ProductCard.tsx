@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useSearchParams, usePathname } from 'next/navigation'
-import { findUrlPath, formatCurrency, translateCategory } from "@/src/utils"
+import { findUrlPath, formatCurrency } from "@/src/utils"
 import { Categoria } from "@/src/types"
 import ReactStars from "react-stars"
 

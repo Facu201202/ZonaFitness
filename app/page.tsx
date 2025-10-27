@@ -5,5 +5,5 @@ export default async function Home() {
   const headerList = await headers()
   const userRol = headerList.get("x-user-rol")
   userRol === "admin" &&  redirect("/admin")
-  userRol === "usuario" || userRol === null &&  redirect("/tienda/inicio")
+  redirect("/tienda/inicio")
 }

@@ -24,8 +24,7 @@ export default function Navbar({ isLogin }: { isLogin: boolean }) {
                 <div className="hidden lg:flex gap-6 text-[#434346]">
                     <Link href={"/tienda/inicio"} onClick={() => reset()} className="hover:text-[#275DA2]">Inicio</Link>
                     <Link href={"/tienda/search"} onClick={() => reset()} className="hover:text-[#275DA2]">Productos</Link>
-                    <Link href={""} onClick={() => reset()} className="hover:text-[#275DA2]" >Categorías</Link>
-                    <Link href={""} onClick={() => reset()} className="hover:text-[#275DA2]">Ofertas</Link>
+                    <Link href={"/tienda/search?descuento=true"} onClick={() => reset()} className="hover:text-[#275DA2]">Ofertas</Link>
                 </div>
             </div>
             <div className="hidden lg:flex justify-start w-sm text-[#434346] items-center gap-4 px-2">

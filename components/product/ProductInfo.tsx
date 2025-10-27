@@ -1,11 +1,10 @@
-import { CartItem, Categoria, Product } from '@/src/types'
-import { translateCategory, formatFeatures, formatCurrency, sizes, findUrlPath } from '@/src/utils'
+import { CartItem, Product } from '@/src/types'
+import { formatFeatures, formatCurrency, sizes, findUrlPath } from '@/src/utils'
 import { useProductStore } from '@/src/stores/productStore'
 import Image from 'next/image'
 import { useSearchParams, useRouter } from "next/navigation"
 import { useEffect, useState } from 'react'
 import { CreditCardIcon, ShoppingCartIcon, TruckIcon, ClockIcon, ArrowUturnLeftIcon } from "@heroicons/react/24/outline"
-import Qualification from '../Qualification'
 import SizesButton from '../SizesButton'
 import { useUserStore } from '@/src/stores/userStore'
 import FavoriteButton from './FavoriteButton'
@@ -130,10 +129,12 @@ export default function ProductInfo({ product }: ProductInfoProps) {
                         color2={"#ffd700"}
                         edit={false}
                     />
-                    <p className="lg:text-xl text-gray-600">({opinionCant})</p>
+                    <p className="lg:text-xl text-gray-600">({product.ventas ? product.ventas.length : 0})</p>
                 </div>
                 <div>
-                    <p className='font-medium text-gray-500 text-lg line-through'>{formatCurrency(product.precio)}</p>
+                    {product.descuento > 0 && (
+                        <p className='font-medium text-gray-500 text-lg line-through'>{formatCurrency(product.precio)}</p>
+                    )}
                     <div className='flex gap-2'>
                         <p className='font-bold text-3xl lg:text-4xl'>{formatCurrency(product.precio - ((product.descuento / 100) * product.precio))}</p>
                         {product.descuento > 0 && (
