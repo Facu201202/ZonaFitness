@@ -1,7 +1,7 @@
 import { Prisma, PrismaClient } from "@/src/generated/prisma";
 import { prisma } from "@/src/lib/prisma"
 import { FiltersData, SaleData } from "@/src/types";
-import { createWhereFilter } from "@/src/utils";
+import { createWhereFilter, filterSearchPageOptions, FilterSearchPageOptionsKey } from "@/src/utils";
 import { nanoid } from "nanoid"
 
 export async function getProducts(id: number) {
@@ -70,11 +70,16 @@ export async function getProduct(id: number) {
 }
 
 export async function getSearchedProducts(filters: FiltersData) {
-    const where = createWhereFilter(filters)
-    return await prisma.publicaciones.findMany({
+    const where = createWhereFilter(filters);
+    const filterKey = filters.filter as FilterSearchPageOptionsKey;
+
+    const publications = await prisma.publicaciones.findMany({
         take: 9,
         skip: filters.skipPage,
         where,
+        orderBy: filters.filter ? filterSearchPageOptions[filterKey] || {} : {
+            fecha: "desc"
+        },
         select: {
             id_publicacion: true,
             caracteristicas: true,
@@ -116,7 +121,9 @@ export async function getSearchedProducts(filters: FiltersData) {
         }
     });
 
+    return publications;
 }
+
 
 export async function getProductComments(publicationId: number, page: number) {
     return await prisma.opiniones.findMany({

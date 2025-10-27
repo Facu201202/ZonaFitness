@@ -38,7 +38,7 @@ export default function ProfileFavorites({ userId }: ProfileFavoritesProps) {
             </div>
             {
                 (data && productId != null) ? (
-                    <ProductModal productId={productId} products={data} />
+                    <ProductModal productId={productId} />
                 ) : null
             }
         </>

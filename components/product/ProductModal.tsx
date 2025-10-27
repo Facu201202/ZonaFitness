@@ -8,11 +8,10 @@ import { useProductStore } from "@/src/stores/productStore"
 import Spinner from '../Spinner'
 
 type ProductModalProps = {
-  productId: number,
-  products?: Product[]
+  productId: number
 }
 
-export default function ProductModal({ productId, products }: ProductModalProps) {
+export default function ProductModal({ productId }: ProductModalProps) {
   const queryClient = useQueryClient()
   const searchParams = useSearchParams();
   const router = useRouter()
@@ -58,7 +57,7 @@ export default function ProductModal({ productId, products }: ProductModalProps)
           <DialogPanel className="w-fit max-w-7xl h-full space-y-4 border bg-white p-4 overflow-y-auto">
             {data ?
               (
-                <ToggleProduct product={data} products={products} deleteParamsFunction={handleCloseModal} />
+                <ToggleProduct product={data} deleteParamsFunction={handleCloseModal} productId={productId}/>
               ) : (<Spinner/>)
             }
           </DialogPanel>

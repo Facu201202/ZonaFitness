@@ -16,11 +16,11 @@ import Spinner from "../Spinner"
 
 type ToggleProductProps = {
     product: Product,
-    products?: Product[],
+    productId: number,
     deleteParamsFunction: () => void
 }
 
-export default function ToggleProduct({ product, products, deleteParamsFunction }: ToggleProductProps) {
+export default function ToggleProduct({ product, productId, deleteParamsFunction }: ToggleProductProps) {
     const activeModal = useProductStore(state => state.activeModal)
     const setsuccessPurchaseData = useProductStore(state => state.setsuccessPurchaseData)
     const [mutateState, setMutateState] = useState({
@@ -69,9 +69,7 @@ export default function ToggleProduct({ product, products, deleteParamsFunction 
                     <div className='lg:p-3'>
                         <ProductInfo product={product} />
                         <ProductComments publicationId={product.id_publicacion} />
-                        {products && (
-                            <RelatedProducts products={products} />
-                        )}
+                        <RelatedProducts productId={productId} category={product.producto.categoria.nombre} />
                     </div>
                 </div>
             )}

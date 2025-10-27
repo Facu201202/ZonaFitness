@@ -12,7 +12,8 @@ export async function GET(req: NextRequest) {
         sizes: searchParams.getAll("size"),
         discount: searchParams.get("discount") || false,
         price: Number(searchParams.get("price")) || 200000,
-        skipPage: Number(searchParams.get("skipPage")) || 0
+        skipPage: Number(searchParams.get("skipPage")) || 0,
+        filter: searchParams.get("filter") || ""
     }
     const [products, countProducts]: [Product[], number] = await Promise.all([getSearchedProducts(filters), getSearchedProductsCount(filters)])
     return NextResponse.json({ products, countProducts })

@@ -18,20 +18,18 @@ export default function Footer() {
                 <div className="text-center border-b pb-4 lg:border-none lg:text-left">
                     <p className="mb-3 text-xl">Enlances rápidos</p>
                     <ul className="text-gray-400">
-                        <li><Link href={""} className="hover:text-white">Inicio</Link></li>
-                        <li><Link href={""} className="hover:text-white">Productos</Link></li>
-                        <li><Link href={""} className="hover:text-white">Categorías</Link></li>
-                        <li><Link href={""} className="hover:text-white">Ofertas</Link></li>
+                        <li><Link href={"/tienda/inicio"} className="hover:text-white">Inicio</Link></li>
+                        <li><Link href={"/tienda/search"} className="hover:text-white">Productos</Link></li>
+                        <li><Link href={"/tienda/search?descuento=true"} className="hover:text-white">Ofertas</Link></li>
                     </ul>
                 </div>
                 <div className="text-center border-b pb-4 lg:border-none lg:text-left">
                     <p className="mb-3 text-xl">Categorías</p>
                     <ul className="text-gray-400">
-                        <li><Link href={""} className="hover:text-white">Remeras</Link></li>
-                        <li><Link href={""} className="hover:text-white">Pantalones</Link></li>
-                        <li><Link href={""} className="hover:text-white">Zapatillas</Link></li>
-                        <li><Link href={""} className="hover:text-white">Gorras</Link></li>
-                        <li><Link href={""} className="hover:text-white">Conjuntos</Link></li>
+                        <li><Link href={"/tienda/search?categoria=Remeras"} className="hover:text-white">Remeras</Link></li>
+                        <li><Link href={"/tienda/search?categoria=Pantalones"} className="hover:text-white">Pantalones</Link></li>
+                        <li><Link href={"/tienda/search?categoria=Zapatillas"} className="hover:text-white">Zapatillas</Link></li>
+                        <li><Link href={"/tienda/search?categoria=Gorras"} className="hover:text-white">Gorras</Link></li>
                     </ul>
                 </div>
                 <div className="text-center border-b pb-4 lg:border-none lg:text-left">

@@ -60,8 +60,8 @@ export default function Page() {
 
             </div>
             {
-                (data && productId != null) ? (
-                    <ProductModal productId={Number(productId)} products={data.products} />
+                (productId != null) ? (
+                    <ProductModal productId={Number(productId)} />
                 ) : null
             }
         </div>

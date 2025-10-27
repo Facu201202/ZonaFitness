@@ -24,7 +24,8 @@ export type FiltersData = {
     sizes: string[];
     discount: string | boolean;
     price: number;
-    skipPage: number
+    skipPage: number,
+    filter: string
 }
 
 export type ProfileUserData = {
@@ -310,5 +311,18 @@ export type SalesBalance = {
     };
     products: {
         productsTotalPrice: number;
+    };
+}
+
+export type MainComment = {
+    id_usuario: number;
+    id_opinion: number;
+    calificacion: number;
+    comentario: string;
+    usuario: {
+        cliente: {
+            nombre: string;
+            apellido: string;
+        };
     };
 }

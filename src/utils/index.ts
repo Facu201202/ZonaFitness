@@ -1,6 +1,6 @@
 import { ReadonlyURLSearchParams } from "next/navigation";
 import { Categoria, FiltersData } from "../types";
-import { EstadoEnvio, MetodoEnvio, MetodoPago } from "../generated/prisma";
+import { EstadoEnvio, MetodoEnvio, MetodoPago, Prisma} from "../generated/prisma";
 
 export function formatCurrency(amount: number) {
     return new Intl.NumberFormat("es-AR", {
@@ -44,20 +44,23 @@ export function translateCategory(categoria: Categoria) {
 export const createQueryFilter = (searchParams: ReadonlyURLSearchParams) => {
     const skip = Number(searchParams.get("page")) || 1
     const searchText = searchParams.get("searchProduct")
+    const filter = searchParams.get("filter")
     const filters = {
         search: searchText ? searchText.replace(/%20/g, " ") : "",
         categories: searchParams.getAll("categoria"),
         sizes: searchParams.getAll("talle"),
         discount: searchParams.get("descuento") || false,
         price: searchParams.get("precioMax") || 200000,
-        skipPage: (skip - 1) * 9
+        skipPage: (skip - 1) * 9,
+        filter: filter || ""
     }
 
     const queryString = new URLSearchParams({
         search: filters.search,
         discount: filters.discount.toString(),
         price: filters.price.toString(),
-        skipPage: filters.skipPage.toString()
+        skipPage: filters.skipPage.toString(),
+        filter: filters.filter
     })
 
     filters.categories.forEach(c => queryString.append("category", c))
@@ -89,7 +92,12 @@ export const createWhereFilter = (filters: FiltersData) => {
             })
         },
         precio: { lte: filters.price },
-        activa: true
+        activa: true,
+        ...(filters.discount === "true" ? {
+            descuento: {
+                gt: 0
+            }
+        } : {})
     }
     return where
 }
@@ -110,18 +118,18 @@ export const taxes = 1100
 export const homeDeliveryPrice = 3000
 
 export const purchaseStateBgColor: Record<EstadoEnvio, [string, string]> = {
-  [EstadoEnvio.PENDIENTE]: ["bg-yellow-100", "text-yellow-700"],   
-  [EstadoEnvio.APROBADO]: ["bg-green-100", "text-green-700"],      
-  [EstadoEnvio.EN_CAMINO]: ["bg-blue-100", "text-blue-700"],  
-  [EstadoEnvio.ENTREGADO]: ["bg-indigo-100", "text-indigo-700"],   
-  [EstadoEnvio.CANCELADO]: ["bg-red-100", "text-red-700"],    
+    [EstadoEnvio.PENDIENTE]: ["bg-yellow-100", "text-yellow-700"],
+    [EstadoEnvio.APROBADO]: ["bg-green-100", "text-green-700"],
+    [EstadoEnvio.EN_CAMINO]: ["bg-blue-100", "text-blue-700"],
+    [EstadoEnvio.ENTREGADO]: ["bg-indigo-100", "text-indigo-700"],
+    [EstadoEnvio.CANCELADO]: ["bg-red-100", "text-red-700"],
 }
 
 
 export const queryFilterAdminProducts = (searchParams: ReadonlyURLSearchParams) => {
     const skipPage = ((Number(searchParams.get("page")) || 1) - 1) * 10
     const searchText = searchParams.get("searchProduct")
-    const category =  searchParams.get("category")
+    const category = searchParams.get("category")
     const filters = {
         search: searchText ? searchText.replace(/%20/g, " ") : "",
         skipPage: skipPage,
@@ -137,14 +145,14 @@ export const queryFilterAdminProducts = (searchParams: ReadonlyURLSearchParams) 
         lowStock: filters.lowStock,
         relatedProduct: filters.relatedProduct
     })
-    
+
     return queryString
 }
 
 export const queryFilterAdminPublications = (searchParams: ReadonlyURLSearchParams) => {
     const skipPage = ((Number(searchParams.get("page")) || 1) - 1) * 10
     const searchText = searchParams.get("searchProduct")
-    const filter =  searchParams.get("filter")
+    const filter = searchParams.get("filter")
     const filters = {
         search: searchText ? searchText.replace(/%20/g, " ") : "",
         skipPage: skipPage,
@@ -160,13 +168,13 @@ export const queryFilterAdminPublications = (searchParams: ReadonlyURLSearchPara
         lowStock: filters.lowStock,
         relatedProduct: filters.relatedProduct
     })
-    
+
     return queryString
 }
 
 
 
-export const whereFilterAdminProducts = (filters: {search: string, skip: number}) => {
+export const whereFilterAdminProducts = (filters: { search: string, skip: number }) => {
     const where: Record<string, unknown> = {
         producto: {
             ...(filters.search && {
@@ -182,10 +190,10 @@ export const whereFilterAdminProducts = (filters: {search: string, skip: number}
 
 export const findUrlPath = (imagePath: string, category?: string) => {
     const cloudinaryBaseUrl = "https://res.cloudinary.com"
-    if(imagePath.startsWith(cloudinaryBaseUrl)){
+    if (imagePath.startsWith(cloudinaryBaseUrl)) {
         return imagePath
     } else {
-        return `/products/${translateCategory(category  as Categoria)}/` + imagePath
+        return `/products/${translateCategory(category as Categoria)}/` + imagePath
     }
 }
 
@@ -204,6 +212,14 @@ export const queryFilterAdminSales = (searchParams: ReadonlyURLSearchParams) => 
         skipPage: filters.skipPage.toString(),
         filter: filters.filter
     })
-    
+
     return queryString
 }
+
+export const filterSearchPageOptions: Record<string, Prisma.PublicacionesOrderByWithRelationInput> = {
+    mas_vendido: {ventas: {_count: "desc"}},
+    Precio_Menor_a_Mayor: {precio: "asc"},
+    Precio_Mayor_a_Menor: { precio: "desc" }
+}
+
+export type FilterSearchPageOptionsKey = keyof typeof filterSearchPageOptions
