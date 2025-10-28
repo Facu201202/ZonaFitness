@@ -326,3 +326,14 @@ export type MainComment = {
         };
     };
 }
+
+export type UserForSettings = {
+    id_usuario: number;
+    usuario: string;
+    rol: string;
+    cliente: {
+        nombre: string;
+        apellido: string;
+        correo: string;
+    };
+}

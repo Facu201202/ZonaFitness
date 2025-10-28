@@ -17,9 +17,6 @@ type StateOptionsProps = {
 
 export default function StateOptions({ state, saleId, setIsChanging }: StateOptionsProps) {
     const [bgColor, textColor] = purchaseStateBgColor[state]
-    const searchParams = useSearchParams()
-    const params = new URLSearchParams(searchParams.toString())
-    const router = useRouter()
 
     const [selected, setSelected] = useState(state);
 
