@@ -216,6 +216,19 @@ export const queryFilterAdminSales = (searchParams: ReadonlyURLSearchParams) => 
     return queryString
 }
 
+export const queryFilterAdminSettingsRol = (searchParams: ReadonlyURLSearchParams) => {
+    const search = searchParams.get("searchUser")
+    const filters = {
+        search: search ? search : ""
+    }
+
+    const queryString = new URLSearchParams({
+        search: filters.search,
+    })
+
+    return queryString
+}
+
 export const filterSearchPageOptions: Record<string, Prisma.PublicacionesOrderByWithRelationInput> = {
     mas_vendido: {ventas: {_count: "desc"}},
     Precio_Menor_a_Mayor: {precio: "asc"},
@@ -223,3 +236,12 @@ export const filterSearchPageOptions: Record<string, Prisma.PublicacionesOrderBy
 }
 
 export type FilterSearchPageOptionsKey = keyof typeof filterSearchPageOptions
+
+export const UserRolBgColor = {
+    usuario: ["bg-gray-100", "text-gray-700", "border-gray-700"],
+    admin: ["bg-red-100", "text-red-700", "border-red-700"]
+}
+
+export type UserRolBgColorKey = keyof typeof UserRolBgColor
+
+export const UserRols = ["usuario", "admin"]

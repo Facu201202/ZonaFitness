@@ -40,7 +40,6 @@ export default async function RootLayout({
   const userId = headerList.get("x-user-id")
   const userName = headerList.get("x-user-name")
   const userRol = headerList.get("x-user-rol")
-  console.log(userRol)
 
   return (
     <div

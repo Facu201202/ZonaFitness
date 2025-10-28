@@ -1,5 +1,5 @@
 "use client"
-import { AdjustmentsVerticalIcon, CubeIcon, ShoppingBagIcon, CurrencyDollarIcon, ArrowLeftIcon, ArrowRightIcon, ShoppingCartIcon, ArrowRightEndOnRectangleIcon } from "@heroicons/react/24/outline"
+import { AdjustmentsVerticalIcon, CubeIcon, ShoppingBagIcon, CurrencyDollarIcon, ArrowLeftIcon, ArrowRightIcon, ShoppingCartIcon, Cog6ToothIcon } from "@heroicons/react/24/outline"
 import Link from "next/link"
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -35,6 +35,11 @@ export default function AdminNavbar() {
                                 className={`flex gap-2 items-center text-white w-full rounded-lg p-2 hover:cursor-pointer font-semibold ${pathname === "/admin/sales" && "bg-gray-700"}`}><CurrencyDollarIcon className="h-8 w-8"
                                 /> Ventas
                             </Link>
+                            <Link
+                                href={"/admin/settings"}
+                                className={`flex gap-2 items-center text-white w-full rounded-lg p-2 hover:cursor-pointer font-semibold ${pathname === "/admin/settings" && "bg-gray-700"}`}><Cog6ToothIcon className="h-8 w-8"
+                                /> Ajustes
+                            </Link>
                         </div>
                         <div className="pb-16 flex flex-col gap-3 text-center ">
                             <Link
@@ -63,6 +68,11 @@ export default function AdminNavbar() {
                             <Link
                                 href={"/admin/sales"}
                                 className={`flex gap-2 items-center text-white w-full rounded-lg p-2 hover:cursor-pointer font-semibold ${pathname === "/admin/sales" && "bg-gray-700"}`}><CurrencyDollarIcon className="h-8 w-8"
+                                />
+                            </Link>
+                            <Link
+                                href={"/admin/settings"}
+                                className={`flex gap-2 items-center text-white w-full rounded-lg p-2 hover:cursor-pointer font-semibold ${pathname === "/admin/settings" && "bg-gray-700"}`}><Cog6ToothIcon className="h-8 w-8"
                                 />
                             </Link>
                         </div>

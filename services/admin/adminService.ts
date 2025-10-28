@@ -177,7 +177,7 @@ export async function getProductsToLink(search: string) {
     })
 }
 
-export async function getSales(filters: { search: string; skip: number; filter: string}) {
+export async function getSales(filters: { search: string; skip: number; filter: string }) {
     const searchedWords = filters.search.split(" ").filter(Boolean)
     return await prisma.ventas.findMany({
         take: 10,
@@ -218,7 +218,7 @@ export async function getSales(filters: { search: string; skip: number; filter: 
         orderBy: {
             ...(filters.filter ? {
                 [filters.filter.toLowerCase()]: "desc"
-            }: {})
+            } : {})
         },
         select: {
             id_venta: true,
@@ -329,4 +329,54 @@ export async function getSalesCount(filters: { search: string, skip: number }) {
         },
     },
     )
+}
+
+export async function getUsers(filters: { search: string }) {
+    const searchedWords = filters.search.split(" ").filter(Boolean)
+    return prisma.usuarios.findMany({
+        where: {
+            AND: searchedWords.map(word => ({
+                OR: [
+                    {
+                        cliente: {
+                            nombre: {
+                                contains: word,
+                                mode: "insensitive"
+                            }
+                        }
+                    },
+                    {
+                        cliente: {
+                            apellido: {
+                                contains: word,
+                                mode: "insensitive"
+                            }
+                        }
+                    },
+                    {
+                        cliente: {
+                            correo: {
+                                contains: word,
+                                mode: "insensitive"
+                            }
+                        }
+                    },
+
+                ]
+            })),
+        },
+        select: {
+            usuario: true,
+            id_usuario: true,
+            rol:true,
+            cliente: {
+                select: {
+                    nombre: true,
+                    apellido: true,
+                    correo: true,
+                    
+                }
+            }
+        }
+    })
 }
