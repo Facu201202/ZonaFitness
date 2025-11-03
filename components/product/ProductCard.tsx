@@ -26,8 +26,10 @@ export default function ProductCard({ price, name, category, src, opinionsCant, 
     const searchParams = useSearchParams();
     const fullUrl = pathname + '?' + searchParams.toString();
     let total = 0
+    let opinionTotal = 0
     if (stars) {
         const isCalificated = stars.filter(star => star.opinion.length > 0 && star)
+        opinionTotal = isCalificated.length
         total = isCalificated.reduce((acc, star) => { return acc + star.opinion[0].calificacion }, 0)
     }
 
@@ -50,7 +52,7 @@ export default function ProductCard({ price, name, category, src, opinionsCant, 
                     <div className="flex gap-2 items-center">
                         <ReactStars
                             count={5}
-                            value={opinionsCant > 0 ? total / opinionsCant : 0}
+                            value={opinionsCant > 0 ? total / opinionTotal : 0}
                             size={25}
                             half={true}
                             color2={"#ffd700"}
