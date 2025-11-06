@@ -16,6 +16,8 @@ type ProductInfoProps = {
 
 export default function ProductInfo({ product }: ProductInfoProps) {
     const userId = useUserStore(state => state.userId)
+    const userRol = useUserStore(state => state.userRol)
+    const isAdmin = userRol === "admin"
     const searchParams = useSearchParams()
     const router = useRouter()
     const params = new URLSearchParams(searchParams.toString())
@@ -176,11 +178,13 @@ export default function ProductInfo({ product }: ProductInfoProps) {
                 <div className='flex flex-col gap-2'>
                     <button
                         onClick={() => handleShoppingCartButton()}
-                        className=" bg-[#2D5DA2] text-white px-4 py-3 rounded text-center font-semibold hover:bg-[#2d52a2] hover:cursor-pointer flex justify-center items-center gap-3"
+                        disabled={true}
+                        className=" bg-[#2D5DA2] text-white px-4 py-3 rounded text-center font-semibold hover:bg-[#2d52a2] hover:cursor-pointer flex justify-center items-center gap-3 pointer-events-none opacity-40 line-through"
                     >{<ShoppingCartIcon className='h-5 w-5' />}  Añadir al carrito
                     </button>
                     <button
-                        className=" border border-[#2D5DA2] text-[#2D5DA2] px-4 py-3 rounded text-center font-semibold hover:bg-[#2D5DA2] hover:text-white flex justify-center items-center gap-3"
+                        disabled={isAdmin}
+                        className={`border border-[#2D5DA2] text-[#2D5DA2] px-4 py-3 rounded text-center font-semibold hover:bg-[#2D5DA2] hover:text-white flex justify-center items-center gap-3 ${isAdmin && "pointer-events-none opacity-40 line-through"}`}
                         onClick={() => handlePurchaseButton()}
                     >{<CreditCardIcon className='h-5 w-5' />} Comprar ahora
                     </button>
