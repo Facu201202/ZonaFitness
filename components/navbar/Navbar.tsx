@@ -63,7 +63,7 @@ export default function Navbar({ isLogin }: { isLogin: boolean }) {
                             <Image src={"/user.png"} alt="" height={50} width={50} className="rounded-full" />
                             <div className="flex flex-col ">
                                 <p className="text-xl font-medium">{userName}</p>
-                                <Link href={"/tienda/perfil"} className="hover:text-[#275DA2] text-xs" onClick={() => setMenuOpen(false)}>Mi perfil</Link>
+                                <a href={"/tienda/perfil"} className="hover:text-[#275DA2] text-xs" onClick={() => setMenuOpen(false)}>Mi perfil</a>
                            </div>
                         </div>
                     }

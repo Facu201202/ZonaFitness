@@ -20,7 +20,7 @@ export default function UserButton() {
                 </div>
                 {menuUSerOpen && (
                     <div className="absolute left-1/2 -translate-x-1/2 w-44 bg-white shadow-md flex flex-col items-start p-4 gap-4 z-50 text-[#434346] select-none">
-                        <Link href={"/tienda/perfil"} className="hover:text-[#275DA2]" onClick={() => setMenuUserOpen(false)}>Mi perfil</Link>
+                        <a href={"/tienda/perfil"} className="hover:text-[#275DA2]" onClick={() => setMenuUserOpen(false)}>Mi perfil</a>
                         <LogoutButton />
                     </div>
                 )}

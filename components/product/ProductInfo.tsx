@@ -38,7 +38,6 @@ export default function ProductInfo({ product }: ProductInfoProps) {
     }
 
 
-
     useEffect(() => {
         setQuantity(Number(params.get("cantidad")) || 1)
     }, [searchParams])

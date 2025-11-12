@@ -314,7 +314,12 @@ export async function getUserFavorites(userId: number) {
                             }
                         }
                     },
-                    favoritos: true
+                    favoritos: true,
+                    ventas: {
+                        select: {
+                            opinion: true
+                        }
+                    }
                 }
             }
 

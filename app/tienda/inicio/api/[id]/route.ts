@@ -1,5 +1,6 @@
 import { prisma } from "@/src/lib/prisma"
 import { NextResponse, NextRequest } from "next/server"
+import { headers } from "next/headers"
 
 export const dynamic = "force-dynamic"
 
@@ -9,6 +10,8 @@ export async function GET(
 ) {
     const { id } = await context.params;
     const idNum = Number(id);
+    const headerList = await headers()
+    const userId = headerList.get("x-user-id")
 
     const product = await prisma.publicaciones.findUnique({
         where: {
@@ -52,7 +55,9 @@ export async function GET(
                     },
                 },
             },
-            favoritos: true,
+            favoritos: userId
+                ? { where: { id_usuario: Number(userId) }, select: { id_usuario: true} }
+                : false
         },
     });
 
