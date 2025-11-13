@@ -34,6 +34,7 @@ export default function FilterMenu() {
                 <Listbox.Options className="absolute z-1000 mt-1 w-full rounded-lg bg-white border border-gray-300 shadow-md">
                     {options.map((opt, idx) => (
                         <Listbox.Option
+                            disabled={idx === 0}
                             key={idx}
                             value={opt}
                             className={({ active }) =>
