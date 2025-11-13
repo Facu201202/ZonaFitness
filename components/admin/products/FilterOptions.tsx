@@ -21,6 +21,7 @@ export default function FilterOptions() {
             router.push(`?${params.toString()}`)
             return
         }
+        params.delete("page")
         params.append("lowStock", "true")
         router.push(`?${params.toString()}`)
     }
