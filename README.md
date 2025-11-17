@@ -1,36 +1,199 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛒 ZonaFitness – Online SportWear Store
 
-## Getting Started
+A full e-commerce platform developed with Next.js, TypeScript, and PostgreSQL, featuring an admin panel, authentication with roles, and a complete purchase system.
 
-First, run the development server:
+---
+
+## 🔗 Live Demo
+
+👉 https://zona-fitness.vercel.app/
+
+---
+
+## Preview 
+
+![Homepage](/images/homepage.png)
+*Main page displaying products.*
+
+![Product Modal](/images/product_modal.png)
+*Product modal with detailed information.*
+
+![Product Admin Panel](/images/Admin_products.png)
+*Admin panel for product management.*
+
+---
+
+## 📌 Description
+
+ZonaFitness is an online sportswear store designed to modernize the sales process of a physical shop.
+It includes a full product catalog, advanced search filters, review system, favorites, user profile, and an admin panel for managing products, publications, and sales.
+
+---
+
+## 🚀 Main features
+### 👤 Users
+
+- Login and registration with encrypted passwords
+
+- JWT authentication with role-based access (user / admin)
+
+- User profile with:
+
+    - Personal information
+
+    - Purchase history
+
+    - Reviews
+
+    - Favorites
+
+    - Option to update personal data and password
+
+- Purchase flow with full validations:
+
+    - Stock
+
+    - Balance
+
+    - SIzes
+
+    - Prices
+
+- PDF receipt generation
+
+### 🛍️ Product Catalog
+
+- Homepage with recommended products
+
+- Advanced search filters
+
+- Sorting options (ascending / descending / rating)
+
+- Product modal with complete details
+
+- Related products section
+
+### ⭐ Reviews
+
+- Leave a review only after purchasing a product
+
+- Edit or delete reviews
+
+- View all reviews on the product page
+
+### 🔐 Administrator Panel
+
+- Full administrative access to manage store operations.
+
+### 📦 Products
+
+- Create, update, and delete products
+
+- Stock management
+
+- Search and filtering options
+
+### 📰 Publications
+
+- Create and edit publications
+
+- Activate/deactivate publications
+
+- Search filters
+
+### 💲 Sales
+
+- View complete sales history
+
+- Update sale status
+
+- Track profits, losses, and totals
+
+---
+
+## 🛠️ Technologies Used
+**Frontend / Backend**
+
+- Next.js (React)
+
+- TypeScript
+
+- TailwindCSS
+
+
+**Authentication**
+
+- jsonwebtoken
+
+- jose
+
+- bcrypt
+
+**Database**
+
+- PostgreSQL (AlwaysData)
+
+- Prisma ORM
+
+**Utilities**
+
+- Cloudinary (Images)
+
+- html2pdf.js
+
+- Keen Slider
+
+---
+
+<details> <summary>🗂️ Project Structure</summary>
+
+/app: Routes, pages, and frontend components
+
+/components: Reusable components
+
+/lib: Validations, helpers, authentication logic
+
+/prisma: Models and migrations
+
+/api: Backend endpoints
+
+</details>
+
+---
+
+## 🧪 Test Accounts
+You can freely create a user account to explore the platform.  
+Each new account receives a simulated balance of 200,000 ARS to test the purchase flow.
+
+⚠️ The admin panel is restricted and not publicly accessible for security reasons.
+
+---
+
+## ▶️ How to run the project locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/tuUsuario/zona-fitness.git
+cd zona-fitness
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Configure environment variables:**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+DATABASE_URL=
+JWT_SECRET=
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=
+NEXT_PUBLIC_CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Start development server:**
+```bash
+npm run dev
+```
 
-## Learn More
+## 👨‍💻 Autor
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Facundo Fernández**  
+Web developer – React | Next.js | TypeScript | Node.js 
+LinkedIn: https://www.linkedin.com/in/facundo-leonel-fern%C3%A1ndez/ 
