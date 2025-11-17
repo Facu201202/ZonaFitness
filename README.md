@@ -147,15 +147,15 @@ It includes a full product catalog, advanced search filters, review system, favo
 
 <details> <summary>🗂️ Project Structure</summary>
 
-/app: Routes, pages, and frontend components
+- **/app:** Routes, pages, and frontend components
 
-/components: Reusable components
+- **/components:** Reusable components
 
-/lib: Validations, helpers, authentication logic
+- **/lib:** Validations, helpers, authentication logic
 
-/prisma: Models and migrations
+- **/prisma:** Models and migrations
 
-/api: Backend endpoints
+- **/api:** Backend endpoints
 
 </details>
 
