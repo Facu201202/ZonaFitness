@@ -1,6 +1,7 @@
+"use client"
 import Link from "next/link"
 import Image from "next/image"
-import { useSearchParams, usePathname } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { findUrlPath, formatCurrency } from "@/src/utils"
 import { Categoria } from "@/src/types"
 import ReactStars from "react-stars"
@@ -22,9 +23,14 @@ type ProductCardProps = {
 }
 
 export default function ProductCard({ price, name, category, src, opinionsCant, id_publication, stars, discount }: ProductCardProps) {
-    const pathname = usePathname()
+    const router = useRouter()
     const searchParams = useSearchParams();
-    const fullUrl = pathname + '?' + searchParams.toString();
+    const params = new URLSearchParams(searchParams.toString());
+    const handleButton = () => {
+        params.delete('producto')
+        params.set('producto', id_publication.toString())
+        router.push(`?${params.toString()}`)
+    }
     let total = 0
     let opinionTotal = 0
     if (stars) {
@@ -72,11 +78,10 @@ export default function ProductCard({ price, name, category, src, opinionsCant, 
                             <p className='text-green-600 font-semibold text-sm'>{discount}% OFF</p>
                         )}
                     </div>
-                    <Link
-                        href={`${fullUrl}&producto=${id_publication}`}
-                        scroll={false}
-                        className="rounded-full px-3 py-1 bg-[#2D5DA2] hover:bg-[#275ca2b6] text-white"
-                    >Comprar</Link>
+                    <button
+                        onClick={handleButton}
+                        className="rounded-full px-3 py-1 bg-[#2D5DA2] hover:bg-[#275ca2b6] text-white hover:cursor-pointer"
+                    >Comprar</button>
                 </div>
             </div>
 
