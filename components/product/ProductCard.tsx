@@ -29,7 +29,7 @@ export default function ProductCard({ price, name, category, src, opinionsCant, 
     const handleButton = () => {
         params.delete('producto')
         params.set('producto', id_publication.toString())
-        router.push(`?${params.toString()}`)
+        router.push(`?${params.toString()}`, { scroll: false })
     }
     let total = 0
     let opinionTotal = 0
